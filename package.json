@@ -1,9 +1,9 @@
 {
-  "name": "coilcam",
+  "name": "coilcam-js",
   "version": "1.0.0",
   "description": "Functions for coilCAM in Javascript.",
   "source": "src/index.js",
-  "main": "dist/main.js",
+  "main": "index.js",
   "types": "dist/types.d.ts",
   "scripts": {
     "watch": "parcel watch",
