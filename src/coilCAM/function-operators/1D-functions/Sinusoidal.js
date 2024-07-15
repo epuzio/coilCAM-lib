@@ -14,3 +14,5 @@ export function sinusoidal(amplitude, offset, nbPoints, values0, mode) {
     }
     return values;
 }
+
+window.sinusoidal = sinusoidal;

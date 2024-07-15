@@ -21,7 +21,7 @@ let euclideanDist = (p1, p2) => Math.sqrt((p1[0]-p2[0])**2 + (p1[1]-p2[1])**2 + 
 
 
 //Main functions to generate GCode, calculate clay height, calculate number of tubes
-function generateGCode(path, nozzleDiameter, printSpeed){ //main function
+export function generateGCode(path, nozzleDiameter, printSpeed){ //main function
     let layerHeight = path[2]; //change this
     let printSpeeds = [10000]; //First move should be 10000
     let segmentLen = [];
@@ -49,7 +49,7 @@ function generateGCode(path, nozzleDiameter, printSpeed){ //main function
     return gcode;
 }
 
-function downloadGCode(gcode_string, fileName) { //pass in gcode string, filename
+export function downloadGCode(gcode_string, fileName) { //pass in gcode string, filename
     const blob = new Blob([gcode_string], { type: 'text/plain' });
     const url = URL.createObjectURL(blob);
     const link = document.createElement('a');

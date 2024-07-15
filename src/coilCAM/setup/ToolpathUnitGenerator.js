@@ -106,7 +106,7 @@ function setParameter(input, parameter_name, nbLayers=[], nbPointsInLayer=[]){
     throw new Error(error_str);
 }
 
-function toolpathUnitGenerator(position, initialRadius, layerHeight, nbLayers, nbPointsInLayer,
+export function toolpathUnitGenerator(position, initialRadius, layerHeight, nbLayers, nbPointsInLayer,
                               radiusShapingParameter, scaleShapingParameter, scalingRadiusShapingParameter,
                               translateShapingParameter, rotateShapingParameter, thicknessShapingParameter=[]){
     let path = [];

@@ -14,3 +14,5 @@ export function exponential(amplitude, base, ampExp, offset, nbPoints, values0, 
     }
     return values;
 }
+
+CoilCAM.exponential = exponential;

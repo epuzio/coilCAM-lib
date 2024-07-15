@@ -9,7 +9,7 @@ async function arrayToAudioBuffer(data, AudioContext) {
 }
 
 
-function waveform(filename, nbPoints='default', offset=0, heightRange=[-1,1]){
+export function waveform(filename, nbPoints='default', offset=0, heightRange=[-1,1]){
     let values = [];
     let waveFile = localStorage.getItem(filename); //returns base64
     if (waveFile === null) {

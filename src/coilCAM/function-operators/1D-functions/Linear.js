@@ -14,3 +14,5 @@ export function linear(amplitude, offset, nbPoints, values0, mode) {
     }
     return values;
 }
+
+window.coilcam = linear;
