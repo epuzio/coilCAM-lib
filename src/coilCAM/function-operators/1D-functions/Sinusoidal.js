@@ -1,4 +1,5 @@
 import { setParams1D } from '../function-helpers.js'
+import {CoilCAM} from "../../CoilCAM.js"
 
 // Sinusoidal
 export function sinusoidal(amplitude, offset, nbPoints, values0, mode) {
@@ -15,4 +16,4 @@ export function sinusoidal(amplitude, offset, nbPoints, values0, mode) {
     return values;
 }
 
-window.sinusoidal = sinusoidal;
+CoilCAM.sinusoidal = sinusoidal;
