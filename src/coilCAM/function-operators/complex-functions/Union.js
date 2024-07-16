@@ -1,5 +1,6 @@
 // /* eslint-disable no-unused-vars */
-import Flatten from 'https://unpkg.com/@flatten-js/core/dist/main.mjs';
+// import Flatten from 'https://unpkg.com/@flatten-js/core/dist/main.mjs';
+import Flatten from '@flatten-js/core';
 const {point, Polygon} = Flatten;
 const {unify} = Flatten.BooleanOperations;
 

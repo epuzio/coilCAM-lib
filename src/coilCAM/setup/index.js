@@ -1,4 +1,5 @@
-export {base} from "src/coilCAM/setup/Base";
-export {generateGCode, downloadGCode} from "src/coilCAM/function-operators/1D-functions/GCodeGenerator";
-export {toolpathUnitGenerator} from "src/coilCAM/setup/ToolpathUnitGenerator";
-
+// // import base from "src/coilCAM/setup/Base";
+// import {generateGCode, downloadGCode} from "./GCodeGenerator.js";
+// // import toolpathUnitGenerator from "src/coilCAM/setup/ToolpathUnitGenerator";
+// export {generateGCode};
+// // export {base, generateGCode, downloadGCode, toolpathUnitGenerator};

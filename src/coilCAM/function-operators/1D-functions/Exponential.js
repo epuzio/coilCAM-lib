@@ -1,5 +1,4 @@
 import { setParams1D } from '../function-helpers.js'
-import {CoilCAM} from "../../CoilCAM.js"
 
 // Exponential
 export function exponential(amplitude, base, ampExp, offset, nbPoints, values0, mode){
@@ -16,4 +15,4 @@ export function exponential(amplitude, base, ampExp, offset, nbPoints, values0, 
     return values;
 }
 
-CoilCAM.exponential = exponential;
+window.exponential = exponential;

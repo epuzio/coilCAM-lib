@@ -1,8 +1,8 @@
 {
   "name": "coilcam-js",
-  "version": "1.0.16",
+  "version": "1.0.26",
   "description": "Functions for coilCAM in Javascript.",
-  "main": "./index.js",
+  "source": "src/index.html",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/epuzio/coilCAM-lib/tree/main"
@@ -10,16 +10,21 @@
   "scripts": {
     "watch": "parcel watch",
     "build": "parcel build",
-    "start": "parcel index.html"
+    "start": "parcel index.js"
   },
   "keywords": [
     "CAM"
   ],
   "author": "epuzio",
   "devDependencies": {
-    "parcel": "latest"
+    "@parcel/transformer-babel": "^2.12.0",
+    "@parcel/transformer-js": "^2.12.0",
+    "@parcel/transformer-typescript-types": "^2.12.0",
+    "@tsconfig/recommended": "^1.0.7",
+    "parcel": "^2.12.0"
   },
   "dependencies": {
+    "@flatten-js/core": "^1.5.6",
     "rollup": "^4.18.1"
   }
 }

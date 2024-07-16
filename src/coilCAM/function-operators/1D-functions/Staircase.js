@@ -22,3 +22,5 @@ export function staircase(stepWidth, stepHeight, offset, nbPoints, values0, mode
     }
     return values;
 }
+
+window.staircase = staircase;

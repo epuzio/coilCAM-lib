@@ -1,5 +1,4 @@
 import { setParams1D } from '../function-helpers.js'
-import {CoilCAM} from "../../CoilCAM.js"
 
 // Linear
 export function linear(amplitude, offset, nbPoints, values0, mode) {
@@ -16,4 +15,4 @@ export function linear(amplitude, offset, nbPoints, values0, mode) {
     return values;
 }
 
-CoilCAM.linear = linear;
+window.linear = linear;

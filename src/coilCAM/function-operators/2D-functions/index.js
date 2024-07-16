@@ -1,2 +1,4 @@
-export {sinusoidal2D} from "src/coilCAM/function-operators/1D-functions/Sinusoidal2D";
-export {linear2D} from "src/coilCAM/function-operators/1D-functions/Linear2D";
+import sinusoidal2D from "./Sinusoidal2D.js";
+import linear2D from "./Linear2D.js";
+
+export {sinusoidal2D, linear2D};

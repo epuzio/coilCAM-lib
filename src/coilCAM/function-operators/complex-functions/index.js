@@ -1,2 +1,4 @@
-export {difference} from "src/coilCAM/function-operators/1D-functions/Difference";
-export {union} from "src/coilCAM/function-operators/1D-functions/Union";
+import difference from "./Difference.js";
+import union from "./Union.js";
+
+export {difference, union};
