@@ -1,7 +1,6 @@
-// import Flatten from '../../node_modules/@flatten-js/core/dist/main.mjs';
+// import Flatten from '../../../node_modules/@flatten-js/core/dist/main.mjs';
 import Flatten from 'https://unpkg.com/@flatten-js/core/dist/main.mjs';
 const {point, Polygon, Segment} = Flatten;
-const {intersect} = Flatten.BooleanOperations;
 
 export function baseSpiral(position, path, nbPointsInLayer, layerHeight, nozzle_diameter, radius, rotate=0){ 
     let basePoints = [];
@@ -81,4 +80,5 @@ export function addBase(b, path){
 
 // window.baseSpiral = baseSpiral;
 // window.baseFill = baseFill;
-// window.base = base;
+window.base = base;
+window.base = addBase;

@@ -87,4 +87,4 @@ export default function union(path0, path1, by_layer = true){
 //   }
 // }
 
-// window.union = union;
+window.union = union;

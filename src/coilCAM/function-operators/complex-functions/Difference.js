@@ -67,4 +67,4 @@ export default function difference(path0, path1){ //revise
   return path;
 }
 
-// window.difference = difference;
+window.difference = difference;
