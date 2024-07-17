@@ -1,7 +1,7 @@
 import { setParams1D } from '../function-helpers.js'
 
 // Exponential
-export function exponential(amplitude, base, ampExp, offset, nbPoints, values0, mode){
+export default function exponential(amplitude, base, ampExp, offset, nbPoints, values0, mode){
     let values = [];
     [offset, values0] = setParams1D("Exponential", offset, values0, nbPoints, mode);
 

@@ -1,6 +1,6 @@
 import { setParams2D } from '../function-helpers.js'
 
-export function sinusoidal2D(amplitudeX1, periodX1, amplitudeX2, periodX2, offset0x, offset0y, nbPoints, values0x, values0y, mode) {
+export default function sinusoidal2D(amplitudeX1, periodX1, amplitudeX2, periodX2, offset0x, offset0y, nbPoints, values0x, values0y, mode) {
     let pointsX = [];
     let pointsY = [];
     [offset0x, offset0y, values0x, values0y] = setParams2D("Sinusoidal2D", offset0x, offset0y, values0x, values0y, nbPoints, mode);
@@ -17,3 +17,4 @@ export function sinusoidal2D(amplitudeX1, periodX1, amplitudeX2, periodX2, offse
     return new Array(pointsX, pointsY);
 }
 
+window.sinusoidal2D = sinusoidal2D;

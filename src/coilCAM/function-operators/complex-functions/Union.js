@@ -1,10 +1,9 @@
 // /* eslint-disable no-unused-vars */
-// import Flatten from 'https://unpkg.com/@flatten-js/core/dist/main.mjs';
-import Flatten from '@flatten-js/core';
+import Flatten from 'https://unpkg.com/@flatten-js/core/dist/main.mjs';
 const {point, Polygon} = Flatten;
 const {unify} = Flatten.BooleanOperations;
 
-export function union(path0, path1, by_layer = true){
+export default function union(path0, path1, by_layer = true){
   let path = [];
   let points0 = [];
   let points1 = [];

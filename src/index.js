@@ -5,7 +5,11 @@ import * as functions2D from './coilCAM/function-operators/2D-functions/index.js
 
 export {
     functions1D,
-    functions2D
+    functions2D,
     // complexFunctions,
     // setup
 };
+
+// note: any .js files that only export a single function need to export 
+// that function as "export default" for "> npm run build" to execute properly
+// Run "> npm run build", then "npm publish", (then update the version) every time a change is made!

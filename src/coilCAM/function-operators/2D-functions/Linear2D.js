@@ -1,6 +1,6 @@
 import { setParams2D } from '../function-helpers.js'
 
-export function linear2D(amplitudeX1, offsetX1, amplitudeX2, offsetX2, nbPoints, values0x, values0y, mode){
+export default function linear2D(amplitudeX1, offsetX1, amplitudeX2, offsetX2, nbPoints, values0x, values0y, mode){
     let pointsX = [];
     let pointsY = [];
     [offsetX1, offsetX2, values0x, values0y] = setParams2D("Linear2D", offsetX1, offsetX2, values0x, values0y, nbPoints, mode);
@@ -16,3 +16,5 @@ export function linear2D(amplitudeX1, offsetX1, amplitudeX2, offsetX2, nbPoints,
     }
     return new Array(pointsX, pointsY);
 }
+
+window.linear2D = linear2D;

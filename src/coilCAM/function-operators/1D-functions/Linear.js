@@ -1,7 +1,7 @@
 import { setParams1D } from '../function-helpers.js'
 
 // Linear
-export function linear(amplitude, offset, nbPoints, values0, mode) {
+export default function linear(amplitude, offset, nbPoints, values0, mode) {
     let values = [];
     [offset, values0] = setParams1D("Linear", offset, values0, nbPoints, mode);
 

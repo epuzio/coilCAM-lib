@@ -1,7 +1,7 @@
 import { setParams1D } from '../function-helpers.js'
 
 // Staircase
-export function staircase(stepWidth, stepHeight, offset, nbPoints, values0, mode){
+export default function staircase(stepWidth, stepHeight, offset, nbPoints, values0, mode){
     let values = [];
     let index = 0;
     [offset, values0] = setParams1D("Staircase", offset, values0, nbPoints, mode);

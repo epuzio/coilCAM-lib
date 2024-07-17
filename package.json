@@ -1,16 +1,20 @@
 {
   "name": "coilcam-js",
-  "version": "1.0.26",
+  "version": "1.0.29",
   "description": "Functions for coilCAM in Javascript.",
-  "source": "src/index.html",
+  "license": "MIT",
+  "source": "src/index.js",
+  "module": "dist/module.js",
+  "type": "module",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/epuzio/coilCAM-lib/tree/main"
   },
+
   "scripts": {
     "watch": "parcel watch",
     "build": "parcel build",
-    "start": "parcel index.js"
+    "start": "parcel src/index.js"
   },
   "keywords": [
     "CAM"
