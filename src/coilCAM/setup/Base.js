@@ -4,7 +4,7 @@ import Flatten from '../../../node_modules/@flatten-js/core/dist/main.mjs';
 // import Flatten from 'https://unpkg.com/@flatten-js/core/dist/main.mjs';
 const {point, Polygon, Segment} = Flatten;
 
-function baseSpiral(position, path, nbPointsInLayer, layerHeight, nozzle_diameter, radius, rotate=0){ 
+export function baseSpiral(position, path, nbPointsInLayer, layerHeight, nozzle_diameter, radius, rotate=0){ 
     let basePoints = [];
     let basePath = [];
     let height = layerHeight;
@@ -36,7 +36,7 @@ function baseSpiral(position, path, nbPointsInLayer, layerHeight, nozzle_diamete
     return basePath;
 }
 
-function baseFill(position, path, nbPointsInLayer, layerHeight, nozzle_diameter, radius){
+export function baseFill(position, path, nbPointsInLayer, layerHeight, nozzle_diameter, radius){
     let basePath = [];
     let height = layerHeight;
     for(let i = 0; i < nbPointsInLayer*4; i+=4){
@@ -80,7 +80,7 @@ export function addBase(b, path){
     return b.concat(path);
 }
 
-// window.baseSpiral = baseSpiral;
-// window.baseFill = baseFill;
+window.baseSpiral = baseSpiral;
+window.baseFill = baseFill;
 window.base = base;
-window.base = addBase;
+window.addBase = addBase;

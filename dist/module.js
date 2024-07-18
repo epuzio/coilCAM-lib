@@ -7071,6 +7071,8 @@ var $a067c65f26654429$exports = {};
 
 $parcel$export($a067c65f26654429$exports, "base", () => $c45d59629d16dffd$export$e2253033e6e1df16);
 $parcel$export($a067c65f26654429$exports, "addBase", () => $c45d59629d16dffd$export$65b4735759d794d4);
+$parcel$export($a067c65f26654429$exports, "baseSpiral", () => $c45d59629d16dffd$export$c8860df64baac0eb);
+$parcel$export($a067c65f26654429$exports, "baseFill", () => $c45d59629d16dffd$export$a3b482626e4c0b96);
 $parcel$export($a067c65f26654429$exports, "centerPrint", () => $14d375dbaed5c813$export$581890168c8d0b00);
 $parcel$export($a067c65f26654429$exports, "checkOverflow", () => $14d375dbaed5c813$export$69a2e097ddb11c91);
 $parcel$export($a067c65f26654429$exports, "generateGCode", () => $171d16fda35ebcb0$export$6a5b418875592792);
@@ -7082,7 +7084,7 @@ $parcel$export($a067c65f26654429$exports, "showCurve", () => $6e41298316d419fa$e
 
 // import Flatten from 'https://unpkg.com/@flatten-js/core/dist/main.mjs';
 const { point: $c45d59629d16dffd$var$point, Polygon: $c45d59629d16dffd$var$Polygon, Segment: $c45d59629d16dffd$var$Segment } = (0, $271a1c686af88dba$export$2e2bcd8739ae039);
-function $c45d59629d16dffd$var$baseSpiral(position, path, nbPointsInLayer, layerHeight, nozzle_diameter, radius, rotate = 0) {
+function $c45d59629d16dffd$export$c8860df64baac0eb(position, path, nbPointsInLayer, layerHeight, nozzle_diameter, radius, rotate = 0) {
     let basePoints = [];
     let basePath = [];
     let height = layerHeight;
@@ -7107,7 +7109,7 @@ function $c45d59629d16dffd$var$baseSpiral(position, path, nbPointsInLayer, layer
     }
     return basePath;
 }
-function $c45d59629d16dffd$var$baseFill(position, path, nbPointsInLayer, layerHeight, nozzle_diameter, radius) {
+function $c45d59629d16dffd$export$a3b482626e4c0b96(position, path, nbPointsInLayer, layerHeight, nozzle_diameter, radius) {
     let basePath = [];
     let height = layerHeight;
     for(let i = 0; i < nbPointsInLayer * 4; i += 4)basePath.push($c45d59629d16dffd$var$point(path[i], path[i + 1]));
@@ -7148,18 +7150,18 @@ function $c45d59629d16dffd$var$baseFill(position, path, nbPointsInLayer, layerHe
     return newPoints;
 }
 function $c45d59629d16dffd$export$e2253033e6e1df16(position, path, nbPointsInLayer, layerHeight, nozzleDiameter, radius) {
-    let bottomBase = $c45d59629d16dffd$var$baseFill(position, path, nbPointsInLayer, layerHeight, nozzleDiameter, radius);
-    let topBase = $c45d59629d16dffd$var$baseSpiral(position, path, nbPointsInLayer, layerHeight * 2, nozzleDiameter, radius);
+    let bottomBase = $c45d59629d16dffd$export$a3b482626e4c0b96(position, path, nbPointsInLayer, layerHeight, nozzleDiameter, radius);
+    let topBase = $c45d59629d16dffd$export$c8860df64baac0eb(position, path, nbPointsInLayer, layerHeight * 2, nozzleDiameter, radius);
     let newPath = bottomBase.concat(topBase);
     return newPath;
 }
 function $c45d59629d16dffd$export$65b4735759d794d4(b, path) {
     return b.concat(path);
 }
-// window.baseSpiral = baseSpiral;
-// window.baseFill = baseFill;
+window.baseSpiral = $c45d59629d16dffd$export$c8860df64baac0eb;
+window.baseFill = $c45d59629d16dffd$export$a3b482626e4c0b96;
 window.base = $c45d59629d16dffd$export$e2253033e6e1df16;
-window.base = $c45d59629d16dffd$export$65b4735759d794d4;
+window.addBase = $c45d59629d16dffd$export$65b4735759d794d4;
 
 
 //Helper functions for generateGCode
