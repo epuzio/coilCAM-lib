@@ -1,8 +1,10 @@
-// import Flatten from '../../../node_modules/@flatten-js/core/dist/main.mjs';
-import Flatten from 'https://unpkg.com/@flatten-js/core/dist/main.mjs';
+// TODO: use CDN/Unpkg URL to import flatten.js? May not matter
+
+import Flatten from '../../../node_modules/@flatten-js/core/dist/main.mjs'; 
+// import Flatten from 'https://unpkg.com/@flatten-js/core/dist/main.mjs';
 const {point, Polygon, Segment} = Flatten;
 
-export function baseSpiral(position, path, nbPointsInLayer, layerHeight, nozzle_diameter, radius, rotate=0){ 
+function baseSpiral(position, path, nbPointsInLayer, layerHeight, nozzle_diameter, radius, rotate=0){ 
     let basePoints = [];
     let basePath = [];
     let height = layerHeight;
@@ -34,7 +36,7 @@ export function baseSpiral(position, path, nbPointsInLayer, layerHeight, nozzle_
     return basePath;
 }
 
-export function baseFill(position, path, nbPointsInLayer, layerHeight, nozzle_diameter, radius){
+function baseFill(position, path, nbPointsInLayer, layerHeight, nozzle_diameter, radius){
     let basePath = [];
     let height = layerHeight;
     for(let i = 0; i < nbPointsInLayer*4; i+=4){

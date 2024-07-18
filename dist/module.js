@@ -174,18 +174,9 @@ window.linear2D = $530fae6e2f151dd6$export$2e2bcd8739ae039;
 
 
 var $8a2c02f53d079fce$exports = {};
-// import difference from "./Difference.js";
-// import union from "./Union.js";
-// export {difference, union};
 
-
-var $a067c65f26654429$exports = {};
-
-$parcel$export($a067c65f26654429$exports, "base", () => $c45d59629d16dffd$export$e2253033e6e1df16);
-$parcel$export($a067c65f26654429$exports, "addBase", () => $c45d59629d16dffd$export$65b4735759d794d4);
-$parcel$export($a067c65f26654429$exports, "generateGCode", () => $171d16fda35ebcb0$export$6a5b418875592792);
-$parcel$export($a067c65f26654429$exports, "downloadGCode", () => $171d16fda35ebcb0$export$1d298176a7b26db);
-$parcel$export($a067c65f26654429$exports, "toolpathUnitGenerator", () => $831dc3114bca2c7c$export$2e2bcd8739ae039);
+$parcel$export($8a2c02f53d079fce$exports, "difference", () => $685d2651675ad770$export$2e2bcd8739ae039);
+$parcel$export($8a2c02f53d079fce$exports, "union", () => $d882048206233452$export$2e2bcd8739ae039);
 /**
  * Global constant CCW defines counterclockwise direction of arc
  * @type {boolean}
@@ -6931,9 +6922,163 @@ $271a1c686af88dba$export$2e2bcd8739ae039.Relations = $271a1c686af88dba$export$93
 
 
 // import Flatten from 'https://unpkg.com/@flatten-js/core/dist/main.mjs';
+const { point: $685d2651675ad770$var$point, Polygon: $685d2651675ad770$var$Polygon } = (0, $271a1c686af88dba$export$2e2bcd8739ae039);
+const { subtract: $685d2651675ad770$var$subtract } = (0, $271a1c686af88dba$export$2e2bcd8739ae039).BooleanOperations;
+function $685d2651675ad770$export$2e2bcd8739ae039(path0, path1) {
+    let path = [];
+    let points0 = [];
+    let points1 = [];
+    let layers = new Set();
+    for(let i = 3; i <= path0.length; i += 4)points0.push(path0.slice(i - 3, i + 1));
+    for(let i = 3; i <= path1.length; i += 4)points1.push(path1.slice(i - 3, i + 1));
+    points0.sort((a, b)=>a[2] - b[2]);
+    points1.sort((a, b)=>a[2] - b[2]);
+    points0.forEach((point)=>layers.add(point[2]));
+    points1.forEach((point)=>layers.add(point[2]));
+    let shapes = new Array();
+    let total_num_points = 0;
+    for (let layer of layers){
+        let layer_points0 = points0.filter((p)=>p[2] == layer).map((p)=>$685d2651675ad770$var$point([
+                p[0],
+                p[1]
+            ]));
+        let layer_points1 = points1.filter((p)=>p[2] == layer).map((p)=>$685d2651675ad770$var$point([
+                p[0],
+                p[1]
+            ]));
+        let polygon0 = new $685d2651675ad770$var$Polygon(layer_points0);
+        let polygon1 = new $685d2651675ad770$var$Polygon(layer_points1);
+        let thicknesses = new Map(); //store thickness in external data structure
+        for(let i = 0; i < points0.length / 4; i += 4)if (points0[i][2] == layer) thicknesses.set([
+            points0[i][0],
+            points0[i][1]
+        ], points0[i][3]);
+        for(let i = 0; i < points1.length / 4; i += 4)if (points1[i][2] == layer) thicknesses.set([
+            [
+                points1[i][0]
+            ],
+            points1[i][1]
+        ], points1[i][3]);
+        if (polygon1.contains(polygon0)) continue;
+        else {
+            let combinedPolygon = $685d2651675ad770$var$subtract(polygon0, polygon1);
+            let polygonSVG = combinedPolygon.svg(); //convert to svg to rely on flatten-js's even-odd algorithm
+            const shapesString = polygonSVG.match(/(M[^M]+z)/g); //separate svg into just the section containing points
+            let shapeidx = 0;
+            for (let shape of shapesString){
+                let pairs = shape.match(/L-?\d+(\.\d+)?,-?\d+(\.\d+)?/g); //get pairs of points (not starting with M)
+                for (let pair of pairs){
+                    var thickness = thicknesses.has(pair.match(/-?\d+(\.\d+)?/g)); //todo: fix thickness (right now it's defaulting to "false" = 0)
+                    if (shapes.length < shapeidx + 1) shapes.push([]);
+                    shapes[shapeidx].push(...pair.match(/-?\d+(\.\d+)?/g).map(parseFloat)); //push each pair as a float to the shapes arr
+                    shapes[shapeidx].push(layer);
+                    shapes[shapeidx].push(thickness);
+                }
+                shapeidx += 1;
+            }
+        }
+    }
+    path = shapes.flat();
+    return path;
+}
+window.difference = $685d2651675ad770$export$2e2bcd8739ae039;
+
+
+
+// import Flatten from 'https://unpkg.com/@flatten-js/core/dist/main.mjs';
+const { point: $d882048206233452$var$point, Polygon: $d882048206233452$var$Polygon } = (0, $271a1c686af88dba$export$2e2bcd8739ae039);
+const { unify: $d882048206233452$var$unify } = (0, $271a1c686af88dba$export$2e2bcd8739ae039).BooleanOperations;
+function $d882048206233452$export$2e2bcd8739ae039(path0, path1, by_layer = true) {
+    let path = [];
+    let points0 = [];
+    let points1 = [];
+    let layers = new Set();
+    for(let i = 3; i <= path0.length; i += 4)points0.push(path0.slice(i - 3, i + 1));
+    for(let i = 3; i <= path1.length; i += 4)points1.push(path1.slice(i - 3, i + 1));
+    points0.sort((a, b)=>a[2] - b[2]);
+    points1.sort((a, b)=>a[2] - b[2]);
+    points0.forEach((point)=>layers.add(point[2]));
+    points1.forEach((point)=>layers.add(point[2]));
+    let shapes = new Array();
+    let total_num_points = 0;
+    for (let layer of layers){
+        let layer_points0 = points0.filter((p)=>p[2] == layer).map((p)=>$d882048206233452$var$point([
+                p[0],
+                p[1]
+            ]));
+        let layer_points1 = points1.filter((p)=>p[2] == layer).map((p)=>$d882048206233452$var$point([
+                p[0],
+                p[1]
+            ]));
+        let polygon0 = new $d882048206233452$var$Polygon(layer_points0);
+        let polygon1 = new $d882048206233452$var$Polygon(layer_points1);
+        let thicknesses = new Map(); //store thickness in external data structure
+        for(let i = 0; i < points0.length; i++)if (points0[i][2] == layer) thicknesses.set([
+            points0[i][0],
+            points0[i][1]
+        ], points0[i][3]);
+        for(let i = 0; i < points1.length / 4; i += 4)if (points1[i][2] == layer) thicknesses.set([
+            [
+                points1[i][0]
+            ],
+            points1[i][1]
+        ], points1[i][3]);
+        console.log([
+            ...thicknesses.entries()
+        ]);
+        //to add: tolerance
+        let combinedPolygon = $d882048206233452$var$unify(polygon0, polygon1);
+        let polygonSVG = combinedPolygon.svg(); //convert to svg to rely on flatten-js's even-odd algorithm
+        const shapesString = polygonSVG.match(/(M[^M]+z)/g); //separate svg into just the section containing points
+        let shapeidx = 0;
+        for (let shape of shapesString){
+            let pairs = shape.match(/L-?\d+(\.\d+)?,-?\d+(\.\d+)?/g); //get pairs of points (not starting with M)
+            for (let pair of pairs){
+                var thickness = thicknesses.has(pair.match(/-?\d+(\.\d+)?/g)); //todo: fix thickness (right now it's defaulting to "false" = 0)
+                if (shapes.length < shapeidx + 1) shapes.push([]);
+                if (!by_layer) {
+                    shapes[shapeidx].push(...pair.match(/-?\d+(\.\d+)?/g).map(parseFloat)); //push each pair as a float to the shapes arr
+                    shapes[shapeidx].push(layer);
+                    shapes[shapeidx].push(thickness);
+                } else {
+                    shapes[0].push(...pair.match(/-?\d+(\.\d+)?/g).map(parseFloat));
+                    shapes[0].push(layer);
+                    shapes[0].push(thickness);
+                }
+            }
+            if (by_layer) {
+                shapes[0].push(shapes[0][total_num_points], shapes[0][total_num_points + 1], layer, thickness);
+                let num_points = (pairs.length + 1) * 4;
+                total_num_points += num_points;
+            } else shapeidx += 1;
+        }
+    }
+    path = shapes.flat();
+    return path;
+}
+// export function unionAll(paths, by_layer = True){
+//   let union_path = new Array();
+//   for(let i = 1; i < paths.length; i++){
+//     let new_path = union(paths[0], paths[i], by_layer);
+//   }
+// }
+window.union = $d882048206233452$export$2e2bcd8739ae039;
+
+
+
+
+var $a067c65f26654429$exports = {};
+
+$parcel$export($a067c65f26654429$exports, "base", () => $c45d59629d16dffd$export$e2253033e6e1df16);
+$parcel$export($a067c65f26654429$exports, "addBase", () => $c45d59629d16dffd$export$65b4735759d794d4);
+$parcel$export($a067c65f26654429$exports, "generateGCode", () => $171d16fda35ebcb0$export$6a5b418875592792);
+$parcel$export($a067c65f26654429$exports, "downloadGCode", () => $171d16fda35ebcb0$export$1d298176a7b26db);
+$parcel$export($a067c65f26654429$exports, "toolpathUnitGenerator", () => $831dc3114bca2c7c$export$2e2bcd8739ae039);
+// TODO: use CDN/Unpkg URL to import flatten.js? May not matter
+
+// import Flatten from 'https://unpkg.com/@flatten-js/core/dist/main.mjs';
 const { point: $c45d59629d16dffd$var$point, Polygon: $c45d59629d16dffd$var$Polygon, Segment: $c45d59629d16dffd$var$Segment } = (0, $271a1c686af88dba$export$2e2bcd8739ae039);
-const { intersect: $c45d59629d16dffd$var$intersect } = (0, $271a1c686af88dba$export$2e2bcd8739ae039).BooleanOperations;
-function $c45d59629d16dffd$export$c8860df64baac0eb(position, path, nbPointsInLayer, layerHeight, nozzle_diameter, radius, rotate = 0) {
+function $c45d59629d16dffd$var$baseSpiral(position, path, nbPointsInLayer, layerHeight, nozzle_diameter, radius, rotate = 0) {
     let basePoints = [];
     let basePath = [];
     let height = layerHeight;
@@ -6958,7 +7103,7 @@ function $c45d59629d16dffd$export$c8860df64baac0eb(position, path, nbPointsInLay
     }
     return basePath;
 }
-function $c45d59629d16dffd$export$a3b482626e4c0b96(position, path, nbPointsInLayer, layerHeight, nozzle_diameter, radius) {
+function $c45d59629d16dffd$var$baseFill(position, path, nbPointsInLayer, layerHeight, nozzle_diameter, radius) {
     let basePath = [];
     let height = layerHeight;
     for(let i = 0; i < nbPointsInLayer * 4; i += 4)basePath.push($c45d59629d16dffd$var$point(path[i], path[i + 1]));
@@ -6999,16 +7144,18 @@ function $c45d59629d16dffd$export$a3b482626e4c0b96(position, path, nbPointsInLay
     return newPoints;
 }
 function $c45d59629d16dffd$export$e2253033e6e1df16(position, path, nbPointsInLayer, layerHeight, nozzleDiameter, radius) {
-    let bottomBase = $c45d59629d16dffd$export$a3b482626e4c0b96(position, path, nbPointsInLayer, layerHeight, nozzleDiameter, radius);
-    let topBase = $c45d59629d16dffd$export$c8860df64baac0eb(position, path, nbPointsInLayer, layerHeight * 2, nozzleDiameter, radius);
+    let bottomBase = $c45d59629d16dffd$var$baseFill(position, path, nbPointsInLayer, layerHeight, nozzleDiameter, radius);
+    let topBase = $c45d59629d16dffd$var$baseSpiral(position, path, nbPointsInLayer, layerHeight * 2, nozzleDiameter, radius);
     let newPath = bottomBase.concat(topBase);
     return newPath;
 }
 function $c45d59629d16dffd$export$65b4735759d794d4(b, path) {
     return b.concat(path);
-} // window.baseSpiral = baseSpiral;
- // window.baseFill = baseFill;
- // window.base = base;
+}
+// window.baseSpiral = baseSpiral;
+// window.baseFill = baseFill;
+window.base = $c45d59629d16dffd$export$e2253033e6e1df16;
+window.base = $c45d59629d16dffd$export$65b4735759d794d4;
 
 
 //Helper functions for generateGCode
@@ -7198,5 +7345,4 @@ function $831dc3114bca2c7c$export$2e2bcd8739ae039(position, initialRadius, layer
  // Run "> npm run build" (then update the version), then "npm publish" every time a change is made!
 
 
-export {$8a2c02f53d079fce$exports as complexFunctions};
 //# sourceMappingURL=module.js.map
