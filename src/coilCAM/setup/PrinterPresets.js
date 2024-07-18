@@ -41,4 +41,4 @@ function createPreset(name, bedDimensions, printSpeed, nozzleDiameter, layerHeig
         extrusionMultiplier: 1.0
     };
 }
-export { BABY_POTTERBOT, SUPER_POTTERBOT, createPreset}
+// export { BABY_POTTERBOT, SUPER_POTTERBOT, createPreset}

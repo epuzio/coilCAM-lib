@@ -75,6 +75,9 @@ function getNumTubes(path, nozzleDiameter, layerHeight){
     return ((nozzleDiameter/2)^2*totalExtrusion)/((95.5/2)^2)/430; //multiplier from original gcode
 }
 
+window.downloadGCode = downloadGCode;
+window.generateGCode = generateGCode;
+
 // //Stub: using preset values
 // function calculateClayHeight(path, preset){ 
 //     return calculateClayHeight(path, preset.nozzleDiameter, preset.layerHeight);

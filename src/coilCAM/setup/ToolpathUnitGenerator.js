@@ -138,3 +138,5 @@ export default function toolpathUnitGenerator(position, initialRadius, layerHeig
     }
     return path;
 }
+
+window.toolpathUnitGenerator = toolpathUnitGenerator;

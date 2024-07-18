@@ -7074,6 +7074,7 @@ $parcel$export($a067c65f26654429$exports, "addBase", () => $c45d59629d16dffd$exp
 $parcel$export($a067c65f26654429$exports, "generateGCode", () => $171d16fda35ebcb0$export$6a5b418875592792);
 $parcel$export($a067c65f26654429$exports, "downloadGCode", () => $171d16fda35ebcb0$export$1d298176a7b26db);
 $parcel$export($a067c65f26654429$exports, "toolpathUnitGenerator", () => $831dc3114bca2c7c$export$2e2bcd8739ae039);
+$parcel$export($a067c65f26654429$exports, "spiralize", () => $fc30310f8636f11b$export$2e2bcd8739ae039);
 // TODO: use CDN/Unpkg URL to import flatten.js? May not matter
 
 // import Flatten from 'https://unpkg.com/@flatten-js/core/dist/main.mjs';
@@ -7227,7 +7228,9 @@ function $171d16fda35ebcb0$var$getNumTubes(path, nozzleDiameter, layerHeight) {
     let extrusions = $171d16fda35ebcb0$var$extrude(nozzleDiameter, layerHeight, segmentLen);
     let totalExtrusion = extrusions[extrusions.length - 1];
     return (nozzleDiameter / 2 ^ 2 * totalExtrusion) / 45 / 430; //multiplier from original gcode
-} // //Stub: using preset values
+}
+window.downloadGCode = $171d16fda35ebcb0$export$1d298176a7b26db;
+window.generateGCode = $171d16fda35ebcb0$export$6a5b418875592792; // //Stub: using preset values
  // function calculateClayHeight(path, preset){ 
  //     return calculateClayHeight(path, preset.nozzleDiameter, preset.layerHeight);
  // }
@@ -7336,13 +7339,53 @@ function $831dc3114bca2c7c$export$2e2bcd8739ae039(position, initialRadius, layer
     }
     return path;
 }
+window.toolpathUnitGenerator = $831dc3114bca2c7c$export$2e2bcd8739ae039;
+
+
+function $fc30310f8636f11b$export$2e2bcd8739ae039(path) {
+    var layerHeight = path[2];
+    var nbPointsInLayer = [];
+    var currHeight = path[2];
+    var ctr = 0;
+    for(let i = 0; i < path.length; i += 4){
+        if (path[i + 2] > currHeight) {
+            currHeight = path[i + 2];
+            nbPointsInLayer.push(ctr);
+            ctr = 0;
+        }
+        ctr++;
+    }
+    nbPointsInLayer.push(ctr);
+    currLayer = 0;
+    nPointsIterated = 0;
+    var points = path;
+    for(let i = 0; i < nbPointsInLayer.length; i++){
+        // console.log("npr", nPointsIterated);
+        for(let j = 0; j < nbPointsInLayer[i]; j++)points[nPointsIterated + j * 4 + 2] += (j + 1) * (layerHeight / nbPointsInLayer[i]);
+        nPointsIterated += nbPointsInLayer[i] * 4;
+    }
+    return points;
+}
+window.spiralize = $fc30310f8636f11b$export$2e2bcd8739ae039; // function deleteDuplicatePoints(path){
+ //     const allPoints = new Set();
+ //     var newPath = [];
+ //     for(let p = 0; p < path.length; p+=3){
+ //         if (!allPoints.has([path[p], path[p+1], path[p+2]])){
+ //             newPath.push(path[p], path[p+1], path[p+2]);
+ //             allPoints.add([path[p], path[p+1], path[p+2]]);
+ //         }
+ //     }
+ //     return newPath;
+ //     // console.log("newPath", newPath);
+ // }
 
 
 
 
- // note: any .js files that only export a single function need to export 
+ // Notes: any .js files that only export a single function need to export 
  // that function as "export default" for "> npm run build" to execute properly
- // Run "> npm run build" (then update the version), then "npm publish" every time a change is made!
+ // Run "> npm run build" (then update the version number), then "npm publish" every time a change is made!
+ // Also include window.function = function for all exported functions - they must be in global scope to call them in codemirror
 
 
 //# sourceMappingURL=module.js.map

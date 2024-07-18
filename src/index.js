@@ -10,6 +10,7 @@ export {
     setup
 };
 
-// note: any .js files that only export a single function need to export 
+// Notes: any .js files that only export a single function need to export 
 // that function as "export default" for "> npm run build" to execute properly
 // Run "> npm run build" (then update the version number), then "npm publish" every time a change is made!
+// Also include window.function = function for all exported functions - they must be in global scope to call them in codemirror
