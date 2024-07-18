@@ -1,4 +1,4 @@
-function centerPrint(path, position, bedDimensions, layerHeight){
+export function centerPrint(path, position, bedDimensions, layerHeight){
     let bedXOffset = bedDimensions[0]/2 - position[0];
     let bedYOffset = bedDimensions[1]/2 - position[1];
     let bedZOffset = layerHeight - path[2];
@@ -10,7 +10,7 @@ function centerPrint(path, position, bedDimensions, layerHeight){
     return path;
 }
 
-function checkOverflow(path, bedDimensions, layerHeight){
+export function checkOverflow(path, bedDimensions, layerHeight){
     for (var i = 0; i < path.length; i+=4){
         if(path[i] > bedDimensions[0]){
             var error_str = "x values greater than printer bed dimensions";
@@ -44,5 +44,5 @@ function checkOverflow(path, bedDimensions, layerHeight){
     return "All values are within printer bed dimensions";
 }
 
-//import {BABY_POTTERBOT, SUPER_POTTERBOT, createPreset} from "../coilcam-functions/PrinterPresets.js";
-
+window.centerPrint = centerPrint;
+window.checkOverflow = checkOverflow;

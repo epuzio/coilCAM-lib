@@ -53,7 +53,7 @@ function $808713ad73309996$export$2e2bcd8739ae039(amplitude, period, offset, nbP
     [offset, values0] = (0, $df7b7fea591ea777$export$c3c5e174940bbb4f)("Sinusoidal", offset, values0, nbPoints, mode);
     for(let i = 0; i < nbPoints; i++){
         if (mode == "additive" || mode.length == 0) values.push(amplitude * Math.sin(2 * Math.PI / period * i + offset[i]) + values0[i]);
-        else if (mode == "multiplicative") values.push(amplitude * Math.pow(base, ampExp * i + offset[i]) * values0[i]);
+        else if (mode == "multiplicative") values.push(amplitude * Math.sin(2 * Math.PI / period * i + offset[i]) * values0[i]);
         else throw new Error('Mode must be "additive", "multiplicative" or left blank.');
     }
     return values;
@@ -7071,10 +7071,13 @@ var $a067c65f26654429$exports = {};
 
 $parcel$export($a067c65f26654429$exports, "base", () => $c45d59629d16dffd$export$e2253033e6e1df16);
 $parcel$export($a067c65f26654429$exports, "addBase", () => $c45d59629d16dffd$export$65b4735759d794d4);
+$parcel$export($a067c65f26654429$exports, "centerPrint", () => $14d375dbaed5c813$export$581890168c8d0b00);
+$parcel$export($a067c65f26654429$exports, "checkOverflow", () => $14d375dbaed5c813$export$69a2e097ddb11c91);
 $parcel$export($a067c65f26654429$exports, "generateGCode", () => $171d16fda35ebcb0$export$6a5b418875592792);
 $parcel$export($a067c65f26654429$exports, "downloadGCode", () => $171d16fda35ebcb0$export$1d298176a7b26db);
 $parcel$export($a067c65f26654429$exports, "toolpathUnitGenerator", () => $831dc3114bca2c7c$export$2e2bcd8739ae039);
 $parcel$export($a067c65f26654429$exports, "spiralize", () => $fc30310f8636f11b$export$2e2bcd8739ae039);
+$parcel$export($a067c65f26654429$exports, "showCurve", () => $6e41298316d419fa$export$2e2bcd8739ae039);
 // TODO: use CDN/Unpkg URL to import flatten.js? May not matter
 
 // import Flatten from 'https://unpkg.com/@flatten-js/core/dist/main.mjs';
@@ -7241,6 +7244,54 @@ window.generateGCode = $171d16fda35ebcb0$export$6a5b418875592792; // //Stub: usi
  // }
 
 
+function $14d375dbaed5c813$export$581890168c8d0b00(path, position, bedDimensions, layerHeight) {
+    let bedXOffset = bedDimensions[0] / 2 - position[0];
+    let bedYOffset = bedDimensions[1] / 2 - position[1];
+    let bedZOffset = layerHeight - path[2];
+    for(var i = 0; i < path.length; i += 4){
+        path[i] += bedXOffset;
+        path[i + 1] += bedYOffset;
+        path[i + 2] += bedZOffset;
+    }
+    return path;
+}
+function $14d375dbaed5c813$export$69a2e097ddb11c91(path, bedDimensions, layerHeight) {
+    for(var i = 0; i < path.length; i += 4){
+        if (path[i] > bedDimensions[0]) {
+            var error_str = "x values greater than printer bed dimensions";
+            throw new Error(error_str);
+        }
+        if (path[i] < 0) {
+            var error_str = "x values less than bed dimensions";
+            throw new Error(error_str);
+        }
+        if (path[i + 1] > bedDimensions[1] || path[i + 1] < 0) {
+            var error_str = "y values exceed printer bed dimensions";
+            throw new Error(error_str);
+        }
+        if (path[i + 1] < 0) {
+            var error_str = "y values less than printer bed dimensions";
+            throw new Error(error_str);
+        }
+        if (path[i + 1] > bedDimensions[1]) {
+            var error_str = "y values greater than printer bed dimensions";
+            throw new Error(error_str);
+        }
+        if (path[i + 2] > bedDimensions[2]) {
+            var error_str = "z values greater than printer bed dimensions";
+            throw new Error(error_str);
+        }
+        if (path[i + 2] < layerHeight) {
+            var error_str = "z values less than printer bed dimensions";
+            throw new Error(error_str);
+        }
+    }
+    return "All values are within printer bed dimensions";
+}
+window.centerPrint = $14d375dbaed5c813$export$581890168c8d0b00;
+window.checkOverflow = $14d375dbaed5c813$export$69a2e097ddb11c91;
+
+
 function $831dc3114bca2c7c$var$setParameter(input, parameter_name, nbLayers = [], nbPointsInLayer = []) {
     if (parameter_name === "radiusShapingParameter") {
         if (!Array.isArray(input)) return new Array(nbPointsInLayer).fill(input);
@@ -7378,6 +7429,24 @@ window.spiralize = $fc30310f8636f11b$export$2e2bcd8739ae039; // function deleteD
  //     return newPath;
  //     // console.log("newPath", newPath);
  // }
+
+
+function $6e41298316d419fa$export$2e2bcd8739ae039(curvePath, isVertical, position, initialRadius, layerHeight, nbLayers, nbPointsInLayer) {
+    let path = [];
+    if (isVertical) for(let i = 0; i < nbLayers; i++)path.push(position[0] + curvePath[i], position[1], position[2] + layerHeight * i, 0);
+    else {
+        let normterm = Math.max(...curvePath); //keep size manageable compared to radius
+        console.log(normterm);
+        for(let i = 0; i < nbPointsInLayer; i++){
+            let angle = 2 * i * Math.PI / nbPointsInLayer;
+            path.push(position[0] + 2 * curvePath[i] * initialRadius / normterm * Math.cos(angle)); //check
+            path.push(position[1] + 2 * curvePath[i] * initialRadius / normterm * Math.sin(angle));
+            path.push(0, 0);
+        }
+    }
+    return path;
+}
+window.showCurve = $6e41298316d419fa$export$2e2bcd8739ae039;
 
 
 

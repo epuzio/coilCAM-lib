@@ -1,4 +1,4 @@
-function showCurve(curvePath, isVertical, position, initialRadius, layerHeight, nbLayers, nbPointsInLayer){
+export default function showCurve(curvePath, isVertical, position, initialRadius, layerHeight, nbLayers, nbPointsInLayer){
     let path = [];
     if(isVertical){
         for(let i = 0; i < nbLayers; i++){
@@ -16,3 +16,5 @@ function showCurve(curvePath, isVertical, position, initialRadius, layerHeight, 
     }
     return path;
 }
+
+window.showCurve = showCurve;
