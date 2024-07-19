@@ -13,7 +13,7 @@ $parcel$export($b10132850f69723d$exports, "square", () => $5f27afff23801d10$expo
 $parcel$export($b10132850f69723d$exports, "exponential", () => $43a99dec0886ee38$export$2e2bcd8739ae039);
 // Helper Functions
 function $df7b7fea591ea777$var$setParams(paramType, value, nbPoints, mode) {
-    if (value == null) {
+    if (value.length == 0) {
         if (mode == "multiplicative" && paramType == "values") return new Array(nbPoints).fill(1);
         else return new Array(nbPoints).fill(0);
     } else if (!Array.isArray(value)) return new Array(nbPoints).fill(value);
@@ -35,10 +35,10 @@ function $df7b7fea591ea777$export$d49ab658f2d8f01e(functionType, offset0x, offse
     offset0y = $df7b7fea591ea777$var$setParams("offset0y", offset0y, nbPoints, mode);
     values0x = $df7b7fea591ea777$var$setParams("values0x", values0x, nbPoints, mode);
     values0y = $df7b7fea591ea777$var$setParams("values0y", values0y, nbPoints, mode);
-    if (offset0x == null) throw new Error("Length of offset in " + functionType + " must be 0 or 1 or equal to nbPoints:" + nbPoints);
-    if (offset0y == null) throw new Error("Length of offset in " + functionType + " must be 0 or 1 or equal to nbPoints:" + nbPoints);
-    if (values0x == null) throw new Error("Length of values0 in " + functionType + " must be 0 or 1 or equal to nbPoints:" + nbPoints);
-    if (values0y == null) throw new Error("Length of values0 in " + functionType + " must be 0 or 1 or equal to nbPoints:" + nbPoints);
+    if (offset0x == null) throw new Error("Length of offset0x in " + functionType + " must be 0 or 1 or equal to nbPoints:" + nbPoints);
+    if (offset0y == null) throw new Error("Length of offset0y in " + functionType + " must be 0 or 1 or equal to nbPoints:" + nbPoints);
+    if (values0x == null) throw new Error("Length of values0x in " + functionType + " must be 0 or 1 or equal to nbPoints:" + nbPoints);
+    if (values0y == null) throw new Error("Length of values0y in " + functionType + " must be 0 or 1 or equal to nbPoints:" + nbPoints);
     return [
         offset0x,
         offset0y,

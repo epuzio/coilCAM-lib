@@ -1,3 +1,1 @@
-Implimentation of [coilCAM](https://dl.acm.org/doi/10.1145/3544548.3580745), a CAM programming system for constructing 3D-printed toolpaths.
-
-This library recreates the [original coilCAM Grasshopper plugin](https://github.com/sambourgault/coilCAM) as an open-source Javascript library. coilCAM can be used through the [web editor](https://sambourgault.github.io/coilCAM-js/) or through the node-based visual programming framework [Dynamic Toolchains](https://github.com/machineagency/toolchains). To view documentation for coilCAM, visit [our documentation site](https://sambourgault.github.io/coilCAM-docs).
+Depreciated package: Please use [coilcam](https://www.npmjs.com/package/coilcam) instead.
