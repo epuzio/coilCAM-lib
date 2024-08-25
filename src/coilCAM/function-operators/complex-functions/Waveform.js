@@ -111,4 +111,4 @@ export default function waveform(filename, nbPoints='default', offset=0, heightR
 }
    
 
-// window.waveform = waveform;
+window.waveform = waveform;

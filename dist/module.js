@@ -7148,7 +7148,8 @@ function $2935d9173ffd2f41$export$2e2bcd8739ae039(filename, nbPoints = "default"
     //  }
     //  return nums;
     }
-} // window.waveform = waveform;
+}
+window.waveform = $2935d9173ffd2f41$export$2e2bcd8739ae039;
 
 
 

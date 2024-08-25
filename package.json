@@ -1,12 +1,11 @@
 {
   "name": "coilcam",
-  "version": "1.0.5",
+  "version": "1.0.7",
   "description": "Functions for coilCAM in Javascript.",
   "license": "MIT",
   "source": "src/index.js",
   "main": "dist/main.js",
   "module": "dist/module.js",
-  "type": "module",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/epuzio/coilCAM-lib/tree/main"

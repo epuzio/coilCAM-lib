@@ -1,1 +1,1 @@
-Depreciated package: Please use [coilcam](https://www.npmjs.com/package/coilcam) instead.
+Rewrite of a javascript library for [coilCAM](https://github.com/sambourgault/coilCAM?tab=readme-ov-file), for use with [Dynamic Toolchains](https://github.com/machineagency/toolchains). To test coilCAM functionality, visit the [cc-toolchains](https://github.com/epuzio/cc-toolchains) fork of Dynamic Toolchains.
