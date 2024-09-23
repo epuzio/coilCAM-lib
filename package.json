@@ -1,6 +1,6 @@
 {
   "name": "coilcam",
-  "version": "1.0.7",
+  "version": "1.0.11",
   "description": "Functions for coilCAM in Javascript.",
   "license": "MIT",
   "source": "src/index.js",
@@ -10,7 +10,6 @@
     "type": "git",
     "url": "git+https://github.com/epuzio/coilCAM-lib/tree/main"
   },
-
   "scripts": {
     "watch": "parcel watch",
     "build": "parcel build",
@@ -29,6 +28,7 @@
   },
   "dependencies": {
     "@flatten-js/core": "^1.5.6",
-    "rollup": "^4.18.1"
+    "rollup": "^4.18.1",
+    "three": "^0.168.0"
   }
 }

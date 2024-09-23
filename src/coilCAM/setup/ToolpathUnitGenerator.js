@@ -107,36 +107,64 @@ function setParameter(input, parameter_name, nbLayers=[], nbPointsInLayer=[]){
 }
 
 export default function toolpathUnitGenerator(position, initialRadius, layerHeight, nbLayers, nbPointsInLayer,
-                              radiusShapingParameter, scaleShapingParameter, scalingRadiusShapingParameter,
-                              translateShapingParameter, rotateShapingParameter, thicknessShapingParameter=[]){
+    radiusShapingParameter=[], scaleShapingParameter=[], scalingRadiusShapingParameter=[],
+    translateShapingParameter=[], rotateShapingParameter=[], thicknessShapingParameter=[], layerThicknessShapingParameter=[]){
     let path = [];
     let radsp = setParameter(radiusShapingParameter, "radiusShapingParameter", nbLayers, nbPointsInLayer);
-    let ssp = setParameter(scaleShapingParameter, "scaleShapingParameter", nbLayers);
-    let rsp = setParameter(rotateShapingParameter, "rotateShapingParameter", nbLayers);
-    let tsp = setParameter(translateShapingParameter, "translateShapingParameter", nbLayers);
-    let srsp = setParameter(scalingRadiusShapingParameter, "scalingRadiusShapingParameter", nbLayers);
+    let ssp = setParameter(scaleShapingParameter, "scaleShapingParameter", nbLayers, nbPointsInLayer);
+    let rsp = setParameter(rotateShapingParameter, "rotateShapingParameter", nbLayers, nbPointsInLayer);
+    let tsp = setParameter(translateShapingParameter, "translateShapingParameter", nbLayers, nbPointsInLayer);
+    let srsp = setParameter(scalingRadiusShapingParameter, "scalingRadiusShapingParameter", nbLayers, nbPointsInLayer);
     let thsp = setParameter(thicknessShapingParameter, "thicknessShapingParameter", nbLayers, nbPointsInLayer);
-    let k = 0; //accounting for case where radsp is a 2D array
-    let ctr = 0;
+    let lthsp = setParameter(layerThicknessShapingParameter, "layerThicknessShapingParameter", nbLayers, nbPointsInLayer);
+
+
     for(let j = 0; j < nbLayers; j++){
-        if(radsp.length == nbLayers*nbPointsInLayer){
-            k++;
-        }
         for(let i = 0; i < nbPointsInLayer; i++){
             let angle = 2 * i * Math.PI / nbPointsInLayer;
-            // if(i == 0 && j == 0){
-            //     console.log("start x:", position[0] + (initialRadius + srsp[j] * radsp[(nbLayers*j*k)+i] + ssp[j]) * Math.cos(angle + (rsp[j] * Math.PI/180)) + tsp[j][0]);
-            //     console.log("start y:", position[1] + (initialRadius + srsp[j] * radsp[(nbLayers*j*k)+i] + ssp[j]) * Math.sin(angle + (rsp[j] * Math.PI/180)) + tsp[j][1]);
-            // }
-            path.push(position[0] + (initialRadius + srsp[j] * radsp[(nbLayers*j*k)+i] + ssp[j]) * Math.cos(angle + (rsp[j] * Math.PI/180)) + tsp[0][j]);
-            path.push(position[1] + (initialRadius + srsp[j] * radsp[(nbLayers*j*k)+i] + ssp[j]) * Math.sin(angle + (rsp[j] * Math.PI/180)) + tsp[1][j]);
-            path.push(position[2] + layerHeight * j);
-            path.push(thsp[ctr]);
-            ctr+=1;
-            
+            const newPoint = {
+                x: (position[0] + (initialRadius + srsp[j] * radsp[(nbLayers*j)+i] + ssp[j]) * Math.cos(angle + (rsp[j] * Math.PI/180)) + tsp[0][j]),
+                y: (position[1] + (initialRadius + srsp[j] * radsp[(nbLayers*j)+i] + ssp[j]) * Math.sin(angle + (rsp[j] * Math.PI/180)) + tsp[1][j]),
+                z: (position[2] + layerHeight * j),
+                t: (thsp[(nbLayers*j)+i]+lthsp[j])
+            }
+            path.push(newPoint);
         }
     }
     return path;
 }
+
+// export default function toolpathUnitGenerator(position, initialRadius, layerHeight, nbLayers, nbPointsInLayer,
+//                               radiusShapingParameter, scaleShapingParameter, scalingRadiusShapingParameter,
+//                               translateShapingParameter, rotateShapingParameter, thicknessShapingParameter=[]){
+//     let path = [];
+//     let radsp = setParameter(radiusShapingParameter, "radiusShapingParameter", nbLayers, nbPointsInLayer);
+//     let ssp = setParameter(scaleShapingParameter, "scaleShapingParameter", nbLayers);
+//     let rsp = setParameter(rotateShapingParameter, "rotateShapingParameter", nbLayers);
+//     let tsp = setParameter(translateShapingParameter, "translateShapingParameter", nbLayers);
+//     let srsp = setParameter(scalingRadiusShapingParameter, "scalingRadiusShapingParameter", nbLayers);
+//     let thsp = setParameter(thicknessShapingParameter, "thicknessShapingParameter", nbLayers, nbPointsInLayer);
+//     let k = 0; //accounting for case where radsp is a 2D array
+//     let ctr = 0;
+//     for(let j = 0; j < nbLayers; j++){
+//         if(radsp.length == nbLayers*nbPointsInLayer){
+//             k++;
+//         }
+//         for(let i = 0; i < nbPointsInLayer; i++){
+//             let angle = 2 * i * Math.PI / nbPointsInLayer;
+//             // if(i == 0 && j == 0){
+//             //     console.log("start x:", position[0] + (initialRadius + srsp[j] * radsp[(nbLayers*j*k)+i] + ssp[j]) * Math.cos(angle + (rsp[j] * Math.PI/180)) + tsp[j][0]);
+//             //     console.log("start y:", position[1] + (initialRadius + srsp[j] * radsp[(nbLayers*j*k)+i] + ssp[j]) * Math.sin(angle + (rsp[j] * Math.PI/180)) + tsp[j][1]);
+//             // }
+//             path.push(position[0] + (initialRadius + srsp[j] * radsp[(nbLayers*j*k)+i] + ssp[j]) * Math.cos(angle + (rsp[j] * Math.PI/180)) + tsp[0][j]);
+//             path.push(position[1] + (initialRadius + srsp[j] * radsp[(nbLayers*j*k)+i] + ssp[j]) * Math.sin(angle + (rsp[j] * Math.PI/180)) + tsp[1][j]);
+//             path.push(position[2] + layerHeight * j);
+//             path.push(thsp[ctr]);
+//             ctr+=1;
+            
+//         }
+//     }
+//     return path;
+// }
 
 window.toolpathUnitGenerator = toolpathUnitGenerator;

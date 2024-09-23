@@ -1,33 +1,53 @@
-// referencing https://threejs.org/docs/index.html?q=camera#manual/en/introduction/Creating-a-scene
-import * as THREE from 'three';
-import {OrbitControls} from 'three/addons/controls/OrbitControls.js';
+// DELETE LATER - just for ease of testing without needing to re-export lib!!
+// https://discourse.threejs.org/t/loading-three-js-from-a-class/32094
 
-export default class ToolpathViewer {
-    constructor(container, path = [], referencePath = [], bedDimensions = [28, 26.5, 30.5]) {
-        this.container = container; // container to hold viewer (iframe)
-        
+import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.118/build/three.module.js';
+import {OrbitControls} from 'https://cdn.jsdelivr.net/npm/three@0.118/examples/jsm/controls/OrbitControls.js';
+
+class ToolpathViewer {
+    // constructor(container, path = [], referencePath = [], bedDimensions = [28, 26.5, 30.5]) {
+    scene;
+    camera;
+    renderer;
+    defaultPath = null; //stores current path inside TPV, check against global state path to monitor for changes
+    defaultReferencePath = null;
+    globalState = { //variables updatable outside toolpathviewer
+        path: [],
+        referencePath: [],
+        bedDimensions: []
+    };
+    baseHeight = 1; //height for base of printer bed (constant)
+    
+    constructor(TPVcontainer) {
+        console.log("test1");
+        this.TPVcontainer = TPVcontainer;
+
         this.scene = new THREE.Scene();
-        this.camera = new THREE.PerspectiveCamera(60, container.offsetWidth / container.offsetHeight, 0.1, 1000);
+        this.camera = new THREE.PerspectiveCamera(60, 400 / 400, 0.1, 1000);
         this.renderer = new THREE.WebGLRenderer({ antialias: true });
-        this.initScene(this.scene, this.camera, this.renderer);
 
-        this.container.appendChild(this.renderer.domElement);
-        this.controls = new OrbitControls(camera, renderer.domElement);
+        //initialize based on params passed to constructor (later)
+        this.globalState.path = [];
+        this.globalState.referencePath = [];
+        this.globalState.bedDimensions = [28, 26.5, 30.5];
+        window.state = this.globalState;
+
+        this.initScene();
+
+        this.controls = new OrbitControls(this.camera, this.renderer.domElement);
+        document.body.appendChild(this.renderer.domElement);
+        // this.TPVcontainer.appendChild(this.renderer.domElement);
     }
 
     //initialize 3js elements
-    initScene(scene, camera, renderer){
-        scene.background = new THREE.Color( {color : 0xfaead6}); 
-        camera.up.set(0, 0, 1); // to ensure z is up and down instead of default (y)
-        camera.position.set(2, 20, 40);
-        renderer.setSize(container.offsetWidth, container.offsetHeight);
-        renderer.setAnimationLoop(animate);
-    }
-
-    // Add printer bed, path, light to scene
-    init(){ 
-        this.createPrinterBed(this.globalState.bedDimensions);
-        this.createPath(this.globalState.path);
+    initScene(){
+        this.scene.background = new THREE.Color(0xfaead6);
+        this.camera.up.set(0, 0, 1); // to ensure z is up and down instead of default (y)
+        this.camera.position.set(2, 20, 40);
+        this.renderer.setSize(400, 400);
+        this.renderer.setAnimationLoop(this.animate.bind(this));
+        this.createPrinterBed(this.scene, this.globalState.bedDimensions);
+        this.createPath(this.scene, this.globalState.path);
         const directionalLight = new THREE.DirectionalLight(0xffffff, 2);
         directionalLight.position.z = 3;
         this.scene.add(directionalLight);
@@ -36,15 +56,14 @@ export default class ToolpathViewer {
     createPrinterBedLines(dimensions, material){ //make line building a little less repetitive
         const lines = []; 
         const offsets = [[1, 1], [1, -1], [-1, -1], [-1, 1]]; 
-        const baseHeight = 1;
         for(let i = 0; i < 8; i++){
             const points = [];
             if(i < 4){
-                points.push(new THREE.Vector3(dimensions[0]/2 * offsets[i][0], dimensions[1]/2 * offsets[i][1], baseHeight/2 + dimensions[2]));
-                points.push(new THREE.Vector3(dimensions[0]/2 * offsets[i][0], dimensions[1]/2 * offsets[i][1], baseHeight/2));
+                points.push(new THREE.Vector3(dimensions[0]/2 * offsets[i][0], dimensions[1]/2 * offsets[i][1], this.baseHeight/2 + dimensions[2]));
+                points.push(new THREE.Vector3(dimensions[0]/2 * offsets[i][0], dimensions[1]/2 * offsets[i][1], this.baseHeight/2));
             } else{
-                points.push(new THREE.Vector3(dimensions[0]/2 * offsets[i%4][0], dimensions[1]/2 * offsets[i%4][1], baseHeight/2 + dimensions[2]));
-                points.push(new THREE.Vector3(dimensions[0]/2 * offsets[(i+1)%4][0], dimensions[1]/2 * offsets[(i+1)%4][1], baseHeight/2 + dimensions[2]));
+                points.push(new THREE.Vector3(dimensions[0]/2 * offsets[i%4][0], dimensions[1]/2 * offsets[i%4][1], this.baseHeight/2 + dimensions[2]));
+                points.push(new THREE.Vector3(dimensions[0]/2 * offsets[(i+1)%4][0], dimensions[1]/2 * offsets[(i+1)%4][1], this.baseHeight/2 + dimensions[2]));
             }
             const geometry = new THREE.BufferGeometry().setFromPoints( points );
             const line = new THREE.Line( geometry, material );
@@ -60,19 +79,19 @@ export default class ToolpathViewer {
         printerBedBorders.name = "printerBedBorders";
         printerBed.name = "printerBed";
 
-        const baseGeometry = new THREE.BoxGeometry(dimensions[0], dimensions[1], baseHeight);
+        const baseGeometry = new THREE.BoxGeometry(dimensions[0], dimensions[1], this.baseHeight);
         const baseMaterial = new THREE.MeshToonMaterial( { color: 0xb7afa6 } ); 
         const base = new THREE.Mesh(baseGeometry, baseMaterial);
         base.name = "printerBedBase";
         printerBed.add(base);
         
         const bordersMaterial = new THREE.MeshToonMaterial( { color: 0xfaead6 } ); //borders of printer bed
-        const bordersGeometry = createPrinterBedLines(dimensions, bordersMaterial);
+        const bordersGeometry = this.createPrinterBedLines(dimensions, bordersMaterial);
         for(const line of bordersGeometry){
             printerBedBorders.add(line);
         }
         printerBed.add(printerBedBorders);
-        printerBed.position.set(-dimensions[0]/2, -dimensions[1]/2, -baseHeight/2);
+        printerBed.position.set(-dimensions[0]/2, -dimensions[1]/2, -this.baseHeight/2);
         scene.add(printerBed);
     }
 
@@ -98,6 +117,7 @@ export default class ToolpathViewer {
 
     // turn collection of points into toolpath
     createPath(scene, path, pathType){
+        console.log("p:", path.length);
         if(path.length === 0){
             return;
         }
@@ -114,51 +134,63 @@ export default class ToolpathViewer {
         }
         
         for(let i = 0; i < path.length - 1; i++){
-            cylinderFromPoints(path[i], path[i+1], toolpath, material);
+            this.cylinderFromPoints(path[i], path[i+1], toolpath, material);
         }
         toolpath.scale.set(.1, .1, .1); //scale relative to printer bed, 10 3js = 1m
         scene.add(toolpath);
     }
 
     // Change toolpath on update
-    refreshPath(pathType){
+    refreshPath(scene, pathType){
+        // console.log("refreshpath called");
         const toolpath = scene.getObjectByName(pathType); 
         scene.remove(toolpath);
-        if(pathType === "path" && global_state.path.length != 0){
-            createPath(scene, global_state.path, pathType);
-            defaultPath = global_state.path;
+        if(pathType === "path" && this.globalState.path.length != 0){
+            this.createPath(scene, this.globalState.path, pathType);
+            this.defaultPath = this.globalState.path;
         }
-        if(pathType === "referencePath" && global_state.referencePath.length != 0){
-            createPath(scene, global_state.referencePath, pathType);
-            defaultReferencePath = global_state.referencePath;
+        if(pathType === "referencePath" && this.globalState.referencePath.length != 0){
+            this.createPath(scene, this.globalState.referencePath, pathType);
+            this.defaultReferencePath = this.globalState.referencePath;
         }
     }
 
     // Update viewer on camera shift, changes in dimensions/toolpath
     animate() {
-        controls.update();
-        renderer.render( scene, camera );
-        if(global_state.bedDimensions != defaultDimensions && global_state.bedDimensions.length !== 0){ //execute only on update to bedDimensions inport
-            var borders = scene.getObjectByName("printerBedBorders");  //update borders
-            borders.scale.set(global_state.bedDimensions[0]/(defaultDimensions[0]*10), 
-                global_state.bedDimensions[1]/(defaultDimensions[1]*10), 
-                global_state.bedDimensions[2]/(defaultDimensions[2]*10));
+        this.controls.update();
+        this.renderer.render(this.scene, this.camera);
+        if(this.bedDimensions != this.defaultDimensions && this.bedDimensions.length !== 0){ //execute only on update to bedDimensions inport
+            var borders = this.scene.getObjectByName("printerBedBorders");  //update borders
+            console.log(borders);
+            borders.scale.set(this.bedDimensions[0]/(this.defaultDimensions[0]*10), 
+                this.bedDimensions[1]/(this.defaultDimensions[1]*10), 
+                this.bedDimensions[2]/(this.defaultDimensions[2]*10));
 
-            var base = scene.getObjectByName("printerBedBase"); //update base (don't scale z)
-            base.scale.set(global_state.bedDimensions[0]/(defaultDimensions[0]*10), 
-                global_state.bedDimensions[1]/(defaultDimensions[1]*10), 
+            var base = this.scene.getObjectByName("printerBedBase"); //update base (don't scale z)
+            base.scale.set(this.globalState.bedDimensions[0]/(defaultDimensions[0]*10), 
+                this.globalState.bedDimensions[1]/(defaultDimensions[1]*10), 
                 1);
 
-            var printerBed = scene.getObjectByName("printerBed"); //reposition group
-            printerBed.position.set(-global_state.bedDimensions[0]/20, -global_state.bedDimensions[1]/20, -baseHeight/2);
+            var printerBed = this.scene.getObjectByName("printerBed"); //reposition group
+            printerBed.position.set(-this.globalState.bedDimensions[0]/20, -this.globalState.bedDimensions[1]/20, -baseHeight/2);
         }
-        // console.log("global_state.path", global_state.path);
+        // console.log("this.globalState.path", this.globalState.path);
         // console.log("defaultPath", defaultPath);
-        if(global_state.path !== defaultPath){ //execute only on path update, delete and rebuild toolpath
-            refreshPath("path");
+        if(this.globalState.path !== this.defaultPath){ //execute only on path update, delete and rebuild toolpath
+            this.refreshPath(this.scene, "path");
         }
-        if(global_state.referencePath !== defaultReferencePath){ //execute only on path update, delete and rebuild toolpath
-            refreshPath("referencePath");
+        if(this.globalState.referencePath !== this.defaultReferencePath){ //execute only on path update, delete and rebuild toolpath
+            this.refreshPath(this.scene, "referencePath");
         }
     }
+
+    
 }
+
+window.addEventListener('DOMContentLoaded', () => {
+    const TPVcontainer = document.getElementById('TPVcontainer'); // Select the div
+    // const containerName = window.containerName;
+    // const TPVcontainer = document.getElementById(containerName);
+
+    const toolpathViewer = new ToolpathViewer(TPVcontainer);
+});

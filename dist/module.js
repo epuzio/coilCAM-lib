@@ -1,3 +1,6 @@
+import {Scene as $5OpyM$Scene, PerspectiveCamera as $5OpyM$PerspectiveCamera, WebGLRenderer as $5OpyM$WebGLRenderer, Color as $5OpyM$Color, DirectionalLight as $5OpyM$DirectionalLight, Vector3 as $5OpyM$Vector3, BufferGeometry as $5OpyM$BufferGeometry, Line as $5OpyM$Line, Group as $5OpyM$Group, BoxGeometry as $5OpyM$BoxGeometry, MeshToonMaterial as $5OpyM$MeshToonMaterial, Mesh as $5OpyM$Mesh, Quaternion as $5OpyM$Quaternion, CylinderGeometry as $5OpyM$CylinderGeometry} from "three";
+import {OrbitControls as $5OpyM$OrbitControls} from "three/examples/jsm/controls/OrbitControls.js";
+
 
 function $parcel$export(e, n, v, s) {
   Object.defineProperty(e, n, {get: v, set: s, enumerable: true, configurable: true});
@@ -372,6 +375,9 @@ Object.defineProperty($271a1c686af88dba$export$2e2bcd8739ae039, "DP_TOL", {
     static get OPERATION_IS_NOT_SUPPORTED() {
         return new Error("Operation is not supported");
     }
+    static get UNSUPPORTED_SHAPE_TYPE() {
+        return new Error("Unsupported shape type");
+    }
 }
 $271a1c686af88dba$export$2e2bcd8739ae039.Errors = $271a1c686af88dba$export$b8e9cd941e8016ac;
 /**
@@ -524,28 +530,414 @@ function $271a1c686af88dba$var$convertToString(attrs) {
     return new $271a1c686af88dba$var$SVGAttributes(attrs).toAttributesString();
 }
 /**
+ * Intersection
+ *
+ * */ function $271a1c686af88dba$var$intersectLine2Line(line1, line2) {
+    let ip = [];
+    let [A1, B1, C1] = line1.standard;
+    let [A2, B2, C2] = line2.standard;
+    /* Cramer's rule */ let det = A1 * B2 - B1 * A2;
+    let detX = C1 * B2 - B1 * C2;
+    let detY = A1 * C2 - C1 * A2;
+    if (!$271a1c686af88dba$export$2e2bcd8739ae039.Utils.EQ_0(det)) {
+        let x, y;
+        if (B1 === 0) {
+            x = C1 / A1;
+            y = detY / det;
+        } else if (B2 === 0) {
+            x = C2 / A2;
+            y = detY / det;
+        } else if (A1 === 0) {
+            x = detX / det;
+            y = C1 / B1;
+        } else if (A2 === 0) {
+            x = detX / det;
+            y = C2 / B2;
+        } else {
+            x = detX / det;
+            y = detY / det;
+        }
+        ip.push(new $271a1c686af88dba$export$2e2bcd8739ae039.Point(x, y));
+    }
+    return ip;
+}
+function $271a1c686af88dba$var$intersectLine2Circle(line, circle) {
+    let ip = [];
+    let prj = circle.pc.projectionOn(line); // projection of circle center on a line
+    let dist = circle.pc.distanceTo(prj)[0]; // distance from circle center to projection
+    if ($271a1c686af88dba$export$2e2bcd8739ae039.Utils.EQ(dist, circle.r)) ip.push(prj);
+    else if ($271a1c686af88dba$export$2e2bcd8739ae039.Utils.LT(dist, circle.r)) {
+        let delta = Math.sqrt(circle.r * circle.r - dist * dist);
+        let v_trans, pt;
+        v_trans = line.norm.rotate90CCW().multiply(delta);
+        pt = prj.translate(v_trans);
+        ip.push(pt);
+        v_trans = line.norm.rotate90CW().multiply(delta);
+        pt = prj.translate(v_trans);
+        ip.push(pt);
+    }
+    return ip;
+}
+function $271a1c686af88dba$var$intersectLine2Box(line, box) {
+    let ips = [];
+    for (let seg of box.toSegments()){
+        let ips_tmp = $271a1c686af88dba$var$intersectSegment2Line(seg, line);
+        for (let pt of ips_tmp)if (!$271a1c686af88dba$var$ptInIntPoints(pt, ips)) ips.push(pt);
+    }
+    return ips;
+}
+function $271a1c686af88dba$var$intersectLine2Arc(line, arc) {
+    let ip = [];
+    if ($271a1c686af88dba$var$intersectLine2Box(line, arc.box).length === 0) return ip;
+    let circle = new $271a1c686af88dba$export$2e2bcd8739ae039.Circle(arc.pc, arc.r);
+    let ip_tmp = $271a1c686af88dba$var$intersectLine2Circle(line, circle);
+    for (let pt of ip_tmp)if (pt.on(arc)) ip.push(pt);
+    return ip;
+}
+function $271a1c686af88dba$var$intersectSegment2Line(seg, line) {
+    let ip = [];
+    // Boundary cases
+    if (seg.ps.on(line)) ip.push(seg.ps);
+    // If both ends lay on line, return two intersection points
+    if (seg.pe.on(line) && !seg.isZeroLength()) ip.push(seg.pe);
+    if (ip.length > 0) return ip; // done, intersection found
+    // If zero-length segment and nothing found, return no intersections
+    if (seg.isZeroLength()) return ip;
+    // Not a boundary case, check if both points are on the same side and
+    // hence there is no intersection
+    if (seg.ps.leftTo(line) && seg.pe.leftTo(line) || !seg.ps.leftTo(line) && !seg.pe.leftTo(line)) return ip;
+    // Calculate intersection between lines
+    let line1 = new $271a1c686af88dba$export$2e2bcd8739ae039.Line(seg.ps, seg.pe);
+    return $271a1c686af88dba$var$intersectLine2Line(line1, line);
+}
+function $271a1c686af88dba$var$intersectSegment2Segment(seg1, seg2) {
+    let ip = [];
+    // quick reject
+    if (seg1.box.not_intersect(seg2.box)) return ip;
+    // Special case of seg1 zero length
+    if (seg1.isZeroLength()) {
+        if (seg1.ps.on(seg2)) ip.push(seg1.ps);
+        return ip;
+    }
+    // Special case of seg2 zero length
+    if (seg2.isZeroLength()) {
+        if (seg2.ps.on(seg1)) ip.push(seg2.ps);
+        return ip;
+    }
+    // Neither seg1 nor seg2 is zero length
+    let line1 = new $271a1c686af88dba$export$2e2bcd8739ae039.Line(seg1.ps, seg1.pe);
+    let line2 = new $271a1c686af88dba$export$2e2bcd8739ae039.Line(seg2.ps, seg2.pe);
+    // Check overlapping between segments in case of incidence
+    // If segments touching, add one point. If overlapping, add two points
+    if (line1.incidentTo(line2)) {
+        if (seg1.ps.on(seg2)) ip.push(seg1.ps);
+        if (seg1.pe.on(seg2)) ip.push(seg1.pe);
+        if (seg2.ps.on(seg1) && !seg2.ps.equalTo(seg1.ps) && !seg2.ps.equalTo(seg1.pe)) ip.push(seg2.ps);
+        if (seg2.pe.on(seg1) && !seg2.pe.equalTo(seg1.ps) && !seg2.pe.equalTo(seg1.pe)) ip.push(seg2.pe);
+    } else {
+        // Calculate intersection between lines
+        let new_ip = $271a1c686af88dba$var$intersectLine2Line(line1, line2);
+        if (new_ip.length > 0) {
+            if ($271a1c686af88dba$var$isPointInSegmentBox(new_ip[0], seg1) && $271a1c686af88dba$var$isPointInSegmentBox(new_ip[0], seg2)) ip.push(new_ip[0]);
+        }
+    }
+    return ip;
+}
+function $271a1c686af88dba$var$isPointInSegmentBox(point, segment) {
+    const box = segment.box;
+    return $271a1c686af88dba$export$2e2bcd8739ae039.Utils.LE(point.x, box.xmax) && $271a1c686af88dba$export$2e2bcd8739ae039.Utils.GE(point.x, box.xmin) && $271a1c686af88dba$export$2e2bcd8739ae039.Utils.LE(point.y, box.ymax) && $271a1c686af88dba$export$2e2bcd8739ae039.Utils.GE(point.y, box.ymin);
+}
+function $271a1c686af88dba$var$intersectSegment2Circle(segment, circle) {
+    let ips = [];
+    if (segment.box.not_intersect(circle.box)) return ips;
+    // Special case of zero length segment
+    if (segment.isZeroLength()) {
+        let [dist, _] = segment.ps.distanceTo(circle.pc);
+        if ($271a1c686af88dba$export$2e2bcd8739ae039.Utils.EQ(dist, circle.r)) ips.push(segment.ps);
+        return ips;
+    }
+    // Non zero-length segment
+    let line = new $271a1c686af88dba$export$2e2bcd8739ae039.Line(segment.ps, segment.pe);
+    let ips_tmp = $271a1c686af88dba$var$intersectLine2Circle(line, circle);
+    for (let ip of ips_tmp)if (ip.on(segment)) ips.push(ip);
+    return ips;
+}
+function $271a1c686af88dba$var$intersectSegment2Arc(segment, arc) {
+    let ip = [];
+    if (segment.box.not_intersect(arc.box)) return ip;
+    // Special case of zero-length segment
+    if (segment.isZeroLength()) {
+        if (segment.ps.on(arc)) ip.push(segment.ps);
+        return ip;
+    }
+    // Non-zero length segment
+    let line = new $271a1c686af88dba$export$2e2bcd8739ae039.Line(segment.ps, segment.pe);
+    let circle = new $271a1c686af88dba$export$2e2bcd8739ae039.Circle(arc.pc, arc.r);
+    let ip_tmp = $271a1c686af88dba$var$intersectLine2Circle(line, circle);
+    for (let pt of ip_tmp)if (pt.on(segment) && pt.on(arc)) ip.push(pt);
+    return ip;
+}
+function $271a1c686af88dba$var$intersectSegment2Box(segment, box) {
+    let ips = [];
+    for (let seg of box.toSegments()){
+        let ips_tmp = $271a1c686af88dba$var$intersectSegment2Segment(seg, segment);
+        for (let ip of ips_tmp)ips.push(ip);
+    }
+    return ips;
+}
+function $271a1c686af88dba$var$intersectCircle2Circle(circle1, circle2) {
+    let ip = [];
+    if (circle1.box.not_intersect(circle2.box)) return ip;
+    let vec = new $271a1c686af88dba$export$2e2bcd8739ae039.Vector(circle1.pc, circle2.pc);
+    let r1 = circle1.r;
+    let r2 = circle2.r;
+    // Degenerated circle
+    if ($271a1c686af88dba$export$2e2bcd8739ae039.Utils.EQ_0(r1) || $271a1c686af88dba$export$2e2bcd8739ae039.Utils.EQ_0(r2)) return ip;
+    // In case of equal circles return one leftmost point
+    if ($271a1c686af88dba$export$2e2bcd8739ae039.Utils.EQ_0(vec.x) && $271a1c686af88dba$export$2e2bcd8739ae039.Utils.EQ_0(vec.y) && $271a1c686af88dba$export$2e2bcd8739ae039.Utils.EQ(r1, r2)) {
+        ip.push(circle1.pc.translate(-r1, 0));
+        return ip;
+    }
+    let dist = circle1.pc.distanceTo(circle2.pc)[0];
+    if ($271a1c686af88dba$export$2e2bcd8739ae039.Utils.GT(dist, r1 + r2)) return ip;
+    if ($271a1c686af88dba$export$2e2bcd8739ae039.Utils.LT(dist, Math.abs(r1 - r2))) return ip;
+    // Normalize vector.
+    vec.x /= dist;
+    vec.y /= dist;
+    let pt;
+    // Case of touching from outside or from inside - single intersection point
+    // TODO: check this specifically not sure if correct
+    if ($271a1c686af88dba$export$2e2bcd8739ae039.Utils.EQ(dist, r1 + r2) || $271a1c686af88dba$export$2e2bcd8739ae039.Utils.EQ(dist, Math.abs(r1 - r2))) {
+        pt = circle1.pc.translate(r1 * vec.x, r1 * vec.y);
+        ip.push(pt);
+        return ip;
+    }
+    // Case of two intersection points
+    // Distance from first center to center of common chord:
+    //   a = (r1^2 - r2^2 + d^2) / 2d
+    // Separate for better accuracy
+    let a = r1 * r1 / (2 * dist) - r2 * r2 / (2 * dist) + dist / 2;
+    let mid_pt = circle1.pc.translate(a * vec.x, a * vec.y);
+    let h = Math.sqrt(r1 * r1 - a * a);
+    // let norm;
+    // norm = vec.rotate90CCW().multiply(h);
+    pt = mid_pt.translate(vec.rotate90CCW().multiply(h));
+    ip.push(pt);
+    // norm = vec.rotate90CW();
+    pt = mid_pt.translate(vec.rotate90CW().multiply(h));
+    ip.push(pt);
+    return ip;
+}
+function $271a1c686af88dba$var$intersectCircle2Box(circle, box) {
+    let ips = [];
+    for (let seg of box.toSegments()){
+        let ips_tmp = $271a1c686af88dba$var$intersectSegment2Circle(seg, circle);
+        for (let ip of ips_tmp)ips.push(ip);
+    }
+    return ips;
+}
+function $271a1c686af88dba$var$intersectArc2Arc(arc1, arc2) {
+    let ip = [];
+    if (arc1.box.not_intersect(arc2.box)) return ip;
+    // Special case: overlapping arcs
+    // May return up to 4 intersection points
+    if (arc1.pc.equalTo(arc2.pc) && $271a1c686af88dba$export$2e2bcd8739ae039.Utils.EQ(arc1.r, arc2.r)) {
+        let pt;
+        pt = arc1.start;
+        if (pt.on(arc2)) ip.push(pt);
+        pt = arc1.end;
+        if (pt.on(arc2)) ip.push(pt);
+        pt = arc2.start;
+        if (pt.on(arc1)) ip.push(pt);
+        pt = arc2.end;
+        if (pt.on(arc1)) ip.push(pt);
+        return ip;
+    }
+    // Common case
+    let circle1 = new $271a1c686af88dba$export$2e2bcd8739ae039.Circle(arc1.pc, arc1.r);
+    let circle2 = new $271a1c686af88dba$export$2e2bcd8739ae039.Circle(arc2.pc, arc2.r);
+    let ip_tmp = circle1.intersect(circle2);
+    for (let pt of ip_tmp)if (pt.on(arc1) && pt.on(arc2)) ip.push(pt);
+    return ip;
+}
+function $271a1c686af88dba$var$intersectArc2Circle(arc, circle) {
+    let ip = [];
+    if (arc.box.not_intersect(circle.box)) return ip;
+    // Case when arc center incident to circle center
+    // Return arc's end points as 2 intersection points
+    if (circle.pc.equalTo(arc.pc) && $271a1c686af88dba$export$2e2bcd8739ae039.Utils.EQ(circle.r, arc.r)) {
+        ip.push(arc.start);
+        ip.push(arc.end);
+        return ip;
+    }
+    // Common case
+    let circle1 = circle;
+    let circle2 = new $271a1c686af88dba$export$2e2bcd8739ae039.Circle(arc.pc, arc.r);
+    let ip_tmp = $271a1c686af88dba$var$intersectCircle2Circle(circle1, circle2);
+    for (let pt of ip_tmp)if (pt.on(arc)) ip.push(pt);
+    return ip;
+}
+function $271a1c686af88dba$var$intersectArc2Box(arc, box) {
+    let ips = [];
+    for (let seg of box.toSegments()){
+        let ips_tmp = $271a1c686af88dba$var$intersectSegment2Arc(seg, arc);
+        for (let ip of ips_tmp)ips.push(ip);
+    }
+    return ips;
+}
+function $271a1c686af88dba$var$intersectEdge2Segment(edge, segment) {
+    return edge.isSegment ? $271a1c686af88dba$var$intersectSegment2Segment(edge.shape, segment) : $271a1c686af88dba$var$intersectSegment2Arc(segment, edge.shape);
+}
+function $271a1c686af88dba$var$intersectEdge2Arc(edge, arc) {
+    return edge.isSegment ? $271a1c686af88dba$var$intersectSegment2Arc(edge.shape, arc) : $271a1c686af88dba$var$intersectArc2Arc(edge.shape, arc);
+}
+function $271a1c686af88dba$var$intersectEdge2Line(edge, line) {
+    return edge.isSegment ? $271a1c686af88dba$var$intersectSegment2Line(edge.shape, line) : $271a1c686af88dba$var$intersectLine2Arc(line, edge.shape);
+}
+function $271a1c686af88dba$var$intersectEdge2Ray(edge, ray) {
+    return edge.isSegment ? $271a1c686af88dba$var$intersectRay2Segment(ray, edge.shape) : $271a1c686af88dba$var$intersectRay2Arc(ray, edge.shape);
+}
+function $271a1c686af88dba$var$intersectEdge2Circle(edge, circle) {
+    return edge.isSegment ? $271a1c686af88dba$var$intersectSegment2Circle(edge.shape, circle) : $271a1c686af88dba$var$intersectArc2Circle(edge.shape, circle);
+}
+function $271a1c686af88dba$var$intersectSegment2Polygon(segment, polygon) {
+    let ip = [];
+    for (let edge of polygon.edges)for (let pt of $271a1c686af88dba$var$intersectEdge2Segment(edge, segment))ip.push(pt);
+    return ip;
+}
+function $271a1c686af88dba$var$intersectArc2Polygon(arc, polygon) {
+    let ip = [];
+    for (let edge of polygon.edges)for (let pt of $271a1c686af88dba$var$intersectEdge2Arc(edge, arc))ip.push(pt);
+    return ip;
+}
+function $271a1c686af88dba$var$intersectLine2Polygon(line, polygon) {
+    let ip = [];
+    if (polygon.isEmpty()) return ip;
+    for (let edge of polygon.edges){
+        for (let pt of $271a1c686af88dba$var$intersectEdge2Line(edge, line))if (!$271a1c686af88dba$var$ptInIntPoints(pt, ip)) ip.push(pt);
+    }
+    return line.sortPoints(ip);
+}
+function $271a1c686af88dba$var$intersectCircle2Polygon(circle, polygon) {
+    let ip = [];
+    if (polygon.isEmpty()) return ip;
+    for (let edge of polygon.edges)for (let pt of $271a1c686af88dba$var$intersectEdge2Circle(edge, circle))ip.push(pt);
+    return ip;
+}
+function $271a1c686af88dba$var$intersectEdge2Edge(edge1, edge2) {
+    if (edge1.isSegment) return $271a1c686af88dba$var$intersectEdge2Segment(edge2, edge1.shape);
+    else if (edge1.isArc) return $271a1c686af88dba$var$intersectEdge2Arc(edge2, edge1.shape);
+    else if (edge1.isLine) return $271a1c686af88dba$var$intersectEdge2Line(edge2, edge1.shape);
+    else if (edge1.isRay) return $271a1c686af88dba$var$intersectEdge2Ray(edge2, edge1.shape);
+    return [];
+}
+function $271a1c686af88dba$var$intersectEdge2Polygon(edge, polygon) {
+    let ip = [];
+    if (polygon.isEmpty() || edge.shape.box.not_intersect(polygon.box)) return ip;
+    let resp_edges = polygon.edges.search(edge.shape.box);
+    for (let resp_edge of resp_edges)ip = [
+        ...ip,
+        ...$271a1c686af88dba$var$intersectEdge2Edge(edge, resp_edge)
+    ];
+    return ip;
+}
+function $271a1c686af88dba$var$intersectMultiline2Polygon(multiline, polygon) {
+    let ip = [];
+    if (polygon.isEmpty() || multiline.size === 0) return ip;
+    for (let edge of multiline)ip = [
+        ...ip,
+        ...$271a1c686af88dba$var$intersectEdge2Polygon(edge, polygon)
+    ];
+    return ip;
+}
+function $271a1c686af88dba$var$intersectPolygon2Polygon(polygon1, polygon2) {
+    let ip = [];
+    if (polygon1.isEmpty() || polygon2.isEmpty()) return ip;
+    if (polygon1.box.not_intersect(polygon2.box)) return ip;
+    for (let edge1 of polygon1.edges)ip = [
+        ...ip,
+        ...$271a1c686af88dba$var$intersectEdge2Polygon(edge1, polygon2)
+    ];
+    return ip;
+}
+function $271a1c686af88dba$var$intersectShape2Polygon(shape, polygon) {
+    if (shape instanceof $271a1c686af88dba$export$2e2bcd8739ae039.Line) return $271a1c686af88dba$var$intersectLine2Polygon(shape, polygon);
+    else if (shape instanceof $271a1c686af88dba$export$2e2bcd8739ae039.Segment) return $271a1c686af88dba$var$intersectSegment2Polygon(shape, polygon);
+    else if (shape instanceof $271a1c686af88dba$export$2e2bcd8739ae039.Arc) return $271a1c686af88dba$var$intersectArc2Polygon(shape, polygon);
+    else return [];
+}
+function $271a1c686af88dba$var$ptInIntPoints(new_pt, ip) {
+    return ip.some((pt)=>pt.equalTo(new_pt));
+}
+function $271a1c686af88dba$var$createLineFromRay(ray) {
+    return new $271a1c686af88dba$export$2e2bcd8739ae039.Line(ray.start, ray.norm);
+}
+function $271a1c686af88dba$var$intersectRay2Segment(ray, segment) {
+    return $271a1c686af88dba$var$intersectSegment2Line(segment, $271a1c686af88dba$var$createLineFromRay(ray)).filter((pt)=>ray.contains(pt));
+}
+function $271a1c686af88dba$var$intersectRay2Arc(ray, arc) {
+    return $271a1c686af88dba$var$intersectLine2Arc($271a1c686af88dba$var$createLineFromRay(ray), arc).filter((pt)=>ray.contains(pt));
+}
+function $271a1c686af88dba$var$intersectRay2Circle(ray, circle) {
+    return $271a1c686af88dba$var$intersectLine2Circle($271a1c686af88dba$var$createLineFromRay(ray), circle).filter((pt)=>ray.contains(pt));
+}
+function $271a1c686af88dba$var$intersectRay2Box(ray, box) {
+    return $271a1c686af88dba$var$intersectLine2Box($271a1c686af88dba$var$createLineFromRay(ray), box).filter((pt)=>ray.contains(pt));
+}
+function $271a1c686af88dba$var$intersectRay2Line(ray, line) {
+    return $271a1c686af88dba$var$intersectLine2Line($271a1c686af88dba$var$createLineFromRay(ray), line).filter((pt)=>ray.contains(pt));
+}
+function $271a1c686af88dba$var$intersectRay2Ray(ray1, ray2) {
+    return $271a1c686af88dba$var$intersectLine2Line($271a1c686af88dba$var$createLineFromRay(ray1), $271a1c686af88dba$var$createLineFromRay(ray2)).filter((pt)=>ray1.contains(pt)).filter((pt)=>ray2.contains(pt));
+}
+function $271a1c686af88dba$var$intersectRay2Polygon(ray, polygon) {
+    return $271a1c686af88dba$var$intersectLine2Polygon($271a1c686af88dba$var$createLineFromRay(ray), polygon).filter((pt)=>ray.contains(pt));
+}
+function $271a1c686af88dba$var$intersectShape2Shape(shape1, shape2) {
+    if (shape1.intersect && shape1.intersect instanceof Function) return shape1.intersect(shape2);
+    throw $271a1c686af88dba$export$b8e9cd941e8016ac.UNSUPPORTED_SHAPE_TYPE;
+}
+function $271a1c686af88dba$var$intersectShape2Multiline(shape, multiline) {
+    let ip = [];
+    for (let edge of multiline)ip = [
+        ...ip,
+        ...$271a1c686af88dba$var$intersectShape2Shape(edge, edge.shape)
+    ];
+    return ip;
+}
+function $271a1c686af88dba$var$intersectMultiline2Multiline(multiline1, multiline2) {
+    let ip = [];
+    for (let edge1 of multiline1)for (let edge2 of multiline2)ip = [
+        ...ip,
+        ...$271a1c686af88dba$var$intersectShape2Shape(edge1, edge2)
+    ];
+    return ip;
+}
+/**
  * Class Multiline represent connected path of [edges]{@link Flatten.Edge}, where each edge may be
  * [segment]{@link Flatten.Segment}, [arc]{@link Flatten.Arc}, [line]{@link Flatten.Line} or [ray]{@link Flatten.Ray}
- */ class $271a1c686af88dba$export$a5433e0f3b1dce29 extends $271a1c686af88dba$var$LinkedList {
+ */ let $271a1c686af88dba$export$a5433e0f3b1dce29 = class Multiline extends $271a1c686af88dba$var$LinkedList {
     constructor(...args){
         super();
-        if (args.length === 0) return;
-        if (args.length === 1) {
-            if (args[0] instanceof Array) {
-                let shapes = args[0];
-                if (shapes.length === 0) return;
-                // TODO: more strict validation:
-                // there may be only one line
-                // only first and last may be rays
-                shapes.every((shape)=>{
-                    return shape instanceof $271a1c686af88dba$export$2e2bcd8739ae039.Segment || shape instanceof $271a1c686af88dba$export$2e2bcd8739ae039.Arc || shape instanceof $271a1c686af88dba$export$2e2bcd8739ae039.Ray || shape instanceof $271a1c686af88dba$export$2e2bcd8739ae039.Line;
-                });
+        this.isInfinite = false;
+        if (args.length === 1 && args[0] instanceof Array && args[0].length > 0) {
+            // there may be only one line and
+            // only first and last may be rays
+            let validShapes = false;
+            const shapes = args[0];
+            const L = shapes.length;
+            const anyShape = (s)=>s instanceof $271a1c686af88dba$export$2e2bcd8739ae039.Segment || s instanceof $271a1c686af88dba$export$2e2bcd8739ae039.Arc || s instanceof $271a1c686af88dba$export$2e2bcd8739ae039.Ray || s instanceof $271a1c686af88dba$export$2e2bcd8739ae039.Line;
+            const anyShapeExceptLine = (s)=>s instanceof $271a1c686af88dba$export$2e2bcd8739ae039.Segment || s instanceof $271a1c686af88dba$export$2e2bcd8739ae039.Arc || s instanceof $271a1c686af88dba$export$2e2bcd8739ae039.Ray;
+            const shapeSegmentOrArc = (s)=>s instanceof $271a1c686af88dba$export$2e2bcd8739ae039.Segment || s instanceof $271a1c686af88dba$export$2e2bcd8739ae039.Arc;
+            validShapes = L === 1 && anyShape(shapes[0]) || L > 1 && anyShapeExceptLine(shapes[0]) && anyShapeExceptLine(shapes[L - 1]) && shapes.slice(1, L - 1).every(shapeSegmentOrArc);
+            if (validShapes) {
+                this.isInfinite = shapes.some((shape)=>shape instanceof $271a1c686af88dba$export$2e2bcd8739ae039.Ray || shape instanceof $271a1c686af88dba$export$2e2bcd8739ae039.Line);
                 for (let shape of shapes){
                     let edge = new $271a1c686af88dba$export$2e2bcd8739ae039.Edge(shape);
                     this.append(edge);
                 }
                 this.setArcLength();
-            }
+            } else throw $271a1c686af88dba$export$2e2bcd8739ae039.Errors.ILLEGAL_PARAMETERS;
         }
     }
     /**
@@ -571,20 +963,44 @@ function $271a1c686af88dba$var$convertToString(attrs) {
         return v;
     }
     /**
+     * (Getter) Returns length of the multiline, return POSITIVE_INFINITY if multiline is infinite
+     * @returns {number}
+     */ get length() {
+        if (this.isEmpty()) return 0;
+        if (this.isInfinite) return Number.POSITIVE_INFINITY;
+        let len = 0;
+        for (let edge of this)len += edge.length;
+        return len;
+    }
+    /**
      * Return new cloned instance of Multiline
      * @returns {Multiline}
      */ clone() {
-        return new $271a1c686af88dba$export$a5433e0f3b1dce29(this.toShapes());
+        return new Multiline(this.toShapes());
     }
     /**
-     * Set arc_length property for each of the edges in the face.
-     * Arc_length of the edge it the arc length from the first edge of the face
+     * Set arc_length property for each of the edges in the multiline.
+     * Arc_length of the edge is the arc length from the multiline start vertex to the edge start vertex
      */ setArcLength() {
         for (let edge of this)this.setOneEdgeArcLength(edge);
     }
     setOneEdgeArcLength(edge) {
         if (edge === this.first) edge.arc_length = 0.0;
         else edge.arc_length = edge.prev.arc_length + edge.prev.length;
+    }
+    /**
+     * Return point on multiline at given length from the start of the multiline
+     * @param length
+     * @returns {Point | null}
+     */ pointAtLength(length) {
+        if (length > this.length || length < 0) return null;
+        if (this.isInfinite) return null;
+        let point = null;
+        for (let edge of this)if (length >= edge.arc_length && (edge === this.last || length < edge.next.arc_length)) {
+            point = edge.pointAtLength(length - edge.arc_length);
+            break;
+        }
+        return point;
     }
     /**
      * Split edge and add new vertex, return new edge inserted
@@ -632,11 +1048,70 @@ function $271a1c686af88dba$var$convertToString(attrs) {
         return edgeFound;
     }
     /**
+     * Calculate distance and shortest segment from any shape to multiline
+     * @param shape
+     * @returns {[number,Flatten.Segment]}
+     */ distanceTo(shape) {
+        if (shape instanceof Point) {
+            const [dist, shortest_segment] = $271a1c686af88dba$export$2e2bcd8739ae039.Distance.shape2multiline(shape, this);
+            return [
+                dist,
+                shortest_segment.reverse()
+            ];
+        }
+        if (shape instanceof $271a1c686af88dba$export$2e2bcd8739ae039.Line) {
+            const [dist, shortest_segment] = $271a1c686af88dba$export$2e2bcd8739ae039.Distance.shape2multiline(shape, this);
+            return [
+                dist,
+                shortest_segment.reverse()
+            ];
+        }
+        if (shape instanceof $271a1c686af88dba$export$2e2bcd8739ae039.Circle) {
+            const [dist, shortest_segment] = $271a1c686af88dba$export$2e2bcd8739ae039.Distance.shape2multiline(shape, this);
+            return [
+                dist,
+                shortest_segment.reverse()
+            ];
+        }
+        if (shape instanceof $271a1c686af88dba$export$2e2bcd8739ae039.Segment) {
+            const [dist, shortest_segment] = $271a1c686af88dba$export$2e2bcd8739ae039.Distance.shape2multiline(shape, this);
+            return [
+                dist,
+                shortest_segment.reverse()
+            ];
+        }
+        if (shape instanceof $271a1c686af88dba$export$2e2bcd8739ae039.Arc) {
+            const [dist, shortest_segment] = $271a1c686af88dba$export$2e2bcd8739ae039.Distance.shape2multiline(shape, this);
+            return [
+                dist,
+                shortest_segment.reverse()
+            ];
+        }
+        if (shape instanceof $271a1c686af88dba$export$2e2bcd8739ae039.Multiline) return $271a1c686af88dba$export$2e2bcd8739ae039.Distance.multiline2multiline(this, shape);
+        throw $271a1c686af88dba$export$2e2bcd8739ae039.Errors.UNSUPPORTED_SHAPE_TYPE;
+    }
+    /**
+     * Calculate intersection of multiline with other shape
+     * @param {Shape} shape
+     * @returns {Point[]}
+     */ intersect(shape) {
+        if (shape instanceof $271a1c686af88dba$export$2e2bcd8739ae039.Multiline) return $271a1c686af88dba$var$intersectMultiline2Multiline(this, shape);
+        else return $271a1c686af88dba$var$intersectShape2Multiline(shape, this);
+    }
+    /**
+     * Return true if multiline contains the shape: no point of shape lies outside
+     * @param shape
+     * @returns {boolean}
+     */ contains(shape) {
+        if (shape instanceof $271a1c686af88dba$export$2e2bcd8739ae039.Point) return this.edges.some((edge)=>edge.shape.contains(shape));
+        throw $271a1c686af88dba$export$2e2bcd8739ae039.Errors.UNSUPPORTED_SHAPE_TYPE;
+    }
+    /**
      * Returns new multiline translated by vector vec
      * @param {Vector} vec
      * @returns {Multiline}
      */ translate(vec) {
-        return new $271a1c686af88dba$export$a5433e0f3b1dce29(this.edges.map((edge)=>edge.shape.translate(vec)));
+        return new Multiline(this.edges.map((edge)=>edge.shape.translate(vec)));
     }
     /**
      * Return new multiline rotated by given angle around given point
@@ -646,7 +1121,7 @@ function $271a1c686af88dba$var$convertToString(attrs) {
      * @param {Point} center - rotation center, default is (0,0)
      * @returns {Multiline} - new rotated polygon
      */ rotate(angle = 0, center = new $271a1c686af88dba$export$2e2bcd8739ae039.Point()) {
-        return new $271a1c686af88dba$export$a5433e0f3b1dce29(this.edges.map((edge)=>edge.shape.rotate(angle, center)));
+        return new Multiline(this.edges.map((edge)=>edge.shape.rotate(angle, center)));
     }
     /**
      * Return new multiline transformed using affine transformation matrix
@@ -654,7 +1129,7 @@ function $271a1c686af88dba$var$convertToString(attrs) {
      * @param {Matrix} matrix - affine transformation matrix
      * @returns {Multiline} - new multiline
      */ transform(matrix = new $271a1c686af88dba$export$2e2bcd8739ae039.Matrix()) {
-        return new $271a1c686af88dba$export$a5433e0f3b1dce29(this.edges.map((edge)=>edge.shape.transform(matrix)));
+        return new Multiline(this.edges.map((edge)=>edge.shape.transform(matrix)));
     }
     /**
      * Transform multiline into array of shapes
@@ -698,7 +1173,7 @@ function $271a1c686af88dba$var$convertToString(attrs) {
         svgStr += `" >\n</path>`;
         return svgStr;
     }
-}
+};
 $271a1c686af88dba$export$2e2bcd8739ae039.Multiline = $271a1c686af88dba$export$a5433e0f3b1dce29;
 /**
  * Shortcut function to create multiline
@@ -1609,361 +2084,6 @@ class $271a1c686af88dba$var$DE9IM {
     }
 }
 /**
- * Intersection
- *
- * */ function $271a1c686af88dba$var$intersectLine2Line(line1, line2) {
-    let ip = [];
-    let [A1, B1, C1] = line1.standard;
-    let [A2, B2, C2] = line2.standard;
-    /* Cramer's rule */ let det = A1 * B2 - B1 * A2;
-    let detX = C1 * B2 - B1 * C2;
-    let detY = A1 * C2 - C1 * A2;
-    if (!$271a1c686af88dba$export$2e2bcd8739ae039.Utils.EQ_0(det)) {
-        let x, y;
-        if (B1 === 0) {
-            x = C1 / A1;
-            y = detY / det;
-        } else if (B2 === 0) {
-            x = C2 / A2;
-            y = detY / det;
-        } else if (A1 === 0) {
-            x = detX / det;
-            y = C1 / B1;
-        } else if (A2 === 0) {
-            x = detX / det;
-            y = C2 / B2;
-        } else {
-            x = detX / det;
-            y = detY / det;
-        }
-        ip.push(new $271a1c686af88dba$export$2e2bcd8739ae039.Point(x, y));
-    }
-    return ip;
-}
-function $271a1c686af88dba$var$intersectLine2Circle(line, circle) {
-    let ip = [];
-    let prj = circle.pc.projectionOn(line); // projection of circle center on a line
-    let dist = circle.pc.distanceTo(prj)[0]; // distance from circle center to projection
-    if ($271a1c686af88dba$export$2e2bcd8739ae039.Utils.EQ(dist, circle.r)) ip.push(prj);
-    else if ($271a1c686af88dba$export$2e2bcd8739ae039.Utils.LT(dist, circle.r)) {
-        let delta = Math.sqrt(circle.r * circle.r - dist * dist);
-        let v_trans, pt;
-        v_trans = line.norm.rotate90CCW().multiply(delta);
-        pt = prj.translate(v_trans);
-        ip.push(pt);
-        v_trans = line.norm.rotate90CW().multiply(delta);
-        pt = prj.translate(v_trans);
-        ip.push(pt);
-    }
-    return ip;
-}
-function $271a1c686af88dba$var$intersectLine2Box(line, box) {
-    let ips = [];
-    for (let seg of box.toSegments()){
-        let ips_tmp = $271a1c686af88dba$var$intersectSegment2Line(seg, line);
-        for (let pt of ips_tmp)if (!$271a1c686af88dba$var$ptInIntPoints(pt, ips)) ips.push(pt);
-    }
-    return ips;
-}
-function $271a1c686af88dba$var$intersectLine2Arc(line, arc) {
-    let ip = [];
-    if ($271a1c686af88dba$var$intersectLine2Box(line, arc.box).length === 0) return ip;
-    let circle = new $271a1c686af88dba$export$2e2bcd8739ae039.Circle(arc.pc, arc.r);
-    let ip_tmp = $271a1c686af88dba$var$intersectLine2Circle(line, circle);
-    for (let pt of ip_tmp)if (pt.on(arc)) ip.push(pt);
-    return ip;
-}
-function $271a1c686af88dba$var$intersectSegment2Line(seg, line) {
-    let ip = [];
-    // Boundary cases
-    if (seg.ps.on(line)) ip.push(seg.ps);
-    // If both ends lay on line, return two intersection points
-    if (seg.pe.on(line) && !seg.isZeroLength()) ip.push(seg.pe);
-    if (ip.length > 0) return ip; // done, intersection found
-    // If zero-length segment and nothing found, return no intersections
-    if (seg.isZeroLength()) return ip;
-    // Not a boundary case, check if both points are on the same side and
-    // hence there is no intersection
-    if (seg.ps.leftTo(line) && seg.pe.leftTo(line) || !seg.ps.leftTo(line) && !seg.pe.leftTo(line)) return ip;
-    // Calculate intersection between lines
-    let line1 = new $271a1c686af88dba$export$2e2bcd8739ae039.Line(seg.ps, seg.pe);
-    return $271a1c686af88dba$var$intersectLine2Line(line1, line);
-}
-function $271a1c686af88dba$var$intersectSegment2Segment(seg1, seg2) {
-    let ip = [];
-    // quick reject
-    if (seg1.box.not_intersect(seg2.box)) return ip;
-    // Special case of seg1 zero length
-    if (seg1.isZeroLength()) {
-        if (seg1.ps.on(seg2)) ip.push(seg1.ps);
-        return ip;
-    }
-    // Special case of seg2 zero length
-    if (seg2.isZeroLength()) {
-        if (seg2.ps.on(seg1)) ip.push(seg2.ps);
-        return ip;
-    }
-    // Neither seg1 nor seg2 is zero length
-    let line1 = new $271a1c686af88dba$export$2e2bcd8739ae039.Line(seg1.ps, seg1.pe);
-    let line2 = new $271a1c686af88dba$export$2e2bcd8739ae039.Line(seg2.ps, seg2.pe);
-    // Check overlapping between segments in case of incidence
-    // If segments touching, add one point. If overlapping, add two points
-    if (line1.incidentTo(line2)) {
-        if (seg1.ps.on(seg2)) ip.push(seg1.ps);
-        if (seg1.pe.on(seg2)) ip.push(seg1.pe);
-        if (seg2.ps.on(seg1) && !seg2.ps.equalTo(seg1.ps) && !seg2.ps.equalTo(seg1.pe)) ip.push(seg2.ps);
-        if (seg2.pe.on(seg1) && !seg2.pe.equalTo(seg1.ps) && !seg2.pe.equalTo(seg1.pe)) ip.push(seg2.pe);
-    } else {
-        // Calculate intersection between lines
-        let new_ip = $271a1c686af88dba$var$intersectLine2Line(line1, line2);
-        if (new_ip.length > 0) {
-            if ($271a1c686af88dba$var$isPointInSegmentBox(new_ip[0], seg1) && $271a1c686af88dba$var$isPointInSegmentBox(new_ip[0], seg2)) ip.push(new_ip[0]);
-        }
-    }
-    return ip;
-}
-function $271a1c686af88dba$var$isPointInSegmentBox(point, segment) {
-    const box = segment.box;
-    return $271a1c686af88dba$export$2e2bcd8739ae039.Utils.LE(point.x, box.xmax) && $271a1c686af88dba$export$2e2bcd8739ae039.Utils.GE(point.x, box.xmin) && $271a1c686af88dba$export$2e2bcd8739ae039.Utils.LE(point.y, box.ymax) && $271a1c686af88dba$export$2e2bcd8739ae039.Utils.GE(point.y, box.ymin);
-}
-function $271a1c686af88dba$var$intersectSegment2Circle(segment, circle) {
-    let ips = [];
-    if (segment.box.not_intersect(circle.box)) return ips;
-    // Special case of zero length segment
-    if (segment.isZeroLength()) {
-        let [dist, _] = segment.ps.distanceTo(circle.pc);
-        if ($271a1c686af88dba$export$2e2bcd8739ae039.Utils.EQ(dist, circle.r)) ips.push(segment.ps);
-        return ips;
-    }
-    // Non zero-length segment
-    let line = new $271a1c686af88dba$export$2e2bcd8739ae039.Line(segment.ps, segment.pe);
-    let ips_tmp = $271a1c686af88dba$var$intersectLine2Circle(line, circle);
-    for (let ip of ips_tmp)if (ip.on(segment)) ips.push(ip);
-    return ips;
-}
-function $271a1c686af88dba$var$intersectSegment2Arc(segment, arc) {
-    let ip = [];
-    if (segment.box.not_intersect(arc.box)) return ip;
-    // Special case of zero-length segment
-    if (segment.isZeroLength()) {
-        if (segment.ps.on(arc)) ip.push(segment.ps);
-        return ip;
-    }
-    // Non-zero length segment
-    let line = new $271a1c686af88dba$export$2e2bcd8739ae039.Line(segment.ps, segment.pe);
-    let circle = new $271a1c686af88dba$export$2e2bcd8739ae039.Circle(arc.pc, arc.r);
-    let ip_tmp = $271a1c686af88dba$var$intersectLine2Circle(line, circle);
-    for (let pt of ip_tmp)if (pt.on(segment) && pt.on(arc)) ip.push(pt);
-    return ip;
-}
-function $271a1c686af88dba$var$intersectSegment2Box(segment, box) {
-    let ips = [];
-    for (let seg of box.toSegments()){
-        let ips_tmp = $271a1c686af88dba$var$intersectSegment2Segment(seg, segment);
-        for (let ip of ips_tmp)ips.push(ip);
-    }
-    return ips;
-}
-function $271a1c686af88dba$var$intersectCircle2Circle(circle1, circle2) {
-    let ip = [];
-    if (circle1.box.not_intersect(circle2.box)) return ip;
-    let vec = new $271a1c686af88dba$export$2e2bcd8739ae039.Vector(circle1.pc, circle2.pc);
-    let r1 = circle1.r;
-    let r2 = circle2.r;
-    // Degenerated circle
-    if ($271a1c686af88dba$export$2e2bcd8739ae039.Utils.EQ_0(r1) || $271a1c686af88dba$export$2e2bcd8739ae039.Utils.EQ_0(r2)) return ip;
-    // In case of equal circles return one leftmost point
-    if ($271a1c686af88dba$export$2e2bcd8739ae039.Utils.EQ_0(vec.x) && $271a1c686af88dba$export$2e2bcd8739ae039.Utils.EQ_0(vec.y) && $271a1c686af88dba$export$2e2bcd8739ae039.Utils.EQ(r1, r2)) {
-        ip.push(circle1.pc.translate(-r1, 0));
-        return ip;
-    }
-    let dist = circle1.pc.distanceTo(circle2.pc)[0];
-    if ($271a1c686af88dba$export$2e2bcd8739ae039.Utils.GT(dist, r1 + r2)) return ip;
-    if ($271a1c686af88dba$export$2e2bcd8739ae039.Utils.LT(dist, Math.abs(r1 - r2))) return ip;
-    // Normalize vector.
-    vec.x /= dist;
-    vec.y /= dist;
-    let pt;
-    // Case of touching from outside or from inside - single intersection point
-    // TODO: check this specifically not sure if correct
-    if ($271a1c686af88dba$export$2e2bcd8739ae039.Utils.EQ(dist, r1 + r2) || $271a1c686af88dba$export$2e2bcd8739ae039.Utils.EQ(dist, Math.abs(r1 - r2))) {
-        pt = circle1.pc.translate(r1 * vec.x, r1 * vec.y);
-        ip.push(pt);
-        return ip;
-    }
-    // Case of two intersection points
-    // Distance from first center to center of common chord:
-    //   a = (r1^2 - r2^2 + d^2) / 2d
-    // Separate for better accuracy
-    let a = r1 * r1 / (2 * dist) - r2 * r2 / (2 * dist) + dist / 2;
-    let mid_pt = circle1.pc.translate(a * vec.x, a * vec.y);
-    let h = Math.sqrt(r1 * r1 - a * a);
-    // let norm;
-    // norm = vec.rotate90CCW().multiply(h);
-    pt = mid_pt.translate(vec.rotate90CCW().multiply(h));
-    ip.push(pt);
-    // norm = vec.rotate90CW();
-    pt = mid_pt.translate(vec.rotate90CW().multiply(h));
-    ip.push(pt);
-    return ip;
-}
-function $271a1c686af88dba$var$intersectCircle2Box(circle, box) {
-    let ips = [];
-    for (let seg of box.toSegments()){
-        let ips_tmp = $271a1c686af88dba$var$intersectSegment2Circle(seg, circle);
-        for (let ip of ips_tmp)ips.push(ip);
-    }
-    return ips;
-}
-function $271a1c686af88dba$var$intersectArc2Arc(arc1, arc2) {
-    let ip = [];
-    if (arc1.box.not_intersect(arc2.box)) return ip;
-    // Special case: overlapping arcs
-    // May return up to 4 intersection points
-    if (arc1.pc.equalTo(arc2.pc) && $271a1c686af88dba$export$2e2bcd8739ae039.Utils.EQ(arc1.r, arc2.r)) {
-        let pt;
-        pt = arc1.start;
-        if (pt.on(arc2)) ip.push(pt);
-        pt = arc1.end;
-        if (pt.on(arc2)) ip.push(pt);
-        pt = arc2.start;
-        if (pt.on(arc1)) ip.push(pt);
-        pt = arc2.end;
-        if (pt.on(arc1)) ip.push(pt);
-        return ip;
-    }
-    // Common case
-    let circle1 = new $271a1c686af88dba$export$2e2bcd8739ae039.Circle(arc1.pc, arc1.r);
-    let circle2 = new $271a1c686af88dba$export$2e2bcd8739ae039.Circle(arc2.pc, arc2.r);
-    let ip_tmp = circle1.intersect(circle2);
-    for (let pt of ip_tmp)if (pt.on(arc1) && pt.on(arc2)) ip.push(pt);
-    return ip;
-}
-function $271a1c686af88dba$var$intersectArc2Circle(arc, circle) {
-    let ip = [];
-    if (arc.box.not_intersect(circle.box)) return ip;
-    // Case when arc center incident to circle center
-    // Return arc's end points as 2 intersection points
-    if (circle.pc.equalTo(arc.pc) && $271a1c686af88dba$export$2e2bcd8739ae039.Utils.EQ(circle.r, arc.r)) {
-        ip.push(arc.start);
-        ip.push(arc.end);
-        return ip;
-    }
-    // Common case
-    let circle1 = circle;
-    let circle2 = new $271a1c686af88dba$export$2e2bcd8739ae039.Circle(arc.pc, arc.r);
-    let ip_tmp = $271a1c686af88dba$var$intersectCircle2Circle(circle1, circle2);
-    for (let pt of ip_tmp)if (pt.on(arc)) ip.push(pt);
-    return ip;
-}
-function $271a1c686af88dba$var$intersectArc2Box(arc, box) {
-    let ips = [];
-    for (let seg of box.toSegments()){
-        let ips_tmp = $271a1c686af88dba$var$intersectSegment2Arc(seg, arc);
-        for (let ip of ips_tmp)ips.push(ip);
-    }
-    return ips;
-}
-function $271a1c686af88dba$var$intersectEdge2Segment(edge, segment) {
-    return edge.isSegment ? $271a1c686af88dba$var$intersectSegment2Segment(edge.shape, segment) : $271a1c686af88dba$var$intersectSegment2Arc(segment, edge.shape);
-}
-function $271a1c686af88dba$var$intersectEdge2Arc(edge, arc) {
-    return edge.isSegment ? $271a1c686af88dba$var$intersectSegment2Arc(edge.shape, arc) : $271a1c686af88dba$var$intersectArc2Arc(edge.shape, arc);
-}
-function $271a1c686af88dba$var$intersectEdge2Line(edge, line) {
-    return edge.isSegment ? $271a1c686af88dba$var$intersectSegment2Line(edge.shape, line) : $271a1c686af88dba$var$intersectLine2Arc(line, edge.shape);
-}
-function $271a1c686af88dba$var$intersectEdge2Ray(edge, ray) {
-    return edge.isSegment ? $271a1c686af88dba$var$intersectRay2Segment(ray, edge.shape) : $271a1c686af88dba$var$intersectRay2Arc(ray, edge.shape);
-}
-function $271a1c686af88dba$var$intersectEdge2Circle(edge, circle) {
-    return edge.isSegment ? $271a1c686af88dba$var$intersectSegment2Circle(edge.shape, circle) : $271a1c686af88dba$var$intersectArc2Circle(edge.shape, circle);
-}
-function $271a1c686af88dba$var$intersectSegment2Polygon(segment, polygon) {
-    let ip = [];
-    for (let edge of polygon.edges)for (let pt of $271a1c686af88dba$var$intersectEdge2Segment(edge, segment))ip.push(pt);
-    return ip;
-}
-function $271a1c686af88dba$var$intersectArc2Polygon(arc, polygon) {
-    let ip = [];
-    for (let edge of polygon.edges)for (let pt of $271a1c686af88dba$var$intersectEdge2Arc(edge, arc))ip.push(pt);
-    return ip;
-}
-function $271a1c686af88dba$var$intersectLine2Polygon(line, polygon) {
-    let ip = [];
-    if (polygon.isEmpty()) return ip;
-    for (let edge of polygon.edges){
-        for (let pt of $271a1c686af88dba$var$intersectEdge2Line(edge, line))if (!$271a1c686af88dba$var$ptInIntPoints(pt, ip)) ip.push(pt);
-    }
-    return line.sortPoints(ip);
-}
-function $271a1c686af88dba$var$intersectCircle2Polygon(circle, polygon) {
-    let ip = [];
-    if (polygon.isEmpty()) return ip;
-    for (let edge of polygon.edges)for (let pt of $271a1c686af88dba$var$intersectEdge2Circle(edge, circle))ip.push(pt);
-    return ip;
-}
-function $271a1c686af88dba$var$intersectEdge2Edge(edge1, edge2) {
-    if (edge1.isSegment) return $271a1c686af88dba$var$intersectEdge2Segment(edge2, edge1.shape);
-    else if (edge1.isArc) return $271a1c686af88dba$var$intersectEdge2Arc(edge2, edge1.shape);
-    else if (edge1.isLine) return $271a1c686af88dba$var$intersectEdge2Line(edge2, edge1.shape);
-    else if (edge1.isRay) return $271a1c686af88dba$var$intersectEdge2Ray(edge2, edge1.shape);
-    return [];
-}
-function $271a1c686af88dba$var$intersectEdge2Polygon(edge, polygon) {
-    let ip = [];
-    if (polygon.isEmpty() || edge.shape.box.not_intersect(polygon.box)) return ip;
-    let resp_edges = polygon.edges.search(edge.shape.box);
-    for (let resp_edge of resp_edges)ip = [
-        ...ip,
-        ...$271a1c686af88dba$var$intersectEdge2Edge(edge, resp_edge)
-    ];
-    return ip;
-}
-function $271a1c686af88dba$var$intersectPolygon2Polygon(polygon1, polygon2) {
-    let ip = [];
-    if (polygon1.isEmpty() || polygon2.isEmpty()) return ip;
-    if (polygon1.box.not_intersect(polygon2.box)) return ip;
-    for (let edge1 of polygon1.edges)ip = [
-        ...ip,
-        ...$271a1c686af88dba$var$intersectEdge2Polygon(edge1, polygon2)
-    ];
-    return ip;
-}
-function $271a1c686af88dba$var$intersectShape2Polygon(shape, polygon) {
-    if (shape instanceof $271a1c686af88dba$export$2e2bcd8739ae039.Line) return $271a1c686af88dba$var$intersectLine2Polygon(shape, polygon);
-    else if (shape instanceof $271a1c686af88dba$export$2e2bcd8739ae039.Segment) return $271a1c686af88dba$var$intersectSegment2Polygon(shape, polygon);
-    else if (shape instanceof $271a1c686af88dba$export$2e2bcd8739ae039.Arc) return $271a1c686af88dba$var$intersectArc2Polygon(shape, polygon);
-    else return [];
-}
-function $271a1c686af88dba$var$ptInIntPoints(new_pt, ip) {
-    return ip.some((pt)=>pt.equalTo(new_pt));
-}
-function $271a1c686af88dba$var$createLineFromRay(ray) {
-    return new $271a1c686af88dba$export$2e2bcd8739ae039.Line(ray.start, ray.norm);
-}
-function $271a1c686af88dba$var$intersectRay2Segment(ray, segment) {
-    return $271a1c686af88dba$var$intersectSegment2Line(segment, $271a1c686af88dba$var$createLineFromRay(ray)).filter((pt)=>ray.contains(pt));
-}
-function $271a1c686af88dba$var$intersectRay2Arc(ray, arc) {
-    return $271a1c686af88dba$var$intersectLine2Arc($271a1c686af88dba$var$createLineFromRay(ray), arc).filter((pt)=>ray.contains(pt));
-}
-function $271a1c686af88dba$var$intersectRay2Circle(ray, circle) {
-    return $271a1c686af88dba$var$intersectLine2Circle($271a1c686af88dba$var$createLineFromRay(ray), circle).filter((pt)=>ray.contains(pt));
-}
-function $271a1c686af88dba$var$intersectRay2Box(ray, box) {
-    return $271a1c686af88dba$var$intersectLine2Box($271a1c686af88dba$var$createLineFromRay(ray), box).filter((pt)=>ray.contains(pt));
-}
-function $271a1c686af88dba$var$intersectRay2Line(ray, line) {
-    return $271a1c686af88dba$var$intersectLine2Line($271a1c686af88dba$var$createLineFromRay(ray), line).filter((pt)=>ray.contains(pt));
-}
-function $271a1c686af88dba$var$intersectRay2Ray(ray1, ray2) {
-    return $271a1c686af88dba$var$intersectLine2Line($271a1c686af88dba$var$createLineFromRay(ray1), $271a1c686af88dba$var$createLineFromRay(ray2)).filter((pt)=>ray1.contains(pt)).filter((pt)=>ray2.contains(pt));
-}
-function $271a1c686af88dba$var$intersectRay2Polygon(ray, polygon) {
-    return $271a1c686af88dba$var$intersectLine2Polygon($271a1c686af88dba$var$createLineFromRay(ray), polygon).filter((pt)=>ray.contains(pt));
-}
-/**
  * @module RayShoot
  */ /**
  * Implements ray shooting algorithm. Returns relation between point and polygon: inside, outside or boundary
@@ -2477,7 +2597,7 @@ $271a1c686af88dba$export$2e2bcd8739ae039.matrix = $271a1c686af88dba$export$9bdad
  */ /**
  * Interval is a pair of numbers or a pair of any comparable objects on which may be defined predicates
  * *equal*, *less* and method *max(p1, p1)* that returns maximum in a pair.
- * When interval is an object rather than pair of numbers, this object should have properties *low*, *high*, *max*
+ * When interval is an object rather than a pair of numbers, this object should have properties *low*, *high*, *max*
  * and implement methods *less_than(), equal_to(), intersect(), not_intersect(), clone(), output()*.
  * Two static methods *comparable_max(), comparable_less_than()* define how to compare values in pair. <br/>
  * This interface is described in typescript definition file *index.d.ts*
@@ -2514,14 +2634,14 @@ $271a1c686af88dba$export$2e2bcd8739ae039.matrix = $271a1c686af88dba$export$9bdad
      * @param other_interval
      * @returns {boolean}
      */ less_than(other_interval) {
-        return this.low < other_interval.low || this.low == other_interval.low && this.high < other_interval.high;
+        return this.low < other_interval.low || this.low === other_interval.low && this.high < other_interval.high;
     }
     /**
      * Predicate returns true is this interval equals to other interval
      * @param other_interval
      * @returns {boolean}
      */ equal_to(other_interval) {
-        return this.low == other_interval.low && this.high == other_interval.high;
+        return this.low === other_interval.low && this.high === other_interval.high;
     }
     /**
      * Predicate returns true if this interval intersects other interval
@@ -2539,10 +2659,10 @@ $271a1c686af88dba$export$2e2bcd8739ae039.matrix = $271a1c686af88dba$export$9bdad
     }
     /**
      * Returns new interval merged with other interval
-     * @param {Interval} interval - Other interval to merge with
+     * @param {Interval} other_interval - Other interval to merge with
      * @returns {Interval}
      */ merge(other_interval) {
-        return new Interval(this.low === undefined ? other_interval.low : Math.min(this.low, other_interval.low), this.high === undefined ? other_interval.high : Math.max(this.high, other_interval.high));
+        return new Interval(this.low === undefined ? other_interval.low : this.low < other_interval.low ? this.low : other_interval.low, this.high === undefined ? other_interval.high : this.high > other_interval.high ? this.high : other_interval.high);
     }
     /**
      * Returns how key should return
@@ -2589,8 +2709,15 @@ const $271a1c686af88dba$var$RB_TREE_COLOR_BLACK = 1;
             key: key,
             value: value
         }; // key is supposed to be instance of Interval
-        /* If not, this should by an array of two numbers */ if (key && key instanceof Array && key.length == 2) {
-            if (!Number.isNaN(key[0]) && !Number.isNaN(key[1])) this.item.key = new $271a1c686af88dba$var$Interval(Math.min(key[0], key[1]), Math.max(key[0], key[1]));
+        /* If not, this should by an array of two numbers */ if (key && key instanceof Array && key.length === 2) {
+            if (!Number.isNaN(key[0]) && !Number.isNaN(key[1])) {
+                let [low, high] = key;
+                if (low > high) [low, high] = [
+                    high,
+                    low
+                ];
+                this.item.key = new $271a1c686af88dba$var$Interval(low, high);
+            }
         }
         this.max = this.item.key ? this.item.key.max : undefined;
     }
@@ -2606,7 +2733,7 @@ const $271a1c686af88dba$var$RB_TREE_COLOR_BLACK = 1;
         else return this.item.key.less_than(other_node.item.key) || this.item.key.equal_to(other_node.item.key) && this._value_less_than(other_node);
     }
     _value_equal(other_node) {
-        return this.item.value && other_node.item.value && this.item.value.equal_to ? this.item.value.equal_to(other_node.item.value) : this.item.value == other_node.item.value;
+        return this.item.value && other_node.item.value && this.item.value.equal_to ? this.item.value.equal_to(other_node.item.value) : this.item.value === other_node.item.value;
     }
     equal_to(other_node) {
         // if tree stores only keys
@@ -2699,7 +2826,7 @@ const $271a1c686af88dba$var$RB_TREE_COLOR_BLACK = 1;
      * Returns true if tree is empty
      * @returns {boolean}
      */ isEmpty() {
-        return this.root == null || this.root == this.nil_node;
+        return this.root == null || this.root === this.nil_node;
     }
     /**
      * Clear tree
@@ -2725,7 +2852,7 @@ const $271a1c686af88dba$var$RB_TREE_COLOR_BLACK = 1;
      * @returns {boolean} true if item {key, value} exist in the tree, false otherwise
      */ exist(key, value = key) {
         let search_node = new $271a1c686af88dba$var$Node(key, value);
-        return this.tree_search(this.root, search_node) ? true : false;
+        return !!this.tree_search(this.root, search_node);
     }
     /**
      * Remove entry {key, value} from the tree
@@ -2756,8 +2883,7 @@ const $271a1c686af88dba$var$RB_TREE_COLOR_BLACK = 1;
      * @returns {boolean}
      */ intersect_any(interval) {
         let search_node = new $271a1c686af88dba$var$Node(interval);
-        let found = this.tree_find_any_interval(this.root, search_node);
-        return found;
+        return this.tree_find_any_interval(this.root, search_node);
     }
     /**
      * Tree visitor. For each node implement a callback function. <br/>
@@ -2766,12 +2892,26 @@ const $271a1c686af88dba$var$RB_TREE_COLOR_BLACK = 1;
      */ forEach(visitor) {
         this.tree_walk(this.root, (node)=>visitor(node.item.key, node.item.value));
     }
-    /** Value Mapper. Walk through every node and map node value to another value
-    * @param callback(value,key) - function to be called for each tree item
-    */ map(callback) {
+    /**
+     * Value Mapper. Walk through every node and map node value to another value
+     * @param callback(value,key) - function to be called for each tree item
+     */ map(callback) {
         const tree = new $271a1c686af88dba$var$IntervalTree();
         this.tree_walk(this.root, (node)=>tree.insert(node.item.key, callback(node.item.value, node.item.key)));
         return tree;
+    }
+    /**
+     * @param {Interval} interval - optional if the iterator is intended to start from the beginning
+     * @param outputMapperFn(value,key) - optional function that maps (value, key) to custom output
+     * @returns {Iterator}
+     */ *iterate(interval, outputMapperFn = (value, key)=>value === key ? key.output() : value) {
+        let node;
+        if (interval) node = this.tree_search_nearest_forward(this.root, new $271a1c686af88dba$var$Node(interval));
+        else if (this.root) node = this.local_minimum(this.root);
+        while(node){
+            yield outputMapperFn(node.item.value, node.item.key);
+            node = this.tree_successor(node);
+        }
     }
     recalc_max(node) {
         let node_current = node;
@@ -2783,9 +2923,9 @@ const $271a1c686af88dba$var$RB_TREE_COLOR_BLACK = 1;
     tree_insert(insert_node) {
         let current_node = this.root;
         let parent_node = null;
-        if (this.root == null || this.root == this.nil_node) this.root = insert_node;
+        if (this.root == null || this.root === this.nil_node) this.root = insert_node;
         else {
-            while(current_node != this.nil_node){
+            while(current_node !== this.nil_node){
                 parent_node = current_node;
                 if (insert_node.less_than(current_node)) current_node = current_node.left;
                 else current_node = current_node.right;
@@ -2802,16 +2942,16 @@ const $271a1c686af88dba$var$RB_TREE_COLOR_BLACK = 1;
         let current_node;
         let uncle_node;
         current_node = insert_node;
-        while(current_node != this.root && current_node.parent.color == $271a1c686af88dba$var$RB_TREE_COLOR_RED)if (current_node.parent == current_node.parent.parent.left) {
+        while(current_node !== this.root && current_node.parent.color === $271a1c686af88dba$var$RB_TREE_COLOR_RED)if (current_node.parent === current_node.parent.parent.left) {
             uncle_node = current_node.parent.parent.right; // right brother of parent
-            if (uncle_node.color == $271a1c686af88dba$var$RB_TREE_COLOR_RED) {
+            if (uncle_node.color === $271a1c686af88dba$var$RB_TREE_COLOR_RED) {
                 // re-color father and uncle into black
                 current_node.parent.color = $271a1c686af88dba$var$RB_TREE_COLOR_BLACK;
                 uncle_node.color = $271a1c686af88dba$var$RB_TREE_COLOR_BLACK;
                 current_node.parent.parent.color = $271a1c686af88dba$var$RB_TREE_COLOR_RED;
                 current_node = current_node.parent.parent;
             } else {
-                if (current_node == current_node.parent.right) {
+                if (current_node === current_node.parent.right) {
                     // This case is transformed into Case 3.
                     current_node = current_node.parent;
                     this.rotate_left(current_node);
@@ -2823,14 +2963,14 @@ const $271a1c686af88dba$var$RB_TREE_COLOR_BLACK = 1;
             }
         } else {
             uncle_node = current_node.parent.parent.left; // left brother of parent
-            if (uncle_node.color == $271a1c686af88dba$var$RB_TREE_COLOR_RED) {
+            if (uncle_node.color === $271a1c686af88dba$var$RB_TREE_COLOR_RED) {
                 // re-color father and uncle into black
                 current_node.parent.color = $271a1c686af88dba$var$RB_TREE_COLOR_BLACK;
                 uncle_node.color = $271a1c686af88dba$var$RB_TREE_COLOR_BLACK;
                 current_node.parent.parent.color = $271a1c686af88dba$var$RB_TREE_COLOR_RED;
                 current_node = current_node.parent.parent;
             } else {
-                if (current_node == current_node.parent.left) {
+                if (current_node === current_node.parent.left) {
                     // Transform into case 6
                     current_node = current_node.parent;
                     this.rotate_right(current_node);
@@ -2846,16 +2986,16 @@ const $271a1c686af88dba$var$RB_TREE_COLOR_BLACK = 1;
     tree_delete(delete_node) {
         let cut_node; // node to be cut - either delete_node or successor_node  ("y" from 14.4)
         let fix_node; // node to fix rb tree property   ("x" from 14.4)
-        if (delete_node.left == this.nil_node || delete_node.right == this.nil_node) cut_node = delete_node;
+        if (delete_node.left === this.nil_node || delete_node.right === this.nil_node) cut_node = delete_node;
         else cut_node = this.tree_successor(delete_node);
         // fix_node if single child of cut_node
-        if (cut_node.left != this.nil_node) fix_node = cut_node.left;
+        if (cut_node.left !== this.nil_node) fix_node = cut_node.left;
         else fix_node = cut_node.right;
         // remove cut_node from parent
         /*if (fix_node != this.nil_node) {*/ fix_node.parent = cut_node.parent;
-        /*}*/ if (cut_node == this.root) this.root = fix_node;
+        /*}*/ if (cut_node === this.root) this.root = fix_node;
         else {
-            if (cut_node == cut_node.parent.left) cut_node.parent.left = fix_node;
+            if (cut_node === cut_node.parent.left) cut_node.parent.left = fix_node;
             else cut_node.parent.right = fix_node;
             cut_node.parent.update_max(); // update max property of the parent
         }
@@ -2863,30 +3003,30 @@ const $271a1c686af88dba$var$RB_TREE_COLOR_BLACK = 1;
         // COPY DATA !!!
         // Delete_node becomes cut_node, it means that we cannot hold reference
         // to node in outer structure and we will have to delete by key, additional search need
-        if (cut_node != delete_node) {
+        if (cut_node !== delete_node) {
             delete_node.copy_data(cut_node);
             delete_node.update_max(); // update max property of the cut node at the new place
             this.recalc_max(delete_node); // update max property upward from delete_node to root
         }
-        if (/*fix_node != this.nil_node && */ cut_node.color == $271a1c686af88dba$var$RB_TREE_COLOR_BLACK) this.delete_fixup(fix_node);
+        if (/*fix_node != this.nil_node && */ cut_node.color === $271a1c686af88dba$var$RB_TREE_COLOR_BLACK) this.delete_fixup(fix_node);
     }
     delete_fixup(fix_node) {
         let current_node = fix_node;
         let brother_node;
-        while(current_node != this.root && current_node.parent != null && current_node.color == $271a1c686af88dba$var$RB_TREE_COLOR_BLACK)if (current_node == current_node.parent.left) {
+        while(current_node !== this.root && current_node.parent != null && current_node.color === $271a1c686af88dba$var$RB_TREE_COLOR_BLACK)if (current_node === current_node.parent.left) {
             brother_node = current_node.parent.right;
-            if (brother_node.color == $271a1c686af88dba$var$RB_TREE_COLOR_RED) {
+            if (brother_node.color === $271a1c686af88dba$var$RB_TREE_COLOR_RED) {
                 brother_node.color = $271a1c686af88dba$var$RB_TREE_COLOR_BLACK; // re-color brother
                 current_node.parent.color = $271a1c686af88dba$var$RB_TREE_COLOR_RED; // re-color father
                 this.rotate_left(current_node.parent);
                 brother_node = current_node.parent.right; // update brother
             }
             // Derive to cases 2..4: brother is black
-            if (brother_node.left.color == $271a1c686af88dba$var$RB_TREE_COLOR_BLACK && brother_node.right.color == $271a1c686af88dba$var$RB_TREE_COLOR_BLACK) {
+            if (brother_node.left.color === $271a1c686af88dba$var$RB_TREE_COLOR_BLACK && brother_node.right.color === $271a1c686af88dba$var$RB_TREE_COLOR_BLACK) {
                 brother_node.color = $271a1c686af88dba$var$RB_TREE_COLOR_RED; // re-color brother
                 current_node = current_node.parent; // continue iteration
             } else {
-                if (brother_node.right.color == $271a1c686af88dba$var$RB_TREE_COLOR_BLACK) {
+                if (brother_node.right.color === $271a1c686af88dba$var$RB_TREE_COLOR_BLACK) {
                     brother_node.color = $271a1c686af88dba$var$RB_TREE_COLOR_RED; // re-color brother
                     brother_node.left.color = $271a1c686af88dba$var$RB_TREE_COLOR_BLACK; // re-color nephew
                     this.rotate_right(brother_node);
@@ -2902,18 +3042,18 @@ const $271a1c686af88dba$var$RB_TREE_COLOR_BLACK = 1;
             }
         } else {
             brother_node = current_node.parent.left;
-            if (brother_node.color == $271a1c686af88dba$var$RB_TREE_COLOR_RED) {
+            if (brother_node.color === $271a1c686af88dba$var$RB_TREE_COLOR_RED) {
                 brother_node.color = $271a1c686af88dba$var$RB_TREE_COLOR_BLACK; // re-color brother
                 current_node.parent.color = $271a1c686af88dba$var$RB_TREE_COLOR_RED; // re-color father
                 this.rotate_right(current_node.parent);
                 brother_node = current_node.parent.left; // update brother
             }
             // Go to cases 2..4
-            if (brother_node.left.color == $271a1c686af88dba$var$RB_TREE_COLOR_BLACK && brother_node.right.color == $271a1c686af88dba$var$RB_TREE_COLOR_BLACK) {
+            if (brother_node.left.color === $271a1c686af88dba$var$RB_TREE_COLOR_BLACK && brother_node.right.color === $271a1c686af88dba$var$RB_TREE_COLOR_BLACK) {
                 brother_node.color = $271a1c686af88dba$var$RB_TREE_COLOR_RED; // re-color brother
                 current_node = current_node.parent; // continue iteration
             } else {
-                if (brother_node.left.color == $271a1c686af88dba$var$RB_TREE_COLOR_BLACK) {
+                if (brother_node.left.color === $271a1c686af88dba$var$RB_TREE_COLOR_BLACK) {
                     brother_node.color = $271a1c686af88dba$var$RB_TREE_COLOR_RED; // re-color brother
                     brother_node.right.color = $271a1c686af88dba$var$RB_TREE_COLOR_BLACK; // re-color nephew
                     this.rotate_left(brother_node);
@@ -2931,55 +3071,66 @@ const $271a1c686af88dba$var$RB_TREE_COLOR_BLACK = 1;
         current_node.color = $271a1c686af88dba$var$RB_TREE_COLOR_BLACK;
     }
     tree_search(node, search_node) {
-        if (node == null || node == this.nil_node) return undefined;
+        if (node == null || node === this.nil_node) return undefined;
         if (search_node.equal_to(node)) return node;
         if (search_node.less_than(node)) return this.tree_search(node.left, search_node);
         else return this.tree_search(node.right, search_node);
     }
+    tree_search_nearest_forward(node, search_node) {
+        let best;
+        let curr = node;
+        while(curr && curr !== this.nil_node)if (curr.less_than(search_node)) {
+            if (curr.intersect(search_node)) {
+                best = curr;
+                curr = curr.left;
+            } else curr = curr.right;
+        } else {
+            if (!best || curr.less_than(best)) best = curr;
+            curr = curr.left;
+        }
+        return best || null;
+    }
     // Original search_interval method; container res support push() insertion
     // Search all intervals intersecting given one
     tree_search_interval(node, search_node, res) {
-        if (node != null && node != this.nil_node) {
+        if (node != null && node !== this.nil_node) {
             // if (node->left != this.nil_node && node->left->max >= low) {
-            if (node.left != this.nil_node && !node.not_intersect_left_subtree(search_node)) this.tree_search_interval(node.left, search_node, res);
+            if (node.left !== this.nil_node && !node.not_intersect_left_subtree(search_node)) this.tree_search_interval(node.left, search_node, res);
             // if (low <= node->high && node->low <= high) {
             if (node.intersect(search_node)) res.push(node);
             // if (node->right != this.nil_node && node->low <= high) {
-            if (node.right != this.nil_node && !node.not_intersect_right_subtree(search_node)) this.tree_search_interval(node.right, search_node, res);
+            if (node.right !== this.nil_node && !node.not_intersect_right_subtree(search_node)) this.tree_search_interval(node.right, search_node, res);
         }
     }
     tree_find_any_interval(node, search_node) {
         let found = false;
-        if (node != null && node != this.nil_node) {
-            // if (node->left != this.nil_node && node->left->max >= low) {
-            if (node.left != this.nil_node && !node.not_intersect_left_subtree(search_node)) found = this.tree_find_any_interval(node.left, search_node);
-            // if (low <= node->high && node->low <= high) {
+        if (node != null && node !== this.nil_node) {
+            if (node.left !== this.nil_node && !node.not_intersect_left_subtree(search_node)) found = this.tree_find_any_interval(node.left, search_node);
             if (!found) found = node.intersect(search_node);
-            // if (node->right != this.nil_node && node->low <= high) {
-            if (!found && node.right != this.nil_node && !node.not_intersect_right_subtree(search_node)) found = this.tree_find_any_interval(node.right, search_node);
+            if (!found && node.right !== this.nil_node && !node.not_intersect_right_subtree(search_node)) found = this.tree_find_any_interval(node.right, search_node);
         }
         return found;
     }
     local_minimum(node) {
         let node_min = node;
-        while(node_min.left != null && node_min.left != this.nil_node)node_min = node_min.left;
+        while(node_min.left != null && node_min.left !== this.nil_node)node_min = node_min.left;
         return node_min;
     }
     // not in use
     local_maximum(node) {
         let node_max = node;
-        while(node_max.right != null && node_max.right != this.nil_node)node_max = node_max.right;
+        while(node_max.right != null && node_max.right !== this.nil_node)node_max = node_max.right;
         return node_max;
     }
     tree_successor(node) {
         let node_successor;
         let current_node;
         let parent_node;
-        if (node.right != this.nil_node) node_successor = this.local_minimum(node.right);
+        if (node.right !== this.nil_node) node_successor = this.local_minimum(node.right);
         else {
             current_node = node;
             parent_node = node.parent;
-            while(parent_node != null && parent_node.right == current_node){
+            while(parent_node != null && parent_node.right === current_node){
                 current_node = parent_node;
                 parent_node = parent_node.parent;
             }
@@ -2996,33 +3147,33 @@ const $271a1c686af88dba$var$RB_TREE_COLOR_BLACK = 1;
     rotate_left(x) {
         let y = x.right;
         x.right = y.left; // b goes to x.right
-        if (y.left != this.nil_node) y.left.parent = x; // x becomes parent of b
+        if (y.left !== this.nil_node) y.left.parent = x; // x becomes parent of b
         y.parent = x.parent; // move parent
-        if (x == this.root) this.root = y; // y becomes root
-        else if (x == x.parent.left) x.parent.left = y;
+        if (x === this.root) this.root = y; // y becomes root
+        else if (x === x.parent.left) x.parent.left = y;
         else x.parent.right = y;
         y.left = x; // x becomes left child of y
         x.parent = y; // and y becomes parent of x
-        if (x != null && x != this.nil_node) x.update_max();
+        if (x != null && x !== this.nil_node) x.update_max();
         y = x.parent;
-        if (y != null && y != this.nil_node) y.update_max();
+        if (y != null && y !== this.nil_node) y.update_max();
     }
     rotate_right(y) {
         let x = y.left;
         y.left = x.right; // b goes to y.left
-        if (x.right != this.nil_node) x.right.parent = y; // y becomes parent of b
+        if (x.right !== this.nil_node) x.right.parent = y; // y becomes parent of b
         x.parent = y.parent; // move parent
-        if (y == this.root) this.root = x;
-        else if (y == y.parent.left) y.parent.left = x;
+        if (y === this.root) this.root = x;
+        else if (y === y.parent.left) y.parent.left = x;
         else y.parent.right = x;
         x.right = y; // y becomes right child of x
         y.parent = x; // and x becomes parent of y
-        if (y != null && y != this.nil_node) y.update_max();
+        if (y !== null && y !== this.nil_node) y.update_max();
         x = y.parent;
-        if (x != null && x != this.nil_node) x.update_max();
+        if (x != null && x !== this.nil_node) x.update_max();
     }
     tree_walk(node, action) {
-        if (node != null && node != this.nil_node) {
+        if (node != null && node !== this.nil_node) {
             this.tree_walk(node.left, action);
             // arr.push(node.toArray());
             action(node);
@@ -3032,8 +3183,8 @@ const $271a1c686af88dba$var$RB_TREE_COLOR_BLACK = 1;
     /* Return true if all red nodes have exactly two black child nodes */ testRedBlackProperty() {
         let res = true;
         this.tree_walk(this.root, function(node) {
-            if (node.color == $271a1c686af88dba$var$RB_TREE_COLOR_RED) {
-                if (!(node.left.color == $271a1c686af88dba$var$RB_TREE_COLOR_BLACK && node.right.color == $271a1c686af88dba$var$RB_TREE_COLOR_BLACK)) res = false;
+            if (node.color === $271a1c686af88dba$var$RB_TREE_COLOR_RED) {
+                if (!(node.left.color === $271a1c686af88dba$var$RB_TREE_COLOR_BLACK && node.right.color === $271a1c686af88dba$var$RB_TREE_COLOR_BLACK)) res = false;
             }
         });
         return res;
@@ -3042,12 +3193,12 @@ const $271a1c686af88dba$var$RB_TREE_COLOR_BLACK = 1;
         let height = 0;
         let heightLeft = 0;
         let heightRight = 0;
-        if (node.color == $271a1c686af88dba$var$RB_TREE_COLOR_BLACK) height++;
-        if (node.left != this.nil_node) heightLeft = this.testBlackHeightProperty(node.left);
+        if (node.color === $271a1c686af88dba$var$RB_TREE_COLOR_BLACK) height++;
+        if (node.left !== this.nil_node) heightLeft = this.testBlackHeightProperty(node.left);
         else heightLeft = 1;
-        if (node.right != this.nil_node) heightRight = this.testBlackHeightProperty(node.right);
+        if (node.right !== this.nil_node) heightRight = this.testBlackHeightProperty(node.right);
         else heightRight = 1;
-        if (heightLeft != heightRight) throw new Error("Red-black height property violated");
+        if (heightLeft !== heightRight) throw new Error("Red-black height property violated");
         height += heightLeft;
         return height;
     }
@@ -3197,7 +3348,7 @@ $271a1c686af88dba$export$2e2bcd8739ae039.PlanarSet = $271a1c686af88dba$export$bf
  *
  * Class representing a point
  * @type {Point}
- */ let $271a1c686af88dba$export$baf26146a414f24a = class Point extends $271a1c686af88dba$var$Shape {
+ */ let $271a1c686af88dba$export$baf26146a414f24a = class Point1 extends $271a1c686af88dba$var$Shape {
     /**
      * Point may be constructed by two numbers, or by array of two numbers
      * @param {number} x - x-coordinate (float number)
@@ -3309,7 +3460,7 @@ $271a1c686af88dba$export$2e2bcd8739ae039.PlanarSet = $271a1c686af88dba$export$bf
      * @returns {number} distance from point to shape
      * @returns {Segment} shortest segment between point and shape (started at point, ended at shape)
      */ distanceTo(shape) {
-        if (shape instanceof Point) {
+        if (shape instanceof Point1) {
             let dx = shape.x - this.x;
             let dy = shape.y - this.y;
             return [
@@ -3323,6 +3474,7 @@ $271a1c686af88dba$export$2e2bcd8739ae039.PlanarSet = $271a1c686af88dba$export$bf
         if (shape instanceof $271a1c686af88dba$export$2e2bcd8739ae039.Arc) return $271a1c686af88dba$export$2e2bcd8739ae039.Distance.point2arc(this, shape);
         if (shape instanceof $271a1c686af88dba$export$2e2bcd8739ae039.Polygon) return $271a1c686af88dba$export$2e2bcd8739ae039.Distance.point2polygon(this, shape);
         if (shape instanceof $271a1c686af88dba$export$2e2bcd8739ae039.PlanarSet) return $271a1c686af88dba$export$2e2bcd8739ae039.Distance.shape2planarSet(this, shape);
+        if (shape instanceof $271a1c686af88dba$export$2e2bcd8739ae039.Multiline) return $271a1c686af88dba$export$2e2bcd8739ae039.Distance.shape2multiline(this, shape);
     }
     /**
      * Returns true if point is on a shape, false otherwise
@@ -3330,13 +3482,8 @@ $271a1c686af88dba$export$2e2bcd8739ae039.PlanarSet = $271a1c686af88dba$export$bf
      * @returns {boolean}
      */ on(shape) {
         if (shape instanceof $271a1c686af88dba$export$2e2bcd8739ae039.Point) return this.equalTo(shape);
-        if (shape instanceof $271a1c686af88dba$export$2e2bcd8739ae039.Box) return shape.contains(this);
-        if (shape instanceof $271a1c686af88dba$export$2e2bcd8739ae039.Line) return shape.contains(this);
-        if (shape instanceof $271a1c686af88dba$export$2e2bcd8739ae039.Ray) return shape.contains(this);
-        if (shape instanceof $271a1c686af88dba$export$2e2bcd8739ae039.Circle) return shape.contains(this);
-        if (shape instanceof $271a1c686af88dba$export$2e2bcd8739ae039.Segment) return shape.contains(this);
-        if (shape instanceof $271a1c686af88dba$export$2e2bcd8739ae039.Arc) return shape.contains(this);
-        if (shape instanceof $271a1c686af88dba$export$2e2bcd8739ae039.Polygon) return shape.contains(this);
+        if (shape.contains && shape.contains instanceof Function) return shape.contains(this);
+        throw $271a1c686af88dba$export$2e2bcd8739ae039.Errors.UNSUPPORTED_SHAPE_TYPE;
     }
     get name() {
         return "point";
@@ -3570,7 +3717,7 @@ $271a1c686af88dba$export$2e2bcd8739ae039.vector = $271a1c686af88dba$export$6074e
  */ /**
  * Class representing a segment
  * @type {Segment}
- */ class $271a1c686af88dba$export$d53aa5c5ab432700 extends $271a1c686af88dba$var$Shape {
+ */ let $271a1c686af88dba$export$d53aa5c5ab432700 = class Segment extends $271a1c686af88dba$var$Shape {
     /**
      *
      * @param {Point} ps - start point
@@ -3663,7 +3810,7 @@ $271a1c686af88dba$export$2e2bcd8739ae039.vector = $271a1c686af88dba$export$6074e
     }
     /**
      * Returns true if equals to query segment, false otherwise
-     * @param {Seg} seg - query segment
+     * @param {Segment} seg - query segment
      * @returns {boolean}
      */ equalTo(seg) {
         return this.ps.equalTo(seg.ps) && this.pe.equalTo(seg.pe);
@@ -3690,12 +3837,12 @@ $271a1c686af88dba$export$2e2bcd8739ae039.vector = $271a1c686af88dba$export$6074e
         if (shape instanceof $271a1c686af88dba$export$2e2bcd8739ae039.Box) return $271a1c686af88dba$var$intersectSegment2Box(this, shape);
         if (shape instanceof $271a1c686af88dba$export$2e2bcd8739ae039.Arc) return $271a1c686af88dba$var$intersectSegment2Arc(this, shape);
         if (shape instanceof $271a1c686af88dba$export$2e2bcd8739ae039.Polygon) return $271a1c686af88dba$var$intersectSegment2Polygon(this, shape);
+        if (shape instanceof $271a1c686af88dba$export$2e2bcd8739ae039.Multiline) return $271a1c686af88dba$var$intersectShape2Multiline(this, shape);
     }
     /**
      * Calculate distance and shortest segment from segment to shape and return as array [distance, shortest segment]
      * @param {Shape} shape Shape of the one of supported types Point, Line, Circle, Segment, Arc, Polygon or Planar Set
-     * @returns {number} distance from segment to shape
-     * @returns {Segment} shortest segment between segment and shape (started at segment, ended at shape)
+     * @returns {[number, Segment]} shortest segment between segment and shape (started at segment, ended at shape)
      */ distanceTo(shape) {
         if (shape instanceof $271a1c686af88dba$export$2e2bcd8739ae039.Point) {
             let [dist, shortest_segment] = $271a1c686af88dba$export$2e2bcd8739ae039.Distance.point2segment(shape, this);
@@ -3747,6 +3894,7 @@ $271a1c686af88dba$export$2e2bcd8739ae039.vector = $271a1c686af88dba$export$6074e
                 shortest_segment
             ];
         }
+        if (shape instanceof $271a1c686af88dba$export$2e2bcd8739ae039.Multiline) return $271a1c686af88dba$export$2e2bcd8739ae039.Distance.shape2multiline(this, shape);
     }
     /**
      * Returns unit vector in the direction from start to end
@@ -3766,7 +3914,7 @@ $271a1c686af88dba$export$2e2bcd8739ae039.vector = $271a1c686af88dba$export$6074e
      * Returns new segment with swapped start and end points
      * @returns {Segment}
      */ reverse() {
-        return new $271a1c686af88dba$export$d53aa5c5ab432700(this.end, this.start);
+        return new Segment(this.end, this.start);
     }
     /**
      * When point belongs to segment, return array of two segments split by given point,
@@ -3820,7 +3968,7 @@ $271a1c686af88dba$export$2e2bcd8739ae039.vector = $271a1c686af88dba$export$6074e
      * @param {Matrix} matrix - affine transformation matrix
      * @returns {Segment} - transformed segment
      */ transform(matrix = new $271a1c686af88dba$export$2e2bcd8739ae039.Matrix()) {
-        return new $271a1c686af88dba$export$d53aa5c5ab432700(this.ps.transform(matrix), this.pe.transform(matrix));
+        return new Segment(this.ps.transform(matrix), this.pe.transform(matrix));
     }
     /**
      * Returns true if segment start is equal to segment end up to DP_TOL
@@ -3848,7 +3996,7 @@ $271a1c686af88dba$export$2e2bcd8739ae039.vector = $271a1c686af88dba$export$6074e
      */ svg(attrs = {}) {
         return `\n<line x1="${this.start.x}" y1="${this.start.y}" x2="${this.end.x}" y2="${this.end.y}" ${$271a1c686af88dba$var$convertToString(attrs)} />`;
     }
-}
+};
 $271a1c686af88dba$export$2e2bcd8739ae039.Segment = $271a1c686af88dba$export$d53aa5c5ab432700;
 /**
  * Shortcut method to create new segment
@@ -4017,6 +4165,7 @@ $271a1c686af88dba$export$2e2bcd8739ae039.segment = $271a1c686af88dba$export$6519
         if (shape instanceof $271a1c686af88dba$export$2e2bcd8739ae039.Segment) return $271a1c686af88dba$var$intersectSegment2Line(shape, this);
         if (shape instanceof $271a1c686af88dba$export$2e2bcd8739ae039.Arc) return $271a1c686af88dba$var$intersectLine2Arc(this, shape);
         if (shape instanceof $271a1c686af88dba$export$2e2bcd8739ae039.Polygon) return $271a1c686af88dba$var$intersectLine2Polygon(this, shape);
+        if (shape instanceof $271a1c686af88dba$export$2e2bcd8739ae039.Multiline) return $271a1c686af88dba$var$intersectShape2Multiline(this, shape);
     }
     /**
      * Calculate distance and shortest segment from line to shape and returns array [distance, shortest_segment]
@@ -4238,6 +4387,7 @@ $271a1c686af88dba$export$2e2bcd8739ae039.line = $271a1c686af88dba$export$53f1d5e
         if (shape instanceof $271a1c686af88dba$export$2e2bcd8739ae039.Box) return $271a1c686af88dba$var$intersectCircle2Box(this, shape);
         if (shape instanceof $271a1c686af88dba$export$2e2bcd8739ae039.Arc) return $271a1c686af88dba$var$intersectArc2Circle(shape, this);
         if (shape instanceof $271a1c686af88dba$export$2e2bcd8739ae039.Polygon) return $271a1c686af88dba$var$intersectCircle2Polygon(this, shape);
+        if (shape instanceof $271a1c686af88dba$export$2e2bcd8739ae039.Multiline) return $271a1c686af88dba$var$intersectShape2Multiline(this, shape);
     }
     /**
      * Calculate distance and shortest segment from circle to shape and return array [distance, shortest segment]
@@ -4293,6 +4443,13 @@ $271a1c686af88dba$export$2e2bcd8739ae039.line = $271a1c686af88dba$export$53f1d5e
         }
         if (shape instanceof $271a1c686af88dba$export$2e2bcd8739ae039.PlanarSet) {
             let [dist, shortest_segment] = $271a1c686af88dba$export$2e2bcd8739ae039.Distance.shape2planarSet(this, shape);
+            return [
+                dist,
+                shortest_segment
+            ];
+        }
+        if (shape instanceof $271a1c686af88dba$export$2e2bcd8739ae039.Multiline) {
+            let [dist, shortest_segment] = $271a1c686af88dba$export$2e2bcd8739ae039.Distance.shape2multiline(this, shape);
             return [
                 dist,
                 shortest_segment
@@ -4511,6 +4668,7 @@ $271a1c686af88dba$export$2e2bcd8739ae039.circle = $271a1c686af88dba$export$e1d78
         if (shape instanceof $271a1c686af88dba$export$2e2bcd8739ae039.Box) return $271a1c686af88dba$var$intersectArc2Box(this, shape);
         if (shape instanceof $271a1c686af88dba$export$2e2bcd8739ae039.Arc) return $271a1c686af88dba$var$intersectArc2Arc(this, shape);
         if (shape instanceof $271a1c686af88dba$export$2e2bcd8739ae039.Polygon) return $271a1c686af88dba$var$intersectArc2Polygon(this, shape);
+        if (shape instanceof $271a1c686af88dba$export$2e2bcd8739ae039.Multiline) return $271a1c686af88dba$var$intersectShape2Multiline(this, shape);
     }
     /**
      * Calculate distance and shortest segment from arc to shape and return array [distance, shortest segment]
@@ -4570,6 +4728,7 @@ $271a1c686af88dba$export$2e2bcd8739ae039.circle = $271a1c686af88dba$export$e1d78
                 shortest_segment
             ];
         }
+        if (shape instanceof $271a1c686af88dba$export$2e2bcd8739ae039.Multiline) return $271a1c686af88dba$export$2e2bcd8739ae039.Distance.shape2multiline(this, shape);
     }
     /**
      * Breaks arc in extreme point 0, pi/2, pi, 3*pi/2 and returns array of sub-arcs
@@ -4909,6 +5068,22 @@ $271a1c686af88dba$export$2e2bcd8739ae039.arc = $271a1c686af88dba$export$ff1ef9a5
         if (shape instanceof $271a1c686af88dba$export$2e2bcd8739ae039.Multiline) return shape.toShapes().every((shape)=>this.contains(shape));
         if (shape instanceof $271a1c686af88dba$export$2e2bcd8739ae039.Polygon) return this.contains(shape.box);
     }
+    /**
+     * Calculate distance and shortest segment from box to shape and return as array [distance, shortest segment]
+     * @param {Shape} shape Shape of the one of supported types Point, Line, Circle, Segment, Arc, Polygon or Planar Set
+     * @returns {number} distance from box to shape
+     * @returns {Segment} shortest segment between box and shape (started at box, ended at shape)
+     */ distanceTo(shape) {
+        const distanceInfos = this.toSegments().map((segment)=>segment.distanceTo(shape));
+        let shortestDistanceInfo = [
+            Number.MAX_SAFE_INTEGER,
+            null
+        ];
+        distanceInfos.forEach((distanceInfo)=>{
+            if (distanceInfo[0] < shortestDistanceInfo[0]) shortestDistanceInfo = distanceInfo;
+        });
+        return shortestDistanceInfo;
+    }
     get name() {
         return "box";
     }
@@ -4919,7 +5094,7 @@ $271a1c686af88dba$export$2e2bcd8739ae039.arc = $271a1c686af88dba$export$ff1ef9a5
      */ svg(attrs = {}) {
         const width = this.xmax - this.xmin;
         const height = this.ymax - this.ymin;
-        return `\n<rect x="${this.xmin}" y="${this.ymin}" width=${width} height=${height}
+        return `\n<rect x="${this.xmin}" y="${this.ymin}" width="${width}" height="${height}"
                 ${$271a1c686af88dba$var$convertToString({
             fill: "none",
             ...attrs
@@ -5162,7 +5337,7 @@ $271a1c686af88dba$export$2e2bcd8739ae039.Edge = $271a1c686af88dba$export$b9d9805
  * Created by Alex Bol on 3/17/2017.
  */ /**
  * Class representing a face (closed loop) in a [polygon]{@link Flatten.Polygon} object.
- * Face is a circular bidirectional linked list of [edges]{@link Flatten.Edge}.
+ * Face is a circular bidirectionally linked list of [edges]{@link Flatten.Edge}.
  * Face object cannot be instantiated with a constructor.
  * Instead, use [polygon.addFace()]{@link Flatten.Polygon#addFace} method.
  * <br/>
@@ -5682,7 +5857,7 @@ $271a1c686af88dba$export$2e2bcd8739ae039.ray = $271a1c686af88dba$export$e006947b
  * Polygon in FlattenJS is a multipolygon comprised from a set of [faces]{@link Flatten.Face}. <br/>
  * Face, in turn, is a closed loop of [edges]{@link Flatten.Edge}, where edge may be segment or circular arc<br/>
  * @type {Polygon}
- */ class $271a1c686af88dba$export$7d31b617c820d435 {
+ */ let $271a1c686af88dba$export$7d31b617c820d435 = class Polygon {
     /**
      * Constructor creates new instance of polygon. With no arguments new polygon is empty.<br/>
      * Constructor accepts as argument array that define loop of shapes
@@ -5745,7 +5920,7 @@ $271a1c686af88dba$export$2e2bcd8739ae039.ray = $271a1c686af88dba$export$e006947b
      * Create new cloned instance of the polygon
      * @returns {Polygon}
      */ clone() {
-        let polygon = new $271a1c686af88dba$export$7d31b617c820d435();
+        let polygon = new Polygon();
         for (let face of this.faces)polygon.addFace(face.shapes);
         return polygon;
     }
@@ -6090,13 +6265,14 @@ $271a1c686af88dba$export$2e2bcd8739ae039.ray = $271a1c686af88dba$export$e006947b
         if (shape instanceof $271a1c686af88dba$export$2e2bcd8739ae039.Segment) return $271a1c686af88dba$var$intersectSegment2Polygon(shape, this);
         if (shape instanceof $271a1c686af88dba$export$2e2bcd8739ae039.Arc) return $271a1c686af88dba$var$intersectArc2Polygon(shape, this);
         if (shape instanceof $271a1c686af88dba$export$2e2bcd8739ae039.Polygon) return $271a1c686af88dba$var$intersectPolygon2Polygon(shape, this);
+        if (shape instanceof $271a1c686af88dba$export$2e2bcd8739ae039.Multiline) return $271a1c686af88dba$var$intersectMultiline2Polygon(shape, this);
     }
     /**
      * Returns new polygon translated by vector vec
      * @param {Vector} vec
      * @returns {Polygon}
      */ translate(vec) {
-        let newPolygon = new $271a1c686af88dba$export$7d31b617c820d435();
+        let newPolygon = new Polygon();
         for (let face of this.faces)newPolygon.addFace(face.shapes.map((shape)=>shape.translate(vec)));
         return newPolygon;
     }
@@ -6108,7 +6284,7 @@ $271a1c686af88dba$export$2e2bcd8739ae039.ray = $271a1c686af88dba$export$e006947b
      * @param {Point} center - rotation center, default is (0,0)
      * @returns {Polygon} - new rotated polygon
      */ rotate(angle = 0, center = new $271a1c686af88dba$export$2e2bcd8739ae039.Point()) {
-        let newPolygon = new $271a1c686af88dba$export$7d31b617c820d435();
+        let newPolygon = new Polygon();
         for (let face of this.faces)newPolygon.addFace(face.shapes.map((shape)=>shape.rotate(angle, center)));
         return newPolygon;
     }
@@ -6118,7 +6294,7 @@ $271a1c686af88dba$export$2e2bcd8739ae039.ray = $271a1c686af88dba$export$e006947b
      * @param {number} sy - y-axis scaling factor
      * @returns {Polygon}
      */ scale(sx, sy) {
-        let newPolygon = new $271a1c686af88dba$export$7d31b617c820d435();
+        let newPolygon = new Polygon();
         for (let face of this.faces)newPolygon.addFace(face.shapes.map((shape)=>shape.scale(sx, sy)));
         return newPolygon;
     }
@@ -6127,7 +6303,7 @@ $271a1c686af88dba$export$2e2bcd8739ae039.ray = $271a1c686af88dba$export$e006947b
      * @param {Matrix} matrix - affine transformation matrix
      * @returns {Polygon} - new polygon
      */ transform(matrix = new $271a1c686af88dba$export$2e2bcd8739ae039.Matrix()) {
-        let newPolygon = new $271a1c686af88dba$export$7d31b617c820d435();
+        let newPolygon = new Polygon();
         for (let face of this.faces)newPolygon.addFace(face.shapes.map((shape)=>shape.transform(matrix)));
         return newPolygon;
     }
@@ -6170,13 +6346,13 @@ $271a1c686af88dba$export$2e2bcd8739ae039.ray = $271a1c686af88dba$export$e006947b
         svgStr += `" >\n</path>`;
         return svgStr;
     }
-}
+};
 $271a1c686af88dba$export$2e2bcd8739ae039.Polygon = $271a1c686af88dba$export$7d31b617c820d435;
 /**
  * Shortcut method to create new polygon
  */ const $271a1c686af88dba$export$b7b19aa0ee06c73 = (...args)=>new $271a1c686af88dba$export$2e2bcd8739ae039.Polygon(...args);
 $271a1c686af88dba$export$2e2bcd8739ae039.polygon = $271a1c686af88dba$export$b7b19aa0ee06c73;
-const { Circle: $271a1c686af88dba$var$Circle, Line: $271a1c686af88dba$var$Line, Point: $271a1c686af88dba$var$Point, Vector: $271a1c686af88dba$var$Vector, Utils: $271a1c686af88dba$var$Utils } = $271a1c686af88dba$export$2e2bcd8739ae039;
+const { Circle: $271a1c686af88dba$var$Circle, Line: $271a1c686af88dba$var$Line, Point: $271a1c686af88dba$var$Point$2, Vector: $271a1c686af88dba$var$Vector, Utils: $271a1c686af88dba$var$Utils } = $271a1c686af88dba$export$2e2bcd8739ae039;
 /**
  * Class Inversion represent operator of inversion in circle
  * Inversion is a transformation of the Euclidean plane that maps generalized circles
@@ -6198,7 +6374,7 @@ const { Circle: $271a1c686af88dba$var$Circle, Line: $271a1c686af88dba$var$Line, 
         const v = new $271a1c686af88dba$var$Vector(inversion_circle.pc, point);
         const k2 = inversion_circle.r * inversion_circle.r;
         const len2 = v.dot(v);
-        const reflected_point = $271a1c686af88dba$var$Utils.EQ_0(len2) ? new $271a1c686af88dba$var$Point(Number.POSITIVE_INFINITY, Number.POSITIVE_INFINITY) : inversion_circle.pc.translate(v.multiply(k2 / len2));
+        const reflected_point = $271a1c686af88dba$var$Utils.EQ_0(len2) ? new $271a1c686af88dba$var$Point$2(Number.POSITIVE_INFINITY, Number.POSITIVE_INFINITY) : inversion_circle.pc.translate(v.multiply(k2 / len2));
         return reflected_point;
     }
     static inverseCircle(inversion_circle, circle) {
@@ -6228,7 +6404,7 @@ const { Circle: $271a1c686af88dba$var$Circle, Line: $271a1c686af88dba$var$Line, 
         }
     }
     inverse(shape) {
-        if (shape instanceof $271a1c686af88dba$var$Point) return $271a1c686af88dba$export$ff40fcfb940069c.inversePoint(this.circle, shape);
+        if (shape instanceof $271a1c686af88dba$var$Point$2) return $271a1c686af88dba$export$ff40fcfb940069c.inversePoint(this.circle, shape);
         else if (shape instanceof $271a1c686af88dba$var$Circle) return $271a1c686af88dba$export$ff40fcfb940069c.inverseCircle(this.circle, shape);
         else if (shape instanceof $271a1c686af88dba$var$Line) return $271a1c686af88dba$export$ff40fcfb940069c.inverseLine(this.circle, shape);
     }
@@ -6245,7 +6421,7 @@ class $271a1c686af88dba$export$3081247862d57e3d {
      * Calculate distance and shortest segment between points
      * @param pt1
      * @param pt2
-     * @returns {Number | Segment} - distance and shortest segment
+     * @returns {[number, Flatten.Segment]} - distance and shortest segment
      */ static point2point(pt1, pt2) {
         return pt1.distanceTo(pt2);
     }
@@ -6253,7 +6429,7 @@ class $271a1c686af88dba$export$3081247862d57e3d {
      * Calculate distance and shortest segment between point and line
      * @param pt
      * @param line
-     * @returns {Number | Segment} - distance and shortest segment
+     * @returns {[number, Flatten.Segment]} - distance and shortest segment
      */ static point2line(pt, line) {
         let closest_point = pt.projectionOn(line);
         let vec = new $271a1c686af88dba$export$2e2bcd8739ae039.Vector(pt, closest_point);
@@ -6266,7 +6442,7 @@ class $271a1c686af88dba$export$3081247862d57e3d {
      * Calculate distance and shortest segment between point and circle
      * @param pt
      * @param circle
-     * @returns {Number | Segment} - distance and shortest segment
+     * @returns {[number, Flatten.Segment]} - distance and shortest segment
      */ static point2circle(pt, circle) {
         let [dist2center, shortest_dist] = pt.distanceTo(circle.center);
         if ($271a1c686af88dba$export$2e2bcd8739ae039.Utils.EQ_0(dist2center)) return [
@@ -6287,7 +6463,7 @@ class $271a1c686af88dba$export$3081247862d57e3d {
      * Calculate distance and shortest segment between point and segment
      * @param pt
      * @param segment
-     * @returns {Number | Segment} - distance and shortest segment
+     * @returns {[number, Flatten.Segment]} - distance and shortest segment
      */ static point2segment(pt, segment) {
         /* Degenerated case of zero-length segment */ if (segment.start.equalTo(segment.end)) return $271a1c686af88dba$export$3081247862d57e3d.point2point(pt, segment.start);
         let v_seg = new $271a1c686af88dba$export$2e2bcd8739ae039.Vector(segment.start, segment.end);
@@ -6312,7 +6488,7 @@ class $271a1c686af88dba$export$3081247862d57e3d {
      * Calculate distance and shortest segment between point and arc
      * @param pt
      * @param arc
-     * @returns {Number | Segment} - distance and shortest segment
+     * @returns {[number, Flatten.Segment]} - distance and shortest segment
      */ static point2arc(pt, arc) {
         let circle = new $271a1c686af88dba$export$2e2bcd8739ae039.Circle(arc.pc, arc.r);
         let dist_and_segment = [];
@@ -6325,10 +6501,18 @@ class $271a1c686af88dba$export$3081247862d57e3d {
         return dist_and_segment[0];
     }
     /**
+     * Calculate distance and shortest segment between point and edge
+     * @param pt
+     * @param edge
+     * @returns {[number, Flatten.Segment]}
+     */ static point2edge(pt, edge) {
+        return edge.shape instanceof $271a1c686af88dba$export$2e2bcd8739ae039.Segment ? $271a1c686af88dba$export$3081247862d57e3d.point2segment(pt, edge.shape) : $271a1c686af88dba$export$3081247862d57e3d.point2arc(pt, edge.shape);
+    }
+    /**
      * Calculate distance and shortest segment between segment and line
      * @param seg
      * @param line
-     * @returns {Number | Segment}
+     * @returns {[number, Flatten.Segment]}
      */ static segment2line(seg, line) {
         let ip = seg.intersect(line);
         if (ip.length > 0) return [
@@ -6345,7 +6529,7 @@ class $271a1c686af88dba$export$3081247862d57e3d {
      * Calculate distance and shortest segment between two segments
      * @param seg1
      * @param seg2
-     * @returns {Number | Segment} - distance and shortest segment
+     * @returns {[number, Flatten.Segment]} - distance and shortest segment
      */ static segment2segment(seg1, seg2) {
         let ip = $271a1c686af88dba$var$intersectSegment2Segment(seg1, seg2);
         if (ip.length > 0) return [
@@ -6374,7 +6558,7 @@ class $271a1c686af88dba$export$3081247862d57e3d {
      * Calculate distance and shortest segment between segment and circle
      * @param seg
      * @param circle
-     * @returns {Number | Segment} - distance and shortest segment
+     * @returns {[number, Flatten.Segment]} - distance and shortest segment
      */ static segment2circle(seg, circle) {
         /* Case 1 Segment and circle intersected. Return the first point and zero distance */ let ip = seg.intersect(circle);
         if (ip.length > 0) return [
@@ -6403,7 +6587,7 @@ class $271a1c686af88dba$export$3081247862d57e3d {
      * Calculate distance and shortest segment between segment and arc
      * @param seg
      * @param arc
-     * @returns {Number | Segment} - distance and shortest segment
+     * @returns {[number, Flatten.Segment]} - distance and shortest segment
      */ static segment2arc(seg, arc) {
         /* Case 1 Segment and arc intersected. Return the first point and zero distance */ let ip = seg.intersect(arc);
         if (ip.length > 0) return [
@@ -6445,7 +6629,7 @@ class $271a1c686af88dba$export$3081247862d57e3d {
      * Calculate distance and shortest segment between two circles
      * @param circle1
      * @param circle2
-     * @returns {Number | Segment} - distance and shortest segment
+     * @returns {[number, Flatten.Segment]} - distance and shortest segment
      */ static circle2circle(circle1, circle2) {
         let ip = circle1.intersect(circle2);
         if (ip.length > 0) return [
@@ -6475,7 +6659,7 @@ class $271a1c686af88dba$export$3081247862d57e3d {
      * Calculate distance and shortest segment between two circles
      * @param circle
      * @param line
-     * @returns {Number | Segment} - distance and shortest segment
+     * @returns {[number, Flatten.Segment]} - distance and shortest segment
      */ static circle2line(circle, line) {
         let ip = circle.intersect(line);
         if (ip.length > 0) return [
@@ -6494,7 +6678,7 @@ class $271a1c686af88dba$export$3081247862d57e3d {
      * Calculate distance and shortest segment between arc and line
      * @param arc
      * @param line
-     * @returns {Number | Segment} - distance and shortest segment
+     * @returns {[number, Flatten.Segment]} - distance and shortest segment
      */ static arc2line(arc, line) {
         /* Case 1 Line and arc intersected. Return the first point and zero distance */ let ip = line.intersect(arc);
         if (ip.length > 0) return [
@@ -6524,7 +6708,7 @@ class $271a1c686af88dba$export$3081247862d57e3d {
      * Calculate distance and shortest segment between arc and circle
      * @param arc
      * @param circle2
-     * @returns {Number | Segment} - distance and shortest segment
+     * @returns {[number, Flatten.Segment]} - distance and shortest segment
      */ static arc2circle(arc, circle2) {
         let ip = arc.intersect(circle2);
         if (ip.length > 0) return [
@@ -6549,7 +6733,7 @@ class $271a1c686af88dba$export$3081247862d57e3d {
      * Calculate distance and shortest segment between two arcs
      * @param arc1
      * @param arc2
-     * @returns {Number | Segment} - distance and shortest segment
+     * @returns {[number, Flatten.Segment]} - distance and shortest segment
      */ static arc2arc(arc1, arc2) {
         let ip = arc1.intersect(arc2);
         if (ip.length > 0) return [
@@ -6614,14 +6798,14 @@ class $271a1c686af88dba$export$3081247862d57e3d {
      * Calculate distance and shortest segment between point and polygon
      * @param point
      * @param polygon
-     * @returns {Number | Segment} - distance and shortest segment
+     * @returns {[number, Flatten.Segment]} - distance and shortest segment
      */ static point2polygon(point, polygon) {
         let min_dist_and_segment = [
             Number.POSITIVE_INFINITY,
             new $271a1c686af88dba$export$2e2bcd8739ae039.Segment()
         ];
         for (let edge of polygon.edges){
-            let [dist, shortest_segment] = edge.shape instanceof $271a1c686af88dba$export$2e2bcd8739ae039.Segment ? $271a1c686af88dba$export$3081247862d57e3d.point2segment(point, edge.shape) : $271a1c686af88dba$export$3081247862d57e3d.point2arc(point, edge.shape);
+            let [dist, shortest_segment] = $271a1c686af88dba$export$3081247862d57e3d.point2edge(point, edge);
             if ($271a1c686af88dba$export$2e2bcd8739ae039.Utils.LT(dist, min_dist_and_segment[0])) min_dist_and_segment = [
                 dist,
                 shortest_segment
@@ -6647,7 +6831,7 @@ class $271a1c686af88dba$export$3081247862d57e3d {
      * Calculate distance and shortest segment between two polygons
      * @param polygon1
      * @param polygon2
-     * @returns {Number | Segment} - distance and shortest segment
+     * @returns {[number, Flatten.Segment]} - distance and shortest segment
      */ static polygon2polygon(polygon1, polygon2) {
         let min_dist_and_segment = [
             Number.POSITIVE_INFINITY,
@@ -6796,8 +6980,47 @@ class $271a1c686af88dba$export$3081247862d57e3d {
     static distance(shape1, shape2) {
         return shape1.distanceTo(shape2);
     }
+    /**
+     * Calculate distance and shortest segment any shape and multiline
+     * @param shape
+     * @param multiline
+     * @returns {[number, Flatten.Segment]}
+     */ static shape2multiline(shape, multiline) {
+        let min_dist_and_segment = [
+            Number.POSITIVE_INFINITY,
+            new $271a1c686af88dba$export$2e2bcd8739ae039.Segment()
+        ];
+        for (let edge of multiline){
+            let [dist, shortest_segment] = $271a1c686af88dba$export$3081247862d57e3d.distance(shape, edge.shape);
+            if ($271a1c686af88dba$export$2e2bcd8739ae039.Utils.LT(dist, min_dist_and_segment[0])) min_dist_and_segment = [
+                dist,
+                shortest_segment
+            ];
+        }
+        return min_dist_and_segment;
+    }
+    /**
+     * Calculate distance and shortest segment between two multilines
+     * @param multiline1
+     * @param multiline2
+     * @returns {[number, Flatten.Segment]}
+     */ static multiline2multiline(multiline1, multiline2) {
+        let min_dist_and_segment = [
+            Number.POSITIVE_INFINITY,
+            new $271a1c686af88dba$export$2e2bcd8739ae039.Segment()
+        ];
+        for (let edge1 of multiline1)for (let edge2 of multiline2){
+            let [dist, shortest_segment] = $271a1c686af88dba$export$3081247862d57e3d.distance(edge1.shape, edge2.shape);
+            if ($271a1c686af88dba$export$2e2bcd8739ae039.Utils.LT(dist, min_dist_and_segment[0])) min_dist_and_segment = [
+                dist,
+                shortest_segment
+            ];
+        }
+        return min_dist_and_segment;
+    }
 }
 $271a1c686af88dba$export$2e2bcd8739ae039.Distance = $271a1c686af88dba$export$3081247862d57e3d;
+const { Multiline: $271a1c686af88dba$var$Multiline, Point: $271a1c686af88dba$var$Point$1, Segment: $271a1c686af88dba$var$Segment, Polygon: $271a1c686af88dba$var$Polygon } = $271a1c686af88dba$export$2e2bcd8739ae039;
 // POINT (30 10)
 // MULTIPOINT (10 40, 40 30, 20 20, 30 10)
 // LINESTRING (30 10, 10 30, 40 40)
@@ -6805,8 +7028,10 @@ $271a1c686af88dba$export$2e2bcd8739ae039.Distance = $271a1c686af88dba$export$308
 // MULTILINESTRING ((8503.732 4424.547, 8963.747 3964.532), (8963.747 3964.532, 8707.468 3708.253), (8707.468 3708.253, 8247.454 4168.268), (8247.454 4168.268, 8503.732 4424.547))
 // POLYGON ((35 10, 45 45, 15 40, 10 20, 35 10), (20 30, 35 35, 30 20, 20 30))
 // MULTIPOLYGON (((40 40, 20 45, 45 30, 40 40)), ((20 35, 10 30, 10 10, 30 5, 45 20, 20 35), (30 20, 20 15, 20 25, 30 20)))
+// GEOMETRYCOLLECTION (POINT (0 0), LINESTRING (0 0, 1440 900), POLYGON ((0 0, 0 1024, 1024 1024, 1024 0, 0 0)))
+// GEOMETRYCOLLECTION (POINT (40 10), LINESTRING (10 10, 20 20, 10 40), POLYGON ((40 40, 20 45, 45 30, 40 40)))
 function $271a1c686af88dba$var$parseSinglePoint(pointStr) {
-    return new $271a1c686af88dba$export$baf26146a414f24a(pointStr.split(" ").map(Number));
+    return new $271a1c686af88dba$var$Point$1(pointStr.split(" ").map(Number));
 }
 function $271a1c686af88dba$var$parseMultiPoint(multipointStr) {
     return multipointStr.split(", ").map($271a1c686af88dba$var$parseSinglePoint);
@@ -6814,8 +7039,8 @@ function $271a1c686af88dba$var$parseMultiPoint(multipointStr) {
 function $271a1c686af88dba$var$parseLineString(lineStr) {
     const points = $271a1c686af88dba$var$parseMultiPoint(lineStr);
     let segments = [];
-    for(let i = 0; i < points.length - 1; i++)segments.push(new $271a1c686af88dba$export$d53aa5c5ab432700(points[i], points[i + 1]));
-    return new $271a1c686af88dba$export$a5433e0f3b1dce29(segments);
+    for(let i = 0; i < points.length - 1; i++)segments.push(new $271a1c686af88dba$var$Segment(points[i], points[i + 1]));
+    return new $271a1c686af88dba$var$Multiline(segments);
 }
 function $271a1c686af88dba$var$parseMultiLineString(multilineStr) {
     const lineStrings = multilineStr.replace(/\(\(/, "").replace(/\)\)$/, "").split("), (");
@@ -6823,11 +7048,11 @@ function $271a1c686af88dba$var$parseMultiLineString(multilineStr) {
 }
 function $271a1c686af88dba$var$parseSinglePolygon(polygonStr) {
     const facesStr = polygonStr.replace(/\(\(/, "").replace(/\)\)$/, "").split("), (");
-    const polygon = new $271a1c686af88dba$export$7d31b617c820d435();
+    const polygon = new $271a1c686af88dba$var$Polygon();
     let orientation;
     facesStr.forEach((facesStr, idx)=>{
         let points = facesStr.split(", ").map((coordStr)=>{
-            return new $271a1c686af88dba$export$baf26146a414f24a(coordStr.split(" ").map(Number));
+            return new $271a1c686af88dba$var$Point$1(coordStr.split(" ").map(Number));
         });
         const face = polygon.addFace(points);
         if (idx === 0) orientation = face.orientation();
@@ -6836,9 +7061,11 @@ function $271a1c686af88dba$var$parseSinglePolygon(polygonStr) {
     return polygon;
 }
 function $271a1c686af88dba$var$parseMutliPolygon(multiPolygonString) {
-    const polygonStrings = multiPolygonString.split("?");
+    // const polygonStrings = multiPolygonString.split('?')
+    // Split the string by the delimiter ")), ((" which separates the polygons
+    const polygonStrings = multiPolygonString.split(/\)\), \(\(/).map((polygon)=>"((" + polygon + "))");
     const polygons = polygonStrings.map($271a1c686af88dba$var$parseSinglePolygon);
-    const polygon = new $271a1c686af88dba$export$7d31b617c820d435();
+    const polygon = new $271a1c686af88dba$var$Polygon();
     const faces = polygons.reduce((acc, polygon)=>[
             ...acc,
             ...polygon?.faces
@@ -6853,7 +7080,8 @@ function $271a1c686af88dba$var$parsePolygon(wkt) {
         const polygonStr = wkt.replace(/^POLYGON /, "");
         return $271a1c686af88dba$var$parseSinglePolygon(polygonStr);
     } else {
-        const multiPolygonString = wkt.replace(/^MULTIPOLYGON \(/, "").replace(/\)$/, "").replace(/\)\), \(\(/, "))?((");
+        // const multiPolygonString = wkt.replace(/^MULTIPOLYGON \(/, '').replace(/\)$/, '').replace(/\)\), \(\(/,'))?((')
+        const multiPolygonString = wkt.replace(/^MULTIPOLYGON \(\(\((.*)\)\)\)$/, "$1");
         return $271a1c686af88dba$var$parseMutliPolygon(multiPolygonString);
     }
 }
@@ -6887,7 +7115,16 @@ function $271a1c686af88dba$var$parseArrayOfLineStrings(str) {
         return $271a1c686af88dba$var$parseMultiLineString(multilineStr);
     } else if (str.startsWith("POLYGON") || str.startsWith("MULTIPOLYGON")) return $271a1c686af88dba$var$parsePolygon(str);
     else if (str.startsWith("GEOMETRYCOLLECTION")) {
-        const regex = /(POINT|LINESTRING|POLYGON|MULTIPOINT|MULTILINESTRING|MULTIPOLYGON|GEOMETRYCOLLECTION) \([^\)]+\)/g;
+        // const regex = /(POINT|LINESTRING|POLYGON|MULTIPOINT|MULTILINESTRING|MULTIPOLYGON|GEOMETRYCOLLECTION) \([^\)]+\)/g
+        /* Explanation:
+(?<type>POINT|LINESTRING|POLYGON|MULTIPOINT|MULTILINESTRING|MULTIPOLYGON):
+This named group will capture the geometry type. The type label helps with understanding the structure but
+ is not necessary unless you process the matches programmatically and want easy access to the geometry type.
+\( and \): Match the opening and closing parentheses.
+(?:[^\(\)]|\([^\)]*\))*: A non-capturing group that allows for:
+[^\(\)]: Matching any character except parentheses, handling simple geometries.
+|\([^\)]*\): Handling nested parentheses for geometries like POLYGON and MULTILINESTRING.
+* after the non-capturing group: Allows for repeating the pattern zero or more times to match all contents between the outermost parentheses. */ const regex = /(?<type>POINT|LINESTRING|POLYGON|MULTIPOINT|MULTILINESTRING|MULTIPOLYGON) \((?:[^\(\)]|\([^\)]*\))*\)/g;
         const wktArray = str.match(regex);
         if (wktArray[0].startsWith("GEOMETRYCOLLECTION")) wktArray[0] = wktArray[0].replace("GEOMETRYCOLLECTION (", "");
         const flArray = wktArray.map($271a1c686af88dba$export$86c11aa368fb2b9f).map((x)=>x instanceof Array ? x : [
@@ -7167,6 +7404,7 @@ $parcel$export($a067c65f26654429$exports, "downloadGCode", () => $171d16fda35ebc
 $parcel$export($a067c65f26654429$exports, "toolpathUnitGenerator", () => $831dc3114bca2c7c$export$2e2bcd8739ae039);
 $parcel$export($a067c65f26654429$exports, "spiralize", () => $fc30310f8636f11b$export$2e2bcd8739ae039);
 $parcel$export($a067c65f26654429$exports, "showCurve", () => $6e41298316d419fa$export$2e2bcd8739ae039);
+$parcel$export($a067c65f26654429$exports, "ToolpathViewer", () => $506e3ce282206d13$export$2e2bcd8739ae039);
 // TODO: use CDN/Unpkg URL to import flatten.js? May not matter
 
 // import Flatten from 'https://unpkg.com/@flatten-js/core/dist/main.mjs';
@@ -7536,6 +7774,175 @@ function $6e41298316d419fa$export$2e2bcd8739ae039(curvePath, isVertical, positio
     return path;
 }
 window.showCurve = $6e41298316d419fa$export$2e2bcd8739ae039;
+
+
+// referencing https://threejs.org/docs/index.html?q=camera#manual/en/introduction/Creating-a-scene
+// import * as THREE from 'three';
+// import Flatten from '../../../node_modules/@flatten-js/core/dist/main.mjs'; 
+
+
+class $506e3ce282206d13$export$2e2bcd8739ae039 {
+    constructor(container, path = [], referencePath = [], bedDimensions = [
+        28,
+        26.5,
+        30.5
+    ]){
+        console.log("Aaaa");
+        this.container = container; // container to hold viewer (iframe)
+        console.log("tvc", container);
+        this.scene = new $5OpyM$Scene();
+        this.camera = new $5OpyM$PerspectiveCamera(60, container.offsetWidth / container.offsetHeight, 0.1, 1000);
+        this.renderer = new $5OpyM$WebGLRenderer({
+            antialias: true
+        });
+        // Update initScene call to use the instance properties
+        this.initScene();
+        this.container.appendChild(this.renderer.domElement);
+        this.controls = new (0, $5OpyM$OrbitControls)(this.camera, this.renderer.domElement);
+    }
+    //initialize 3js elements
+    initScene() {
+        this.scene.background = new $5OpyM$Color(0xfaead6);
+        this.camera.up.set(0, 0, 1); // to ensure z is up and down instead of default (y)
+        this.camera.position.set(2, 20, 40);
+        this.renderer.setSize(this.container.offsetWidth, this.container.offsetHeight);
+        this.renderer.setAnimationLoop(this.animate.bind(this)); // Ensure `this` is bound correctly
+    }
+    // Add printer bed, path, light to scene
+    init() {
+        this.createPrinterBed(this.globalState.bedDimensions);
+        this.createPath(this.globalState.path);
+        const directionalLight = new $5OpyM$DirectionalLight(0xffffff, 2);
+        directionalLight.position.z = 3;
+        this.scene.add(directionalLight);
+    }
+    createPrinterBedLines(dimensions, material) {
+        const lines = [];
+        const offsets = [
+            [
+                1,
+                1
+            ],
+            [
+                1,
+                -1
+            ],
+            [
+                -1,
+                -1
+            ],
+            [
+                -1,
+                1
+            ]
+        ];
+        const baseHeight1 = 1;
+        for(let i = 0; i < 8; i++){
+            const points = [];
+            if (i < 4) {
+                points.push(new $5OpyM$Vector3(dimensions[0] / 2 * offsets[i][0], dimensions[1] / 2 * offsets[i][1], baseHeight1 / 2 + dimensions[2]));
+                points.push(new $5OpyM$Vector3(dimensions[0] / 2 * offsets[i][0], dimensions[1] / 2 * offsets[i][1], baseHeight1 / 2));
+            } else {
+                points.push(new $5OpyM$Vector3(dimensions[0] / 2 * offsets[i % 4][0], dimensions[1] / 2 * offsets[i % 4][1], baseHeight1 / 2 + dimensions[2]));
+                points.push(new $5OpyM$Vector3(dimensions[0] / 2 * offsets[(i + 1) % 4][0], dimensions[1] / 2 * offsets[(i + 1) % 4][1], baseHeight1 / 2 + dimensions[2]));
+            }
+            const geometry = new $5OpyM$BufferGeometry().setFromPoints(points);
+            const line = new $5OpyM$Line(geometry, material);
+            lines.push(line);
+        }
+        return lines;
+    }
+    // Create printer bed based on user dimensions - default to baby potterbot dimensions
+    createPrinterBed(scene1, dimensions) {
+        const printerBed = new $5OpyM$Group(); //group for printer bed
+        const printerBedBorders = new $5OpyM$Group(); //group for borders, require different update function
+        printerBedBorders.name = "printerBedBorders";
+        printerBed.name = "printerBed";
+        const baseGeometry = new $5OpyM$BoxGeometry(dimensions[0], dimensions[1], baseHeight);
+        const baseMaterial = new $5OpyM$MeshToonMaterial({
+            color: 0xb7afa6
+        });
+        const base = new $5OpyM$Mesh(baseGeometry, baseMaterial);
+        base.name = "printerBedBase";
+        printerBed.add(base);
+        const bordersMaterial = new $5OpyM$MeshToonMaterial({
+            color: 0xfaead6
+        }); //borders of printer bed
+        const bordersGeometry = createPrinterBedLines(dimensions, bordersMaterial);
+        for (const line of bordersGeometry)printerBedBorders.add(line);
+        printerBed.add(printerBedBorders);
+        printerBed.position.set(-dimensions[0] / 2, -dimensions[1] / 2, -baseHeight / 2);
+        scene1.add(printerBed);
+    }
+    //helper function to convert line segment to cylinder (for thickness)
+    cylinderFromPoints(pointStart, pointEnd, group, material) {
+        //convert to Vec3
+        let pointStartVec = new $5OpyM$Vector3(pointStart.x, pointStart.y, pointStart.z);
+        let pointEndVec = new $5OpyM$Vector3(pointEnd.x, pointEnd.y, pointEnd.z);
+        var dir = new $5OpyM$Vector3().subVectors(pointEndVec, pointStartVec);
+        var quat = new $5OpyM$Quaternion();
+        quat.setFromUnitVectors(new $5OpyM$Vector3(0, 1, 0), dir.clone().normalize());
+        var offset = new $5OpyM$Vector3(); //midpoint of cylinder
+        offset.addVectors(pointEndVec, pointStartVec).divideScalar(2);
+        const segmentGeometry = new $5OpyM$CylinderGeometry(pointEnd.t + 1, pointStart.t + 1, dir.length(), 8);
+        const segment = new $5OpyM$Mesh(segmentGeometry, material);
+        segment.quaternion.copy(quat);
+        segment.position.set(offset.x, offset.y, offset.z);
+        group.add(segment);
+    }
+    // turn collection of points into toolpath
+    createPath(scene1, path, pathType) {
+        if (path.length === 0) return;
+        const toolpath = new $5OpyM$Group(); //group for printer bed
+        var material;
+        if (pathType == "path") {
+            toolpath.name = "path";
+            material = new $5OpyM$MeshToonMaterial({
+                color: 0x212121
+            });
+        }
+        if (pathType == "referencePath") {
+            toolpath.name = "referencePath";
+            material = new $5OpyM$MeshToonMaterial({
+                color: 0x0091c2
+            });
+        }
+        for(let i = 0; i < path.length - 1; i++)cylinderFromPoints(path[i], path[i + 1], toolpath, material);
+        toolpath.scale.set(.1, .1, .1); //scale relative to printer bed, 10 3js = 1m
+        scene1.add(toolpath);
+    }
+    // Change toolpath on update
+    refreshPath(pathType) {
+        const toolpath = scene.getObjectByName(pathType);
+        scene.remove(toolpath);
+        if (pathType === "path" && global_state.path.length != 0) {
+            createPath(scene, global_state.path, pathType);
+            defaultPath = global_state.path;
+        }
+        if (pathType === "referencePath" && global_state.referencePath.length != 0) {
+            createPath(scene, global_state.referencePath, pathType);
+            defaultReferencePath = global_state.referencePath;
+        }
+    }
+    // Update viewer on camera shift, changes in dimensions/toolpath
+    animate() {
+        controls.update();
+        renderer.render(scene, camera);
+        if (global_state.bedDimensions != defaultDimensions && global_state.bedDimensions.length !== 0) {
+            var borders = scene.getObjectByName("printerBedBorders"); //update borders
+            borders.scale.set(global_state.bedDimensions[0] / (defaultDimensions[0] * 10), global_state.bedDimensions[1] / (defaultDimensions[1] * 10), global_state.bedDimensions[2] / (defaultDimensions[2] * 10));
+            var base = scene.getObjectByName("printerBedBase"); //update base (don't scale z)
+            base.scale.set(global_state.bedDimensions[0] / (defaultDimensions[0] * 10), global_state.bedDimensions[1] / (defaultDimensions[1] * 10), 1);
+            var printerBed = scene.getObjectByName("printerBed"); //reposition group
+            printerBed.position.set(-global_state.bedDimensions[0] / 20, -global_state.bedDimensions[1] / 20, -baseHeight / 2);
+        }
+        // console.log("global_state.path", global_state.path);
+        // console.log("defaultPath", defaultPath);
+        if (global_state.path !== defaultPath) refreshPath("path");
+        if (global_state.referencePath !== defaultReferencePath) refreshPath("referencePath");
+    }
+}
+window.ToolpathViewer = $506e3ce282206d13$export$2e2bcd8739ae039;
 
 
 
