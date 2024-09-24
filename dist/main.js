@@ -1,5 +1,5 @@
-var $gXNCa$three = require("three");
-var $gXNCa$threeexamplesjsmcontrolsOrbitControlsjs = require("three/examples/jsm/controls/OrbitControls.js");
+var $7Q41Z$three = require("three");
+var $7Q41Z$threeexamplesjsmcontrolsOrbitControlsjs = require("three/examples/jsm/controls/OrbitControls.js");
 
 
 function $parcel$export(e, n, v, s) {
@@ -8,19 +8,19 @@ function $parcel$export(e, n, v, s) {
 
       var $parcel$global = globalThis;
     
-$parcel$export(module.exports, "functions1D", () => $00969899720ecf46$exports);
-$parcel$export(module.exports, "functions2D", () => $54b6873b653b0520$exports);
-$parcel$export(module.exports, "complexFunctions", () => $7027cb5debb9ec63$exports);
-$parcel$export(module.exports, "setup", () => $ac3d53708de2199d$exports);
-var $00969899720ecf46$exports = {};
+$parcel$export(module.exports, "functions1D", () => $cf8b811d34622bd7$exports);
+$parcel$export(module.exports, "functions2D", () => $258f50d5e6204ee0$exports);
+$parcel$export(module.exports, "complexFunctions", () => $526cb30b799b89ab$exports);
+$parcel$export(module.exports, "setup", () => $0923866a9d62a2e2$exports);
+var $cf8b811d34622bd7$exports = {};
 
-$parcel$export($00969899720ecf46$exports, "sinusoidal", () => $4dbbfebae85fed22$export$2e2bcd8739ae039);
-$parcel$export($00969899720ecf46$exports, "linear", () => $c2b09c09e9c34f0a$export$2e2bcd8739ae039);
-$parcel$export($00969899720ecf46$exports, "staircase", () => $71d25318f3359294$export$2e2bcd8739ae039);
-$parcel$export($00969899720ecf46$exports, "square", () => $98eb036bb0d342cf$export$2e2bcd8739ae039);
-$parcel$export($00969899720ecf46$exports, "exponential", () => $880ea02f04cf849c$export$2e2bcd8739ae039);
+$parcel$export($cf8b811d34622bd7$exports, "sinusoidal", () => $92fda9b059dfd6f2$export$2e2bcd8739ae039);
+$parcel$export($cf8b811d34622bd7$exports, "linear", () => $774ad822ce8240b5$export$2e2bcd8739ae039);
+$parcel$export($cf8b811d34622bd7$exports, "staircase", () => $683ad60361eaffd5$export$2e2bcd8739ae039);
+$parcel$export($cf8b811d34622bd7$exports, "square", () => $10ce39c433134cb5$export$2e2bcd8739ae039);
+$parcel$export($cf8b811d34622bd7$exports, "exponential", () => $72d90d88e387a17b$export$2e2bcd8739ae039);
 // Helper Functions
-function $2040f713c747fdf6$var$setParams(paramType, value, nbPoints, mode) {
+function $1600a196baaf2b2c$var$setParams(paramType, value, nbPoints, mode) {
     if (value.length == 0) {
         if (mode == "multiplicative" && paramType == "values") return new Array(nbPoints).fill(1);
         else return new Array(nbPoints).fill(0);
@@ -28,9 +28,9 @@ function $2040f713c747fdf6$var$setParams(paramType, value, nbPoints, mode) {
     else if (value.length == nbPoints) return value;
     return null;
 }
-function $2040f713c747fdf6$export$c3c5e174940bbb4f(functionType, offset, values0, nbPoints, mode) {
-    offset = $2040f713c747fdf6$var$setParams("offset", offset, nbPoints, mode);
-    values0 = $2040f713c747fdf6$var$setParams("values", values0, nbPoints, mode);
+function $1600a196baaf2b2c$export$c3c5e174940bbb4f(functionType, offset, values0, nbPoints, mode) {
+    offset = $1600a196baaf2b2c$var$setParams("offset", offset, nbPoints, mode);
+    values0 = $1600a196baaf2b2c$var$setParams("values", values0, nbPoints, mode);
     if (offset == null) throw new Error("Length of offset in " + functionType + " must be 0 or 1 or equal to nbPoints:" + nbPoints);
     if (values0 == null) throw new Error("Length of values0 in " + functionType + " must be 0 or 1 or equal to nbPoints:" + nbPoints);
     return [
@@ -38,11 +38,11 @@ function $2040f713c747fdf6$export$c3c5e174940bbb4f(functionType, offset, values0
         values0
     ];
 }
-function $2040f713c747fdf6$export$d49ab658f2d8f01e(functionType, offset0x, offset0y, values0x, values0y, nbPoints, mode) {
-    offset0x = $2040f713c747fdf6$var$setParams("offset0x", offset0x, nbPoints, mode);
-    offset0y = $2040f713c747fdf6$var$setParams("offset0y", offset0y, nbPoints, mode);
-    values0x = $2040f713c747fdf6$var$setParams("values0x", values0x, nbPoints, mode);
-    values0y = $2040f713c747fdf6$var$setParams("values0y", values0y, nbPoints, mode);
+function $1600a196baaf2b2c$export$d49ab658f2d8f01e(functionType, offset0x, offset0y, values0x, values0y, nbPoints, mode) {
+    offset0x = $1600a196baaf2b2c$var$setParams("offset0x", offset0x, nbPoints, mode);
+    offset0y = $1600a196baaf2b2c$var$setParams("offset0y", offset0y, nbPoints, mode);
+    values0x = $1600a196baaf2b2c$var$setParams("values0x", values0x, nbPoints, mode);
+    values0y = $1600a196baaf2b2c$var$setParams("values0y", values0y, nbPoints, mode);
     if (offset0x == null) throw new Error("Length of offset0x in " + functionType + " must be 0 or 1 or equal to nbPoints:" + nbPoints);
     if (offset0y == null) throw new Error("Length of offset0y in " + functionType + " must be 0 or 1 or equal to nbPoints:" + nbPoints);
     if (values0x == null) throw new Error("Length of values0x in " + functionType + " must be 0 or 1 or equal to nbPoints:" + nbPoints);
@@ -56,9 +56,9 @@ function $2040f713c747fdf6$export$d49ab658f2d8f01e(functionType, offset0x, offse
 }
 
 
-function $4dbbfebae85fed22$export$2e2bcd8739ae039(amplitude, period, offset, nbPoints, values0, mode = []) {
+function $92fda9b059dfd6f2$export$2e2bcd8739ae039(amplitude, period, offset, nbPoints, values0, mode = []) {
     let values = [];
-    [offset, values0] = (0, $2040f713c747fdf6$export$c3c5e174940bbb4f)("Sinusoidal", offset, values0, nbPoints, mode);
+    [offset, values0] = (0, $1600a196baaf2b2c$export$c3c5e174940bbb4f)("Sinusoidal", offset, values0, nbPoints, mode);
     for(let i = 0; i < nbPoints; i++){
         if (mode == "additive" || mode.length == 0) values.push(amplitude * Math.sin(2 * Math.PI / period * i + offset[i]) + values0[i]);
         else if (mode == "multiplicative") values.push(amplitude * Math.sin(2 * Math.PI / period * i + offset[i]) * values0[i]);
@@ -66,13 +66,13 @@ function $4dbbfebae85fed22$export$2e2bcd8739ae039(amplitude, period, offset, nbP
     }
     return values;
 }
-window.sinusoidal = $4dbbfebae85fed22$export$2e2bcd8739ae039;
+window.sinusoidal = $92fda9b059dfd6f2$export$2e2bcd8739ae039;
 
 
 
-function $c2b09c09e9c34f0a$export$2e2bcd8739ae039(amplitude, offset, nbPoints, values0, mode = []) {
+function $774ad822ce8240b5$export$2e2bcd8739ae039(amplitude, offset, nbPoints, values0, mode = []) {
     let values = [];
-    [offset, values0] = (0, $2040f713c747fdf6$export$c3c5e174940bbb4f)("Linear", offset, values0, nbPoints, mode);
+    [offset, values0] = (0, $1600a196baaf2b2c$export$c3c5e174940bbb4f)("Linear", offset, values0, nbPoints, mode);
     for(let i = 0; i < nbPoints; i++){
         if (mode == "additive" || mode.length == 0) values.push(amplitude * i + offset[i] + values0[i]);
         else if (mode == "multiplicative") values.push((amplitude * i + offset[i]) * values0[i]);
@@ -80,13 +80,13 @@ function $c2b09c09e9c34f0a$export$2e2bcd8739ae039(amplitude, offset, nbPoints, v
     }
     return values;
 }
-window.linear = $c2b09c09e9c34f0a$export$2e2bcd8739ae039;
+window.linear = $774ad822ce8240b5$export$2e2bcd8739ae039;
 
 
 
-function $880ea02f04cf849c$export$2e2bcd8739ae039(amplitude, base, ampExp, offset, nbPoints, values0, mode = []) {
+function $72d90d88e387a17b$export$2e2bcd8739ae039(amplitude, base, ampExp, offset, nbPoints, values0, mode = []) {
     let values = [];
-    [offset, values0] = (0, $2040f713c747fdf6$export$c3c5e174940bbb4f)("Exponential", offset, values0, nbPoints, mode);
+    [offset, values0] = (0, $1600a196baaf2b2c$export$c3c5e174940bbb4f)("Exponential", offset, values0, nbPoints, mode);
     for(let i = 0; i < nbPoints; i++){
         if (mode == "additive" || mode.length == 0) values.push(amplitude * Math.pow(base, ampExp * i + offset[i]) + values0[i]);
         else if (mode == "multiplicative") values.push(amplitude * Math.pow(base, ampExp * i + offset[i]) * values0[i]);
@@ -94,13 +94,13 @@ function $880ea02f04cf849c$export$2e2bcd8739ae039(amplitude, base, ampExp, offse
     }
     return values;
 }
-window.exponential = $880ea02f04cf849c$export$2e2bcd8739ae039;
+window.exponential = $72d90d88e387a17b$export$2e2bcd8739ae039;
 
 
 
-function $98eb036bb0d342cf$export$2e2bcd8739ae039(amplitude, period, offset, bumps, nbPoints, values0, mode = []) {
+function $10ce39c433134cb5$export$2e2bcd8739ae039(amplitude, period, offset, bumps, nbPoints, values0, mode = []) {
     let values = [];
-    [offset, values0] = (0, $2040f713c747fdf6$export$c3c5e174940bbb4f)("Square", offset, values0, nbPoints, mode);
+    [offset, values0] = (0, $1600a196baaf2b2c$export$c3c5e174940bbb4f)("Square", offset, values0, nbPoints, mode);
     for(let i = 0; i < nbPoints; i++){
         if (mode == "additive" || mode.length == 0) {
             if (bumps && bumps <= (i + offset[i]) % period) values.push(amplitude * 0 + values0[i]);
@@ -112,14 +112,14 @@ function $98eb036bb0d342cf$export$2e2bcd8739ae039(amplitude, period, offset, bum
     }
     return values;
 }
-$parcel$global.square = $98eb036bb0d342cf$export$2e2bcd8739ae039;
+$parcel$global.square = $10ce39c433134cb5$export$2e2bcd8739ae039;
 
 
 
-function $71d25318f3359294$export$2e2bcd8739ae039(stepWidth, stepHeight, offset, nbPoints, values0, mode = []) {
+function $683ad60361eaffd5$export$2e2bcd8739ae039(stepWidth, stepHeight, offset, nbPoints, values0, mode = []) {
     let values = [];
     let index = 0;
-    [offset, values0] = (0, $2040f713c747fdf6$export$c3c5e174940bbb4f)("Staircase", offset, values0, nbPoints, mode);
+    [offset, values0] = (0, $1600a196baaf2b2c$export$c3c5e174940bbb4f)("Staircase", offset, values0, nbPoints, mode);
     for(let i = 0; i < nbPoints; i++){
         if (mode == "additive" || mode.length == 0) {
             if (i % stepWidth == 0 && i != 0) index += stepHeight;
@@ -132,20 +132,20 @@ function $71d25318f3359294$export$2e2bcd8739ae039(stepWidth, stepHeight, offset,
     }
     return values;
 }
-window.staircase = $71d25318f3359294$export$2e2bcd8739ae039;
+window.staircase = $683ad60361eaffd5$export$2e2bcd8739ae039;
 
 
 
 
-var $54b6873b653b0520$exports = {};
+var $258f50d5e6204ee0$exports = {};
 
-$parcel$export($54b6873b653b0520$exports, "sinusoidal2D", () => $dd97bf293f53b473$export$2e2bcd8739ae039);
-$parcel$export($54b6873b653b0520$exports, "linear2D", () => $6f6401d59e48f3f2$export$2e2bcd8739ae039);
+$parcel$export($258f50d5e6204ee0$exports, "sinusoidal2D", () => $b670e3a8e0eb0840$export$2e2bcd8739ae039);
+$parcel$export($258f50d5e6204ee0$exports, "linear2D", () => $7e34c7f723188f2d$export$2e2bcd8739ae039);
 
-function $dd97bf293f53b473$export$2e2bcd8739ae039(amplitudeX1, periodX1, amplitudeX2, periodX2, offset0x, offset0y, nbPoints, values0x, values0y, mode) {
+function $b670e3a8e0eb0840$export$2e2bcd8739ae039(amplitudeX1, periodX1, amplitudeX2, periodX2, offset0x, offset0y, nbPoints, values0x, values0y, mode) {
     let pointsX = [];
     let pointsY = [];
-    [offset0x, offset0y, values0x, values0y] = (0, $2040f713c747fdf6$export$d49ab658f2d8f01e)("Sinusoidal2D", offset0x, offset0y, values0x, values0y, nbPoints, mode);
+    [offset0x, offset0y, values0x, values0y] = (0, $1600a196baaf2b2c$export$d49ab658f2d8f01e)("Sinusoidal2D", offset0x, offset0y, values0x, values0y, nbPoints, mode);
     for(let i = 0; i < nbPoints; i++){
         if (mode == "additive" || mode.length == 0) {
             pointsX.push(amplitudeX1 * Math.cos(2 * Math.PI * i / periodX1 + offset0x[i]) + values0x[i]);
@@ -157,14 +157,14 @@ function $dd97bf293f53b473$export$2e2bcd8739ae039(amplitudeX1, periodX1, amplitu
     }
     return new Array(pointsX, pointsY);
 }
-window.sinusoidal2D = $dd97bf293f53b473$export$2e2bcd8739ae039;
+window.sinusoidal2D = $b670e3a8e0eb0840$export$2e2bcd8739ae039;
 
 
 
-function $6f6401d59e48f3f2$export$2e2bcd8739ae039(amplitudeX1, offsetX1, amplitudeX2, offsetX2, nbPoints, values0x, values0y, mode = []) {
+function $7e34c7f723188f2d$export$2e2bcd8739ae039(amplitudeX1, offsetX1, amplitudeX2, offsetX2, nbPoints, values0x, values0y, mode = []) {
     let pointsX = [];
     let pointsY = [];
-    [offsetX1, offsetX2, values0x, values0y] = (0, $2040f713c747fdf6$export$d49ab658f2d8f01e)("Linear2D", offsetX1, offsetX2, values0x, values0y, nbPoints, mode);
+    [offsetX1, offsetX2, values0x, values0y] = (0, $1600a196baaf2b2c$export$d49ab658f2d8f01e)("Linear2D", offsetX1, offsetX2, values0x, values0y, nbPoints, mode);
     for(let i = 0; i < nbPoints; i++){
         if (mode == "additive" || mode.length == 0) {
             pointsX.push(amplitudeX1 * i + offsetX1[i] + values0x[i]);
@@ -176,60 +176,60 @@ function $6f6401d59e48f3f2$export$2e2bcd8739ae039(amplitudeX1, offsetX1, amplitu
     }
     return new Array(pointsX, pointsY);
 }
-window.linear2D = $6f6401d59e48f3f2$export$2e2bcd8739ae039;
+window.linear2D = $7e34c7f723188f2d$export$2e2bcd8739ae039;
 
 
 
 
-var $7027cb5debb9ec63$exports = {};
+var $526cb30b799b89ab$exports = {};
 
-$parcel$export($7027cb5debb9ec63$exports, "difference", () => $bc93fb8b71b9c8d7$export$2e2bcd8739ae039);
-$parcel$export($7027cb5debb9ec63$exports, "union", () => $638833b7817d7ae4$export$2e2bcd8739ae039);
-$parcel$export($7027cb5debb9ec63$exports, "waveform", () => $b9e8f2d525691436$export$2e2bcd8739ae039);
+$parcel$export($526cb30b799b89ab$exports, "difference", () => $5f036328634e258a$export$2e2bcd8739ae039);
+$parcel$export($526cb30b799b89ab$exports, "union", () => $ad258e61bcd3ea1c$export$2e2bcd8739ae039);
+$parcel$export($526cb30b799b89ab$exports, "waveform", () => $c654906f9766e0f6$export$2e2bcd8739ae039);
 /**
  * Global constant CCW defines counterclockwise direction of arc
  * @type {boolean}
- */ const $bd479cb9731e0159$export$ce920184faf97f5 = true;
+ */ const $3478ba2bdb1fd0df$export$ce920184faf97f5 = true;
 /**
  * Global constant CW defines clockwise direction of arc
  * @type {boolean}
- */ const $bd479cb9731e0159$export$640171019d58eb6d = false;
+ */ const $3478ba2bdb1fd0df$export$640171019d58eb6d = false;
 /**
  * Defines orientation for face of the polygon: clockwise, counterclockwise
  * or not orientable in the case of self-intersection
  * @type {{CW: number, CCW: number, NOT_ORIENTABLE: number}}
- */ const $bd479cb9731e0159$export$7423c88bc54edb74 = {
+ */ const $3478ba2bdb1fd0df$export$7423c88bc54edb74 = {
     CCW: -1,
     CW: 1,
     NOT_ORIENTABLE: 0
 };
-const $bd479cb9731e0159$var$PIx2 = 2 * Math.PI;
-const $bd479cb9731e0159$export$48ea0cac79c83ca8 = 1;
-const $bd479cb9731e0159$export$be7fee058d85725d = 0;
-const $bd479cb9731e0159$export$a523954c60dca5e4 = 2;
-const $bd479cb9731e0159$var$CONTAINS = 3;
-const $bd479cb9731e0159$var$INTERLACE = 4;
-const $bd479cb9731e0159$export$d8b1260efb4f7671 = 1;
-const $bd479cb9731e0159$export$f04bb74d32d98a2c = 2;
-const $bd479cb9731e0159$var$NOT_VERTEX$1 = 0;
-const $bd479cb9731e0159$var$START_VERTEX$1 = 1;
-const $bd479cb9731e0159$var$END_VERTEX$1 = 2;
-var $bd479cb9731e0159$var$Constants = /*#__PURE__*/ Object.freeze({
+const $3478ba2bdb1fd0df$var$PIx2 = 2 * Math.PI;
+const $3478ba2bdb1fd0df$export$48ea0cac79c83ca8 = 1;
+const $3478ba2bdb1fd0df$export$be7fee058d85725d = 0;
+const $3478ba2bdb1fd0df$export$a523954c60dca5e4 = 2;
+const $3478ba2bdb1fd0df$var$CONTAINS = 3;
+const $3478ba2bdb1fd0df$var$INTERLACE = 4;
+const $3478ba2bdb1fd0df$export$d8b1260efb4f7671 = 1;
+const $3478ba2bdb1fd0df$export$f04bb74d32d98a2c = 2;
+const $3478ba2bdb1fd0df$var$NOT_VERTEX$1 = 0;
+const $3478ba2bdb1fd0df$var$START_VERTEX$1 = 1;
+const $3478ba2bdb1fd0df$var$END_VERTEX$1 = 2;
+var $3478ba2bdb1fd0df$var$Constants = /*#__PURE__*/ Object.freeze({
     __proto__: null,
-    BOUNDARY: $bd479cb9731e0159$export$a523954c60dca5e4,
-    CCW: $bd479cb9731e0159$export$ce920184faf97f5,
-    CONTAINS: $bd479cb9731e0159$var$CONTAINS,
-    CW: $bd479cb9731e0159$export$640171019d58eb6d,
-    END_VERTEX: $bd479cb9731e0159$var$END_VERTEX$1,
-    INSIDE: $bd479cb9731e0159$export$48ea0cac79c83ca8,
-    INTERLACE: $bd479cb9731e0159$var$INTERLACE,
-    NOT_VERTEX: $bd479cb9731e0159$var$NOT_VERTEX$1,
-    ORIENTATION: $bd479cb9731e0159$export$7423c88bc54edb74,
-    OUTSIDE: $bd479cb9731e0159$export$be7fee058d85725d,
-    OVERLAP_OPPOSITE: $bd479cb9731e0159$export$f04bb74d32d98a2c,
-    OVERLAP_SAME: $bd479cb9731e0159$export$d8b1260efb4f7671,
-    PIx2: $bd479cb9731e0159$var$PIx2,
-    START_VERTEX: $bd479cb9731e0159$var$START_VERTEX$1
+    BOUNDARY: $3478ba2bdb1fd0df$export$a523954c60dca5e4,
+    CCW: $3478ba2bdb1fd0df$export$ce920184faf97f5,
+    CONTAINS: $3478ba2bdb1fd0df$var$CONTAINS,
+    CW: $3478ba2bdb1fd0df$export$640171019d58eb6d,
+    END_VERTEX: $3478ba2bdb1fd0df$var$END_VERTEX$1,
+    INSIDE: $3478ba2bdb1fd0df$export$48ea0cac79c83ca8,
+    INTERLACE: $3478ba2bdb1fd0df$var$INTERLACE,
+    NOT_VERTEX: $3478ba2bdb1fd0df$var$NOT_VERTEX$1,
+    ORIENTATION: $3478ba2bdb1fd0df$export$7423c88bc54edb74,
+    OUTSIDE: $3478ba2bdb1fd0df$export$be7fee058d85725d,
+    OVERLAP_OPPOSITE: $3478ba2bdb1fd0df$export$f04bb74d32d98a2c,
+    OVERLAP_SAME: $3478ba2bdb1fd0df$export$d8b1260efb4f7671,
+    PIx2: $3478ba2bdb1fd0df$var$PIx2,
+    START_VERTEX: $3478ba2bdb1fd0df$var$START_VERTEX$1
 });
 /**
  * Created by Alex Bol on 2/18/2017.
@@ -237,82 +237,82 @@ var $bd479cb9731e0159$var$Constants = /*#__PURE__*/ Object.freeze({
  * Floating point comparison tolerance.
  * Default value is 0.000001 (10e-6)
  * @type {number}
- */ let $bd479cb9731e0159$var$DP_TOL = 0.000001;
+ */ let $3478ba2bdb1fd0df$var$DP_TOL = 0.000001;
 /**
  * Set new floating point comparison tolerance
  * @param {number} tolerance
- */ function $bd479cb9731e0159$var$setTolerance(tolerance) {
-    $bd479cb9731e0159$var$DP_TOL = tolerance;
+ */ function $3478ba2bdb1fd0df$var$setTolerance(tolerance) {
+    $3478ba2bdb1fd0df$var$DP_TOL = tolerance;
 }
 /**
  * Get floating point comparison tolerance
  * @returns {number}
- */ function $bd479cb9731e0159$var$getTolerance() {
-    return $bd479cb9731e0159$var$DP_TOL;
+ */ function $3478ba2bdb1fd0df$var$getTolerance() {
+    return $3478ba2bdb1fd0df$var$DP_TOL;
 }
-const $bd479cb9731e0159$var$DECIMALS = 3;
+const $3478ba2bdb1fd0df$var$DECIMALS = 3;
 /**
  * Returns *true* if value comparable to zero
  * @param {number} x
  * @param {number} y
  * @return {boolean}
- */ function $bd479cb9731e0159$var$EQ_0(x) {
-    return x < $bd479cb9731e0159$var$DP_TOL && x > -$bd479cb9731e0159$var$DP_TOL;
+ */ function $3478ba2bdb1fd0df$var$EQ_0(x) {
+    return x < $3478ba2bdb1fd0df$var$DP_TOL && x > -$3478ba2bdb1fd0df$var$DP_TOL;
 }
 /**
  * Returns *true* if two values are equal up to DP_TOL
  * @param {number} x
  * @param {number} y
  * @return {boolean}
- */ function $bd479cb9731e0159$var$EQ(x, y) {
-    return x - y < $bd479cb9731e0159$var$DP_TOL && x - y > -$bd479cb9731e0159$var$DP_TOL;
+ */ function $3478ba2bdb1fd0df$var$EQ(x, y) {
+    return x - y < $3478ba2bdb1fd0df$var$DP_TOL && x - y > -$3478ba2bdb1fd0df$var$DP_TOL;
 }
 /**
  * Returns *true* if first argument greater than second argument up to DP_TOL
  * @param {number} x
  * @param {number} y
  * @return {boolean}
- */ function $bd479cb9731e0159$var$GT(x, y) {
-    return x - y > $bd479cb9731e0159$var$DP_TOL;
+ */ function $3478ba2bdb1fd0df$var$GT(x, y) {
+    return x - y > $3478ba2bdb1fd0df$var$DP_TOL;
 }
 /**
  * Returns *true* if first argument greater than or equal to second argument up to DP_TOL
  * @param {number} x
  * @param {number} y
  * @returns {boolean}
- */ function $bd479cb9731e0159$var$GE(x, y) {
-    return x - y > -$bd479cb9731e0159$var$DP_TOL;
+ */ function $3478ba2bdb1fd0df$var$GE(x, y) {
+    return x - y > -$3478ba2bdb1fd0df$var$DP_TOL;
 }
 /**
  * Returns *true* if first argument less than second argument up to DP_TOL
  * @param {number} x
  * @param {number} y
  * @return {boolean}
- */ function $bd479cb9731e0159$var$LT(x, y) {
-    return x - y < -$bd479cb9731e0159$var$DP_TOL;
+ */ function $3478ba2bdb1fd0df$var$LT(x, y) {
+    return x - y < -$3478ba2bdb1fd0df$var$DP_TOL;
 }
 /**
  * Returns *true* if first argument less than or equal to second argument up to DP_TOL
  * @param {number} x
  * @param {number} y
  * @return {boolean}
- */ function $bd479cb9731e0159$var$LE(x, y) {
-    return x - y < $bd479cb9731e0159$var$DP_TOL;
+ */ function $3478ba2bdb1fd0df$var$LE(x, y) {
+    return x - y < $3478ba2bdb1fd0df$var$DP_TOL;
 }
-var $bd479cb9731e0159$export$d2ca453b913dcdea = /*#__PURE__*/ Object.freeze({
+var $3478ba2bdb1fd0df$export$d2ca453b913dcdea = /*#__PURE__*/ Object.freeze({
     __proto__: null,
-    DECIMALS: $bd479cb9731e0159$var$DECIMALS,
-    EQ: $bd479cb9731e0159$var$EQ,
-    EQ_0: $bd479cb9731e0159$var$EQ_0,
-    GE: $bd479cb9731e0159$var$GE,
-    GT: $bd479cb9731e0159$var$GT,
-    LE: $bd479cb9731e0159$var$LE,
-    LT: $bd479cb9731e0159$var$LT,
-    getTolerance: $bd479cb9731e0159$var$getTolerance,
-    setTolerance: $bd479cb9731e0159$var$setTolerance
+    DECIMALS: $3478ba2bdb1fd0df$var$DECIMALS,
+    EQ: $3478ba2bdb1fd0df$var$EQ,
+    EQ_0: $3478ba2bdb1fd0df$var$EQ_0,
+    GE: $3478ba2bdb1fd0df$var$GE,
+    GT: $3478ba2bdb1fd0df$var$GT,
+    LE: $3478ba2bdb1fd0df$var$LE,
+    LT: $3478ba2bdb1fd0df$var$LT,
+    getTolerance: $3478ba2bdb1fd0df$var$getTolerance,
+    setTolerance: $3478ba2bdb1fd0df$var$setTolerance
 });
-let $bd479cb9731e0159$export$2e2bcd8739ae039 = {
-    Utils: $bd479cb9731e0159$export$d2ca453b913dcdea,
+let $3478ba2bdb1fd0df$export$2e2bcd8739ae039 = {
+    Utils: $3478ba2bdb1fd0df$export$d2ca453b913dcdea,
     Errors: undefined,
     Matrix: undefined,
     Planar_set: undefined,
@@ -332,20 +332,20 @@ let $bd479cb9731e0159$export$2e2bcd8739ae039 = {
     Distance: undefined,
     Inversion: undefined
 };
-for(let c in $bd479cb9731e0159$var$Constants)$bd479cb9731e0159$export$2e2bcd8739ae039[c] = $bd479cb9731e0159$var$Constants[c];
-Object.defineProperty($bd479cb9731e0159$export$2e2bcd8739ae039, "DP_TOL", {
+for(let c in $3478ba2bdb1fd0df$var$Constants)$3478ba2bdb1fd0df$export$2e2bcd8739ae039[c] = $3478ba2bdb1fd0df$var$Constants[c];
+Object.defineProperty($3478ba2bdb1fd0df$export$2e2bcd8739ae039, "DP_TOL", {
     get: function() {
-        return $bd479cb9731e0159$var$getTolerance();
+        return $3478ba2bdb1fd0df$var$getTolerance();
     },
     set: function(value) {
-        $bd479cb9731e0159$var$setTolerance(value);
+        $3478ba2bdb1fd0df$var$setTolerance(value);
     }
 });
 /**
  * Created by Alex Bol on 2/19/2017.
  */ /**
  * Class of system errors
- */ class $bd479cb9731e0159$export$b8e9cd941e8016ac {
+ */ class $3478ba2bdb1fd0df$export$b8e9cd941e8016ac {
     /**
      * Throw error ILLEGAL_PARAMETERS when cannot instantiate from given parameter
      * @returns {ReferenceError}
@@ -384,11 +384,11 @@ Object.defineProperty($bd479cb9731e0159$export$2e2bcd8739ae039, "DP_TOL", {
         return new Error("Unsupported shape type");
     }
 }
-$bd479cb9731e0159$export$2e2bcd8739ae039.Errors = $bd479cb9731e0159$export$b8e9cd941e8016ac;
+$3478ba2bdb1fd0df$export$2e2bcd8739ae039.Errors = $3478ba2bdb1fd0df$export$b8e9cd941e8016ac;
 /**
  * Class implements bidirectional non-circular linked list. <br/>
  * LinkedListElement - object of any type that has properties next and prev.
- */ class $bd479cb9731e0159$var$LinkedList {
+ */ class $3478ba2bdb1fd0df$var$LinkedList {
     constructor(first, last){
         this.first = first;
         this.last = last || this.first;
@@ -506,19 +506,19 @@ $bd479cb9731e0159$export$2e2bcd8739ae039.Errors = $bd479cb9731e0159$export$b8e9c
         let edge = first;
         let controlEdge = first;
         do {
-            if (edge != first && edge === controlEdge) throw $bd479cb9731e0159$export$b8e9cd941e8016ac.INFINITE_LOOP; // new Error("Infinite loop")
+            if (edge != first && edge === controlEdge) throw $3478ba2bdb1fd0df$export$b8e9cd941e8016ac.INFINITE_LOOP; // new Error("Infinite loop")
             edge = edge.next;
             controlEdge = controlEdge.next.next;
         }while (edge != first);
     }
 }
-const $bd479cb9731e0159$var$defaultAttributes = {
+const $3478ba2bdb1fd0df$var$defaultAttributes = {
     stroke: "black"
 };
-class $bd479cb9731e0159$var$SVGAttributes {
-    constructor(args = $bd479cb9731e0159$var$defaultAttributes){
+class $3478ba2bdb1fd0df$var$SVGAttributes {
+    constructor(args = $3478ba2bdb1fd0df$var$defaultAttributes){
         for(const property in args)this[property] = args[property];
-        this.stroke = args.stroke ?? $bd479cb9731e0159$var$defaultAttributes.stroke;
+        this.stroke = args.stroke ?? $3478ba2bdb1fd0df$var$defaultAttributes.stroke;
     }
     toAttributesString() {
         return Object.keys(this).reduce((acc, key)=>acc + (this[key] !== undefined ? this.toAttrString(key, this[key]) : ""), ``);
@@ -531,20 +531,20 @@ class $bd479cb9731e0159$var$SVGAttributes {
         return str.match(/[A-Z]{2,}(?=[A-Z][a-z]+[0-9]*|\b)|[A-Z]?[a-z]+[0-9]*|[A-Z]|[0-9]+/g).join("-").toLowerCase();
     }
 }
-function $bd479cb9731e0159$var$convertToString(attrs) {
-    return new $bd479cb9731e0159$var$SVGAttributes(attrs).toAttributesString();
+function $3478ba2bdb1fd0df$var$convertToString(attrs) {
+    return new $3478ba2bdb1fd0df$var$SVGAttributes(attrs).toAttributesString();
 }
 /**
  * Intersection
  *
- * */ function $bd479cb9731e0159$var$intersectLine2Line(line1, line2) {
+ * */ function $3478ba2bdb1fd0df$var$intersectLine2Line(line1, line2) {
     let ip = [];
     let [A1, B1, C1] = line1.standard;
     let [A2, B2, C2] = line2.standard;
     /* Cramer's rule */ let det = A1 * B2 - B1 * A2;
     let detX = C1 * B2 - B1 * C2;
     let detY = A1 * C2 - C1 * A2;
-    if (!$bd479cb9731e0159$export$2e2bcd8739ae039.Utils.EQ_0(det)) {
+    if (!$3478ba2bdb1fd0df$export$2e2bcd8739ae039.Utils.EQ_0(det)) {
         let x, y;
         if (B1 === 0) {
             x = C1 / A1;
@@ -562,16 +562,16 @@ function $bd479cb9731e0159$var$convertToString(attrs) {
             x = detX / det;
             y = detY / det;
         }
-        ip.push(new $bd479cb9731e0159$export$2e2bcd8739ae039.Point(x, y));
+        ip.push(new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Point(x, y));
     }
     return ip;
 }
-function $bd479cb9731e0159$var$intersectLine2Circle(line, circle) {
+function $3478ba2bdb1fd0df$var$intersectLine2Circle(line, circle) {
     let ip = [];
     let prj = circle.pc.projectionOn(line); // projection of circle center on a line
     let dist = circle.pc.distanceTo(prj)[0]; // distance from circle center to projection
-    if ($bd479cb9731e0159$export$2e2bcd8739ae039.Utils.EQ(dist, circle.r)) ip.push(prj);
-    else if ($bd479cb9731e0159$export$2e2bcd8739ae039.Utils.LT(dist, circle.r)) {
+    if ($3478ba2bdb1fd0df$export$2e2bcd8739ae039.Utils.EQ(dist, circle.r)) ip.push(prj);
+    else if ($3478ba2bdb1fd0df$export$2e2bcd8739ae039.Utils.LT(dist, circle.r)) {
         let delta = Math.sqrt(circle.r * circle.r - dist * dist);
         let v_trans, pt;
         v_trans = line.norm.rotate90CCW().multiply(delta);
@@ -583,23 +583,23 @@ function $bd479cb9731e0159$var$intersectLine2Circle(line, circle) {
     }
     return ip;
 }
-function $bd479cb9731e0159$var$intersectLine2Box(line, box) {
+function $3478ba2bdb1fd0df$var$intersectLine2Box(line, box) {
     let ips = [];
     for (let seg of box.toSegments()){
-        let ips_tmp = $bd479cb9731e0159$var$intersectSegment2Line(seg, line);
-        for (let pt of ips_tmp)if (!$bd479cb9731e0159$var$ptInIntPoints(pt, ips)) ips.push(pt);
+        let ips_tmp = $3478ba2bdb1fd0df$var$intersectSegment2Line(seg, line);
+        for (let pt of ips_tmp)if (!$3478ba2bdb1fd0df$var$ptInIntPoints(pt, ips)) ips.push(pt);
     }
     return ips;
 }
-function $bd479cb9731e0159$var$intersectLine2Arc(line, arc) {
+function $3478ba2bdb1fd0df$var$intersectLine2Arc(line, arc) {
     let ip = [];
-    if ($bd479cb9731e0159$var$intersectLine2Box(line, arc.box).length === 0) return ip;
-    let circle = new $bd479cb9731e0159$export$2e2bcd8739ae039.Circle(arc.pc, arc.r);
-    let ip_tmp = $bd479cb9731e0159$var$intersectLine2Circle(line, circle);
+    if ($3478ba2bdb1fd0df$var$intersectLine2Box(line, arc.box).length === 0) return ip;
+    let circle = new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Circle(arc.pc, arc.r);
+    let ip_tmp = $3478ba2bdb1fd0df$var$intersectLine2Circle(line, circle);
     for (let pt of ip_tmp)if (pt.on(arc)) ip.push(pt);
     return ip;
 }
-function $bd479cb9731e0159$var$intersectSegment2Line(seg, line) {
+function $3478ba2bdb1fd0df$var$intersectSegment2Line(seg, line) {
     let ip = [];
     // Boundary cases
     if (seg.ps.on(line)) ip.push(seg.ps);
@@ -612,10 +612,10 @@ function $bd479cb9731e0159$var$intersectSegment2Line(seg, line) {
     // hence there is no intersection
     if (seg.ps.leftTo(line) && seg.pe.leftTo(line) || !seg.ps.leftTo(line) && !seg.pe.leftTo(line)) return ip;
     // Calculate intersection between lines
-    let line1 = new $bd479cb9731e0159$export$2e2bcd8739ae039.Line(seg.ps, seg.pe);
-    return $bd479cb9731e0159$var$intersectLine2Line(line1, line);
+    let line1 = new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Line(seg.ps, seg.pe);
+    return $3478ba2bdb1fd0df$var$intersectLine2Line(line1, line);
 }
-function $bd479cb9731e0159$var$intersectSegment2Segment(seg1, seg2) {
+function $3478ba2bdb1fd0df$var$intersectSegment2Segment(seg1, seg2) {
     let ip = [];
     // quick reject
     if (seg1.box.not_intersect(seg2.box)) return ip;
@@ -630,8 +630,8 @@ function $bd479cb9731e0159$var$intersectSegment2Segment(seg1, seg2) {
         return ip;
     }
     // Neither seg1 nor seg2 is zero length
-    let line1 = new $bd479cb9731e0159$export$2e2bcd8739ae039.Line(seg1.ps, seg1.pe);
-    let line2 = new $bd479cb9731e0159$export$2e2bcd8739ae039.Line(seg2.ps, seg2.pe);
+    let line1 = new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Line(seg1.ps, seg1.pe);
+    let line2 = new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Line(seg2.ps, seg2.pe);
     // Check overlapping between segments in case of incidence
     // If segments touching, add one point. If overlapping, add two points
     if (line1.incidentTo(line2)) {
@@ -641,33 +641,33 @@ function $bd479cb9731e0159$var$intersectSegment2Segment(seg1, seg2) {
         if (seg2.pe.on(seg1) && !seg2.pe.equalTo(seg1.ps) && !seg2.pe.equalTo(seg1.pe)) ip.push(seg2.pe);
     } else {
         // Calculate intersection between lines
-        let new_ip = $bd479cb9731e0159$var$intersectLine2Line(line1, line2);
+        let new_ip = $3478ba2bdb1fd0df$var$intersectLine2Line(line1, line2);
         if (new_ip.length > 0) {
-            if ($bd479cb9731e0159$var$isPointInSegmentBox(new_ip[0], seg1) && $bd479cb9731e0159$var$isPointInSegmentBox(new_ip[0], seg2)) ip.push(new_ip[0]);
+            if ($3478ba2bdb1fd0df$var$isPointInSegmentBox(new_ip[0], seg1) && $3478ba2bdb1fd0df$var$isPointInSegmentBox(new_ip[0], seg2)) ip.push(new_ip[0]);
         }
     }
     return ip;
 }
-function $bd479cb9731e0159$var$isPointInSegmentBox(point, segment) {
+function $3478ba2bdb1fd0df$var$isPointInSegmentBox(point, segment) {
     const box = segment.box;
-    return $bd479cb9731e0159$export$2e2bcd8739ae039.Utils.LE(point.x, box.xmax) && $bd479cb9731e0159$export$2e2bcd8739ae039.Utils.GE(point.x, box.xmin) && $bd479cb9731e0159$export$2e2bcd8739ae039.Utils.LE(point.y, box.ymax) && $bd479cb9731e0159$export$2e2bcd8739ae039.Utils.GE(point.y, box.ymin);
+    return $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Utils.LE(point.x, box.xmax) && $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Utils.GE(point.x, box.xmin) && $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Utils.LE(point.y, box.ymax) && $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Utils.GE(point.y, box.ymin);
 }
-function $bd479cb9731e0159$var$intersectSegment2Circle(segment, circle) {
+function $3478ba2bdb1fd0df$var$intersectSegment2Circle(segment, circle) {
     let ips = [];
     if (segment.box.not_intersect(circle.box)) return ips;
     // Special case of zero length segment
     if (segment.isZeroLength()) {
         let [dist, _] = segment.ps.distanceTo(circle.pc);
-        if ($bd479cb9731e0159$export$2e2bcd8739ae039.Utils.EQ(dist, circle.r)) ips.push(segment.ps);
+        if ($3478ba2bdb1fd0df$export$2e2bcd8739ae039.Utils.EQ(dist, circle.r)) ips.push(segment.ps);
         return ips;
     }
     // Non zero-length segment
-    let line = new $bd479cb9731e0159$export$2e2bcd8739ae039.Line(segment.ps, segment.pe);
-    let ips_tmp = $bd479cb9731e0159$var$intersectLine2Circle(line, circle);
+    let line = new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Line(segment.ps, segment.pe);
+    let ips_tmp = $3478ba2bdb1fd0df$var$intersectLine2Circle(line, circle);
     for (let ip of ips_tmp)if (ip.on(segment)) ips.push(ip);
     return ips;
 }
-function $bd479cb9731e0159$var$intersectSegment2Arc(segment, arc) {
+function $3478ba2bdb1fd0df$var$intersectSegment2Arc(segment, arc) {
     let ip = [];
     if (segment.box.not_intersect(arc.box)) return ip;
     // Special case of zero-length segment
@@ -676,43 +676,43 @@ function $bd479cb9731e0159$var$intersectSegment2Arc(segment, arc) {
         return ip;
     }
     // Non-zero length segment
-    let line = new $bd479cb9731e0159$export$2e2bcd8739ae039.Line(segment.ps, segment.pe);
-    let circle = new $bd479cb9731e0159$export$2e2bcd8739ae039.Circle(arc.pc, arc.r);
-    let ip_tmp = $bd479cb9731e0159$var$intersectLine2Circle(line, circle);
+    let line = new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Line(segment.ps, segment.pe);
+    let circle = new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Circle(arc.pc, arc.r);
+    let ip_tmp = $3478ba2bdb1fd0df$var$intersectLine2Circle(line, circle);
     for (let pt of ip_tmp)if (pt.on(segment) && pt.on(arc)) ip.push(pt);
     return ip;
 }
-function $bd479cb9731e0159$var$intersectSegment2Box(segment, box) {
+function $3478ba2bdb1fd0df$var$intersectSegment2Box(segment, box) {
     let ips = [];
     for (let seg of box.toSegments()){
-        let ips_tmp = $bd479cb9731e0159$var$intersectSegment2Segment(seg, segment);
+        let ips_tmp = $3478ba2bdb1fd0df$var$intersectSegment2Segment(seg, segment);
         for (let ip of ips_tmp)ips.push(ip);
     }
     return ips;
 }
-function $bd479cb9731e0159$var$intersectCircle2Circle(circle1, circle2) {
+function $3478ba2bdb1fd0df$var$intersectCircle2Circle(circle1, circle2) {
     let ip = [];
     if (circle1.box.not_intersect(circle2.box)) return ip;
-    let vec = new $bd479cb9731e0159$export$2e2bcd8739ae039.Vector(circle1.pc, circle2.pc);
+    let vec = new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Vector(circle1.pc, circle2.pc);
     let r1 = circle1.r;
     let r2 = circle2.r;
     // Degenerated circle
-    if ($bd479cb9731e0159$export$2e2bcd8739ae039.Utils.EQ_0(r1) || $bd479cb9731e0159$export$2e2bcd8739ae039.Utils.EQ_0(r2)) return ip;
+    if ($3478ba2bdb1fd0df$export$2e2bcd8739ae039.Utils.EQ_0(r1) || $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Utils.EQ_0(r2)) return ip;
     // In case of equal circles return one leftmost point
-    if ($bd479cb9731e0159$export$2e2bcd8739ae039.Utils.EQ_0(vec.x) && $bd479cb9731e0159$export$2e2bcd8739ae039.Utils.EQ_0(vec.y) && $bd479cb9731e0159$export$2e2bcd8739ae039.Utils.EQ(r1, r2)) {
+    if ($3478ba2bdb1fd0df$export$2e2bcd8739ae039.Utils.EQ_0(vec.x) && $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Utils.EQ_0(vec.y) && $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Utils.EQ(r1, r2)) {
         ip.push(circle1.pc.translate(-r1, 0));
         return ip;
     }
     let dist = circle1.pc.distanceTo(circle2.pc)[0];
-    if ($bd479cb9731e0159$export$2e2bcd8739ae039.Utils.GT(dist, r1 + r2)) return ip;
-    if ($bd479cb9731e0159$export$2e2bcd8739ae039.Utils.LT(dist, Math.abs(r1 - r2))) return ip;
+    if ($3478ba2bdb1fd0df$export$2e2bcd8739ae039.Utils.GT(dist, r1 + r2)) return ip;
+    if ($3478ba2bdb1fd0df$export$2e2bcd8739ae039.Utils.LT(dist, Math.abs(r1 - r2))) return ip;
     // Normalize vector.
     vec.x /= dist;
     vec.y /= dist;
     let pt;
     // Case of touching from outside or from inside - single intersection point
     // TODO: check this specifically not sure if correct
-    if ($bd479cb9731e0159$export$2e2bcd8739ae039.Utils.EQ(dist, r1 + r2) || $bd479cb9731e0159$export$2e2bcd8739ae039.Utils.EQ(dist, Math.abs(r1 - r2))) {
+    if ($3478ba2bdb1fd0df$export$2e2bcd8739ae039.Utils.EQ(dist, r1 + r2) || $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Utils.EQ(dist, Math.abs(r1 - r2))) {
         pt = circle1.pc.translate(r1 * vec.x, r1 * vec.y);
         ip.push(pt);
         return ip;
@@ -733,20 +733,20 @@ function $bd479cb9731e0159$var$intersectCircle2Circle(circle1, circle2) {
     ip.push(pt);
     return ip;
 }
-function $bd479cb9731e0159$var$intersectCircle2Box(circle, box) {
+function $3478ba2bdb1fd0df$var$intersectCircle2Box(circle, box) {
     let ips = [];
     for (let seg of box.toSegments()){
-        let ips_tmp = $bd479cb9731e0159$var$intersectSegment2Circle(seg, circle);
+        let ips_tmp = $3478ba2bdb1fd0df$var$intersectSegment2Circle(seg, circle);
         for (let ip of ips_tmp)ips.push(ip);
     }
     return ips;
 }
-function $bd479cb9731e0159$var$intersectArc2Arc(arc1, arc2) {
+function $3478ba2bdb1fd0df$var$intersectArc2Arc(arc1, arc2) {
     let ip = [];
     if (arc1.box.not_intersect(arc2.box)) return ip;
     // Special case: overlapping arcs
     // May return up to 4 intersection points
-    if (arc1.pc.equalTo(arc2.pc) && $bd479cb9731e0159$export$2e2bcd8739ae039.Utils.EQ(arc1.r, arc2.r)) {
+    if (arc1.pc.equalTo(arc2.pc) && $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Utils.EQ(arc1.r, arc2.r)) {
         let pt;
         pt = arc1.start;
         if (pt.on(arc2)) ip.push(pt);
@@ -759,169 +759,169 @@ function $bd479cb9731e0159$var$intersectArc2Arc(arc1, arc2) {
         return ip;
     }
     // Common case
-    let circle1 = new $bd479cb9731e0159$export$2e2bcd8739ae039.Circle(arc1.pc, arc1.r);
-    let circle2 = new $bd479cb9731e0159$export$2e2bcd8739ae039.Circle(arc2.pc, arc2.r);
+    let circle1 = new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Circle(arc1.pc, arc1.r);
+    let circle2 = new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Circle(arc2.pc, arc2.r);
     let ip_tmp = circle1.intersect(circle2);
     for (let pt of ip_tmp)if (pt.on(arc1) && pt.on(arc2)) ip.push(pt);
     return ip;
 }
-function $bd479cb9731e0159$var$intersectArc2Circle(arc, circle) {
+function $3478ba2bdb1fd0df$var$intersectArc2Circle(arc, circle) {
     let ip = [];
     if (arc.box.not_intersect(circle.box)) return ip;
     // Case when arc center incident to circle center
     // Return arc's end points as 2 intersection points
-    if (circle.pc.equalTo(arc.pc) && $bd479cb9731e0159$export$2e2bcd8739ae039.Utils.EQ(circle.r, arc.r)) {
+    if (circle.pc.equalTo(arc.pc) && $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Utils.EQ(circle.r, arc.r)) {
         ip.push(arc.start);
         ip.push(arc.end);
         return ip;
     }
     // Common case
     let circle1 = circle;
-    let circle2 = new $bd479cb9731e0159$export$2e2bcd8739ae039.Circle(arc.pc, arc.r);
-    let ip_tmp = $bd479cb9731e0159$var$intersectCircle2Circle(circle1, circle2);
+    let circle2 = new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Circle(arc.pc, arc.r);
+    let ip_tmp = $3478ba2bdb1fd0df$var$intersectCircle2Circle(circle1, circle2);
     for (let pt of ip_tmp)if (pt.on(arc)) ip.push(pt);
     return ip;
 }
-function $bd479cb9731e0159$var$intersectArc2Box(arc, box) {
+function $3478ba2bdb1fd0df$var$intersectArc2Box(arc, box) {
     let ips = [];
     for (let seg of box.toSegments()){
-        let ips_tmp = $bd479cb9731e0159$var$intersectSegment2Arc(seg, arc);
+        let ips_tmp = $3478ba2bdb1fd0df$var$intersectSegment2Arc(seg, arc);
         for (let ip of ips_tmp)ips.push(ip);
     }
     return ips;
 }
-function $bd479cb9731e0159$var$intersectEdge2Segment(edge, segment) {
-    return edge.isSegment ? $bd479cb9731e0159$var$intersectSegment2Segment(edge.shape, segment) : $bd479cb9731e0159$var$intersectSegment2Arc(segment, edge.shape);
+function $3478ba2bdb1fd0df$var$intersectEdge2Segment(edge, segment) {
+    return edge.isSegment ? $3478ba2bdb1fd0df$var$intersectSegment2Segment(edge.shape, segment) : $3478ba2bdb1fd0df$var$intersectSegment2Arc(segment, edge.shape);
 }
-function $bd479cb9731e0159$var$intersectEdge2Arc(edge, arc) {
-    return edge.isSegment ? $bd479cb9731e0159$var$intersectSegment2Arc(edge.shape, arc) : $bd479cb9731e0159$var$intersectArc2Arc(edge.shape, arc);
+function $3478ba2bdb1fd0df$var$intersectEdge2Arc(edge, arc) {
+    return edge.isSegment ? $3478ba2bdb1fd0df$var$intersectSegment2Arc(edge.shape, arc) : $3478ba2bdb1fd0df$var$intersectArc2Arc(edge.shape, arc);
 }
-function $bd479cb9731e0159$var$intersectEdge2Line(edge, line) {
-    return edge.isSegment ? $bd479cb9731e0159$var$intersectSegment2Line(edge.shape, line) : $bd479cb9731e0159$var$intersectLine2Arc(line, edge.shape);
+function $3478ba2bdb1fd0df$var$intersectEdge2Line(edge, line) {
+    return edge.isSegment ? $3478ba2bdb1fd0df$var$intersectSegment2Line(edge.shape, line) : $3478ba2bdb1fd0df$var$intersectLine2Arc(line, edge.shape);
 }
-function $bd479cb9731e0159$var$intersectEdge2Ray(edge, ray) {
-    return edge.isSegment ? $bd479cb9731e0159$var$intersectRay2Segment(ray, edge.shape) : $bd479cb9731e0159$var$intersectRay2Arc(ray, edge.shape);
+function $3478ba2bdb1fd0df$var$intersectEdge2Ray(edge, ray) {
+    return edge.isSegment ? $3478ba2bdb1fd0df$var$intersectRay2Segment(ray, edge.shape) : $3478ba2bdb1fd0df$var$intersectRay2Arc(ray, edge.shape);
 }
-function $bd479cb9731e0159$var$intersectEdge2Circle(edge, circle) {
-    return edge.isSegment ? $bd479cb9731e0159$var$intersectSegment2Circle(edge.shape, circle) : $bd479cb9731e0159$var$intersectArc2Circle(edge.shape, circle);
+function $3478ba2bdb1fd0df$var$intersectEdge2Circle(edge, circle) {
+    return edge.isSegment ? $3478ba2bdb1fd0df$var$intersectSegment2Circle(edge.shape, circle) : $3478ba2bdb1fd0df$var$intersectArc2Circle(edge.shape, circle);
 }
-function $bd479cb9731e0159$var$intersectSegment2Polygon(segment, polygon) {
+function $3478ba2bdb1fd0df$var$intersectSegment2Polygon(segment, polygon) {
     let ip = [];
-    for (let edge of polygon.edges)for (let pt of $bd479cb9731e0159$var$intersectEdge2Segment(edge, segment))ip.push(pt);
+    for (let edge of polygon.edges)for (let pt of $3478ba2bdb1fd0df$var$intersectEdge2Segment(edge, segment))ip.push(pt);
     return ip;
 }
-function $bd479cb9731e0159$var$intersectArc2Polygon(arc, polygon) {
+function $3478ba2bdb1fd0df$var$intersectArc2Polygon(arc, polygon) {
     let ip = [];
-    for (let edge of polygon.edges)for (let pt of $bd479cb9731e0159$var$intersectEdge2Arc(edge, arc))ip.push(pt);
+    for (let edge of polygon.edges)for (let pt of $3478ba2bdb1fd0df$var$intersectEdge2Arc(edge, arc))ip.push(pt);
     return ip;
 }
-function $bd479cb9731e0159$var$intersectLine2Polygon(line, polygon) {
+function $3478ba2bdb1fd0df$var$intersectLine2Polygon(line, polygon) {
     let ip = [];
     if (polygon.isEmpty()) return ip;
     for (let edge of polygon.edges){
-        for (let pt of $bd479cb9731e0159$var$intersectEdge2Line(edge, line))if (!$bd479cb9731e0159$var$ptInIntPoints(pt, ip)) ip.push(pt);
+        for (let pt of $3478ba2bdb1fd0df$var$intersectEdge2Line(edge, line))if (!$3478ba2bdb1fd0df$var$ptInIntPoints(pt, ip)) ip.push(pt);
     }
     return line.sortPoints(ip);
 }
-function $bd479cb9731e0159$var$intersectCircle2Polygon(circle, polygon) {
+function $3478ba2bdb1fd0df$var$intersectCircle2Polygon(circle, polygon) {
     let ip = [];
     if (polygon.isEmpty()) return ip;
-    for (let edge of polygon.edges)for (let pt of $bd479cb9731e0159$var$intersectEdge2Circle(edge, circle))ip.push(pt);
+    for (let edge of polygon.edges)for (let pt of $3478ba2bdb1fd0df$var$intersectEdge2Circle(edge, circle))ip.push(pt);
     return ip;
 }
-function $bd479cb9731e0159$var$intersectEdge2Edge(edge1, edge2) {
-    if (edge1.isSegment) return $bd479cb9731e0159$var$intersectEdge2Segment(edge2, edge1.shape);
-    else if (edge1.isArc) return $bd479cb9731e0159$var$intersectEdge2Arc(edge2, edge1.shape);
-    else if (edge1.isLine) return $bd479cb9731e0159$var$intersectEdge2Line(edge2, edge1.shape);
-    else if (edge1.isRay) return $bd479cb9731e0159$var$intersectEdge2Ray(edge2, edge1.shape);
+function $3478ba2bdb1fd0df$var$intersectEdge2Edge(edge1, edge2) {
+    if (edge1.isSegment) return $3478ba2bdb1fd0df$var$intersectEdge2Segment(edge2, edge1.shape);
+    else if (edge1.isArc) return $3478ba2bdb1fd0df$var$intersectEdge2Arc(edge2, edge1.shape);
+    else if (edge1.isLine) return $3478ba2bdb1fd0df$var$intersectEdge2Line(edge2, edge1.shape);
+    else if (edge1.isRay) return $3478ba2bdb1fd0df$var$intersectEdge2Ray(edge2, edge1.shape);
     return [];
 }
-function $bd479cb9731e0159$var$intersectEdge2Polygon(edge, polygon) {
+function $3478ba2bdb1fd0df$var$intersectEdge2Polygon(edge, polygon) {
     let ip = [];
     if (polygon.isEmpty() || edge.shape.box.not_intersect(polygon.box)) return ip;
     let resp_edges = polygon.edges.search(edge.shape.box);
     for (let resp_edge of resp_edges)ip = [
         ...ip,
-        ...$bd479cb9731e0159$var$intersectEdge2Edge(edge, resp_edge)
+        ...$3478ba2bdb1fd0df$var$intersectEdge2Edge(edge, resp_edge)
     ];
     return ip;
 }
-function $bd479cb9731e0159$var$intersectMultiline2Polygon(multiline, polygon) {
+function $3478ba2bdb1fd0df$var$intersectMultiline2Polygon(multiline, polygon) {
     let ip = [];
     if (polygon.isEmpty() || multiline.size === 0) return ip;
     for (let edge of multiline)ip = [
         ...ip,
-        ...$bd479cb9731e0159$var$intersectEdge2Polygon(edge, polygon)
+        ...$3478ba2bdb1fd0df$var$intersectEdge2Polygon(edge, polygon)
     ];
     return ip;
 }
-function $bd479cb9731e0159$var$intersectPolygon2Polygon(polygon1, polygon2) {
+function $3478ba2bdb1fd0df$var$intersectPolygon2Polygon(polygon1, polygon2) {
     let ip = [];
     if (polygon1.isEmpty() || polygon2.isEmpty()) return ip;
     if (polygon1.box.not_intersect(polygon2.box)) return ip;
     for (let edge1 of polygon1.edges)ip = [
         ...ip,
-        ...$bd479cb9731e0159$var$intersectEdge2Polygon(edge1, polygon2)
+        ...$3478ba2bdb1fd0df$var$intersectEdge2Polygon(edge1, polygon2)
     ];
     return ip;
 }
-function $bd479cb9731e0159$var$intersectShape2Polygon(shape, polygon) {
-    if (shape instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Line) return $bd479cb9731e0159$var$intersectLine2Polygon(shape, polygon);
-    else if (shape instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Segment) return $bd479cb9731e0159$var$intersectSegment2Polygon(shape, polygon);
-    else if (shape instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Arc) return $bd479cb9731e0159$var$intersectArc2Polygon(shape, polygon);
+function $3478ba2bdb1fd0df$var$intersectShape2Polygon(shape, polygon) {
+    if (shape instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Line) return $3478ba2bdb1fd0df$var$intersectLine2Polygon(shape, polygon);
+    else if (shape instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Segment) return $3478ba2bdb1fd0df$var$intersectSegment2Polygon(shape, polygon);
+    else if (shape instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Arc) return $3478ba2bdb1fd0df$var$intersectArc2Polygon(shape, polygon);
     else return [];
 }
-function $bd479cb9731e0159$var$ptInIntPoints(new_pt, ip) {
+function $3478ba2bdb1fd0df$var$ptInIntPoints(new_pt, ip) {
     return ip.some((pt)=>pt.equalTo(new_pt));
 }
-function $bd479cb9731e0159$var$createLineFromRay(ray) {
-    return new $bd479cb9731e0159$export$2e2bcd8739ae039.Line(ray.start, ray.norm);
+function $3478ba2bdb1fd0df$var$createLineFromRay(ray) {
+    return new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Line(ray.start, ray.norm);
 }
-function $bd479cb9731e0159$var$intersectRay2Segment(ray, segment) {
-    return $bd479cb9731e0159$var$intersectSegment2Line(segment, $bd479cb9731e0159$var$createLineFromRay(ray)).filter((pt)=>ray.contains(pt));
+function $3478ba2bdb1fd0df$var$intersectRay2Segment(ray, segment) {
+    return $3478ba2bdb1fd0df$var$intersectSegment2Line(segment, $3478ba2bdb1fd0df$var$createLineFromRay(ray)).filter((pt)=>ray.contains(pt));
 }
-function $bd479cb9731e0159$var$intersectRay2Arc(ray, arc) {
-    return $bd479cb9731e0159$var$intersectLine2Arc($bd479cb9731e0159$var$createLineFromRay(ray), arc).filter((pt)=>ray.contains(pt));
+function $3478ba2bdb1fd0df$var$intersectRay2Arc(ray, arc) {
+    return $3478ba2bdb1fd0df$var$intersectLine2Arc($3478ba2bdb1fd0df$var$createLineFromRay(ray), arc).filter((pt)=>ray.contains(pt));
 }
-function $bd479cb9731e0159$var$intersectRay2Circle(ray, circle) {
-    return $bd479cb9731e0159$var$intersectLine2Circle($bd479cb9731e0159$var$createLineFromRay(ray), circle).filter((pt)=>ray.contains(pt));
+function $3478ba2bdb1fd0df$var$intersectRay2Circle(ray, circle) {
+    return $3478ba2bdb1fd0df$var$intersectLine2Circle($3478ba2bdb1fd0df$var$createLineFromRay(ray), circle).filter((pt)=>ray.contains(pt));
 }
-function $bd479cb9731e0159$var$intersectRay2Box(ray, box) {
-    return $bd479cb9731e0159$var$intersectLine2Box($bd479cb9731e0159$var$createLineFromRay(ray), box).filter((pt)=>ray.contains(pt));
+function $3478ba2bdb1fd0df$var$intersectRay2Box(ray, box) {
+    return $3478ba2bdb1fd0df$var$intersectLine2Box($3478ba2bdb1fd0df$var$createLineFromRay(ray), box).filter((pt)=>ray.contains(pt));
 }
-function $bd479cb9731e0159$var$intersectRay2Line(ray, line) {
-    return $bd479cb9731e0159$var$intersectLine2Line($bd479cb9731e0159$var$createLineFromRay(ray), line).filter((pt)=>ray.contains(pt));
+function $3478ba2bdb1fd0df$var$intersectRay2Line(ray, line) {
+    return $3478ba2bdb1fd0df$var$intersectLine2Line($3478ba2bdb1fd0df$var$createLineFromRay(ray), line).filter((pt)=>ray.contains(pt));
 }
-function $bd479cb9731e0159$var$intersectRay2Ray(ray1, ray2) {
-    return $bd479cb9731e0159$var$intersectLine2Line($bd479cb9731e0159$var$createLineFromRay(ray1), $bd479cb9731e0159$var$createLineFromRay(ray2)).filter((pt)=>ray1.contains(pt)).filter((pt)=>ray2.contains(pt));
+function $3478ba2bdb1fd0df$var$intersectRay2Ray(ray1, ray2) {
+    return $3478ba2bdb1fd0df$var$intersectLine2Line($3478ba2bdb1fd0df$var$createLineFromRay(ray1), $3478ba2bdb1fd0df$var$createLineFromRay(ray2)).filter((pt)=>ray1.contains(pt)).filter((pt)=>ray2.contains(pt));
 }
-function $bd479cb9731e0159$var$intersectRay2Polygon(ray, polygon) {
-    return $bd479cb9731e0159$var$intersectLine2Polygon($bd479cb9731e0159$var$createLineFromRay(ray), polygon).filter((pt)=>ray.contains(pt));
+function $3478ba2bdb1fd0df$var$intersectRay2Polygon(ray, polygon) {
+    return $3478ba2bdb1fd0df$var$intersectLine2Polygon($3478ba2bdb1fd0df$var$createLineFromRay(ray), polygon).filter((pt)=>ray.contains(pt));
 }
-function $bd479cb9731e0159$var$intersectShape2Shape(shape1, shape2) {
+function $3478ba2bdb1fd0df$var$intersectShape2Shape(shape1, shape2) {
     if (shape1.intersect && shape1.intersect instanceof Function) return shape1.intersect(shape2);
-    throw $bd479cb9731e0159$export$b8e9cd941e8016ac.UNSUPPORTED_SHAPE_TYPE;
+    throw $3478ba2bdb1fd0df$export$b8e9cd941e8016ac.UNSUPPORTED_SHAPE_TYPE;
 }
-function $bd479cb9731e0159$var$intersectShape2Multiline(shape, multiline) {
+function $3478ba2bdb1fd0df$var$intersectShape2Multiline(shape, multiline) {
     let ip = [];
     for (let edge of multiline)ip = [
         ...ip,
-        ...$bd479cb9731e0159$var$intersectShape2Shape(edge, edge.shape)
+        ...$3478ba2bdb1fd0df$var$intersectShape2Shape(edge, edge.shape)
     ];
     return ip;
 }
-function $bd479cb9731e0159$var$intersectMultiline2Multiline(multiline1, multiline2) {
+function $3478ba2bdb1fd0df$var$intersectMultiline2Multiline(multiline1, multiline2) {
     let ip = [];
     for (let edge1 of multiline1)for (let edge2 of multiline2)ip = [
         ...ip,
-        ...$bd479cb9731e0159$var$intersectShape2Shape(edge1, edge2)
+        ...$3478ba2bdb1fd0df$var$intersectShape2Shape(edge1, edge2)
     ];
     return ip;
 }
 /**
  * Class Multiline represent connected path of [edges]{@link Flatten.Edge}, where each edge may be
  * [segment]{@link Flatten.Segment}, [arc]{@link Flatten.Arc}, [line]{@link Flatten.Line} or [ray]{@link Flatten.Ray}
- */ let $bd479cb9731e0159$export$a5433e0f3b1dce29 = class Multiline extends $bd479cb9731e0159$var$LinkedList {
+ */ let $3478ba2bdb1fd0df$export$a5433e0f3b1dce29 = class Multiline extends $3478ba2bdb1fd0df$var$LinkedList {
     constructor(...args){
         super();
         this.isInfinite = false;
@@ -931,18 +931,18 @@ function $bd479cb9731e0159$var$intersectMultiline2Multiline(multiline1, multilin
             let validShapes = false;
             const shapes = args[0];
             const L = shapes.length;
-            const anyShape = (s)=>s instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Segment || s instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Arc || s instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Ray || s instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Line;
-            const anyShapeExceptLine = (s)=>s instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Segment || s instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Arc || s instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Ray;
-            const shapeSegmentOrArc = (s)=>s instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Segment || s instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Arc;
+            const anyShape = (s)=>s instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Segment || s instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Arc || s instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Ray || s instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Line;
+            const anyShapeExceptLine = (s)=>s instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Segment || s instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Arc || s instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Ray;
+            const shapeSegmentOrArc = (s)=>s instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Segment || s instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Arc;
             validShapes = L === 1 && anyShape(shapes[0]) || L > 1 && anyShapeExceptLine(shapes[0]) && anyShapeExceptLine(shapes[L - 1]) && shapes.slice(1, L - 1).every(shapeSegmentOrArc);
             if (validShapes) {
-                this.isInfinite = shapes.some((shape)=>shape instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Ray || shape instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Line);
+                this.isInfinite = shapes.some((shape)=>shape instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Ray || shape instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Line);
                 for (let shape of shapes){
-                    let edge = new $bd479cb9731e0159$export$2e2bcd8739ae039.Edge(shape);
+                    let edge = new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Edge(shape);
                     this.append(edge);
                 }
                 this.setArcLength();
-            } else throw $bd479cb9731e0159$export$2e2bcd8739ae039.Errors.ILLEGAL_PARAMETERS;
+            } else throw $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Errors.ILLEGAL_PARAMETERS;
         }
     }
     /**
@@ -957,7 +957,7 @@ function $bd479cb9731e0159$var$intersectMultiline2Multiline(multiline1, multilin
      * (Getter) Return bounding box of the multiline
      * @returns {Box}
      */ get box() {
-        return this.edges.reduce((acc, edge)=>acc.merge(edge.box), new $bd479cb9731e0159$export$2e2bcd8739ae039.Box());
+        return this.edges.reduce((acc, edge)=>acc.merge(edge.box), new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Box());
     }
     /**
      * (Getter) Returns array of vertices
@@ -1017,7 +1017,7 @@ function $bd479cb9731e0159$var$intersectMultiline2Multiline(multiline1, multilin
         // if (shapes.length < 2) return;
         if (shapes[0] === null) return edge.prev;
         if (shapes[1] === null) return edge;
-        let newEdge = new $bd479cb9731e0159$export$2e2bcd8739ae039.Edge(shapes[0]);
+        let newEdge = new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Edge(shapes[0]);
         let edgeBefore = edge.prev;
         /* Insert first split edge into linked list after edgeBefore */ this.insert(newEdge, edgeBefore); // edge.face ?
         // Update edge shape with second split edge keeping links
@@ -1058,58 +1058,58 @@ function $bd479cb9731e0159$var$intersectMultiline2Multiline(multiline1, multilin
      * @returns {[number,Flatten.Segment]}
      */ distanceTo(shape) {
         if (shape instanceof Point) {
-            const [dist, shortest_segment] = $bd479cb9731e0159$export$2e2bcd8739ae039.Distance.shape2multiline(shape, this);
+            const [dist, shortest_segment] = $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Distance.shape2multiline(shape, this);
             return [
                 dist,
                 shortest_segment.reverse()
             ];
         }
-        if (shape instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Line) {
-            const [dist, shortest_segment] = $bd479cb9731e0159$export$2e2bcd8739ae039.Distance.shape2multiline(shape, this);
+        if (shape instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Line) {
+            const [dist, shortest_segment] = $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Distance.shape2multiline(shape, this);
             return [
                 dist,
                 shortest_segment.reverse()
             ];
         }
-        if (shape instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Circle) {
-            const [dist, shortest_segment] = $bd479cb9731e0159$export$2e2bcd8739ae039.Distance.shape2multiline(shape, this);
+        if (shape instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Circle) {
+            const [dist, shortest_segment] = $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Distance.shape2multiline(shape, this);
             return [
                 dist,
                 shortest_segment.reverse()
             ];
         }
-        if (shape instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Segment) {
-            const [dist, shortest_segment] = $bd479cb9731e0159$export$2e2bcd8739ae039.Distance.shape2multiline(shape, this);
+        if (shape instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Segment) {
+            const [dist, shortest_segment] = $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Distance.shape2multiline(shape, this);
             return [
                 dist,
                 shortest_segment.reverse()
             ];
         }
-        if (shape instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Arc) {
-            const [dist, shortest_segment] = $bd479cb9731e0159$export$2e2bcd8739ae039.Distance.shape2multiline(shape, this);
+        if (shape instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Arc) {
+            const [dist, shortest_segment] = $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Distance.shape2multiline(shape, this);
             return [
                 dist,
                 shortest_segment.reverse()
             ];
         }
-        if (shape instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Multiline) return $bd479cb9731e0159$export$2e2bcd8739ae039.Distance.multiline2multiline(this, shape);
-        throw $bd479cb9731e0159$export$2e2bcd8739ae039.Errors.UNSUPPORTED_SHAPE_TYPE;
+        if (shape instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Multiline) return $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Distance.multiline2multiline(this, shape);
+        throw $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Errors.UNSUPPORTED_SHAPE_TYPE;
     }
     /**
      * Calculate intersection of multiline with other shape
      * @param {Shape} shape
      * @returns {Point[]}
      */ intersect(shape) {
-        if (shape instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Multiline) return $bd479cb9731e0159$var$intersectMultiline2Multiline(this, shape);
-        else return $bd479cb9731e0159$var$intersectShape2Multiline(shape, this);
+        if (shape instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Multiline) return $3478ba2bdb1fd0df$var$intersectMultiline2Multiline(this, shape);
+        else return $3478ba2bdb1fd0df$var$intersectShape2Multiline(shape, this);
     }
     /**
      * Return true if multiline contains the shape: no point of shape lies outside
      * @param shape
      * @returns {boolean}
      */ contains(shape) {
-        if (shape instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Point) return this.edges.some((edge)=>edge.shape.contains(shape));
-        throw $bd479cb9731e0159$export$2e2bcd8739ae039.Errors.UNSUPPORTED_SHAPE_TYPE;
+        if (shape instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Point) return this.edges.some((edge)=>edge.shape.contains(shape));
+        throw $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Errors.UNSUPPORTED_SHAPE_TYPE;
     }
     /**
      * Returns new multiline translated by vector vec
@@ -1125,7 +1125,7 @@ function $bd479cb9731e0159$var$intersectMultiline2Multiline(multiline1, multilin
      * @param {number} angle - rotation angle in radians
      * @param {Point} center - rotation center, default is (0,0)
      * @returns {Multiline} - new rotated polygon
-     */ rotate(angle = 0, center = new $bd479cb9731e0159$export$2e2bcd8739ae039.Point()) {
+     */ rotate(angle = 0, center = new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Point()) {
         return new Multiline(this.edges.map((edge)=>edge.shape.rotate(angle, center)));
     }
     /**
@@ -1133,7 +1133,7 @@ function $bd479cb9731e0159$var$intersectMultiline2Multiline(multiline1, multilin
      * Method does not support unbounded shapes
      * @param {Matrix} matrix - affine transformation matrix
      * @returns {Multiline} - new multiline
-     */ transform(matrix = new $bd479cb9731e0159$export$2e2bcd8739ae039.Matrix()) {
+     */ transform(matrix = new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Matrix()) {
         return new Multiline(this.edges.map((edge)=>edge.shape.transform(matrix)));
     }
     /**
@@ -1169,7 +1169,7 @@ function $bd479cb9731e0159$var$intersectMultiline2Multiline(multiline1, multilin
      * TODO: support semi-infinite Ray and infinite Line
      * @returns {string}
      */ svg(attrs = {}) {
-        let svgStr = `\n<path ${$bd479cb9731e0159$var$convertToString({
+        let svgStr = `\n<path ${$3478ba2bdb1fd0df$var$convertToString({
             fill: "none",
             ...attrs
         })} d="`;
@@ -1179,16 +1179,16 @@ function $bd479cb9731e0159$var$intersectMultiline2Multiline(multiline1, multilin
         return svgStr;
     }
 };
-$bd479cb9731e0159$export$2e2bcd8739ae039.Multiline = $bd479cb9731e0159$export$a5433e0f3b1dce29;
+$3478ba2bdb1fd0df$export$2e2bcd8739ae039.Multiline = $3478ba2bdb1fd0df$export$a5433e0f3b1dce29;
 /**
  * Shortcut function to create multiline
  * @param args
- */ const $bd479cb9731e0159$export$e086dccf8e77e85 = (...args)=>new $bd479cb9731e0159$export$2e2bcd8739ae039.Multiline(...args);
-$bd479cb9731e0159$export$2e2bcd8739ae039.multiline = $bd479cb9731e0159$export$e086dccf8e77e85;
+ */ const $3478ba2bdb1fd0df$export$e086dccf8e77e85 = (...args)=>new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Multiline(...args);
+$3478ba2bdb1fd0df$export$2e2bcd8739ae039.multiline = $3478ba2bdb1fd0df$export$e086dccf8e77e85;
 /*
     Smart intersections describe intersection points that refers to the edges they intersect
     This function are supposed for internal usage by morphing and relation methods between
- */ function $bd479cb9731e0159$var$addToIntPoints(edge, pt, int_points) {
+ */ function $3478ba2bdb1fd0df$var$addToIntPoints(edge, pt, int_points) {
     let id = int_points.length;
     let shapes = edge.shape.split(pt);
     // if (shapes.length < 2) return;
@@ -1197,13 +1197,13 @@ $bd479cb9731e0159$export$2e2bcd8739ae039.multiline = $bd479cb9731e0159$export$e0
     if (shapes[0] === null) len = 0;
     else if (shapes[1] === null) len = edge.shape.length;
     else len = shapes[0].length;
-    let is_vertex = $bd479cb9731e0159$var$NOT_VERTEX$1;
-    if ($bd479cb9731e0159$var$EQ(len, 0)) is_vertex |= $bd479cb9731e0159$var$START_VERTEX$1;
-    if ($bd479cb9731e0159$var$EQ(len, edge.shape.length)) is_vertex |= $bd479cb9731e0159$var$END_VERTEX$1;
+    let is_vertex = $3478ba2bdb1fd0df$var$NOT_VERTEX$1;
+    if ($3478ba2bdb1fd0df$var$EQ(len, 0)) is_vertex |= $3478ba2bdb1fd0df$var$START_VERTEX$1;
+    if ($3478ba2bdb1fd0df$var$EQ(len, edge.shape.length)) is_vertex |= $3478ba2bdb1fd0df$var$END_VERTEX$1;
     // Fix intersection point which is end point of the last edge
     let arc_length;
     if (len === Infinity) arc_length = shapes[0].coord(pt);
-    else arc_length = is_vertex & $bd479cb9731e0159$var$END_VERTEX$1 && edge.next && edge.next.arc_length === 0 ? 0 : edge.arc_length + len;
+    else arc_length = is_vertex & $3478ba2bdb1fd0df$var$END_VERTEX$1 && edge.next && edge.next.arc_length === 0 ? 0 : edge.arc_length + len;
     int_points.push({
         id: id,
         pt: pt,
@@ -1214,12 +1214,12 @@ $bd479cb9731e0159$export$2e2bcd8739ae039.multiline = $bd479cb9731e0159$export$e0
         is_vertex: is_vertex
     });
 }
-function $bd479cb9731e0159$var$sortIntersections(intersections) {
+function $3478ba2bdb1fd0df$var$sortIntersections(intersections) {
     // augment intersections with new sorted arrays
-    intersections.int_points1_sorted = $bd479cb9731e0159$var$getSortedArray(intersections.int_points1);
-    intersections.int_points2_sorted = $bd479cb9731e0159$var$getSortedArray(intersections.int_points2);
+    intersections.int_points1_sorted = $3478ba2bdb1fd0df$var$getSortedArray(intersections.int_points1);
+    intersections.int_points2_sorted = $3478ba2bdb1fd0df$var$getSortedArray(intersections.int_points2);
 }
-function $bd479cb9731e0159$var$getSortedArray(int_points) {
+function $3478ba2bdb1fd0df$var$getSortedArray(int_points) {
     let faceMap = new Map;
     let id = 0;
     // Create integer id's for faces
@@ -1230,10 +1230,10 @@ function $bd479cb9731e0159$var$getSortedArray(int_points) {
     // Augment intersection points with face id's
     for (let ip of int_points)ip.faceId = faceMap.get(ip.face);
     // Clone and sort
-    let int_points_sorted = int_points.slice().sort($bd479cb9731e0159$var$compareFn);
+    let int_points_sorted = int_points.slice().sort($3478ba2bdb1fd0df$var$compareFn);
     return int_points_sorted;
 }
-function $bd479cb9731e0159$var$compareFn(ip1, ip2) {
+function $3478ba2bdb1fd0df$var$compareFn(ip1, ip2) {
     // compare face id's
     if (ip1.faceId < ip2.faceId) return -1;
     if (ip1.faceId > ip2.faceId) return 1;
@@ -1242,7 +1242,7 @@ function $bd479cb9731e0159$var$compareFn(ip1, ip2) {
     if (ip1.arc_length > ip2.arc_length) return 1;
     return 0;
 }
-function $bd479cb9731e0159$var$filterDuplicatedIntersections(intersections) {
+function $3478ba2bdb1fd0df$var$filterDuplicatedIntersections(intersections) {
     if (intersections.int_points1.length < 2) return;
     let do_squeeze = false;
     let int_point_ref1;
@@ -1255,7 +1255,7 @@ function $bd479cb9731e0159$var$filterDuplicatedIntersections(intersections) {
         int_point_ref2 = intersections.int_points2[int_point_ref1.id];
         for(let j = i + 1; j < intersections.int_points1_sorted.length; j++){
             int_point_cur1 = intersections.int_points1_sorted[j];
-            if (!$bd479cb9731e0159$var$EQ(int_point_cur1.arc_length, int_point_ref1.arc_length)) break;
+            if (!$3478ba2bdb1fd0df$var$EQ(int_point_cur1.arc_length, int_point_ref1.arc_length)) break;
             if (int_point_cur1.id === -1) continue;
             int_point_cur2 = intersections.int_points2[int_point_cur1.id];
             if (int_point_cur2.id === -1) continue;
@@ -1271,7 +1271,7 @@ function $bd479cb9731e0159$var$filterDuplicatedIntersections(intersections) {
     for(let i = 1; i < intersections.int_points2_sorted.length; i++){
         let int_point_cur2 = intersections.int_points2_sorted[i];
         if (int_point_cur2.id === -1) continue;
-        /* already deleted */ if (int_point_ref2.id === -1 || /* can't be reference if already deleted */ !$bd479cb9731e0159$var$EQ(int_point_cur2.arc_length, int_point_ref2.arc_length)) {
+        /* already deleted */ if (int_point_ref2.id === -1 || /* can't be reference if already deleted */ !$3478ba2bdb1fd0df$var$EQ(int_point_cur2.arc_length, int_point_ref2.arc_length)) {
             int_point_ref2 = int_point_cur2;
             int_point_ref1 = intersections.int_points1[int_point_ref2.id];
             continue;
@@ -1291,7 +1291,7 @@ function $bd479cb9731e0159$var$filterDuplicatedIntersections(intersections) {
         intersections.int_points2.forEach((int_point, index)=>int_point.id = index);
     }
 }
-function $bd479cb9731e0159$var$initializeInclusionFlags(int_points) {
+function $3478ba2bdb1fd0df$var$initializeInclusionFlags(int_points) {
     for (let int_point of int_points){
         if (int_point.edge_before) {
             int_point.edge_before.bvStart = undefined;
@@ -1307,17 +1307,17 @@ function $bd479cb9731e0159$var$initializeInclusionFlags(int_points) {
         }
     }
     for (let int_point of int_points){
-        if (int_point.edge_before) int_point.edge_before.bvEnd = $bd479cb9731e0159$export$a523954c60dca5e4;
-        if (int_point.edge_after) int_point.edge_after.bvStart = $bd479cb9731e0159$export$a523954c60dca5e4;
+        if (int_point.edge_before) int_point.edge_before.bvEnd = $3478ba2bdb1fd0df$export$a523954c60dca5e4;
+        if (int_point.edge_after) int_point.edge_after.bvStart = $3478ba2bdb1fd0df$export$a523954c60dca5e4;
     }
 }
-function $bd479cb9731e0159$var$calculateInclusionFlags(int_points, polygon) {
+function $3478ba2bdb1fd0df$var$calculateInclusionFlags(int_points, polygon) {
     for (let int_point of int_points){
         if (int_point.edge_before) int_point.edge_before.setInclusion(polygon);
         if (int_point.edge_after) int_point.edge_after.setInclusion(polygon);
     }
 }
-function $bd479cb9731e0159$var$setOverlappingFlags(intersections) {
+function $3478ba2bdb1fd0df$var$setOverlappingFlags(intersections) {
     let cur_face = undefined;
     let first_int_point_in_face_id = undefined;
     let next_int_point1 = undefined;
@@ -1331,13 +1331,13 @@ function $bd479cb9731e0159$var$setOverlappingFlags(intersections) {
         }
         // Skip duplicated points with same <x,y> in "cur_int_point1" pool
         let int_points_cur_pool_start = i;
-        let int_points_cur_pool_num = $bd479cb9731e0159$var$intPointsPoolCount(intersections.int_points1_sorted, i, cur_face);
+        let int_points_cur_pool_num = $3478ba2bdb1fd0df$var$intPointsPoolCount(intersections.int_points1_sorted, i, cur_face);
         let next_int_point_id;
         if (int_points_cur_pool_start + int_points_cur_pool_num < num_int_points && intersections.int_points1_sorted[int_points_cur_pool_start + int_points_cur_pool_num].face === cur_face) next_int_point_id = int_points_cur_pool_start + int_points_cur_pool_num;
         else next_int_point_id = first_int_point_in_face_id;
         // From all points with same ,x,y. in 'next_int_point1' pool choose one that
         // has same face both in res_poly and in wrk_poly
-        let int_points_next_pool_num = $bd479cb9731e0159$var$intPointsPoolCount(intersections.int_points1_sorted, next_int_point_id, cur_face);
+        let int_points_next_pool_num = $3478ba2bdb1fd0df$var$intPointsPoolCount(intersections.int_points1_sorted, next_int_point_id, cur_face);
         next_int_point1 = null;
         for(let j = next_int_point_id; j < next_int_point_id + int_points_next_pool_num; j++){
             let next_int_point1_tmp = intersections.int_points1_sorted[j];
@@ -1349,24 +1349,24 @@ function $bd479cb9731e0159$var$setOverlappingFlags(intersections) {
         if (next_int_point1 === null) continue;
         let edge_from1 = cur_int_point1.edge_after;
         let edge_to1 = next_int_point1.edge_before;
-        if (!(edge_from1.bv === $bd479cb9731e0159$export$a523954c60dca5e4 && edge_to1.bv === $bd479cb9731e0159$export$a523954c60dca5e4)) continue;
+        if (!(edge_from1.bv === $3478ba2bdb1fd0df$export$a523954c60dca5e4 && edge_to1.bv === $3478ba2bdb1fd0df$export$a523954c60dca5e4)) continue;
         if (edge_from1 !== edge_to1) continue;
         /* Find boundary chain in polygon2 between same intersection points */ let cur_int_point2 = intersections.int_points2[cur_int_point1.id];
         let next_int_point2 = intersections.int_points2[next_int_point1.id];
         let edge_from2 = cur_int_point2.edge_after;
         let edge_to2 = next_int_point2.edge_before;
-        /* if [edge_from2..edge_to2] is not a boundary chain, invert it */ /* check also that chain consist of one or two edges */ if (!(edge_from2.bv === $bd479cb9731e0159$export$a523954c60dca5e4 && edge_to2.bv === $bd479cb9731e0159$export$a523954c60dca5e4 && edge_from2 === edge_to2)) {
+        /* if [edge_from2..edge_to2] is not a boundary chain, invert it */ /* check also that chain consist of one or two edges */ if (!(edge_from2.bv === $3478ba2bdb1fd0df$export$a523954c60dca5e4 && edge_to2.bv === $3478ba2bdb1fd0df$export$a523954c60dca5e4 && edge_from2 === edge_to2)) {
             cur_int_point2 = intersections.int_points2[next_int_point1.id];
             next_int_point2 = intersections.int_points2[cur_int_point1.id];
             edge_from2 = cur_int_point2.edge_after;
             edge_to2 = next_int_point2.edge_before;
         }
-        if (!(edge_from2.bv === $bd479cb9731e0159$export$a523954c60dca5e4 && edge_to2.bv === $bd479cb9731e0159$export$a523954c60dca5e4 && edge_from2 === edge_to2)) continue; // not an overlapping chain - skip   TODO: fix boundary conflict
+        if (!(edge_from2.bv === $3478ba2bdb1fd0df$export$a523954c60dca5e4 && edge_to2.bv === $3478ba2bdb1fd0df$export$a523954c60dca5e4 && edge_from2 === edge_to2)) continue; // not an overlapping chain - skip   TODO: fix boundary conflict
         // Set overlapping flag - one-to-one case
         edge_from1.setOverlap(edge_from2);
     }
 }
-function $bd479cb9731e0159$var$intPointsPoolCount(int_points, cur_int_point_num, cur_face) {
+function $3478ba2bdb1fd0df$var$intPointsPoolCount(int_points, cur_int_point_num, cur_face) {
     let int_point_current;
     let int_point_next;
     let int_points_pool_num = 1;
@@ -1380,29 +1380,29 @@ function $bd479cb9731e0159$var$intPointsPoolCount(int_points, cur_int_point_num,
     }
     return int_points_pool_num;
 }
-function $bd479cb9731e0159$var$splitByIntersections(polygon, int_points) {
+function $3478ba2bdb1fd0df$var$splitByIntersections(polygon, int_points) {
     if (!int_points) return;
     for (let int_point of int_points){
         let edge = int_point.edge_before;
         // recalculate vertex flag: it may be changed after previous split
-        int_point.is_vertex = $bd479cb9731e0159$var$NOT_VERTEX$1;
-        if (edge.shape.start && edge.shape.start.equalTo(int_point.pt)) int_point.is_vertex |= $bd479cb9731e0159$var$START_VERTEX$1;
-        if (edge.shape.end && edge.shape.end.equalTo(int_point.pt)) int_point.is_vertex |= $bd479cb9731e0159$var$END_VERTEX$1;
-        if (int_point.is_vertex & $bd479cb9731e0159$var$START_VERTEX$1) {
+        int_point.is_vertex = $3478ba2bdb1fd0df$var$NOT_VERTEX$1;
+        if (edge.shape.start && edge.shape.start.equalTo(int_point.pt)) int_point.is_vertex |= $3478ba2bdb1fd0df$var$START_VERTEX$1;
+        if (edge.shape.end && edge.shape.end.equalTo(int_point.pt)) int_point.is_vertex |= $3478ba2bdb1fd0df$var$END_VERTEX$1;
+        if (int_point.is_vertex & $3478ba2bdb1fd0df$var$START_VERTEX$1) {
             int_point.edge_before = edge.prev;
-            if (edge.prev) int_point.is_vertex = $bd479cb9731e0159$var$END_VERTEX$1; // polygon
+            if (edge.prev) int_point.is_vertex = $3478ba2bdb1fd0df$var$END_VERTEX$1; // polygon
             continue;
         }
-        if (int_point.is_vertex & $bd479cb9731e0159$var$END_VERTEX$1) continue;
+        if (int_point.is_vertex & $3478ba2bdb1fd0df$var$END_VERTEX$1) continue;
         let newEdge = polygon.addVertex(int_point.pt, edge);
         int_point.edge_before = newEdge;
     }
     for (let int_point of int_points){
         if (int_point.edge_before) int_point.edge_after = int_point.edge_before.next;
-        else if (polygon instanceof $bd479cb9731e0159$export$a5433e0f3b1dce29 && int_point.is_vertex & $bd479cb9731e0159$var$START_VERTEX$1) int_point.edge_after = polygon.first;
+        else if (polygon instanceof $3478ba2bdb1fd0df$export$a5433e0f3b1dce29 && int_point.is_vertex & $3478ba2bdb1fd0df$var$START_VERTEX$1) int_point.edge_after = polygon.first;
     }
 }
-function $bd479cb9731e0159$var$insertBetweenIntPoints(int_point1, int_point2, new_edges) {
+function $3478ba2bdb1fd0df$var$insertBetweenIntPoints(int_point1, int_point2, new_edges) {
     const edge_before = int_point1.edge_before;
     const edge_after = int_point2.edge_after;
     const len = new_edges.length;
@@ -1411,36 +1411,36 @@ function $bd479cb9731e0159$var$insertBetweenIntPoints(int_point1, int_point2, ne
     new_edges[len - 1].next = edge_after;
     edge_after.prev = new_edges[len - 1];
 }
-var $bd479cb9731e0159$export$53fcb32448848863 = /*#__PURE__*/ Object.freeze({
+var $3478ba2bdb1fd0df$export$53fcb32448848863 = /*#__PURE__*/ Object.freeze({
     __proto__: null,
-    addToIntPoints: $bd479cb9731e0159$var$addToIntPoints,
-    calculateInclusionFlags: $bd479cb9731e0159$var$calculateInclusionFlags,
-    filterDuplicatedIntersections: $bd479cb9731e0159$var$filterDuplicatedIntersections,
-    getSortedArray: $bd479cb9731e0159$var$getSortedArray,
-    initializeInclusionFlags: $bd479cb9731e0159$var$initializeInclusionFlags,
-    insertBetweenIntPoints: $bd479cb9731e0159$var$insertBetweenIntPoints,
-    intPointsPoolCount: $bd479cb9731e0159$var$intPointsPoolCount,
-    setOverlappingFlags: $bd479cb9731e0159$var$setOverlappingFlags,
-    sortIntersections: $bd479cb9731e0159$var$sortIntersections,
-    splitByIntersections: $bd479cb9731e0159$var$splitByIntersections
+    addToIntPoints: $3478ba2bdb1fd0df$var$addToIntPoints,
+    calculateInclusionFlags: $3478ba2bdb1fd0df$var$calculateInclusionFlags,
+    filterDuplicatedIntersections: $3478ba2bdb1fd0df$var$filterDuplicatedIntersections,
+    getSortedArray: $3478ba2bdb1fd0df$var$getSortedArray,
+    initializeInclusionFlags: $3478ba2bdb1fd0df$var$initializeInclusionFlags,
+    insertBetweenIntPoints: $3478ba2bdb1fd0df$var$insertBetweenIntPoints,
+    intPointsPoolCount: $3478ba2bdb1fd0df$var$intPointsPoolCount,
+    setOverlappingFlags: $3478ba2bdb1fd0df$var$setOverlappingFlags,
+    sortIntersections: $3478ba2bdb1fd0df$var$sortIntersections,
+    splitByIntersections: $3478ba2bdb1fd0df$var$splitByIntersections
 });
 /**
  * Created by Alex Bol on 12/02/2018.
  */ /**
  * @module BooleanOperations
- */ const { INSIDE: $bd479cb9731e0159$var$INSIDE$1, OUTSIDE: $bd479cb9731e0159$var$OUTSIDE, BOUNDARY: $bd479cb9731e0159$var$BOUNDARY, OVERLAP_SAME: $bd479cb9731e0159$var$OVERLAP_SAME, OVERLAP_OPPOSITE: $bd479cb9731e0159$var$OVERLAP_OPPOSITE } = $bd479cb9731e0159$var$Constants;
-const { NOT_VERTEX: $bd479cb9731e0159$var$NOT_VERTEX, START_VERTEX: $bd479cb9731e0159$var$START_VERTEX, END_VERTEX: $bd479cb9731e0159$var$END_VERTEX } = $bd479cb9731e0159$var$Constants;
-const $bd479cb9731e0159$var$BOOLEAN_UNION = 1;
-const $bd479cb9731e0159$var$BOOLEAN_INTERSECT = 2;
-const $bd479cb9731e0159$var$BOOLEAN_SUBTRACT = 3;
+ */ const { INSIDE: $3478ba2bdb1fd0df$var$INSIDE$1, OUTSIDE: $3478ba2bdb1fd0df$var$OUTSIDE, BOUNDARY: $3478ba2bdb1fd0df$var$BOUNDARY, OVERLAP_SAME: $3478ba2bdb1fd0df$var$OVERLAP_SAME, OVERLAP_OPPOSITE: $3478ba2bdb1fd0df$var$OVERLAP_OPPOSITE } = $3478ba2bdb1fd0df$var$Constants;
+const { NOT_VERTEX: $3478ba2bdb1fd0df$var$NOT_VERTEX, START_VERTEX: $3478ba2bdb1fd0df$var$START_VERTEX, END_VERTEX: $3478ba2bdb1fd0df$var$END_VERTEX } = $3478ba2bdb1fd0df$var$Constants;
+const $3478ba2bdb1fd0df$var$BOOLEAN_UNION = 1;
+const $3478ba2bdb1fd0df$var$BOOLEAN_INTERSECT = 2;
+const $3478ba2bdb1fd0df$var$BOOLEAN_SUBTRACT = 3;
 /**
  * Unify two polygons polygons and returns new polygon. <br/>
  * Point belongs to the resulted polygon if it belongs to the first OR to the second polygon
  * @param {Polygon} polygon1 - first operand
  * @param {Polygon} polygon2 - second operand
  * @returns {Polygon}
- */ function $bd479cb9731e0159$var$unify(polygon1, polygon2) {
-    let [res_poly, wrk_poly] = $bd479cb9731e0159$var$booleanOpBinary(polygon1, polygon2, $bd479cb9731e0159$var$BOOLEAN_UNION, true);
+ */ function $3478ba2bdb1fd0df$var$unify(polygon1, polygon2) {
+    let [res_poly, wrk_poly] = $3478ba2bdb1fd0df$var$booleanOpBinary(polygon1, polygon2, $3478ba2bdb1fd0df$var$BOOLEAN_UNION, true);
     return res_poly;
 }
 /**
@@ -1449,10 +1449,10 @@ const $bd479cb9731e0159$var$BOOLEAN_SUBTRACT = 3;
  * @param {Polygon} polygon1 - first operand
  * @param {Polygon} polygon2 - second operand
  * @returns {Polygon}
- */ function $bd479cb9731e0159$var$subtract(polygon1, polygon2) {
+ */ function $3478ba2bdb1fd0df$var$subtract(polygon1, polygon2) {
     let polygon2_tmp = polygon2.clone();
     let polygon2_reversed = polygon2_tmp.reverse();
-    let [res_poly, wrk_poly] = $bd479cb9731e0159$var$booleanOpBinary(polygon1, polygon2_reversed, $bd479cb9731e0159$var$BOOLEAN_SUBTRACT, true);
+    let [res_poly, wrk_poly] = $3478ba2bdb1fd0df$var$booleanOpBinary(polygon1, polygon2_reversed, $3478ba2bdb1fd0df$var$BOOLEAN_SUBTRACT, true);
     return res_poly;
 }
 /**
@@ -1461,8 +1461,8 @@ const $bd479cb9731e0159$var$BOOLEAN_SUBTRACT = 3;
  * @param {Polygon} polygon1 - first operand
  * @param {Polygon} polygon2 - second operand
  * @returns {Polygon}
- */ function $bd479cb9731e0159$var$intersect$1(polygon1, polygon2) {
-    let [res_poly, wrk_poly] = $bd479cb9731e0159$var$booleanOpBinary(polygon1, polygon2, $bd479cb9731e0159$var$BOOLEAN_INTERSECT, true);
+ */ function $3478ba2bdb1fd0df$var$intersect$1(polygon1, polygon2) {
+    let [res_poly, wrk_poly] = $3478ba2bdb1fd0df$var$booleanOpBinary(polygon1, polygon2, $3478ba2bdb1fd0df$var$BOOLEAN_INTERSECT, true);
     return res_poly;
 }
 /**
@@ -1471,8 +1471,8 @@ const $bd479cb9731e0159$var$BOOLEAN_SUBTRACT = 3;
  * @param {Polygon} polygon1 - first operand
  * @param {Polygon} polygon2 - second operand
  * @returns {Shape[][]}
- */ function $bd479cb9731e0159$var$innerClip(polygon1, polygon2) {
-    let [res_poly, wrk_poly] = $bd479cb9731e0159$var$booleanOpBinary(polygon1, polygon2, $bd479cb9731e0159$var$BOOLEAN_INTERSECT, false);
+ */ function $3478ba2bdb1fd0df$var$innerClip(polygon1, polygon2) {
+    let [res_poly, wrk_poly] = $3478ba2bdb1fd0df$var$booleanOpBinary(polygon1, polygon2, $3478ba2bdb1fd0df$var$BOOLEAN_INTERSECT, false);
     let clip_shapes1 = [];
     for (let face of res_poly.faces)clip_shapes1 = [
         ...clip_shapes1,
@@ -1497,8 +1497,8 @@ const $bd479cb9731e0159$var$BOOLEAN_SUBTRACT = 3;
  * @param {Polygon} polygon1 - first operand
  * @param {Polygon} polygon2 - second operand
  * @returns {Shape[]}
- */ function $bd479cb9731e0159$var$outerClip(polygon1, polygon2) {
-    let [res_poly, wrk_poly] = $bd479cb9731e0159$var$booleanOpBinary(polygon1, polygon2, $bd479cb9731e0159$var$BOOLEAN_SUBTRACT, false);
+ */ function $3478ba2bdb1fd0df$var$outerClip(polygon1, polygon2) {
+    let [res_poly, wrk_poly] = $3478ba2bdb1fd0df$var$booleanOpBinary(polygon1, polygon2, $3478ba2bdb1fd0df$var$BOOLEAN_SUBTRACT, false);
     let clip_shapes1 = [];
     for (let face of res_poly.faces)clip_shapes1 = [
         ...clip_shapes1,
@@ -1515,20 +1515,20 @@ const $bd479cb9731e0159$var$BOOLEAN_SUBTRACT = 3;
  * @param {Polygon} polygon1 - first operand
  * @param {Polygon} polygon2 - second operand
  * @returns {Point[][]}
- */ function $bd479cb9731e0159$var$calculateIntersections(polygon1, polygon2) {
+ */ function $3478ba2bdb1fd0df$var$calculateIntersections(polygon1, polygon2) {
     let res_poly = polygon1.clone();
     let wrk_poly = polygon2.clone();
     // get intersection points
-    let intersections = $bd479cb9731e0159$var$getIntersections(res_poly, wrk_poly);
+    let intersections = $3478ba2bdb1fd0df$var$getIntersections(res_poly, wrk_poly);
     // sort intersection points
-    $bd479cb9731e0159$var$sortIntersections(intersections);
+    $3478ba2bdb1fd0df$var$sortIntersections(intersections);
     // split by intersection points
-    $bd479cb9731e0159$var$splitByIntersections(res_poly, intersections.int_points1_sorted);
-    $bd479cb9731e0159$var$splitByIntersections(wrk_poly, intersections.int_points2_sorted);
+    $3478ba2bdb1fd0df$var$splitByIntersections(res_poly, intersections.int_points1_sorted);
+    $3478ba2bdb1fd0df$var$splitByIntersections(wrk_poly, intersections.int_points2_sorted);
     // filter duplicated intersection points
-    $bd479cb9731e0159$var$filterDuplicatedIntersections(intersections);
+    $3478ba2bdb1fd0df$var$filterDuplicatedIntersections(intersections);
     // sort intersection points again after filtering
-    $bd479cb9731e0159$var$sortIntersections(intersections);
+    $3478ba2bdb1fd0df$var$sortIntersections(intersections);
     let ip_sorted1 = intersections.int_points1_sorted.map((int_point)=>int_point.pt);
     let ip_sorted2 = intersections.int_points2_sorted.map((int_point)=>int_point.pt);
     return [
@@ -1536,70 +1536,70 @@ const $bd479cb9731e0159$var$BOOLEAN_SUBTRACT = 3;
         ip_sorted2
     ];
 }
-function $bd479cb9731e0159$var$filterNotRelevantEdges(res_poly, wrk_poly, intersections, op) {
+function $3478ba2bdb1fd0df$var$filterNotRelevantEdges(res_poly, wrk_poly, intersections, op) {
     // keep not intersected faces for further remove and merge
-    let notIntersectedFacesRes = $bd479cb9731e0159$var$getNotIntersectedFaces(res_poly, intersections.int_points1);
-    let notIntersectedFacesWrk = $bd479cb9731e0159$var$getNotIntersectedFaces(wrk_poly, intersections.int_points2);
+    let notIntersectedFacesRes = $3478ba2bdb1fd0df$var$getNotIntersectedFaces(res_poly, intersections.int_points1);
+    let notIntersectedFacesWrk = $3478ba2bdb1fd0df$var$getNotIntersectedFaces(wrk_poly, intersections.int_points2);
     // calculate inclusion flag for not intersected faces
-    $bd479cb9731e0159$var$calcInclusionForNotIntersectedFaces(notIntersectedFacesRes, wrk_poly);
-    $bd479cb9731e0159$var$calcInclusionForNotIntersectedFaces(notIntersectedFacesWrk, res_poly);
+    $3478ba2bdb1fd0df$var$calcInclusionForNotIntersectedFaces(notIntersectedFacesRes, wrk_poly);
+    $3478ba2bdb1fd0df$var$calcInclusionForNotIntersectedFaces(notIntersectedFacesWrk, res_poly);
     // initialize inclusion flags for edges incident to intersections
-    $bd479cb9731e0159$var$initializeInclusionFlags(intersections.int_points1);
-    $bd479cb9731e0159$var$initializeInclusionFlags(intersections.int_points2);
+    $3478ba2bdb1fd0df$var$initializeInclusionFlags(intersections.int_points1);
+    $3478ba2bdb1fd0df$var$initializeInclusionFlags(intersections.int_points2);
     // calculate inclusion flags only for edges incident to intersections
-    $bd479cb9731e0159$var$calculateInclusionFlags(intersections.int_points1, wrk_poly);
-    $bd479cb9731e0159$var$calculateInclusionFlags(intersections.int_points2, res_poly);
+    $3478ba2bdb1fd0df$var$calculateInclusionFlags(intersections.int_points1, wrk_poly);
+    $3478ba2bdb1fd0df$var$calculateInclusionFlags(intersections.int_points2, res_poly);
     // fix boundary conflicts
-    while($bd479cb9731e0159$var$fixBoundaryConflicts(res_poly, wrk_poly, intersections.int_points1, intersections.int_points1_sorted, intersections.int_points2, intersections));
+    while($3478ba2bdb1fd0df$var$fixBoundaryConflicts(res_poly, wrk_poly, intersections.int_points1, intersections.int_points1_sorted, intersections.int_points2, intersections));
     // while (fixBoundaryConflicts(wrk_poly, res_poly, intersections.int_points2, intersections.int_points2_sorted, intersections.int_points1, intersections));
     // Set overlapping flags for boundary chains: SAME or OPPOSITE
-    $bd479cb9731e0159$var$setOverlappingFlags(intersections);
+    $3478ba2bdb1fd0df$var$setOverlappingFlags(intersections);
     // remove not relevant chains between intersection points
-    $bd479cb9731e0159$var$removeNotRelevantChains(res_poly, op, intersections.int_points1_sorted, true);
-    $bd479cb9731e0159$var$removeNotRelevantChains(wrk_poly, op, intersections.int_points2_sorted, false);
+    $3478ba2bdb1fd0df$var$removeNotRelevantChains(res_poly, op, intersections.int_points1_sorted, true);
+    $3478ba2bdb1fd0df$var$removeNotRelevantChains(wrk_poly, op, intersections.int_points2_sorted, false);
     // remove not relevant not intersected faces from res_polygon and wrk_polygon
     // if op == UNION, remove faces that are included in wrk_polygon without intersection
     // if op == INTERSECT, remove faces that are not included into wrk_polygon
-    $bd479cb9731e0159$var$removeNotRelevantNotIntersectedFaces(res_poly, notIntersectedFacesRes, op, true);
-    $bd479cb9731e0159$var$removeNotRelevantNotIntersectedFaces(wrk_poly, notIntersectedFacesWrk, op, false);
+    $3478ba2bdb1fd0df$var$removeNotRelevantNotIntersectedFaces(res_poly, notIntersectedFacesRes, op, true);
+    $3478ba2bdb1fd0df$var$removeNotRelevantNotIntersectedFaces(wrk_poly, notIntersectedFacesWrk, op, false);
 }
-function $bd479cb9731e0159$var$swapLinksAndRestore(res_poly, wrk_poly, intersections, op) {
+function $3478ba2bdb1fd0df$var$swapLinksAndRestore(res_poly, wrk_poly, intersections, op) {
     // add edges of wrk_poly into the edge container of res_poly
-    $bd479cb9731e0159$var$copyWrkToRes(res_poly, wrk_poly, op, intersections.int_points2);
+    $3478ba2bdb1fd0df$var$copyWrkToRes(res_poly, wrk_poly, op, intersections.int_points2);
     // swap links from res_poly to wrk_poly and vice versa
-    $bd479cb9731e0159$var$swapLinks(res_poly, wrk_poly, intersections);
+    $3478ba2bdb1fd0df$var$swapLinks(res_poly, wrk_poly, intersections);
     // remove old faces
-    $bd479cb9731e0159$var$removeOldFaces(res_poly, intersections.int_points1);
-    $bd479cb9731e0159$var$removeOldFaces(wrk_poly, intersections.int_points2);
+    $3478ba2bdb1fd0df$var$removeOldFaces(res_poly, intersections.int_points1);
+    $3478ba2bdb1fd0df$var$removeOldFaces(wrk_poly, intersections.int_points2);
     // restore faces
-    $bd479cb9731e0159$var$restoreFaces(res_poly, intersections.int_points1, intersections.int_points2);
-    $bd479cb9731e0159$var$restoreFaces(res_poly, intersections.int_points2, intersections.int_points1);
+    $3478ba2bdb1fd0df$var$restoreFaces(res_poly, intersections.int_points1, intersections.int_points2);
+    $3478ba2bdb1fd0df$var$restoreFaces(res_poly, intersections.int_points2, intersections.int_points1);
 // merge relevant not intersected faces from wrk_polygon to res_polygon
 // mergeRelevantNotIntersectedFaces(res_poly, wrk_poly);
 }
-function $bd479cb9731e0159$var$booleanOpBinary(polygon1, polygon2, op, restore) {
+function $3478ba2bdb1fd0df$var$booleanOpBinary(polygon1, polygon2, op, restore) {
     let res_poly = polygon1.clone();
     let wrk_poly = polygon2.clone();
     // get intersection points
-    let intersections = $bd479cb9731e0159$var$getIntersections(res_poly, wrk_poly);
+    let intersections = $3478ba2bdb1fd0df$var$getIntersections(res_poly, wrk_poly);
     // sort intersection points
-    $bd479cb9731e0159$var$sortIntersections(intersections);
+    $3478ba2bdb1fd0df$var$sortIntersections(intersections);
     // split by intersection points
-    $bd479cb9731e0159$var$splitByIntersections(res_poly, intersections.int_points1_sorted);
-    $bd479cb9731e0159$var$splitByIntersections(wrk_poly, intersections.int_points2_sorted);
+    $3478ba2bdb1fd0df$var$splitByIntersections(res_poly, intersections.int_points1_sorted);
+    $3478ba2bdb1fd0df$var$splitByIntersections(wrk_poly, intersections.int_points2_sorted);
     // filter duplicated intersection points
-    $bd479cb9731e0159$var$filterDuplicatedIntersections(intersections);
+    $3478ba2bdb1fd0df$var$filterDuplicatedIntersections(intersections);
     // sort intersection points again after filtering
-    $bd479cb9731e0159$var$sortIntersections(intersections);
+    $3478ba2bdb1fd0df$var$sortIntersections(intersections);
     // calculate inclusion and remove not relevant edges
-    $bd479cb9731e0159$var$filterNotRelevantEdges(res_poly, wrk_poly, intersections, op);
-    if (restore) $bd479cb9731e0159$var$swapLinksAndRestore(res_poly, wrk_poly, intersections, op);
+    $3478ba2bdb1fd0df$var$filterNotRelevantEdges(res_poly, wrk_poly, intersections, op);
+    if (restore) $3478ba2bdb1fd0df$var$swapLinksAndRestore(res_poly, wrk_poly, intersections, op);
     return [
         res_poly,
         wrk_poly
     ];
 }
-function $bd479cb9731e0159$var$getIntersections(polygon1, polygon2) {
+function $3478ba2bdb1fd0df$var$getIntersections(polygon1, polygon2) {
     let intersections = {
         int_points1: [],
         int_points2: []
@@ -1614,25 +1614,25 @@ function $bd479cb9731e0159$var$getIntersections(polygon1, polygon2) {
             let ip = edge1.shape.intersect(edge2.shape);
             // for each intersection point
             for (let pt of ip){
-                $bd479cb9731e0159$var$addToIntPoints(edge1, pt, intersections.int_points1);
-                $bd479cb9731e0159$var$addToIntPoints(edge2, pt, intersections.int_points2);
+                $3478ba2bdb1fd0df$var$addToIntPoints(edge1, pt, intersections.int_points1);
+                $3478ba2bdb1fd0df$var$addToIntPoints(edge2, pt, intersections.int_points2);
             }
         }
     }
     return intersections;
 }
-function $bd479cb9731e0159$var$getNotIntersectedFaces(poly, int_points) {
+function $3478ba2bdb1fd0df$var$getNotIntersectedFaces(poly, int_points) {
     let notIntersected = [];
     for (let face of poly.faces)if (!int_points.find((ip)=>ip.face === face)) notIntersected.push(face);
     return notIntersected;
 }
-function $bd479cb9731e0159$var$calcInclusionForNotIntersectedFaces(notIntersectedFaces, poly2) {
+function $3478ba2bdb1fd0df$var$calcInclusionForNotIntersectedFaces(notIntersectedFaces, poly2) {
     for (let face of notIntersectedFaces){
         face.first.bv = face.first.bvStart = face.first.bvEnd = undefined;
         face.first.setInclusion(poly2);
     }
 }
-function $bd479cb9731e0159$var$fixBoundaryConflicts(poly1, poly2, int_points1, int_points1_sorted, int_points2, intersections) {
+function $3478ba2bdb1fd0df$var$fixBoundaryConflicts(poly1, poly2, int_points1, int_points1_sorted, int_points2, intersections) {
     let cur_face;
     let first_int_point_in_face_id;
     let next_int_point1;
@@ -1647,13 +1647,13 @@ function $bd479cb9731e0159$var$fixBoundaryConflicts(poly1, poly2, int_points1, i
         }
         // Skip duplicated points with same <x,y> in "cur_int_point1" pool
         let int_points_cur_pool_start = i;
-        let int_points_cur_pool_num = $bd479cb9731e0159$var$intPointsPoolCount(int_points1_sorted, i, cur_face);
+        let int_points_cur_pool_num = $3478ba2bdb1fd0df$var$intPointsPoolCount(int_points1_sorted, i, cur_face);
         let next_int_point_id;
         if (int_points_cur_pool_start + int_points_cur_pool_num < num_int_points && int_points1_sorted[int_points_cur_pool_start + int_points_cur_pool_num].face === cur_face) next_int_point_id = int_points_cur_pool_start + int_points_cur_pool_num;
         else next_int_point_id = first_int_point_in_face_id;
         // From all points with same ,x,y. in 'next_int_point1' pool choose one that
         // has same face both in res_poly and in wrk_poly
-        let int_points_next_pool_num = $bd479cb9731e0159$var$intPointsPoolCount(int_points1_sorted, next_int_point_id, cur_face);
+        let int_points_next_pool_num = $3478ba2bdb1fd0df$var$intPointsPoolCount(int_points1_sorted, next_int_point_id, cur_face);
         next_int_point1 = null;
         for(let j = next_int_point_id; j < next_int_point_id + int_points_next_pool_num; j++){
             let next_int_point1_tmp = int_points1_sorted[j];
@@ -1666,16 +1666,16 @@ function $bd479cb9731e0159$var$fixBoundaryConflicts(poly1, poly2, int_points1, i
         let edge_from1 = cur_int_point1.edge_after;
         let edge_to1 = next_int_point1.edge_before;
         // Case #1. One of the ends is not boundary - probably tiny edge wrongly marked as boundary
-        if (edge_from1.bv === $bd479cb9731e0159$var$BOUNDARY && edge_to1.bv != $bd479cb9731e0159$var$BOUNDARY) {
+        if (edge_from1.bv === $3478ba2bdb1fd0df$var$BOUNDARY && edge_to1.bv != $3478ba2bdb1fd0df$var$BOUNDARY) {
             edge_from1.bv = edge_to1.bv;
             continue;
         }
-        if (edge_from1.bv != $bd479cb9731e0159$var$BOUNDARY && edge_to1.bv === $bd479cb9731e0159$var$BOUNDARY) {
+        if (edge_from1.bv != $3478ba2bdb1fd0df$var$BOUNDARY && edge_to1.bv === $3478ba2bdb1fd0df$var$BOUNDARY) {
             edge_to1.bv = edge_from1.bv;
             continue;
         }
         // Set up all boundary values for middle edges. Need for cases 2 and 3
-        if (edge_from1.bv === $bd479cb9731e0159$var$BOUNDARY && edge_to1.bv === $bd479cb9731e0159$var$BOUNDARY && edge_from1 != edge_to1 || edge_from1.bv === $bd479cb9731e0159$var$INSIDE$1 && edge_to1.bv === $bd479cb9731e0159$var$OUTSIDE || edge_from1.bv === $bd479cb9731e0159$var$OUTSIDE && edge_to1.bv === $bd479cb9731e0159$var$INSIDE$1) {
+        if (edge_from1.bv === $3478ba2bdb1fd0df$var$BOUNDARY && edge_to1.bv === $3478ba2bdb1fd0df$var$BOUNDARY && edge_from1 != edge_to1 || edge_from1.bv === $3478ba2bdb1fd0df$var$INSIDE$1 && edge_to1.bv === $3478ba2bdb1fd0df$var$OUTSIDE || edge_from1.bv === $3478ba2bdb1fd0df$var$OUTSIDE && edge_to1.bv === $3478ba2bdb1fd0df$var$INSIDE$1) {
             let edge_tmp = edge_from1.next;
             while(edge_tmp != edge_to1){
                 edge_tmp.bvStart = undefined;
@@ -1687,14 +1687,14 @@ function $bd479cb9731e0159$var$fixBoundaryConflicts(poly1, poly2, int_points1, i
         }
         // Case #2. Both of the ends boundary. Check all the edges in the middle
         // If some edges in the middle are not boundary then update bv of 'from' and 'to' edges
-        if (edge_from1.bv === $bd479cb9731e0159$var$BOUNDARY && edge_to1.bv === $bd479cb9731e0159$var$BOUNDARY && edge_from1 != edge_to1) {
+        if (edge_from1.bv === $3478ba2bdb1fd0df$var$BOUNDARY && edge_to1.bv === $3478ba2bdb1fd0df$var$BOUNDARY && edge_from1 != edge_to1) {
             let edge_tmp = edge_from1.next;
             let new_bv;
             while(edge_tmp != edge_to1){
-                if (edge_tmp.bv != $bd479cb9731e0159$var$BOUNDARY) {
+                if (edge_tmp.bv != $3478ba2bdb1fd0df$var$BOUNDARY) {
                     if (new_bv === undefined) new_bv = edge_tmp.bv;
                     else {
-                        if (edge_tmp.bv != new_bv) throw $bd479cb9731e0159$export$b8e9cd941e8016ac.UNRESOLVED_BOUNDARY_CONFLICT;
+                        if (edge_tmp.bv != new_bv) throw $3478ba2bdb1fd0df$export$b8e9cd941e8016ac.UNRESOLVED_BOUNDARY_CONFLICT;
                     }
                 }
                 edge_tmp = edge_tmp.next;
@@ -1706,27 +1706,27 @@ function $bd479cb9731e0159$var$fixBoundaryConflicts(poly1, poly2, int_points1, i
             continue; // all middle edges are boundary, proceed with this
         }
         // Case 3. One of the ends is inner, another is outer
-        if (edge_from1.bv === $bd479cb9731e0159$var$INSIDE$1 && edge_to1.bv === $bd479cb9731e0159$var$OUTSIDE || edge_from1.bv === $bd479cb9731e0159$var$OUTSIDE && edge_to1.bv === $bd479cb9731e0159$var$INSIDE$1) {
+        if (edge_from1.bv === $3478ba2bdb1fd0df$var$INSIDE$1 && edge_to1.bv === $3478ba2bdb1fd0df$var$OUTSIDE || edge_from1.bv === $3478ba2bdb1fd0df$var$OUTSIDE && edge_to1.bv === $3478ba2bdb1fd0df$var$INSIDE$1) {
             let edge_tmp = edge_from1;
             // Find missing intersection point
             while(edge_tmp != edge_to1){
                 if (edge_tmp.bvStart === edge_from1.bv && edge_tmp.bvEnd === edge_to1.bv) {
                     let [dist, segment] = edge_tmp.shape.distanceTo(poly2);
-                    if (dist < 10 * $bd479cb9731e0159$export$2e2bcd8739ae039.DP_TOL) {
+                    if (dist < 10 * $3478ba2bdb1fd0df$export$2e2bcd8739ae039.DP_TOL) {
                         // let pt = edge_tmp.end;
                         // add to the list of intersections of poly1
-                        $bd479cb9731e0159$var$addToIntPoints(edge_tmp, segment.ps, int_points1);
+                        $3478ba2bdb1fd0df$var$addToIntPoints(edge_tmp, segment.ps, int_points1);
                         // split edge_tmp in poly1 if need
                         let int_point1 = int_points1[int_points1.length - 1];
-                        if (int_point1.is_vertex & $bd479cb9731e0159$var$START_VERTEX) {
+                        if (int_point1.is_vertex & $3478ba2bdb1fd0df$var$START_VERTEX) {
                             int_point1.edge_after = edge_tmp;
                             int_point1.edge_before = edge_tmp.prev;
-                            edge_tmp.bvStart = $bd479cb9731e0159$var$BOUNDARY;
+                            edge_tmp.bvStart = $3478ba2bdb1fd0df$var$BOUNDARY;
                             edge_tmp.bv = undefined;
                             edge_tmp.setInclusion(poly2);
-                        } else if (int_point1.is_vertex & $bd479cb9731e0159$var$END_VERTEX) {
+                        } else if (int_point1.is_vertex & $3478ba2bdb1fd0df$var$END_VERTEX) {
                             int_point1.edge_after = edge_tmp.next;
-                            edge_tmp.bvEnd = $bd479cb9731e0159$var$BOUNDARY;
+                            edge_tmp.bvEnd = $3478ba2bdb1fd0df$var$BOUNDARY;
                             edge_tmp.bv = undefined;
                             edge_tmp.setInclusion(poly2);
                         } else {
@@ -1734,20 +1734,20 @@ function $bd479cb9731e0159$var$fixBoundaryConflicts(poly1, poly2, int_points1, i
                             int_point1.edge_before = newEdge1;
                             int_point1.edge_after = newEdge1.next;
                             newEdge1.setInclusion(poly2);
-                            newEdge1.next.bvStart = $bd479cb9731e0159$var$BOUNDARY;
+                            newEdge1.next.bvStart = $3478ba2bdb1fd0df$var$BOUNDARY;
                             newEdge1.next.bvEnd = undefined;
                             newEdge1.next.bv = undefined;
                             newEdge1.next.setInclusion(poly2);
                         }
                         // add to the list of intersections of poly2
                         let edge2 = poly2.findEdgeByPoint(segment.pe);
-                        $bd479cb9731e0159$var$addToIntPoints(edge2, segment.pe, int_points2);
+                        $3478ba2bdb1fd0df$var$addToIntPoints(edge2, segment.pe, int_points2);
                         // split edge2 in poly2 if need
                         let int_point2 = int_points2[int_points2.length - 1];
-                        if (int_point2.is_vertex & $bd479cb9731e0159$var$START_VERTEX) {
+                        if (int_point2.is_vertex & $3478ba2bdb1fd0df$var$START_VERTEX) {
                             int_point2.edge_after = edge2;
                             int_point2.edge_before = edge2.prev;
-                        } else if (int_point2.is_vertex & $bd479cb9731e0159$var$END_VERTEX) int_point2.edge_after = edge2.next;
+                        } else if (int_point2.is_vertex & $3478ba2bdb1fd0df$var$END_VERTEX) int_point2.edge_after = edge2.next;
                         else {
                             // first locate int_points that may refer to edge2 as edge.after
                             // let int_point2_edge_before = int_points2.find( int_point => int_point.edge_before === edge2)
@@ -1757,15 +1757,15 @@ function $bd479cb9731e0159$var$fixBoundaryConflicts(poly1, poly2, int_points1, i
                             int_point2.edge_after = newEdge2.next;
                             if (int_point2_edge_after) int_point2_edge_after.edge_after = newEdge2;
                             newEdge2.bvStart = undefined;
-                            newEdge2.bvEnd = $bd479cb9731e0159$var$BOUNDARY;
+                            newEdge2.bvEnd = $3478ba2bdb1fd0df$var$BOUNDARY;
                             newEdge2.bv = undefined;
                             newEdge2.setInclusion(poly1);
-                            newEdge2.next.bvStart = $bd479cb9731e0159$var$BOUNDARY;
+                            newEdge2.next.bvStart = $3478ba2bdb1fd0df$var$BOUNDARY;
                             newEdge2.next.bvEnd = undefined;
                             newEdge2.next.bv = undefined;
                             newEdge2.next.setInclusion(poly1);
                         }
-                        $bd479cb9731e0159$var$sortIntersections(intersections);
+                        $3478ba2bdb1fd0df$var$sortIntersections(intersections);
                         iterate_more = true;
                         break;
                     }
@@ -1774,12 +1774,12 @@ function $bd479cb9731e0159$var$fixBoundaryConflicts(poly1, poly2, int_points1, i
             }
             // we changed intersections inside loop, have to exit and repair again
             if (iterate_more) break;
-            throw $bd479cb9731e0159$export$b8e9cd941e8016ac.UNRESOLVED_BOUNDARY_CONFLICT;
+            throw $3478ba2bdb1fd0df$export$b8e9cd941e8016ac.UNRESOLVED_BOUNDARY_CONFLICT;
         }
     }
     return iterate_more;
 }
-function $bd479cb9731e0159$var$removeNotRelevantChains(polygon, op, int_points, is_res_polygon) {
+function $3478ba2bdb1fd0df$var$removeNotRelevantChains(polygon, op, int_points, is_res_polygon) {
     if (!int_points) return;
     let cur_face = undefined;
     let first_int_point_in_face_num = undefined;
@@ -1795,16 +1795,16 @@ function $bd479cb9731e0159$var$removeNotRelevantChains(polygon, op, int_points, 
         // Get next int point from the same face that current
         // Count how many duplicated points with same <x,y> in "points from" pool ?
         let int_points_from_pull_start = i;
-        let int_points_from_pull_num = $bd479cb9731e0159$var$intPointsPoolCount(int_points, i, cur_face);
+        let int_points_from_pull_num = $3478ba2bdb1fd0df$var$intPointsPoolCount(int_points, i, cur_face);
         let next_int_point_num;
         if (int_points_from_pull_start + int_points_from_pull_num < int_points.length && int_points[int_points_from_pull_start + int_points_from_pull_num].face === int_point_current.face) next_int_point_num = int_points_from_pull_start + int_points_from_pull_num;
         else next_int_point_num = first_int_point_in_face_num;
         int_point_next = int_points[next_int_point_num];
         /* Count how many duplicated points with same <x,y> in "points to" pull ? */ let int_points_to_pull_start = next_int_point_num;
-        let int_points_to_pull_num = $bd479cb9731e0159$var$intPointsPoolCount(int_points, int_points_to_pull_start, cur_face);
+        let int_points_to_pull_num = $3478ba2bdb1fd0df$var$intPointsPoolCount(int_points, int_points_to_pull_start, cur_face);
         let edge_from = int_point_current.edge_after;
         let edge_to = int_point_next.edge_before;
-        if (edge_from.bv === $bd479cb9731e0159$var$INSIDE$1 && edge_to.bv === $bd479cb9731e0159$var$INSIDE$1 && op === $bd479cb9731e0159$var$BOOLEAN_UNION || edge_from.bv === $bd479cb9731e0159$var$OUTSIDE && edge_to.bv === $bd479cb9731e0159$var$OUTSIDE && op === $bd479cb9731e0159$var$BOOLEAN_INTERSECT || (edge_from.bv === $bd479cb9731e0159$var$OUTSIDE || edge_to.bv === $bd479cb9731e0159$var$OUTSIDE) && op === $bd479cb9731e0159$var$BOOLEAN_SUBTRACT && !is_res_polygon || (edge_from.bv === $bd479cb9731e0159$var$INSIDE$1 || edge_to.bv === $bd479cb9731e0159$var$INSIDE$1) && op === $bd479cb9731e0159$var$BOOLEAN_SUBTRACT && is_res_polygon || edge_from.bv === $bd479cb9731e0159$var$BOUNDARY && edge_to.bv === $bd479cb9731e0159$var$BOUNDARY && edge_from.overlap & $bd479cb9731e0159$var$OVERLAP_SAME && is_res_polygon || edge_from.bv === $bd479cb9731e0159$var$BOUNDARY && edge_to.bv === $bd479cb9731e0159$var$BOUNDARY && edge_from.overlap & $bd479cb9731e0159$var$OVERLAP_OPPOSITE) {
+        if (edge_from.bv === $3478ba2bdb1fd0df$var$INSIDE$1 && edge_to.bv === $3478ba2bdb1fd0df$var$INSIDE$1 && op === $3478ba2bdb1fd0df$var$BOOLEAN_UNION || edge_from.bv === $3478ba2bdb1fd0df$var$OUTSIDE && edge_to.bv === $3478ba2bdb1fd0df$var$OUTSIDE && op === $3478ba2bdb1fd0df$var$BOOLEAN_INTERSECT || (edge_from.bv === $3478ba2bdb1fd0df$var$OUTSIDE || edge_to.bv === $3478ba2bdb1fd0df$var$OUTSIDE) && op === $3478ba2bdb1fd0df$var$BOOLEAN_SUBTRACT && !is_res_polygon || (edge_from.bv === $3478ba2bdb1fd0df$var$INSIDE$1 || edge_to.bv === $3478ba2bdb1fd0df$var$INSIDE$1) && op === $3478ba2bdb1fd0df$var$BOOLEAN_SUBTRACT && is_res_polygon || edge_from.bv === $3478ba2bdb1fd0df$var$BOUNDARY && edge_to.bv === $3478ba2bdb1fd0df$var$BOUNDARY && edge_from.overlap & $3478ba2bdb1fd0df$var$OVERLAP_SAME && is_res_polygon || edge_from.bv === $3478ba2bdb1fd0df$var$BOUNDARY && edge_to.bv === $3478ba2bdb1fd0df$var$BOUNDARY && edge_from.overlap & $3478ba2bdb1fd0df$var$OVERLAP_OPPOSITE) {
             polygon.removeChain(cur_face, edge_from, edge_to);
             /* update all points in "points from" pull */ for(let k = int_points_from_pull_start; k < int_points_from_pull_start + int_points_from_pull_num; k++)int_points[k].edge_after = undefined;
             /* update all points in "points to" pull */ for(let k = int_points_to_pull_start; k < int_points_to_pull_start + int_points_to_pull_num; k++)int_points[k].edge_before = undefined;
@@ -1812,14 +1812,14 @@ function $bd479cb9731e0159$var$removeNotRelevantChains(polygon, op, int_points, 
         /* skip to the last point in "points from" group */ i += int_points_from_pull_num - 1;
     }
 }
-function $bd479cb9731e0159$var$copyWrkToRes(res_polygon, wrk_polygon, op, int_points) {
+function $3478ba2bdb1fd0df$var$copyWrkToRes(res_polygon, wrk_polygon, op, int_points) {
     for (let face of wrk_polygon.faces){
         for (let edge of face)res_polygon.edges.add(edge);
         // If union - add face from wrk_polygon that is not intersected with res_polygon
         if (/*(op === BOOLEAN_UNION || op == BOOLEAN_SUBTRACT) &&*/ int_points.find((ip)=>ip.face === face) === undefined) res_polygon.addFace(face.first, face.last);
     }
 }
-function $bd479cb9731e0159$var$swapLinks(res_polygon, wrk_polygon, intersections) {
+function $3478ba2bdb1fd0df$var$swapLinks(res_polygon, wrk_polygon, intersections) {
     if (intersections.int_points1.length === 0) return;
     for(let i = 0; i < intersections.int_points1.length; i++){
         let int_point1 = intersections.int_points1[i];
@@ -1881,7 +1881,7 @@ function $bd479cb9731e0159$var$swapLinks(res_polygon, wrk_polygon, intersections
     }
 // Sanity check that no dead ends left
 }
-function $bd479cb9731e0159$var$removeOldFaces(polygon, int_points) {
+function $3478ba2bdb1fd0df$var$removeOldFaces(polygon, int_points) {
     for (let int_point of int_points){
         polygon.faces.delete(int_point.face);
         int_point.face = undefined;
@@ -1889,7 +1889,7 @@ function $bd479cb9731e0159$var$removeOldFaces(polygon, int_points) {
         if (int_point.edge_after) int_point.edge_after.face = undefined;
     }
 }
-function $bd479cb9731e0159$var$restoreFaces(polygon, int_points, other_int_points) {
+function $3478ba2bdb1fd0df$var$restoreFaces(polygon, int_points, other_int_points) {
     // For each intersection point - create new face
     for (let int_point of int_points){
         if (int_point.edge_before === undefined || int_point.edge_after === undefined) continue;
@@ -1898,9 +1898,9 @@ function $bd479cb9731e0159$var$restoreFaces(polygon, int_points, other_int_point
         let first = int_point.edge_after; // face start
         let last = int_point.edge_before; // face end;
         try {
-            $bd479cb9731e0159$var$LinkedList.testInfiniteLoop(first); // check and throw error if infinite loop found
+            $3478ba2bdb1fd0df$var$LinkedList.testInfiniteLoop(first); // check and throw error if infinite loop found
         } catch (error) {
-            throw $bd479cb9731e0159$export$b8e9cd941e8016ac.CANNOT_COMPLETE_BOOLEAN_OPERATION;
+            throw $3478ba2bdb1fd0df$export$b8e9cd941e8016ac.CANNOT_COMPLETE_BOOLEAN_OPERATION;
         }
         let face = polygon.addFace(first, last);
         // Mark intersection points from the newly create face
@@ -1911,37 +1911,37 @@ function $bd479cb9731e0159$var$restoreFaces(polygon, int_points, other_int_point
         for (let int_point_tmp of other_int_points)if (int_point_tmp.edge_before && int_point_tmp.edge_after && int_point_tmp.edge_before.face === face && int_point_tmp.edge_after.face === face) int_point_tmp.face = face;
     }
 }
-function $bd479cb9731e0159$var$removeNotRelevantNotIntersectedFaces(polygon, notIntersectedFaces, op, is_res_polygon) {
+function $3478ba2bdb1fd0df$var$removeNotRelevantNotIntersectedFaces(polygon, notIntersectedFaces, op, is_res_polygon) {
     for (let face of notIntersectedFaces){
         let rel = face.first.bv;
-        if (op === $bd479cb9731e0159$var$BOOLEAN_UNION && rel === $bd479cb9731e0159$var$INSIDE$1 || op === $bd479cb9731e0159$var$BOOLEAN_SUBTRACT && rel === $bd479cb9731e0159$var$INSIDE$1 && is_res_polygon || op === $bd479cb9731e0159$var$BOOLEAN_SUBTRACT && rel === $bd479cb9731e0159$var$OUTSIDE && !is_res_polygon || op === $bd479cb9731e0159$var$BOOLEAN_INTERSECT && rel === $bd479cb9731e0159$var$OUTSIDE) polygon.deleteFace(face);
+        if (op === $3478ba2bdb1fd0df$var$BOOLEAN_UNION && rel === $3478ba2bdb1fd0df$var$INSIDE$1 || op === $3478ba2bdb1fd0df$var$BOOLEAN_SUBTRACT && rel === $3478ba2bdb1fd0df$var$INSIDE$1 && is_res_polygon || op === $3478ba2bdb1fd0df$var$BOOLEAN_SUBTRACT && rel === $3478ba2bdb1fd0df$var$OUTSIDE && !is_res_polygon || op === $3478ba2bdb1fd0df$var$BOOLEAN_INTERSECT && rel === $3478ba2bdb1fd0df$var$OUTSIDE) polygon.deleteFace(face);
     }
 }
-var $bd479cb9731e0159$export$7810ed04e2e13fba = /*#__PURE__*/ Object.freeze({
+var $3478ba2bdb1fd0df$export$7810ed04e2e13fba = /*#__PURE__*/ Object.freeze({
     __proto__: null,
-    BOOLEAN_INTERSECT: $bd479cb9731e0159$var$BOOLEAN_INTERSECT,
-    BOOLEAN_SUBTRACT: $bd479cb9731e0159$var$BOOLEAN_SUBTRACT,
-    BOOLEAN_UNION: $bd479cb9731e0159$var$BOOLEAN_UNION,
-    calculateIntersections: $bd479cb9731e0159$var$calculateIntersections,
-    innerClip: $bd479cb9731e0159$var$innerClip,
-    intersect: $bd479cb9731e0159$var$intersect$1,
-    outerClip: $bd479cb9731e0159$var$outerClip,
-    removeNotRelevantChains: $bd479cb9731e0159$var$removeNotRelevantChains,
-    removeOldFaces: $bd479cb9731e0159$var$removeOldFaces,
-    restoreFaces: $bd479cb9731e0159$var$restoreFaces,
-    subtract: $bd479cb9731e0159$var$subtract,
-    unify: $bd479cb9731e0159$var$unify
+    BOOLEAN_INTERSECT: $3478ba2bdb1fd0df$var$BOOLEAN_INTERSECT,
+    BOOLEAN_SUBTRACT: $3478ba2bdb1fd0df$var$BOOLEAN_SUBTRACT,
+    BOOLEAN_UNION: $3478ba2bdb1fd0df$var$BOOLEAN_UNION,
+    calculateIntersections: $3478ba2bdb1fd0df$var$calculateIntersections,
+    innerClip: $3478ba2bdb1fd0df$var$innerClip,
+    intersect: $3478ba2bdb1fd0df$var$intersect$1,
+    outerClip: $3478ba2bdb1fd0df$var$outerClip,
+    removeNotRelevantChains: $3478ba2bdb1fd0df$var$removeNotRelevantChains,
+    removeOldFaces: $3478ba2bdb1fd0df$var$removeOldFaces,
+    restoreFaces: $3478ba2bdb1fd0df$var$restoreFaces,
+    subtract: $3478ba2bdb1fd0df$var$subtract,
+    unify: $3478ba2bdb1fd0df$var$unify
 });
 /*
     Dimensionally extended 9-intersected model
     See https://en.wikipedia.org/wiki/DE-9IM for more details
  */ // const DISJOINT = RegExp('FF.FF....');
-const $bd479cb9731e0159$var$EQUAL = RegExp("T.F..FFF.|T.F...F..");
-const $bd479cb9731e0159$var$INTERSECT = RegExp("T........|.T.......|...T.....|....T....");
-const $bd479cb9731e0159$var$TOUCH = RegExp("FT.......|F..T.....|F...T....");
-const $bd479cb9731e0159$var$INSIDE = RegExp("T.F..F...");
-const $bd479cb9731e0159$var$COVERED = RegExp("T.F..F...|.TF..F...|..FT.F...|..F.TF...");
-class $bd479cb9731e0159$var$DE9IM {
+const $3478ba2bdb1fd0df$var$EQUAL = RegExp("T.F..FFF.|T.F...F..");
+const $3478ba2bdb1fd0df$var$INTERSECT = RegExp("T........|.T.......|...T.....|....T....");
+const $3478ba2bdb1fd0df$var$TOUCH = RegExp("FT.......|F..T.....|F...T....");
+const $3478ba2bdb1fd0df$var$INSIDE = RegExp("T.F..F...");
+const $3478ba2bdb1fd0df$var$COVERED = RegExp("T.F..F...|.TF..F...|..FT.F...|..F.TF...");
+class $3478ba2bdb1fd0df$var$DE9IM {
     /**
      * Create new instance of DE9IM matrix
      */ constructor(){
@@ -2073,19 +2073,19 @@ class $bd479cb9731e0159$var$DE9IM {
         }).join("");
     }
     equal() {
-        return $bd479cb9731e0159$var$EQUAL.test(this.toString());
+        return $3478ba2bdb1fd0df$var$EQUAL.test(this.toString());
     }
     intersect() {
-        return $bd479cb9731e0159$var$INTERSECT.test(this.toString());
+        return $3478ba2bdb1fd0df$var$INTERSECT.test(this.toString());
     }
     touch() {
-        return $bd479cb9731e0159$var$TOUCH.test(this.toString());
+        return $3478ba2bdb1fd0df$var$TOUCH.test(this.toString());
     }
     inside() {
-        return $bd479cb9731e0159$var$INSIDE.test(this.toString());
+        return $3478ba2bdb1fd0df$var$INSIDE.test(this.toString());
     }
     covered() {
-        return $bd479cb9731e0159$var$COVERED.test(this.toString());
+        return $3478ba2bdb1fd0df$var$COVERED.test(this.toString());
     }
 }
 /**
@@ -2095,22 +2095,22 @@ class $bd479cb9731e0159$var$DE9IM {
  * @param {Polygon} polygon - polygon to test
  * @param {Point} point - point to test
  * @returns {INSIDE|OUTSIDE|BOUNDARY}
- */ function $bd479cb9731e0159$export$3adad403c78dc9b2(polygon, point) {
+ */ function $3478ba2bdb1fd0df$export$3adad403c78dc9b2(polygon, point) {
     let contains = undefined;
     // 1. Quick reject
     // if (polygon.box.not_intersect(point.box)) {
     //     return Flatten.OUTSIDE;
     // }
-    let ray = new $bd479cb9731e0159$export$2e2bcd8739ae039.Ray(point);
-    let line = new $bd479cb9731e0159$export$2e2bcd8739ae039.Line(ray.pt, ray.norm);
+    let ray = new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Ray(point);
+    let line = new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Line(ray.pt, ray.norm);
     // 2. Locate relevant edges of the polygon
-    const searchBox = new $bd479cb9731e0159$export$2e2bcd8739ae039.Box(ray.box.xmin - $bd479cb9731e0159$export$2e2bcd8739ae039.DP_TOL, ray.box.ymin - $bd479cb9731e0159$export$2e2bcd8739ae039.DP_TOL, ray.box.xmax, ray.box.ymax + $bd479cb9731e0159$export$2e2bcd8739ae039.DP_TOL);
-    if (polygon.box.not_intersect(searchBox)) return $bd479cb9731e0159$export$2e2bcd8739ae039.OUTSIDE;
+    const searchBox = new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Box(ray.box.xmin - $3478ba2bdb1fd0df$export$2e2bcd8739ae039.DP_TOL, ray.box.ymin - $3478ba2bdb1fd0df$export$2e2bcd8739ae039.DP_TOL, ray.box.xmax, ray.box.ymax + $3478ba2bdb1fd0df$export$2e2bcd8739ae039.DP_TOL);
+    if (polygon.box.not_intersect(searchBox)) return $3478ba2bdb1fd0df$export$2e2bcd8739ae039.OUTSIDE;
     let resp_edges = polygon.edges.search(searchBox);
-    if (resp_edges.length === 0) return $bd479cb9731e0159$export$2e2bcd8739ae039.OUTSIDE;
+    if (resp_edges.length === 0) return $3478ba2bdb1fd0df$export$2e2bcd8739ae039.OUTSIDE;
     // 2.5 Check if boundary
     for (let edge of resp_edges){
-        if (edge.shape.contains(point)) return $bd479cb9731e0159$export$2e2bcd8739ae039.BOUNDARY;
+        if (edge.shape.contains(point)) return $3478ba2bdb1fd0df$export$2e2bcd8739ae039.BOUNDARY;
     }
     let faces = [
         ...polygon.faces
@@ -2119,7 +2119,7 @@ class $bd479cb9731e0159$var$DE9IM {
     let intersections = [];
     for (let edge of resp_edges)for (let ip of ray.intersect(edge.shape)){
         // If intersection is equal to query point then point lays on boundary
-        if (ip.equalTo(point)) return $bd479cb9731e0159$export$2e2bcd8739ae039.BOUNDARY;
+        if (ip.equalTo(point)) return $3478ba2bdb1fd0df$export$2e2bcd8739ae039.BOUNDARY;
         intersections.push({
             pt: ip,
             edge: edge,
@@ -2128,8 +2128,8 @@ class $bd479cb9731e0159$var$DE9IM {
     }
     // 4. Sort intersection in x-ascending order
     intersections.sort((i1, i2)=>{
-        if ($bd479cb9731e0159$var$LT(i1.pt.x, i2.pt.x)) return -1;
-        if ($bd479cb9731e0159$var$GT(i1.pt.x, i2.pt.x)) return 1;
+        if ($3478ba2bdb1fd0df$var$LT(i1.pt.x, i2.pt.x)) return -1;
+        if ($3478ba2bdb1fd0df$var$GT(i1.pt.x, i2.pt.x)) return 1;
         if (i1.face_index < i2.face_index) return -1;
         if (i1.face_index > i2.face_index) return 1;
         if (i1.edge.arc_length < i2.edge.arc_length) return -1;
@@ -2143,7 +2143,7 @@ class $bd479cb9731e0159$var$DE9IM {
         if (intersection.pt.equalTo(intersection.edge.shape.start)) {
             /* skip same point between same edges if already counted */ if (i > 0 && intersection.pt.equalTo(intersections[i - 1].pt) && intersection.face_index === intersections[i - 1].face_index && intersection.edge.prev === intersections[i - 1].edge) continue;
             let prev_edge = intersection.edge.prev;
-            while($bd479cb9731e0159$var$EQ_0(prev_edge.length))prev_edge = prev_edge.prev;
+            while($3478ba2bdb1fd0df$var$EQ_0(prev_edge.length))prev_edge = prev_edge.prev;
             let prev_tangent = prev_edge.shape.tangentInEnd();
             let prev_point = intersection.pt.translate(prev_tangent);
             let cur_tangent = intersection.edge.shape.tangentInStart();
@@ -2154,7 +2154,7 @@ class $bd479cb9731e0159$var$DE9IM {
         } else if (intersection.pt.equalTo(intersection.edge.shape.end)) {
             /* skip same point between same edges if already counted */ if (i > 0 && intersection.pt.equalTo(intersections[i - 1].pt) && intersection.face_index === intersections[i - 1].face_index && intersection.edge.next === intersections[i - 1].edge) continue;
             let next_edge = intersection.edge.next;
-            while($bd479cb9731e0159$var$EQ_0(next_edge.length))next_edge = next_edge.next;
+            while($3478ba2bdb1fd0df$var$EQ_0(next_edge.length))next_edge = next_edge.next;
             let next_tangent = next_edge.shape.tangentInStart();
             let next_point = intersection.pt.translate(next_tangent);
             let cur_tangent = intersection.edge.shape.tangentInEnd();
@@ -2162,14 +2162,14 @@ class $bd479cb9731e0159$var$DE9IM {
             let next_on_the_left = next_point.leftTo(line);
             let cur_on_the_left = cur_point.leftTo(line);
             if (next_on_the_left && !cur_on_the_left || !next_on_the_left && cur_on_the_left) counter++;
-        } else if (intersection.edge.shape instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Segment) counter++;
+        } else if (intersection.edge.shape instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Segment) counter++;
         else {
             /* Check if ray does not touch the curve in the extremal (top or bottom) point */ let box = intersection.edge.shape.box;
-            if (!($bd479cb9731e0159$var$EQ(intersection.pt.y, box.ymin) || $bd479cb9731e0159$var$EQ(intersection.pt.y, box.ymax))) counter++;
+            if (!($3478ba2bdb1fd0df$var$EQ(intersection.pt.y, box.ymin) || $3478ba2bdb1fd0df$var$EQ(intersection.pt.y, box.ymax))) counter++;
         }
     }
     // 6. Odd or even?
-    contains = counter % 2 === 1 ? $bd479cb9731e0159$export$48ea0cac79c83ca8 : $bd479cb9731e0159$export$be7fee058d85725d;
+    contains = counter % 2 === 1 ? $3478ba2bdb1fd0df$export$48ea0cac79c83ca8 : $3478ba2bdb1fd0df$export$be7fee058d85725d;
     return contains;
 }
 /*
@@ -2181,48 +2181,48 @@ class $bd479cb9731e0159$var$DE9IM {
  * @param shape1
  * @param shape2
  * @returns {boolean}
- */ function $bd479cb9731e0159$var$equal(shape1, shape2) {
-    return $bd479cb9731e0159$var$relate(shape1, shape2).equal();
+ */ function $3478ba2bdb1fd0df$var$equal(shape1, shape2) {
+    return $3478ba2bdb1fd0df$var$relate(shape1, shape2).equal();
 }
 /**
  * Returns true if shapes have at least one point in common, same as "not disjoint"
  * @param shape1
  * @param shape2
  * @returns {boolean}
- */ function $bd479cb9731e0159$var$intersect(shape1, shape2) {
-    return $bd479cb9731e0159$var$relate(shape1, shape2).intersect();
+ */ function $3478ba2bdb1fd0df$var$intersect(shape1, shape2) {
+    return $3478ba2bdb1fd0df$var$relate(shape1, shape2).intersect();
 }
 /**
  * Returns true if shapes have at least one point in common, but their interiors do not intersect
  * @param shape1
  * @param shape2
  * @returns {boolean}
- */ function $bd479cb9731e0159$var$touch(shape1, shape2) {
-    return $bd479cb9731e0159$var$relate(shape1, shape2).touch();
+ */ function $3478ba2bdb1fd0df$var$touch(shape1, shape2) {
+    return $3478ba2bdb1fd0df$var$relate(shape1, shape2).touch();
 }
 /**
  * Returns true if shapes have no points in common neither in interior nor in boundary
  * @param shape1
  * @param shape2
  * @returns {boolean}
- */ function $bd479cb9731e0159$var$disjoint(shape1, shape2) {
-    return !$bd479cb9731e0159$var$intersect(shape1, shape2);
+ */ function $3478ba2bdb1fd0df$var$disjoint(shape1, shape2) {
+    return !$3478ba2bdb1fd0df$var$intersect(shape1, shape2);
 }
 /**
  * Returns true shape1 lies in the interior of shape2
  * @param shape1
  * @param shape2
  * @returns {boolean}
- */ function $bd479cb9731e0159$var$inside(shape1, shape2) {
-    return $bd479cb9731e0159$var$relate(shape1, shape2).inside();
+ */ function $3478ba2bdb1fd0df$var$inside(shape1, shape2) {
+    return $3478ba2bdb1fd0df$var$relate(shape1, shape2).inside();
 }
 /**
  * Returns true if every point in shape1 lies in the interior or on the boundary of shape2
  * @param shape1
  * @param shape2
  * @returns {boolean}
- */ function $bd479cb9731e0159$var$covered(shape1, shape2) {
-    return $bd479cb9731e0159$var$relate(shape1, shape2).covered();
+ */ function $3478ba2bdb1fd0df$var$covered(shape1, shape2) {
+    return $3478ba2bdb1fd0df$var$relate(shape1, shape2).covered();
 }
 /**
  * Returns true shape1's interior contains shape2 <br/>
@@ -2230,16 +2230,16 @@ class $bd479cb9731e0159$var$DE9IM {
  * @param shape1
  * @param shape2
  * @returns {boolean}
- */ function $bd479cb9731e0159$var$contain(shape1, shape2) {
-    return $bd479cb9731e0159$var$inside(shape2, shape1);
+ */ function $3478ba2bdb1fd0df$var$contain(shape1, shape2) {
+    return $3478ba2bdb1fd0df$var$inside(shape2, shape1);
 }
 /**
  * Returns true shape1's cover shape2, same as shape2 covered by shape1
  * @param shape1
  * @param shape2
  * @returns {boolean}
- */ function $bd479cb9731e0159$var$cover(shape1, shape2) {
-    return $bd479cb9731e0159$var$covered(shape2, shape1);
+ */ function $3478ba2bdb1fd0df$var$cover(shape1, shape2) {
+    return $3478ba2bdb1fd0df$var$covered(shape2, shape1);
 }
 /**
  * Returns relation between two shapes as intersection 3x3 matrix, where each
@@ -2250,21 +2250,21 @@ class $bd479cb9731e0159$var$DE9IM {
  * @param shape1
  * @param shape2
  * @returns {DE9IM}
- */ function $bd479cb9731e0159$var$relate(shape1, shape2) {
-    if (shape1 instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Line && shape2 instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Line) return $bd479cb9731e0159$var$relateLine2Line(shape1, shape2);
-    else if (shape1 instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Line && shape2 instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Circle) return $bd479cb9731e0159$var$relateLine2Circle(shape1, shape2);
-    else if (shape1 instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Line && shape2 instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Box) return $bd479cb9731e0159$var$relateLine2Box(shape1, shape2);
-    else if (shape1 instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Line && shape2 instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Polygon) return $bd479cb9731e0159$var$relateLine2Polygon(shape1, shape2);
-    else if ((shape1 instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Segment || shape1 instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Arc) && shape2 instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Polygon) return $bd479cb9731e0159$var$relateShape2Polygon(shape1, shape2);
-    else if ((shape1 instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Segment || shape1 instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Arc) && (shape2 instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Circle || shape2 instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Box)) return $bd479cb9731e0159$var$relateShape2Polygon(shape1, new $bd479cb9731e0159$export$2e2bcd8739ae039.Polygon(shape2));
-    else if (shape1 instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Polygon && shape2 instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Polygon) return $bd479cb9731e0159$var$relatePolygon2Polygon(shape1, shape2);
-    else if ((shape1 instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Circle || shape1 instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Box) && (shape2 instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Circle || shape2 instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Box)) return $bd479cb9731e0159$var$relatePolygon2Polygon(new $bd479cb9731e0159$export$2e2bcd8739ae039.Polygon(shape1), new $bd479cb9731e0159$export$2e2bcd8739ae039.Polygon(shape2));
-    else if ((shape1 instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Circle || shape1 instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Box) && shape2 instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Polygon) return $bd479cb9731e0159$var$relatePolygon2Polygon(new $bd479cb9731e0159$export$2e2bcd8739ae039.Polygon(shape1), shape2);
-    else if (shape1 instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Polygon && (shape2 instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Circle || shape2 instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Box)) return $bd479cb9731e0159$var$relatePolygon2Polygon(shape1, new $bd479cb9731e0159$export$2e2bcd8739ae039.Polygon(shape2));
+ */ function $3478ba2bdb1fd0df$var$relate(shape1, shape2) {
+    if (shape1 instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Line && shape2 instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Line) return $3478ba2bdb1fd0df$var$relateLine2Line(shape1, shape2);
+    else if (shape1 instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Line && shape2 instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Circle) return $3478ba2bdb1fd0df$var$relateLine2Circle(shape1, shape2);
+    else if (shape1 instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Line && shape2 instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Box) return $3478ba2bdb1fd0df$var$relateLine2Box(shape1, shape2);
+    else if (shape1 instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Line && shape2 instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Polygon) return $3478ba2bdb1fd0df$var$relateLine2Polygon(shape1, shape2);
+    else if ((shape1 instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Segment || shape1 instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Arc) && shape2 instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Polygon) return $3478ba2bdb1fd0df$var$relateShape2Polygon(shape1, shape2);
+    else if ((shape1 instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Segment || shape1 instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Arc) && (shape2 instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Circle || shape2 instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Box)) return $3478ba2bdb1fd0df$var$relateShape2Polygon(shape1, new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Polygon(shape2));
+    else if (shape1 instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Polygon && shape2 instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Polygon) return $3478ba2bdb1fd0df$var$relatePolygon2Polygon(shape1, shape2);
+    else if ((shape1 instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Circle || shape1 instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Box) && (shape2 instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Circle || shape2 instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Box)) return $3478ba2bdb1fd0df$var$relatePolygon2Polygon(new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Polygon(shape1), new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Polygon(shape2));
+    else if ((shape1 instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Circle || shape1 instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Box) && shape2 instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Polygon) return $3478ba2bdb1fd0df$var$relatePolygon2Polygon(new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Polygon(shape1), shape2);
+    else if (shape1 instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Polygon && (shape2 instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Circle || shape2 instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Box)) return $3478ba2bdb1fd0df$var$relatePolygon2Polygon(shape1, new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Polygon(shape2));
 }
-function $bd479cb9731e0159$var$relateLine2Line(line1, line2) {
-    let denim = new $bd479cb9731e0159$var$DE9IM();
-    let ip = $bd479cb9731e0159$var$intersectLine2Line(line1, line2);
+function $3478ba2bdb1fd0df$var$relateLine2Line(line1, line2) {
+    let denim = new $3478ba2bdb1fd0df$var$DE9IM();
+    let ip = $3478ba2bdb1fd0df$var$intersectLine2Line(line1, line2);
     if (ip.length === 0) {
         if (line1.contains(line2.pt) && line2.contains(line1.pt)) {
             denim.I2I = [
@@ -2288,9 +2288,9 @@ function $bd479cb9731e0159$var$relateLine2Line(line1, line2) {
     }
     return denim;
 }
-function $bd479cb9731e0159$var$relateLine2Circle(line, circle) {
-    let denim = new $bd479cb9731e0159$var$DE9IM();
-    let ip = $bd479cb9731e0159$var$intersectLine2Circle(line, circle);
+function $3478ba2bdb1fd0df$var$relateLine2Circle(line, circle) {
+    let denim = new $3478ba2bdb1fd0df$var$DE9IM();
+    let ip = $3478ba2bdb1fd0df$var$intersectLine2Circle(line, circle);
     if (ip.length === 0) {
         denim.I2I = [];
         denim.I2B = [];
@@ -2308,7 +2308,7 @@ function $bd479cb9731e0159$var$relateLine2Circle(line, circle) {
             circle
         ];
     } else {
-        let multiline = new $bd479cb9731e0159$export$a5433e0f3b1dce29([
+        let multiline = new $3478ba2bdb1fd0df$export$a5433e0f3b1dce29([
             line
         ]);
         let ip_sorted = line.sortPoints(ip);
@@ -2322,15 +2322,15 @@ function $bd479cb9731e0159$var$relateLine2Circle(line, circle) {
             splitShapes[0],
             splitShapes[2]
         ];
-        denim.E2I = new $bd479cb9731e0159$export$2e2bcd8739ae039.Polygon([
+        denim.E2I = new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Polygon([
             circle.toArc()
         ]).cutWithLine(line);
     }
     return denim;
 }
-function $bd479cb9731e0159$var$relateLine2Box(line, box) {
-    let denim = new $bd479cb9731e0159$var$DE9IM();
-    let ip = $bd479cb9731e0159$var$intersectLine2Box(line, box);
+function $3478ba2bdb1fd0df$var$relateLine2Box(line, box) {
+    let denim = new $3478ba2bdb1fd0df$var$DE9IM();
+    let ip = $3478ba2bdb1fd0df$var$intersectLine2Box(line, box);
     if (ip.length === 0) {
         denim.I2I = [];
         denim.I2B = [];
@@ -2348,7 +2348,7 @@ function $bd479cb9731e0159$var$relateLine2Box(line, box) {
             box
         ];
     } else {
-        let multiline = new $bd479cb9731e0159$export$a5433e0f3b1dce29([
+        let multiline = new $3478ba2bdb1fd0df$export$a5433e0f3b1dce29([
             line
         ]);
         let ip_sorted = line.sortPoints(ip);
@@ -2375,15 +2375,15 @@ function $bd479cb9731e0159$var$relateLine2Box(line, box) {
                 splitShapes[0],
                 splitShapes[2]
             ];
-            denim.E2I = new $bd479cb9731e0159$export$2e2bcd8739ae039.Polygon(box.toSegments()).cutWithLine(line);
+            denim.E2I = new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Polygon(box.toSegments()).cutWithLine(line);
         }
     }
     return denim;
 }
-function $bd479cb9731e0159$var$relateLine2Polygon(line, polygon) {
-    let denim = new $bd479cb9731e0159$var$DE9IM();
-    let ip = $bd479cb9731e0159$var$intersectLine2Polygon(line, polygon);
-    let multiline = new $bd479cb9731e0159$export$a5433e0f3b1dce29([
+function $3478ba2bdb1fd0df$var$relateLine2Polygon(line, polygon) {
+    let denim = new $3478ba2bdb1fd0df$var$DE9IM();
+    let ip = $3478ba2bdb1fd0df$var$intersectLine2Polygon(line, polygon);
+    let multiline = new $3478ba2bdb1fd0df$export$a5433e0f3b1dce29([
         line
     ]);
     let ip_sorted = ip.length > 0 ? ip.slice() : line.sortPoints(ip);
@@ -2393,21 +2393,21 @@ function $bd479cb9731e0159$var$relateLine2Polygon(line, polygon) {
     ].forEach((edge)=>edge.setInclusion(polygon));
     denim.I2I = [
         ...multiline
-    ].filter((edge)=>edge.bv === $bd479cb9731e0159$export$2e2bcd8739ae039.INSIDE).map((edge)=>edge.shape);
+    ].filter((edge)=>edge.bv === $3478ba2bdb1fd0df$export$2e2bcd8739ae039.INSIDE).map((edge)=>edge.shape);
     denim.I2B = [
         ...multiline
-    ].slice(1).map((edge)=>edge.bv === $bd479cb9731e0159$export$2e2bcd8739ae039.BOUNDARY ? edge.shape : edge.shape.start);
+    ].slice(1).map((edge)=>edge.bv === $3478ba2bdb1fd0df$export$2e2bcd8739ae039.BOUNDARY ? edge.shape : edge.shape.start);
     denim.I2E = [
         ...multiline
-    ].filter((edge)=>edge.bv === $bd479cb9731e0159$export$2e2bcd8739ae039.OUTSIDE).map((edge)=>edge.shape);
+    ].filter((edge)=>edge.bv === $3478ba2bdb1fd0df$export$2e2bcd8739ae039.OUTSIDE).map((edge)=>edge.shape);
     denim.E2I = polygon.cutWithLine(line);
     return denim;
 }
-function $bd479cb9731e0159$var$relateShape2Polygon(shape, polygon) {
-    let denim = new $bd479cb9731e0159$var$DE9IM();
-    let ip = $bd479cb9731e0159$var$intersectShape2Polygon(shape, polygon);
+function $3478ba2bdb1fd0df$var$relateShape2Polygon(shape, polygon) {
+    let denim = new $3478ba2bdb1fd0df$var$DE9IM();
+    let ip = $3478ba2bdb1fd0df$var$intersectShape2Polygon(shape, polygon);
     let ip_sorted = ip.length > 0 ? ip.slice() : shape.sortPoints(ip);
-    let multiline = new $bd479cb9731e0159$export$a5433e0f3b1dce29([
+    let multiline = new $3478ba2bdb1fd0df$export$a5433e0f3b1dce29([
         shape
     ]);
     multiline.split(ip_sorted);
@@ -2416,42 +2416,42 @@ function $bd479cb9731e0159$var$relateShape2Polygon(shape, polygon) {
     ].forEach((edge)=>edge.setInclusion(polygon));
     denim.I2I = [
         ...multiline
-    ].filter((edge)=>edge.bv === $bd479cb9731e0159$export$2e2bcd8739ae039.INSIDE).map((edge)=>edge.shape);
+    ].filter((edge)=>edge.bv === $3478ba2bdb1fd0df$export$2e2bcd8739ae039.INSIDE).map((edge)=>edge.shape);
     denim.I2B = [
         ...multiline
-    ].slice(1).map((edge)=>edge.bv === $bd479cb9731e0159$export$2e2bcd8739ae039.BOUNDARY ? edge.shape : edge.shape.start);
+    ].slice(1).map((edge)=>edge.bv === $3478ba2bdb1fd0df$export$2e2bcd8739ae039.BOUNDARY ? edge.shape : edge.shape.start);
     denim.I2E = [
         ...multiline
-    ].filter((edge)=>edge.bv === $bd479cb9731e0159$export$2e2bcd8739ae039.OUTSIDE).map((edge)=>edge.shape);
+    ].filter((edge)=>edge.bv === $3478ba2bdb1fd0df$export$2e2bcd8739ae039.OUTSIDE).map((edge)=>edge.shape);
     denim.B2I = [];
     denim.B2B = [];
     denim.B2E = [];
     for (let pt of [
         shape.start,
         shape.end
-    ])switch($bd479cb9731e0159$export$3adad403c78dc9b2(polygon, pt)){
-        case $bd479cb9731e0159$export$2e2bcd8739ae039.INSIDE:
+    ])switch($3478ba2bdb1fd0df$export$3adad403c78dc9b2(polygon, pt)){
+        case $3478ba2bdb1fd0df$export$2e2bcd8739ae039.INSIDE:
             denim.B2I.push(pt);
             break;
-        case $bd479cb9731e0159$export$2e2bcd8739ae039.BOUNDARY:
+        case $3478ba2bdb1fd0df$export$2e2bcd8739ae039.BOUNDARY:
             denim.B2B.push(pt);
             break;
-        case $bd479cb9731e0159$export$2e2bcd8739ae039.OUTSIDE:
+        case $3478ba2bdb1fd0df$export$2e2bcd8739ae039.OUTSIDE:
             denim.B2E.push(pt);
             break;
     }
     // denim.E2I  TODO: calculate, not clear what is expected result
     return denim;
 }
-function $bd479cb9731e0159$var$relatePolygon2Polygon(polygon1, polygon2) {
-    let denim = new $bd479cb9731e0159$var$DE9IM();
-    let [ip_sorted1, ip_sorted2] = $bd479cb9731e0159$var$calculateIntersections(polygon1, polygon2);
-    let boolean_intersection = $bd479cb9731e0159$var$intersect$1(polygon1, polygon2);
-    let boolean_difference1 = $bd479cb9731e0159$var$subtract(polygon1, polygon2);
-    let boolean_difference2 = $bd479cb9731e0159$var$subtract(polygon2, polygon1);
-    let [inner_clip_shapes1, inner_clip_shapes2] = $bd479cb9731e0159$var$innerClip(polygon1, polygon2);
-    let outer_clip_shapes1 = $bd479cb9731e0159$var$outerClip(polygon1, polygon2);
-    let outer_clip_shapes2 = $bd479cb9731e0159$var$outerClip(polygon2, polygon1);
+function $3478ba2bdb1fd0df$var$relatePolygon2Polygon(polygon1, polygon2) {
+    let denim = new $3478ba2bdb1fd0df$var$DE9IM();
+    let [ip_sorted1, ip_sorted2] = $3478ba2bdb1fd0df$var$calculateIntersections(polygon1, polygon2);
+    let boolean_intersection = $3478ba2bdb1fd0df$var$intersect$1(polygon1, polygon2);
+    let boolean_difference1 = $3478ba2bdb1fd0df$var$subtract(polygon1, polygon2);
+    let boolean_difference2 = $3478ba2bdb1fd0df$var$subtract(polygon2, polygon1);
+    let [inner_clip_shapes1, inner_clip_shapes2] = $3478ba2bdb1fd0df$var$innerClip(polygon1, polygon2);
+    let outer_clip_shapes1 = $3478ba2bdb1fd0df$var$outerClip(polygon1, polygon2);
+    let outer_clip_shapes2 = $3478ba2bdb1fd0df$var$outerClip(polygon2, polygon1);
     denim.I2I = boolean_intersection.isEmpty() ? [] : [
         boolean_intersection
     ];
@@ -2469,17 +2469,17 @@ function $bd479cb9731e0159$var$relatePolygon2Polygon(polygon1, polygon2) {
     // denim.E2E    not relevant meanwhile
     return denim;
 }
-var $bd479cb9731e0159$export$932c2897ef8e4e8e = /*#__PURE__*/ Object.freeze({
+var $3478ba2bdb1fd0df$export$932c2897ef8e4e8e = /*#__PURE__*/ Object.freeze({
     __proto__: null,
-    contain: $bd479cb9731e0159$var$contain,
-    cover: $bd479cb9731e0159$var$cover,
-    covered: $bd479cb9731e0159$var$covered,
-    disjoint: $bd479cb9731e0159$var$disjoint,
-    equal: $bd479cb9731e0159$var$equal,
-    inside: $bd479cb9731e0159$var$inside,
-    intersect: $bd479cb9731e0159$var$intersect,
-    relate: $bd479cb9731e0159$var$relate,
-    touch: $bd479cb9731e0159$var$touch
+    contain: $3478ba2bdb1fd0df$var$contain,
+    cover: $3478ba2bdb1fd0df$var$cover,
+    covered: $3478ba2bdb1fd0df$var$covered,
+    disjoint: $3478ba2bdb1fd0df$var$disjoint,
+    equal: $3478ba2bdb1fd0df$var$equal,
+    inside: $3478ba2bdb1fd0df$var$inside,
+    intersect: $3478ba2bdb1fd0df$var$intersect,
+    relate: $3478ba2bdb1fd0df$var$relate,
+    touch: $3478ba2bdb1fd0df$var$touch
 });
 /**
  * Class representing an affine transformation 3x3 matrix:
@@ -2489,7 +2489,7 @@ var $bd479cb9731e0159$export$932c2897ef8e4e8e = /*#__PURE__*/ Object.freeze({
  *        0  0  1  ]
  * </pre
  * @type {Matrix}
- */ class $bd479cb9731e0159$export$5b12bf1653c0dd85 {
+ */ class $3478ba2bdb1fd0df$export$5b12bf1653c0dd85 {
     /**
      * Construct new instance of affine transformation matrix <br/>
      * If parameters omitted, construct identity matrix a = 1, d = 1
@@ -2511,7 +2511,7 @@ var $bd479cb9731e0159$export$932c2897ef8e4e8e = /*#__PURE__*/ Object.freeze({
      * Return new cloned instance of matrix
      * @return {Matrix}
      **/ clone() {
-        return new $bd479cb9731e0159$export$5b12bf1653c0dd85(this.a, this.b, this.c, this.d, this.tx, this.ty);
+        return new $3478ba2bdb1fd0df$export$5b12bf1653c0dd85(this.a, this.b, this.c, this.d, this.tx, this.ty);
     }
     /**
      * Transform vector [x,y] using transformation matrix. <br/>
@@ -2535,7 +2535,7 @@ var $bd479cb9731e0159$export$932c2897ef8e4e8e = /*#__PURE__*/ Object.freeze({
      * @param {Matrix} other_matrix - matrix to multiply by
      * @returns {Matrix}
      */ multiply(other_matrix) {
-        return new $bd479cb9731e0159$export$5b12bf1653c0dd85(this.a * other_matrix.a + this.c * other_matrix.b, this.b * other_matrix.a + this.d * other_matrix.b, this.a * other_matrix.c + this.c * other_matrix.d, this.b * other_matrix.c + this.d * other_matrix.d, this.a * other_matrix.tx + this.c * other_matrix.ty + this.tx, this.b * other_matrix.tx + this.d * other_matrix.ty + this.ty);
+        return new $3478ba2bdb1fd0df$export$5b12bf1653c0dd85(this.a * other_matrix.a + this.c * other_matrix.b, this.b * other_matrix.a + this.d * other_matrix.b, this.a * other_matrix.c + this.c * other_matrix.d, this.b * other_matrix.c + this.d * other_matrix.d, this.a * other_matrix.tx + this.c * other_matrix.ty + this.tx, this.b * other_matrix.tx + this.d * other_matrix.ty + this.ty);
     }
     /**
      * Return new matrix as a result of multiplication of the current matrix
@@ -2552,8 +2552,8 @@ var $bd479cb9731e0159$export$932c2897ef8e4e8e = /*#__PURE__*/ Object.freeze({
         } else if (args.length === 2 && typeof args[0] == "number" && typeof args[1] == "number") {
             tx = args[0];
             ty = args[1];
-        } else throw $bd479cb9731e0159$export$b8e9cd941e8016ac.ILLEGAL_PARAMETERS;
-        return this.multiply(new $bd479cb9731e0159$export$5b12bf1653c0dd85(1, 0, 0, 1, tx, ty));
+        } else throw $3478ba2bdb1fd0df$export$b8e9cd941e8016ac.ILLEGAL_PARAMETERS;
+        return this.multiply(new $3478ba2bdb1fd0df$export$5b12bf1653c0dd85(1, 0, 0, 1, tx, ty));
     }
     /**
      * Return new matrix as a result of multiplication of the current matrix
@@ -2566,7 +2566,7 @@ var $bd479cb9731e0159$export$932c2897ef8e4e8e = /*#__PURE__*/ Object.freeze({
      */ rotate(angle, centerX = 0.0, centerY = 0.0) {
         let cos = Math.cos(angle);
         let sin = Math.sin(angle);
-        return this.translate(centerX, centerY).multiply(new $bd479cb9731e0159$export$5b12bf1653c0dd85(cos, sin, -sin, cos, 0, 0)).translate(-centerX, -centerY);
+        return this.translate(centerX, centerY).multiply(new $3478ba2bdb1fd0df$export$5b12bf1653c0dd85(cos, sin, -sin, cos, 0, 0)).translate(-centerX, -centerY);
     }
     /**
      * Return new matrix as a result of multiplication of the current matrix
@@ -2575,28 +2575,28 @@ var $bd479cb9731e0159$export$932c2897ef8e4e8e = /*#__PURE__*/ Object.freeze({
      * @param {number} sy
      * @returns {Matrix}
      */ scale(sx, sy) {
-        return this.multiply(new $bd479cb9731e0159$export$5b12bf1653c0dd85(sx, 0, 0, sy, 0, 0));
+        return this.multiply(new $3478ba2bdb1fd0df$export$5b12bf1653c0dd85(sx, 0, 0, sy, 0, 0));
     }
     /**
      * Returns true if two matrix are equal parameter by parameter
      * @param {Matrix} matrix - other matrix
      * @returns {boolean} true if equal, false otherwise
      */ equalTo(matrix) {
-        if (!$bd479cb9731e0159$export$2e2bcd8739ae039.Utils.EQ(this.tx, matrix.tx)) return false;
-        if (!$bd479cb9731e0159$export$2e2bcd8739ae039.Utils.EQ(this.ty, matrix.ty)) return false;
-        if (!$bd479cb9731e0159$export$2e2bcd8739ae039.Utils.EQ(this.a, matrix.a)) return false;
-        if (!$bd479cb9731e0159$export$2e2bcd8739ae039.Utils.EQ(this.b, matrix.b)) return false;
-        if (!$bd479cb9731e0159$export$2e2bcd8739ae039.Utils.EQ(this.c, matrix.c)) return false;
-        if (!$bd479cb9731e0159$export$2e2bcd8739ae039.Utils.EQ(this.d, matrix.d)) return false;
+        if (!$3478ba2bdb1fd0df$export$2e2bcd8739ae039.Utils.EQ(this.tx, matrix.tx)) return false;
+        if (!$3478ba2bdb1fd0df$export$2e2bcd8739ae039.Utils.EQ(this.ty, matrix.ty)) return false;
+        if (!$3478ba2bdb1fd0df$export$2e2bcd8739ae039.Utils.EQ(this.a, matrix.a)) return false;
+        if (!$3478ba2bdb1fd0df$export$2e2bcd8739ae039.Utils.EQ(this.b, matrix.b)) return false;
+        if (!$3478ba2bdb1fd0df$export$2e2bcd8739ae039.Utils.EQ(this.c, matrix.c)) return false;
+        if (!$3478ba2bdb1fd0df$export$2e2bcd8739ae039.Utils.EQ(this.d, matrix.d)) return false;
         return true;
     }
 }
-$bd479cb9731e0159$export$2e2bcd8739ae039.Matrix = $bd479cb9731e0159$export$5b12bf1653c0dd85;
+$3478ba2bdb1fd0df$export$2e2bcd8739ae039.Matrix = $3478ba2bdb1fd0df$export$5b12bf1653c0dd85;
 /**
  * Function to create matrix equivalent to "new" constructor
  * @param args
- */ const $bd479cb9731e0159$export$9bdad1ae37d738e0 = (...args)=>new $bd479cb9731e0159$export$2e2bcd8739ae039.Matrix(...args);
-$bd479cb9731e0159$export$2e2bcd8739ae039.matrix = $bd479cb9731e0159$export$9bdad1ae37d738e0;
+ */ const $3478ba2bdb1fd0df$export$9bdad1ae37d738e0 = (...args)=>new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Matrix(...args);
+$3478ba2bdb1fd0df$export$2e2bcd8739ae039.matrix = $3478ba2bdb1fd0df$export$9bdad1ae37d738e0;
 /**
  * Created by Alex Bol on 4/1/2017.
  */ /**
@@ -2612,7 +2612,7 @@ $bd479cb9731e0159$export$2e2bcd8739ae039.matrix = $bd479cb9731e0159$export$9bdad
  * See **Box** class in [flatten-js](https://github.com/alexbol99/flatten-js) library as the example
  * of Interval interface implementation
  * @type {Interval}
- */ const $bd479cb9731e0159$var$Interval = class Interval {
+ */ const $3478ba2bdb1fd0df$var$Interval = class Interval {
     /**
      * Accept two comparable values and creates new instance of interval
      * Predicate Interval.comparable_less(low, high) supposed to return true on these values
@@ -2700,12 +2700,12 @@ $bd479cb9731e0159$export$2e2bcd8739ae039.matrix = $bd479cb9731e0159$export$9bdad
 //     RB_TREE_COLOR_RED: 0,
 //     RB_TREE_COLOR_BLACK: 1
 // };
-const $bd479cb9731e0159$var$RB_TREE_COLOR_RED = 0;
-const $bd479cb9731e0159$var$RB_TREE_COLOR_BLACK = 1;
+const $3478ba2bdb1fd0df$var$RB_TREE_COLOR_RED = 0;
+const $3478ba2bdb1fd0df$var$RB_TREE_COLOR_BLACK = 1;
 /**
  * Created by Alex Bol on 4/1/2017.
- */ class $bd479cb9731e0159$var$Node {
-    constructor(key, value, left = null, right = null, parent = null, color = $bd479cb9731e0159$var$RB_TREE_COLOR_BLACK){
+ */ class $3478ba2bdb1fd0df$var$Node {
+    constructor(key, value, left = null, right = null, parent = null, color = $3478ba2bdb1fd0df$var$RB_TREE_COLOR_BLACK){
         this.left = left; // reference to left child node
         this.right = right; // reference to right child node
         this.parent = parent; // reference to parent node
@@ -2721,13 +2721,13 @@ const $bd479cb9731e0159$var$RB_TREE_COLOR_BLACK = 1;
                     high,
                     low
                 ];
-                this.item.key = new $bd479cb9731e0159$var$Interval(low, high);
+                this.item.key = new $3478ba2bdb1fd0df$var$Interval(low, high);
             }
         }
         this.max = this.item.key ? this.item.key.max : undefined;
     }
     isNil() {
-        return this.item.key === undefined && this.item.value === undefined && this.left === null && this.right === null && this.color === $bd479cb9731e0159$var$RB_TREE_COLOR_BLACK;
+        return this.item.key === undefined && this.item.value === undefined && this.left === null && this.right === null && this.color === $3478ba2bdb1fd0df$var$RB_TREE_COLOR_BLACK;
     }
     _value_less_than(other_node) {
         return this.item.value && other_node.item.value && this.item.value.less_than ? this.item.value.less_than(other_node.item.value) : this.item.value < other_node.item.value;
@@ -2785,12 +2785,12 @@ const $bd479cb9731e0159$var$RB_TREE_COLOR_BLACK = 1;
  * Interval tree stores items which are couples of {key:interval, value: value} <br/>
  * Interval is an object with high and low properties or simply pair [low,high] of numeric values <br />
  * @type {IntervalTree}
- */ class $bd479cb9731e0159$var$IntervalTree {
+ */ class $3478ba2bdb1fd0df$var$IntervalTree {
     /**
      * Construct new empty instance of IntervalTree
      */ constructor(){
         this.root = null;
-        this.nil_node = new $bd479cb9731e0159$var$Node();
+        this.nil_node = new $3478ba2bdb1fd0df$var$Node();
     }
     /**
      * Returns number of items stored in the interval tree
@@ -2845,7 +2845,7 @@ const $bd479cb9731e0159$var$RB_TREE_COLOR_BLACK = 1;
      * @returns {Node} returns reference to inserted node as an object {key:interval, value: value}
      */ insert(key, value = key) {
         if (key === undefined) return;
-        let insert_node = new $bd479cb9731e0159$var$Node(key, value, this.nil_node, this.nil_node, null, $bd479cb9731e0159$var$RB_TREE_COLOR_RED);
+        let insert_node = new $3478ba2bdb1fd0df$var$Node(key, value, this.nil_node, this.nil_node, null, $3478ba2bdb1fd0df$var$RB_TREE_COLOR_RED);
         this.tree_insert(insert_node);
         this.recalc_max(insert_node);
         return insert_node;
@@ -2856,7 +2856,7 @@ const $bd479cb9731e0159$var$RB_TREE_COLOR_BLACK = 1;
      * @param {any} value - value object to be checked
      * @returns {boolean} true if item {key, value} exist in the tree, false otherwise
      */ exist(key, value = key) {
-        let search_node = new $bd479cb9731e0159$var$Node(key, value);
+        let search_node = new $3478ba2bdb1fd0df$var$Node(key, value);
         return !!this.tree_search(this.root, search_node);
     }
     /**
@@ -2865,7 +2865,7 @@ const $bd479cb9731e0159$var$RB_TREE_COLOR_BLACK = 1;
      * @param {any} value - value object
      * @returns {boolean} true if item {key, value} deleted, false if not found
      */ remove(key, value = key) {
-        let search_node = new $bd479cb9731e0159$var$Node(key, value);
+        let search_node = new $3478ba2bdb1fd0df$var$Node(key, value);
         let delete_node = this.tree_search(this.root, search_node);
         if (delete_node) this.tree_delete(delete_node);
         return delete_node;
@@ -2877,7 +2877,7 @@ const $bd479cb9731e0159$var$RB_TREE_COLOR_BLACK = 1;
      * @param outputMapperFn(value,key) - optional function that maps (value, key) to custom output
      * @returns {Array}
      */ search(interval, outputMapperFn = (value, key)=>value === key ? key.output() : value) {
-        let search_node = new $bd479cb9731e0159$var$Node(interval);
+        let search_node = new $3478ba2bdb1fd0df$var$Node(interval);
         let resp_nodes = [];
         this.tree_search_interval(this.root, search_node, resp_nodes);
         return resp_nodes.map((node)=>outputMapperFn(node.item.value, node.item.key));
@@ -2887,7 +2887,7 @@ const $bd479cb9731e0159$var$RB_TREE_COLOR_BLACK = 1;
      * @param {Interval} interval - search interval or tuple [low, high]
      * @returns {boolean}
      */ intersect_any(interval) {
-        let search_node = new $bd479cb9731e0159$var$Node(interval);
+        let search_node = new $3478ba2bdb1fd0df$var$Node(interval);
         return this.tree_find_any_interval(this.root, search_node);
     }
     /**
@@ -2901,7 +2901,7 @@ const $bd479cb9731e0159$var$RB_TREE_COLOR_BLACK = 1;
      * Value Mapper. Walk through every node and map node value to another value
      * @param callback(value,key) - function to be called for each tree item
      */ map(callback) {
-        const tree = new $bd479cb9731e0159$var$IntervalTree();
+        const tree = new $3478ba2bdb1fd0df$var$IntervalTree();
         this.tree_walk(this.root, (node)=>tree.insert(node.item.key, callback(node.item.value, node.item.key)));
         return tree;
     }
@@ -2911,7 +2911,7 @@ const $bd479cb9731e0159$var$RB_TREE_COLOR_BLACK = 1;
      * @returns {Iterator}
      */ *iterate(interval, outputMapperFn = (value, key)=>value === key ? key.output() : value) {
         let node;
-        if (interval) node = this.tree_search_nearest_forward(this.root, new $bd479cb9731e0159$var$Node(interval));
+        if (interval) node = this.tree_search_nearest_forward(this.root, new $3478ba2bdb1fd0df$var$Node(interval));
         else if (this.root) node = this.local_minimum(this.root);
         while(node){
             yield outputMapperFn(node.item.value, node.item.key);
@@ -2947,13 +2947,13 @@ const $bd479cb9731e0159$var$RB_TREE_COLOR_BLACK = 1;
         let current_node;
         let uncle_node;
         current_node = insert_node;
-        while(current_node !== this.root && current_node.parent.color === $bd479cb9731e0159$var$RB_TREE_COLOR_RED)if (current_node.parent === current_node.parent.parent.left) {
+        while(current_node !== this.root && current_node.parent.color === $3478ba2bdb1fd0df$var$RB_TREE_COLOR_RED)if (current_node.parent === current_node.parent.parent.left) {
             uncle_node = current_node.parent.parent.right; // right brother of parent
-            if (uncle_node.color === $bd479cb9731e0159$var$RB_TREE_COLOR_RED) {
+            if (uncle_node.color === $3478ba2bdb1fd0df$var$RB_TREE_COLOR_RED) {
                 // re-color father and uncle into black
-                current_node.parent.color = $bd479cb9731e0159$var$RB_TREE_COLOR_BLACK;
-                uncle_node.color = $bd479cb9731e0159$var$RB_TREE_COLOR_BLACK;
-                current_node.parent.parent.color = $bd479cb9731e0159$var$RB_TREE_COLOR_RED;
+                current_node.parent.color = $3478ba2bdb1fd0df$var$RB_TREE_COLOR_BLACK;
+                uncle_node.color = $3478ba2bdb1fd0df$var$RB_TREE_COLOR_BLACK;
+                current_node.parent.parent.color = $3478ba2bdb1fd0df$var$RB_TREE_COLOR_RED;
                 current_node = current_node.parent.parent;
             } else {
                 if (current_node === current_node.parent.right) {
@@ -2961,18 +2961,18 @@ const $bd479cb9731e0159$var$RB_TREE_COLOR_BLACK = 1;
                     current_node = current_node.parent;
                     this.rotate_left(current_node);
                 }
-                current_node.parent.color = $bd479cb9731e0159$var$RB_TREE_COLOR_BLACK; // Case 3. Current is left child.
+                current_node.parent.color = $3478ba2bdb1fd0df$var$RB_TREE_COLOR_BLACK; // Case 3. Current is left child.
                 // Re-color father and grandfather, rotate grandfather right
-                current_node.parent.parent.color = $bd479cb9731e0159$var$RB_TREE_COLOR_RED;
+                current_node.parent.parent.color = $3478ba2bdb1fd0df$var$RB_TREE_COLOR_RED;
                 this.rotate_right(current_node.parent.parent);
             }
         } else {
             uncle_node = current_node.parent.parent.left; // left brother of parent
-            if (uncle_node.color === $bd479cb9731e0159$var$RB_TREE_COLOR_RED) {
+            if (uncle_node.color === $3478ba2bdb1fd0df$var$RB_TREE_COLOR_RED) {
                 // re-color father and uncle into black
-                current_node.parent.color = $bd479cb9731e0159$var$RB_TREE_COLOR_BLACK;
-                uncle_node.color = $bd479cb9731e0159$var$RB_TREE_COLOR_BLACK;
-                current_node.parent.parent.color = $bd479cb9731e0159$var$RB_TREE_COLOR_RED;
+                current_node.parent.color = $3478ba2bdb1fd0df$var$RB_TREE_COLOR_BLACK;
+                uncle_node.color = $3478ba2bdb1fd0df$var$RB_TREE_COLOR_BLACK;
+                current_node.parent.parent.color = $3478ba2bdb1fd0df$var$RB_TREE_COLOR_RED;
                 current_node = current_node.parent.parent;
             } else {
                 if (current_node === current_node.parent.left) {
@@ -2980,13 +2980,13 @@ const $bd479cb9731e0159$var$RB_TREE_COLOR_BLACK = 1;
                     current_node = current_node.parent;
                     this.rotate_right(current_node);
                 }
-                current_node.parent.color = $bd479cb9731e0159$var$RB_TREE_COLOR_BLACK; // Case 6. Current is right child.
+                current_node.parent.color = $3478ba2bdb1fd0df$var$RB_TREE_COLOR_BLACK; // Case 6. Current is right child.
                 // Re-color father and grandfather, rotate grandfather left
-                current_node.parent.parent.color = $bd479cb9731e0159$var$RB_TREE_COLOR_RED;
+                current_node.parent.parent.color = $3478ba2bdb1fd0df$var$RB_TREE_COLOR_RED;
                 this.rotate_left(current_node.parent.parent);
             }
         }
-        this.root.color = $bd479cb9731e0159$var$RB_TREE_COLOR_BLACK;
+        this.root.color = $3478ba2bdb1fd0df$var$RB_TREE_COLOR_BLACK;
     }
     tree_delete(delete_node) {
         let cut_node; // node to be cut - either delete_node or successor_node  ("y" from 14.4)
@@ -3013,67 +3013,67 @@ const $bd479cb9731e0159$var$RB_TREE_COLOR_BLACK = 1;
             delete_node.update_max(); // update max property of the cut node at the new place
             this.recalc_max(delete_node); // update max property upward from delete_node to root
         }
-        if (/*fix_node != this.nil_node && */ cut_node.color === $bd479cb9731e0159$var$RB_TREE_COLOR_BLACK) this.delete_fixup(fix_node);
+        if (/*fix_node != this.nil_node && */ cut_node.color === $3478ba2bdb1fd0df$var$RB_TREE_COLOR_BLACK) this.delete_fixup(fix_node);
     }
     delete_fixup(fix_node) {
         let current_node = fix_node;
         let brother_node;
-        while(current_node !== this.root && current_node.parent != null && current_node.color === $bd479cb9731e0159$var$RB_TREE_COLOR_BLACK)if (current_node === current_node.parent.left) {
+        while(current_node !== this.root && current_node.parent != null && current_node.color === $3478ba2bdb1fd0df$var$RB_TREE_COLOR_BLACK)if (current_node === current_node.parent.left) {
             brother_node = current_node.parent.right;
-            if (brother_node.color === $bd479cb9731e0159$var$RB_TREE_COLOR_RED) {
-                brother_node.color = $bd479cb9731e0159$var$RB_TREE_COLOR_BLACK; // re-color brother
-                current_node.parent.color = $bd479cb9731e0159$var$RB_TREE_COLOR_RED; // re-color father
+            if (brother_node.color === $3478ba2bdb1fd0df$var$RB_TREE_COLOR_RED) {
+                brother_node.color = $3478ba2bdb1fd0df$var$RB_TREE_COLOR_BLACK; // re-color brother
+                current_node.parent.color = $3478ba2bdb1fd0df$var$RB_TREE_COLOR_RED; // re-color father
                 this.rotate_left(current_node.parent);
                 brother_node = current_node.parent.right; // update brother
             }
             // Derive to cases 2..4: brother is black
-            if (brother_node.left.color === $bd479cb9731e0159$var$RB_TREE_COLOR_BLACK && brother_node.right.color === $bd479cb9731e0159$var$RB_TREE_COLOR_BLACK) {
-                brother_node.color = $bd479cb9731e0159$var$RB_TREE_COLOR_RED; // re-color brother
+            if (brother_node.left.color === $3478ba2bdb1fd0df$var$RB_TREE_COLOR_BLACK && brother_node.right.color === $3478ba2bdb1fd0df$var$RB_TREE_COLOR_BLACK) {
+                brother_node.color = $3478ba2bdb1fd0df$var$RB_TREE_COLOR_RED; // re-color brother
                 current_node = current_node.parent; // continue iteration
             } else {
-                if (brother_node.right.color === $bd479cb9731e0159$var$RB_TREE_COLOR_BLACK) {
-                    brother_node.color = $bd479cb9731e0159$var$RB_TREE_COLOR_RED; // re-color brother
-                    brother_node.left.color = $bd479cb9731e0159$var$RB_TREE_COLOR_BLACK; // re-color nephew
+                if (brother_node.right.color === $3478ba2bdb1fd0df$var$RB_TREE_COLOR_BLACK) {
+                    brother_node.color = $3478ba2bdb1fd0df$var$RB_TREE_COLOR_RED; // re-color brother
+                    brother_node.left.color = $3478ba2bdb1fd0df$var$RB_TREE_COLOR_BLACK; // re-color nephew
                     this.rotate_right(brother_node);
                     brother_node = current_node.parent.right; // update brother
                 // Derive to case 4: left nephew black, right nephew red
                 }
                 // case 4: left nephew black, right nephew red
                 brother_node.color = current_node.parent.color;
-                current_node.parent.color = $bd479cb9731e0159$var$RB_TREE_COLOR_BLACK;
-                brother_node.right.color = $bd479cb9731e0159$var$RB_TREE_COLOR_BLACK;
+                current_node.parent.color = $3478ba2bdb1fd0df$var$RB_TREE_COLOR_BLACK;
+                brother_node.right.color = $3478ba2bdb1fd0df$var$RB_TREE_COLOR_BLACK;
                 this.rotate_left(current_node.parent);
                 current_node = this.root; // exit from loop
             }
         } else {
             brother_node = current_node.parent.left;
-            if (brother_node.color === $bd479cb9731e0159$var$RB_TREE_COLOR_RED) {
-                brother_node.color = $bd479cb9731e0159$var$RB_TREE_COLOR_BLACK; // re-color brother
-                current_node.parent.color = $bd479cb9731e0159$var$RB_TREE_COLOR_RED; // re-color father
+            if (brother_node.color === $3478ba2bdb1fd0df$var$RB_TREE_COLOR_RED) {
+                brother_node.color = $3478ba2bdb1fd0df$var$RB_TREE_COLOR_BLACK; // re-color brother
+                current_node.parent.color = $3478ba2bdb1fd0df$var$RB_TREE_COLOR_RED; // re-color father
                 this.rotate_right(current_node.parent);
                 brother_node = current_node.parent.left; // update brother
             }
             // Go to cases 2..4
-            if (brother_node.left.color === $bd479cb9731e0159$var$RB_TREE_COLOR_BLACK && brother_node.right.color === $bd479cb9731e0159$var$RB_TREE_COLOR_BLACK) {
-                brother_node.color = $bd479cb9731e0159$var$RB_TREE_COLOR_RED; // re-color brother
+            if (brother_node.left.color === $3478ba2bdb1fd0df$var$RB_TREE_COLOR_BLACK && brother_node.right.color === $3478ba2bdb1fd0df$var$RB_TREE_COLOR_BLACK) {
+                brother_node.color = $3478ba2bdb1fd0df$var$RB_TREE_COLOR_RED; // re-color brother
                 current_node = current_node.parent; // continue iteration
             } else {
-                if (brother_node.left.color === $bd479cb9731e0159$var$RB_TREE_COLOR_BLACK) {
-                    brother_node.color = $bd479cb9731e0159$var$RB_TREE_COLOR_RED; // re-color brother
-                    brother_node.right.color = $bd479cb9731e0159$var$RB_TREE_COLOR_BLACK; // re-color nephew
+                if (brother_node.left.color === $3478ba2bdb1fd0df$var$RB_TREE_COLOR_BLACK) {
+                    brother_node.color = $3478ba2bdb1fd0df$var$RB_TREE_COLOR_RED; // re-color brother
+                    brother_node.right.color = $3478ba2bdb1fd0df$var$RB_TREE_COLOR_BLACK; // re-color nephew
                     this.rotate_left(brother_node);
                     brother_node = current_node.parent.left; // update brother
                 // Derive to case 4: right nephew black, left nephew red
                 }
                 // case 4: right nephew black, left nephew red
                 brother_node.color = current_node.parent.color;
-                current_node.parent.color = $bd479cb9731e0159$var$RB_TREE_COLOR_BLACK;
-                brother_node.left.color = $bd479cb9731e0159$var$RB_TREE_COLOR_BLACK;
+                current_node.parent.color = $3478ba2bdb1fd0df$var$RB_TREE_COLOR_BLACK;
+                brother_node.left.color = $3478ba2bdb1fd0df$var$RB_TREE_COLOR_BLACK;
                 this.rotate_right(current_node.parent);
                 current_node = this.root; // force exit from loop
             }
         }
-        current_node.color = $bd479cb9731e0159$var$RB_TREE_COLOR_BLACK;
+        current_node.color = $3478ba2bdb1fd0df$var$RB_TREE_COLOR_BLACK;
     }
     tree_search(node, search_node) {
         if (node == null || node === this.nil_node) return undefined;
@@ -3188,8 +3188,8 @@ const $bd479cb9731e0159$var$RB_TREE_COLOR_BLACK = 1;
     /* Return true if all red nodes have exactly two black child nodes */ testRedBlackProperty() {
         let res = true;
         this.tree_walk(this.root, function(node) {
-            if (node.color === $bd479cb9731e0159$var$RB_TREE_COLOR_RED) {
-                if (!(node.left.color === $bd479cb9731e0159$var$RB_TREE_COLOR_BLACK && node.right.color === $bd479cb9731e0159$var$RB_TREE_COLOR_BLACK)) res = false;
+            if (node.color === $3478ba2bdb1fd0df$var$RB_TREE_COLOR_RED) {
+                if (!(node.left.color === $3478ba2bdb1fd0df$var$RB_TREE_COLOR_BLACK && node.right.color === $3478ba2bdb1fd0df$var$RB_TREE_COLOR_BLACK)) res = false;
             }
         });
         return res;
@@ -3198,7 +3198,7 @@ const $bd479cb9731e0159$var$RB_TREE_COLOR_BLACK = 1;
         let height = 0;
         let heightLeft = 0;
         let heightRight = 0;
-        if (node.color === $bd479cb9731e0159$var$RB_TREE_COLOR_BLACK) height++;
+        if (node.color === $3478ba2bdb1fd0df$var$RB_TREE_COLOR_BLACK) height++;
         if (node.left !== this.nil_node) heightLeft = this.testBlackHeightProperty(node.left);
         else heightLeft = 1;
         if (node.right !== this.nil_node) heightRight = this.testBlackHeightProperty(node.right);
@@ -3214,14 +3214,14 @@ const $bd479cb9731e0159$var$RB_TREE_COLOR_BLACK = 1;
  * Class representing a planar set - a generic container with ability to keep and retrieve shapes and
  * perform spatial queries. Planar set is an extension of Set container, so it supports
  * Set properties and methods
- */ class $bd479cb9731e0159$export$bfc59922c63341df extends Set {
+ */ class $3478ba2bdb1fd0df$export$bfc59922c63341df extends Set {
     /**
      * Create new instance of PlanarSet
      * @param shapes - array or set of geometric objects to store in planar set
      * Each object should have a <b>box</b> property
      */ constructor(shapes){
         super(shapes);
-        this.index = new $bd479cb9731e0159$var$IntervalTree();
+        this.index = new $3478ba2bdb1fd0df$var$IntervalTree();
         this.forEach((shape)=>this.index.insert(shape));
     }
     /**
@@ -3259,7 +3259,7 @@ const $bd479cb9731e0159$var$RB_TREE_COLOR_BLACK = 1;
      * Clear planar set
      */ clear() {
         super.clear();
-        this.index = new $bd479cb9731e0159$var$IntervalTree();
+        this.index = new $3478ba2bdb1fd0df$var$IntervalTree();
     }
     /**
      * 2d range search in planar set.<br/>
@@ -3275,7 +3275,7 @@ const $bd479cb9731e0159$var$RB_TREE_COLOR_BLACK = 1;
      * @param {Point} point - query point
      * @returns {AnyShape[]}
      */ hit(point) {
-        let box = new $bd479cb9731e0159$export$2e2bcd8739ae039.Box(point.x - 1, point.y - 1, point.x + 1, point.y + 1);
+        let box = new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Box(point.x - 1, point.y - 1, point.x + 1, point.y + 1);
         let resp = this.index.search(box);
         return resp.filter((shape)=>point.on(shape));
     }
@@ -3289,19 +3289,19 @@ const $bd479cb9731e0159$var$RB_TREE_COLOR_BLACK = 1;
         return svgcontent;
     }
 }
-$bd479cb9731e0159$export$2e2bcd8739ae039.PlanarSet = $bd479cb9731e0159$export$bfc59922c63341df;
+$3478ba2bdb1fd0df$export$2e2bcd8739ae039.PlanarSet = $3478ba2bdb1fd0df$export$bfc59922c63341df;
 /**
  * Base class representing shape
  * Implement common methods of affine transformations
- */ class $bd479cb9731e0159$var$Shape {
+ */ class $3478ba2bdb1fd0df$var$Shape {
     get name() {
-        throw $bd479cb9731e0159$export$b8e9cd941e8016ac.CANNOT_INVOKE_ABSTRACT_METHOD;
+        throw $3478ba2bdb1fd0df$export$b8e9cd941e8016ac.CANNOT_INVOKE_ABSTRACT_METHOD;
     }
     get box() {
-        throw $bd479cb9731e0159$export$b8e9cd941e8016ac.CANNOT_INVOKE_ABSTRACT_METHOD;
+        throw $3478ba2bdb1fd0df$export$b8e9cd941e8016ac.CANNOT_INVOKE_ABSTRACT_METHOD;
     }
     clone() {
-        throw $bd479cb9731e0159$export$b8e9cd941e8016ac.CANNOT_INVOKE_ABSTRACT_METHOD;
+        throw $3478ba2bdb1fd0df$export$b8e9cd941e8016ac.CANNOT_INVOKE_ABSTRACT_METHOD;
     }
     /**
      * Returns new shape translated by given vector.
@@ -3310,7 +3310,7 @@ $bd479cb9731e0159$export$2e2bcd8739ae039.PlanarSet = $bd479cb9731e0159$export$bf
      * or tuple of numbers
      * @returns {Shape}
      */ translate(...args) {
-        return this.transform(new $bd479cb9731e0159$export$5b12bf1653c0dd85().translate(...args));
+        return this.transform(new $3478ba2bdb1fd0df$export$5b12bf1653c0dd85().translate(...args));
     }
     /**
      * Returns new shape rotated by given angle around given center point.
@@ -3320,8 +3320,8 @@ $bd479cb9731e0159$export$2e2bcd8739ae039.PlanarSet = $bd479cb9731e0159$export$bf
      * @param {number} angle - angle in radians
      * @param {Point} [center=(0,0)] center
      * @returns {Shape}
-     */ rotate(angle, center = new $bd479cb9731e0159$export$2e2bcd8739ae039.Point()) {
-        return this.transform(new $bd479cb9731e0159$export$5b12bf1653c0dd85().rotate(angle, center.x, center.y));
+     */ rotate(angle, center = new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Point()) {
+        return this.transform(new $3478ba2bdb1fd0df$export$5b12bf1653c0dd85().rotate(angle, center.x, center.y));
     }
     /**
      * Return new shape with coordinates multiplied by scaling factor
@@ -3329,10 +3329,10 @@ $bd479cb9731e0159$export$2e2bcd8739ae039.PlanarSet = $bd479cb9731e0159$export$bf
      * @param {number} sy - y-axis scaling factor
      * @returns {Shape}
      */ scale(sx, sy) {
-        return this.transform(new $bd479cb9731e0159$export$5b12bf1653c0dd85().scale(sx, sy));
+        return this.transform(new $3478ba2bdb1fd0df$export$5b12bf1653c0dd85().scale(sx, sy));
     }
     transform(...args) {
-        throw $bd479cb9731e0159$export$b8e9cd941e8016ac.CANNOT_INVOKE_ABSTRACT_METHOD;
+        throw $3478ba2bdb1fd0df$export$b8e9cd941e8016ac.CANNOT_INVOKE_ABSTRACT_METHOD;
     }
     /**
      * This method returns an object that defines how data will be
@@ -3344,7 +3344,7 @@ $bd479cb9731e0159$export$2e2bcd8739ae039.PlanarSet = $bd479cb9731e0159$export$bf
         });
     }
     svg(attrs = {}) {
-        throw $bd479cb9731e0159$export$b8e9cd941e8016ac.CANNOT_INVOKE_ABSTRACT_METHOD;
+        throw $3478ba2bdb1fd0df$export$b8e9cd941e8016ac.CANNOT_INVOKE_ABSTRACT_METHOD;
     }
 }
 /**
@@ -3353,7 +3353,7 @@ $bd479cb9731e0159$export$2e2bcd8739ae039.PlanarSet = $bd479cb9731e0159$export$bf
  *
  * Class representing a point
  * @type {Point}
- */ let $bd479cb9731e0159$export$baf26146a414f24a = class Point1 extends $bd479cb9731e0159$var$Shape {
+ */ let $3478ba2bdb1fd0df$export$baf26146a414f24a = class Point1 extends $3478ba2bdb1fd0df$var$Shape {
     /**
      * Point may be constructed by two numbers, or by array of two numbers
      * @param {number} x - x-coordinate (float number)
@@ -3390,19 +3390,19 @@ $bd479cb9731e0159$export$2e2bcd8739ae039.PlanarSet = $bd479cb9731e0159$export$bf
                 return;
             }
         }
-        throw $bd479cb9731e0159$export$b8e9cd941e8016ac.ILLEGAL_PARAMETERS;
+        throw $3478ba2bdb1fd0df$export$b8e9cd941e8016ac.ILLEGAL_PARAMETERS;
     }
     /**
      * Returns bounding box of a point
      * @returns {Box}
      */ get box() {
-        return new $bd479cb9731e0159$export$2e2bcd8739ae039.Box(this.x, this.y, this.x, this.y);
+        return new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Box(this.x, this.y, this.x, this.y);
     }
     /**
      * Return new cloned instance of point
      * @returns {Point}
      */ clone() {
-        return new $bd479cb9731e0159$export$2e2bcd8739ae039.Point(this.x, this.y);
+        return new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Point(this.x, this.y);
     }
     get vertices() {
         return [
@@ -3414,7 +3414,7 @@ $bd479cb9731e0159$export$2e2bcd8739ae039.PlanarSet = $bd479cb9731e0159$export$bf
      * @param {Point} pt Query point
      * @returns {boolean}
      */ equalTo(pt) {
-        return $bd479cb9731e0159$export$2e2bcd8739ae039.Utils.EQ(this.x, pt.x) && $bd479cb9731e0159$export$2e2bcd8739ae039.Utils.EQ(this.y, pt.y);
+        return $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Utils.EQ(this.x, pt.x) && $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Utils.EQ(this.y, pt.y);
     }
     /**
      * Defines predicate "less than" between points. Returns true if the point is less than query points, false otherwise <br/>
@@ -3423,8 +3423,8 @@ $bd479cb9731e0159$export$2e2bcd8739ae039.PlanarSet = $bd479cb9731e0159$export$bf
      * @param {Point} pt Query point
      * @returns {boolean}
      */ lessThan(pt) {
-        if ($bd479cb9731e0159$export$2e2bcd8739ae039.Utils.LT(this.y, pt.y)) return true;
-        if ($bd479cb9731e0159$export$2e2bcd8739ae039.Utils.EQ(this.y, pt.y) && $bd479cb9731e0159$export$2e2bcd8739ae039.Utils.LT(this.x, pt.x)) return true;
+        if ($3478ba2bdb1fd0df$export$2e2bcd8739ae039.Utils.LT(this.y, pt.y)) return true;
+        if ($3478ba2bdb1fd0df$export$2e2bcd8739ae039.Utils.EQ(this.y, pt.y) && $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Utils.LT(this.x, pt.x)) return true;
         return false;
     }
     /**
@@ -3432,7 +3432,7 @@ $bd479cb9731e0159$export$2e2bcd8739ae039.PlanarSet = $bd479cb9731e0159$export$bf
      * @param {Matrix} m - affine transformation matrix (a,b,c,d,tx,ty)
      * @returns {Point}
      */ transform(m) {
-        return new $bd479cb9731e0159$export$2e2bcd8739ae039.Point(m.transform([
+        return new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Point(m.transform([
             this.x,
             this.y
         ]));
@@ -3443,8 +3443,8 @@ $bd479cb9731e0159$export$2e2bcd8739ae039.PlanarSet = $bd479cb9731e0159$export$bf
      * @returns {Point}
      */ projectionOn(line) {
         if (this.equalTo(line.pt)) return this.clone();
-        let vec = new $bd479cb9731e0159$export$2e2bcd8739ae039.Vector(this, line.pt);
-        if ($bd479cb9731e0159$export$2e2bcd8739ae039.Utils.EQ_0(vec.cross(line.norm))) return line.pt.clone();
+        let vec = new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Vector(this, line.pt);
+        if ($3478ba2bdb1fd0df$export$2e2bcd8739ae039.Utils.EQ_0(vec.cross(line.norm))) return line.pt.clone();
         let dist = vec.dot(line.norm); // signed distance
         let proj_vec = line.norm.multiply(dist);
         return this.translate(proj_vec);
@@ -3455,8 +3455,8 @@ $bd479cb9731e0159$export$2e2bcd8739ae039.PlanarSet = $bd479cb9731e0159$export$bf
      * @param {Line} line Query line
      * @returns {boolean}
      */ leftTo(line) {
-        let vec = new $bd479cb9731e0159$export$2e2bcd8739ae039.Vector(line.pt, this);
-        let onLeftSemiPlane = $bd479cb9731e0159$export$2e2bcd8739ae039.Utils.GT(vec.dot(line.norm), 0);
+        let vec = new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Vector(line.pt, this);
+        let onLeftSemiPlane = $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Utils.GT(vec.dot(line.norm), 0);
         return onLeftSemiPlane;
     }
     /**
@@ -3470,25 +3470,25 @@ $bd479cb9731e0159$export$2e2bcd8739ae039.PlanarSet = $bd479cb9731e0159$export$bf
             let dy = shape.y - this.y;
             return [
                 Math.sqrt(dx * dx + dy * dy),
-                new $bd479cb9731e0159$export$2e2bcd8739ae039.Segment(this, shape)
+                new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Segment(this, shape)
             ];
         }
-        if (shape instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Line) return $bd479cb9731e0159$export$2e2bcd8739ae039.Distance.point2line(this, shape);
-        if (shape instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Circle) return $bd479cb9731e0159$export$2e2bcd8739ae039.Distance.point2circle(this, shape);
-        if (shape instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Segment) return $bd479cb9731e0159$export$2e2bcd8739ae039.Distance.point2segment(this, shape);
-        if (shape instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Arc) return $bd479cb9731e0159$export$2e2bcd8739ae039.Distance.point2arc(this, shape);
-        if (shape instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Polygon) return $bd479cb9731e0159$export$2e2bcd8739ae039.Distance.point2polygon(this, shape);
-        if (shape instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.PlanarSet) return $bd479cb9731e0159$export$2e2bcd8739ae039.Distance.shape2planarSet(this, shape);
-        if (shape instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Multiline) return $bd479cb9731e0159$export$2e2bcd8739ae039.Distance.shape2multiline(this, shape);
+        if (shape instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Line) return $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Distance.point2line(this, shape);
+        if (shape instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Circle) return $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Distance.point2circle(this, shape);
+        if (shape instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Segment) return $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Distance.point2segment(this, shape);
+        if (shape instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Arc) return $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Distance.point2arc(this, shape);
+        if (shape instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Polygon) return $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Distance.point2polygon(this, shape);
+        if (shape instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.PlanarSet) return $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Distance.shape2planarSet(this, shape);
+        if (shape instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Multiline) return $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Distance.shape2multiline(this, shape);
     }
     /**
      * Returns true if point is on a shape, false otherwise
      * @param {Shape} shape
      * @returns {boolean}
      */ on(shape) {
-        if (shape instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Point) return this.equalTo(shape);
+        if (shape instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Point) return this.equalTo(shape);
         if (shape.contains && shape.contains instanceof Function) return shape.contains(this);
-        throw $bd479cb9731e0159$export$2e2bcd8739ae039.Errors.UNSUPPORTED_SHAPE_TYPE;
+        throw $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Errors.UNSUPPORTED_SHAPE_TYPE;
     }
     get name() {
         return "point";
@@ -3508,25 +3508,25 @@ $bd479cb9731e0159$export$2e2bcd8739ae039.PlanarSet = $bd479cb9731e0159$export$bf
      */ svg(attrs = {}) {
         const r = attrs.r ?? 3; // default radius - 3
         return `\n<circle cx="${this.x}" cy="${this.y}" r="${r}"
-            ${$bd479cb9731e0159$var$convertToString({
+            ${$3478ba2bdb1fd0df$var$convertToString({
             fill: "red",
             ...attrs
         })} />`;
     }
 };
-$bd479cb9731e0159$export$2e2bcd8739ae039.Point = $bd479cb9731e0159$export$baf26146a414f24a;
+$3478ba2bdb1fd0df$export$2e2bcd8739ae039.Point = $3478ba2bdb1fd0df$export$baf26146a414f24a;
 /**
  * Function to create point equivalent to "new" constructor
  * @param args
- */ const $bd479cb9731e0159$export$105684a3041cb6f3 = (...args)=>new $bd479cb9731e0159$export$2e2bcd8739ae039.Point(...args);
-$bd479cb9731e0159$export$2e2bcd8739ae039.point = $bd479cb9731e0159$export$105684a3041cb6f3;
+ */ const $3478ba2bdb1fd0df$export$105684a3041cb6f3 = (...args)=>new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Point(...args);
+$3478ba2bdb1fd0df$export$2e2bcd8739ae039.point = $3478ba2bdb1fd0df$export$105684a3041cb6f3;
 // export {Point};
 /**
  * Created by Alex Bol on 2/19/2017.
  */ /**
  * Class representing a vector
  * @type {Vector}
- */ let $bd479cb9731e0159$export$9b781de7bf37bf48 = class Vector extends $bd479cb9731e0159$var$Shape {
+ */ let $3478ba2bdb1fd0df$export$9b781de7bf37bf48 = class Vector extends $3478ba2bdb1fd0df$var$Shape {
     /**
      * Vector may be constructed by two points, or by two float numbers,
      * or by array of two numbers
@@ -3565,19 +3565,19 @@ $bd479cb9731e0159$export$2e2bcd8739ae039.point = $bd479cb9731e0159$export$105684
                 this.y = a2;
                 return;
             }
-            if (a1 instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Point && a2 instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Point) {
+            if (a1 instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Point && a2 instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Point) {
                 this.x = a2.x - a1.x;
                 this.y = a2.y - a1.y;
                 return;
             }
         }
-        throw $bd479cb9731e0159$export$b8e9cd941e8016ac.ILLEGAL_PARAMETERS;
+        throw $3478ba2bdb1fd0df$export$b8e9cd941e8016ac.ILLEGAL_PARAMETERS;
     }
     /**
      * Method clone returns new instance of Vector
      * @returns {Vector}
      */ clone() {
-        return new $bd479cb9731e0159$export$2e2bcd8739ae039.Vector(this.x, this.y);
+        return new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Vector(this.x, this.y);
     }
     /**
      * Slope of the vector in radians from 0 to 2PI
@@ -3599,14 +3599,14 @@ $bd479cb9731e0159$export$2e2bcd8739ae039.point = $bd479cb9731e0159$export$105684
      * @param {Vector} v
      * @returns {boolean}
      */ equalTo(v) {
-        return $bd479cb9731e0159$export$2e2bcd8739ae039.Utils.EQ(this.x, v.x) && $bd479cb9731e0159$export$2e2bcd8739ae039.Utils.EQ(this.y, v.y);
+        return $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Utils.EQ(this.x, v.x) && $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Utils.EQ(this.y, v.y);
     }
     /**
      * Returns new vector multiplied by scalar
      * @param {number} scalar
      * @returns {Vector}
      */ multiply(scalar) {
-        return new $bd479cb9731e0159$export$2e2bcd8739ae039.Vector(scalar * this.x, scalar * this.y);
+        return new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Vector(scalar * this.x, scalar * this.y);
     }
     /**
      * Returns scalar product (dot product) of two vectors <br/>
@@ -3629,8 +3629,8 @@ $bd479cb9731e0159$export$2e2bcd8739ae039.point = $bd479cb9731e0159$export$105684
      * Throw error if given vector has zero length
      * @returns {Vector}
      */ normalize() {
-        if (!$bd479cb9731e0159$export$2e2bcd8739ae039.Utils.EQ_0(this.length)) return new $bd479cb9731e0159$export$2e2bcd8739ae039.Vector(this.x / this.length, this.y / this.length);
-        throw $bd479cb9731e0159$export$b8e9cd941e8016ac.ZERO_DIVISION;
+        if (!$3478ba2bdb1fd0df$export$2e2bcd8739ae039.Utils.EQ_0(this.length)) return new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Vector(this.x / this.length, this.y / this.length);
+        throw $3478ba2bdb1fd0df$export$b8e9cd941e8016ac.ZERO_DIVISION;
     }
     /**
      * Returns new vector rotated by given angle,
@@ -3639,16 +3639,16 @@ $bd479cb9731e0159$export$2e2bcd8739ae039.point = $bd479cb9731e0159$export$105684
      * Vector only can be rotated around (0,0) point!
      * @param {number} angle - Angle in radians
      * @returns {Vector}
-     */ rotate(angle, center = new $bd479cb9731e0159$export$2e2bcd8739ae039.Point()) {
-        if (center.x === 0 && center.y === 0) return this.transform(new $bd479cb9731e0159$export$5b12bf1653c0dd85().rotate(angle));
-        throw $bd479cb9731e0159$export$b8e9cd941e8016ac.OPERATION_IS_NOT_SUPPORTED;
+     */ rotate(angle, center = new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Point()) {
+        if (center.x === 0 && center.y === 0) return this.transform(new $3478ba2bdb1fd0df$export$5b12bf1653c0dd85().rotate(angle));
+        throw $3478ba2bdb1fd0df$export$b8e9cd941e8016ac.OPERATION_IS_NOT_SUPPORTED;
     }
     /**
      * Return new vector transformed by affine transformation matrix m
      * @param {Matrix} m - affine transformation matrix (a,b,c,d,tx,ty)
      * @returns {Vector}
      */ transform(m) {
-        return new $bd479cb9731e0159$export$2e2bcd8739ae039.Vector(m.transform([
+        return new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Vector(m.transform([
             this.x,
             this.y
         ]));
@@ -3657,33 +3657,33 @@ $bd479cb9731e0159$export$2e2bcd8739ae039.point = $bd479cb9731e0159$export$105684
      * Returns vector rotated 90 degrees counterclockwise
      * @returns {Vector}
      */ rotate90CCW() {
-        return new $bd479cb9731e0159$export$2e2bcd8739ae039.Vector(-this.y, this.x);
+        return new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Vector(-this.y, this.x);
     }
     /**
      * Returns vector rotated 90 degrees clockwise
      * @returns {Vector}
      */ rotate90CW() {
-        return new $bd479cb9731e0159$export$2e2bcd8739ae039.Vector(this.y, -this.x);
+        return new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Vector(this.y, -this.x);
     }
     /**
      * Return inverted vector
      * @returns {Vector}
      */ invert() {
-        return new $bd479cb9731e0159$export$2e2bcd8739ae039.Vector(-this.x, -this.y);
+        return new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Vector(-this.x, -this.y);
     }
     /**
      * Return result of addition of other vector to this vector as a new vector
      * @param {Vector} v Other vector
      * @returns {Vector}
      */ add(v) {
-        return new $bd479cb9731e0159$export$2e2bcd8739ae039.Vector(this.x + v.x, this.y + v.y);
+        return new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Vector(this.x + v.x, this.y + v.y);
     }
     /**
      * Return result of subtraction of other vector from current vector as a new vector
      * @param {Vector} v Another vector
      * @returns {Vector}
      */ subtract(v) {
-        return new $bd479cb9731e0159$export$2e2bcd8739ae039.Vector(this.x - v.x, this.y - v.y);
+        return new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Vector(this.x - v.x, this.y - v.y);
     }
     /**
      * Return angle between this vector and other vector. <br/>
@@ -3711,18 +3711,18 @@ $bd479cb9731e0159$export$2e2bcd8739ae039.point = $bd479cb9731e0159$export$105684
         return "vector";
     }
 };
-$bd479cb9731e0159$export$2e2bcd8739ae039.Vector = $bd479cb9731e0159$export$9b781de7bf37bf48;
+$3478ba2bdb1fd0df$export$2e2bcd8739ae039.Vector = $3478ba2bdb1fd0df$export$9b781de7bf37bf48;
 /**
  * Function to create vector equivalent to "new" constructor
  * @param args
- */ const $bd479cb9731e0159$export$6074e20ba5c64bef = (...args)=>new $bd479cb9731e0159$export$2e2bcd8739ae039.Vector(...args);
-$bd479cb9731e0159$export$2e2bcd8739ae039.vector = $bd479cb9731e0159$export$6074e20ba5c64bef;
+ */ const $3478ba2bdb1fd0df$export$6074e20ba5c64bef = (...args)=>new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Vector(...args);
+$3478ba2bdb1fd0df$export$2e2bcd8739ae039.vector = $3478ba2bdb1fd0df$export$6074e20ba5c64bef;
 /**
  * Created by Alex Bol on 3/10/2017.
  */ /**
  * Class representing a segment
  * @type {Segment}
- */ let $bd479cb9731e0159$export$d53aa5c5ab432700 = class Segment extends $bd479cb9731e0159$var$Shape {
+ */ let $3478ba2bdb1fd0df$export$d53aa5c5ab432700 = class Segment extends $3478ba2bdb1fd0df$var$Shape {
     /**
      *
      * @param {Point} ps - start point
@@ -3732,46 +3732,46 @@ $bd479cb9731e0159$export$2e2bcd8739ae039.vector = $bd479cb9731e0159$export$6074e
         /**
          * Start point
          * @type {Point}
-         */ this.ps = new $bd479cb9731e0159$export$2e2bcd8739ae039.Point();
+         */ this.ps = new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Point();
         /**
          * End Point
          * @type {Point}
-         */ this.pe = new $bd479cb9731e0159$export$2e2bcd8739ae039.Point();
+         */ this.pe = new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Point();
         if (args.length === 0) return;
         if (args.length === 1 && args[0] instanceof Array && args[0].length === 4) {
             let coords = args[0];
-            this.ps = new $bd479cb9731e0159$export$2e2bcd8739ae039.Point(coords[0], coords[1]);
-            this.pe = new $bd479cb9731e0159$export$2e2bcd8739ae039.Point(coords[2], coords[3]);
+            this.ps = new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Point(coords[0], coords[1]);
+            this.pe = new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Point(coords[2], coords[3]);
             return;
         }
         if (args.length === 1 && args[0] instanceof Object && args[0].name === "segment") {
             let { ps: ps, pe: pe } = args[0];
-            this.ps = new $bd479cb9731e0159$export$2e2bcd8739ae039.Point(ps.x, ps.y);
-            this.pe = new $bd479cb9731e0159$export$2e2bcd8739ae039.Point(pe.x, pe.y);
+            this.ps = new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Point(ps.x, ps.y);
+            this.pe = new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Point(pe.x, pe.y);
             return;
         }
         // second point omitted issue #84
-        if (args.length === 1 && args[0] instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Point) {
+        if (args.length === 1 && args[0] instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Point) {
             this.ps = args[0].clone();
             return;
         }
-        if (args.length === 2 && args[0] instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Point && args[1] instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Point) {
+        if (args.length === 2 && args[0] instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Point && args[1] instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Point) {
             this.ps = args[0].clone();
             this.pe = args[1].clone();
             return;
         }
         if (args.length === 4) {
-            this.ps = new $bd479cb9731e0159$export$2e2bcd8739ae039.Point(args[0], args[1]);
-            this.pe = new $bd479cb9731e0159$export$2e2bcd8739ae039.Point(args[2], args[3]);
+            this.ps = new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Point(args[0], args[1]);
+            this.pe = new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Point(args[2], args[3]);
             return;
         }
-        throw $bd479cb9731e0159$export$b8e9cd941e8016ac.ILLEGAL_PARAMETERS;
+        throw $3478ba2bdb1fd0df$export$b8e9cd941e8016ac.ILLEGAL_PARAMETERS;
     }
     /**
      * Return new cloned instance of segment
      * @returns {Segment}
      */ clone() {
-        return new $bd479cb9731e0159$export$2e2bcd8739ae039.Segment(this.start, this.end);
+        return new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Segment(this.start, this.end);
     }
     /**
      * Start point
@@ -3804,14 +3804,14 @@ $bd479cb9731e0159$export$2e2bcd8739ae039.vector = $bd479cb9731e0159$export$6074e
      * Slope of the line - angle to axe x in radians from 0 to 2PI
      * @returns {number}
      */ get slope() {
-        let vec = new $bd479cb9731e0159$export$2e2bcd8739ae039.Vector(this.start, this.end);
+        let vec = new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Vector(this.start, this.end);
         return vec.slope;
     }
     /**
      * Bounding box
      * @returns {Box}
      */ get box() {
-        return new $bd479cb9731e0159$export$2e2bcd8739ae039.Box(Math.min(this.start.x, this.end.x), Math.min(this.start.y, this.end.y), Math.max(this.start.x, this.end.x), Math.max(this.start.y, this.end.y));
+        return new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Box(Math.min(this.start.x, this.end.x), Math.min(this.start.y, this.end.y), Math.max(this.start.x, this.end.x), Math.max(this.start.y, this.end.y));
     }
     /**
      * Returns true if equals to query segment, false otherwise
@@ -3825,94 +3825,94 @@ $bd479cb9731e0159$export$2e2bcd8739ae039.vector = $bd479cb9731e0159$export$6074e
      * @param {Point} pt Query point
      * @returns {boolean}
      */ contains(pt) {
-        return $bd479cb9731e0159$export$2e2bcd8739ae039.Utils.EQ_0(this.distanceToPoint(pt));
+        return $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Utils.EQ_0(this.distanceToPoint(pt));
     }
     /**
      * Returns array of intersection points between segment and other shape
      * @param {Shape} shape - Shape of the one of supported types <br/>
      * @returns {Point[]}
      */ intersect(shape) {
-        if (shape instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Point) return this.contains(shape) ? [
+        if (shape instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Point) return this.contains(shape) ? [
             shape
         ] : [];
-        if (shape instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Line) return $bd479cb9731e0159$var$intersectSegment2Line(this, shape);
-        if (shape instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Ray) return $bd479cb9731e0159$var$intersectRay2Segment(shape, this);
-        if (shape instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Segment) return $bd479cb9731e0159$var$intersectSegment2Segment(this, shape);
-        if (shape instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Circle) return $bd479cb9731e0159$var$intersectSegment2Circle(this, shape);
-        if (shape instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Box) return $bd479cb9731e0159$var$intersectSegment2Box(this, shape);
-        if (shape instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Arc) return $bd479cb9731e0159$var$intersectSegment2Arc(this, shape);
-        if (shape instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Polygon) return $bd479cb9731e0159$var$intersectSegment2Polygon(this, shape);
-        if (shape instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Multiline) return $bd479cb9731e0159$var$intersectShape2Multiline(this, shape);
+        if (shape instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Line) return $3478ba2bdb1fd0df$var$intersectSegment2Line(this, shape);
+        if (shape instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Ray) return $3478ba2bdb1fd0df$var$intersectRay2Segment(shape, this);
+        if (shape instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Segment) return $3478ba2bdb1fd0df$var$intersectSegment2Segment(this, shape);
+        if (shape instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Circle) return $3478ba2bdb1fd0df$var$intersectSegment2Circle(this, shape);
+        if (shape instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Box) return $3478ba2bdb1fd0df$var$intersectSegment2Box(this, shape);
+        if (shape instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Arc) return $3478ba2bdb1fd0df$var$intersectSegment2Arc(this, shape);
+        if (shape instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Polygon) return $3478ba2bdb1fd0df$var$intersectSegment2Polygon(this, shape);
+        if (shape instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Multiline) return $3478ba2bdb1fd0df$var$intersectShape2Multiline(this, shape);
     }
     /**
      * Calculate distance and shortest segment from segment to shape and return as array [distance, shortest segment]
      * @param {Shape} shape Shape of the one of supported types Point, Line, Circle, Segment, Arc, Polygon or Planar Set
      * @returns {[number, Segment]} shortest segment between segment and shape (started at segment, ended at shape)
      */ distanceTo(shape) {
-        if (shape instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Point) {
-            let [dist, shortest_segment] = $bd479cb9731e0159$export$2e2bcd8739ae039.Distance.point2segment(shape, this);
+        if (shape instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Point) {
+            let [dist, shortest_segment] = $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Distance.point2segment(shape, this);
             shortest_segment = shortest_segment.reverse();
             return [
                 dist,
                 shortest_segment
             ];
         }
-        if (shape instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Circle) {
-            let [dist, shortest_segment] = $bd479cb9731e0159$export$2e2bcd8739ae039.Distance.segment2circle(this, shape);
+        if (shape instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Circle) {
+            let [dist, shortest_segment] = $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Distance.segment2circle(this, shape);
             return [
                 dist,
                 shortest_segment
             ];
         }
-        if (shape instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Line) {
-            let [dist, shortest_segment] = $bd479cb9731e0159$export$2e2bcd8739ae039.Distance.segment2line(this, shape);
+        if (shape instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Line) {
+            let [dist, shortest_segment] = $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Distance.segment2line(this, shape);
             return [
                 dist,
                 shortest_segment
             ];
         }
-        if (shape instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Segment) {
-            let [dist, shortest_segment] = $bd479cb9731e0159$export$2e2bcd8739ae039.Distance.segment2segment(this, shape);
+        if (shape instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Segment) {
+            let [dist, shortest_segment] = $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Distance.segment2segment(this, shape);
             return [
                 dist,
                 shortest_segment
             ];
         }
-        if (shape instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Arc) {
-            let [dist, shortest_segment] = $bd479cb9731e0159$export$2e2bcd8739ae039.Distance.segment2arc(this, shape);
+        if (shape instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Arc) {
+            let [dist, shortest_segment] = $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Distance.segment2arc(this, shape);
             return [
                 dist,
                 shortest_segment
             ];
         }
-        if (shape instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Polygon) {
-            let [dist, shortest_segment] = $bd479cb9731e0159$export$2e2bcd8739ae039.Distance.shape2polygon(this, shape);
+        if (shape instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Polygon) {
+            let [dist, shortest_segment] = $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Distance.shape2polygon(this, shape);
             return [
                 dist,
                 shortest_segment
             ];
         }
-        if (shape instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.PlanarSet) {
-            let [dist, shortest_segment] = $bd479cb9731e0159$export$2e2bcd8739ae039.Distance.shape2planarSet(this, shape);
+        if (shape instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.PlanarSet) {
+            let [dist, shortest_segment] = $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Distance.shape2planarSet(this, shape);
             return [
                 dist,
                 shortest_segment
             ];
         }
-        if (shape instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Multiline) return $bd479cb9731e0159$export$2e2bcd8739ae039.Distance.shape2multiline(this, shape);
+        if (shape instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Multiline) return $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Distance.shape2multiline(this, shape);
     }
     /**
      * Returns unit vector in the direction from start to end
      * @returns {Vector}
      */ tangentInStart() {
-        let vec = new $bd479cb9731e0159$export$2e2bcd8739ae039.Vector(this.start, this.end);
+        let vec = new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Vector(this.start, this.end);
         return vec.normalize();
     }
     /**
      * Return unit vector in the direction from end to start
      * @returns {Vector}
      */ tangentInEnd() {
-        let vec = new $bd479cb9731e0159$export$2e2bcd8739ae039.Vector(this.end, this.start);
+        let vec = new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Vector(this.end, this.start);
         return vec.normalize();
     }
     /**
@@ -3937,15 +3937,15 @@ $bd479cb9731e0159$export$2e2bcd8739ae039.vector = $bd479cb9731e0159$export$6074e
             null
         ];
         return [
-            new $bd479cb9731e0159$export$2e2bcd8739ae039.Segment(this.start, pt),
-            new $bd479cb9731e0159$export$2e2bcd8739ae039.Segment(pt, this.end)
+            new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Segment(this.start, pt),
+            new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Segment(pt, this.end)
         ];
     }
     /**
      * Return middle point of the segment
      * @returns {Point}
      */ middle() {
-        return new $bd479cb9731e0159$export$2e2bcd8739ae039.Point((this.start.x + this.end.x) / 2, (this.start.y + this.end.y) / 2);
+        return new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Point((this.start.x + this.end.x) / 2, (this.start.y + this.end.y) / 2);
     }
     /**
      * Get point at given length
@@ -3956,10 +3956,10 @@ $bd479cb9731e0159$export$2e2bcd8739ae039.vector = $bd479cb9731e0159$export$6074e
         if (length == 0) return this.start;
         if (length == this.length) return this.end;
         let factor = length / this.length;
-        return new $bd479cb9731e0159$export$2e2bcd8739ae039.Point((this.end.x - this.start.x) * factor + this.start.x, (this.end.y - this.start.y) * factor + this.start.y);
+        return new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Point((this.end.x - this.start.x) * factor + this.start.x, (this.end.y - this.start.y) * factor + this.start.y);
     }
     distanceToPoint(pt) {
-        let [dist, ...rest] = $bd479cb9731e0159$export$2e2bcd8739ae039.Distance.point2segment(pt, this);
+        let [dist, ...rest] = $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Distance.point2segment(pt, this);
         return dist;
     }
     definiteIntegral(ymin = 0.0) {
@@ -3972,7 +3972,7 @@ $bd479cb9731e0159$export$2e2bcd8739ae039.vector = $bd479cb9731e0159$export$6074e
      * Return new segment transformed using affine transformation matrix
      * @param {Matrix} matrix - affine transformation matrix
      * @returns {Segment} - transformed segment
-     */ transform(matrix = new $bd479cb9731e0159$export$2e2bcd8739ae039.Matrix()) {
+     */ transform(matrix = new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Matrix()) {
         return new Segment(this.ps.transform(matrix), this.pe.transform(matrix));
     }
     /**
@@ -3986,7 +3986,7 @@ $bd479cb9731e0159$export$2e2bcd8739ae039.vector = $bd479cb9731e0159$export$6074e
      * @param {Point[]} - array of points
      * @returns {Point[]} new array sorted
      */ sortPoints(pts) {
-        let line = new $bd479cb9731e0159$export$2e2bcd8739ae039.Line(this.start, this.end);
+        let line = new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Line(this.start, this.end);
         return line.sortPoints(pts);
     }
     get name() {
@@ -3999,21 +3999,21 @@ $bd479cb9731e0159$export$2e2bcd8739ae039.vector = $bd479cb9731e0159$export$6074e
      * Defaults are stroke:"black", strokeWidth:"1"
      * @returns {string}
      */ svg(attrs = {}) {
-        return `\n<line x1="${this.start.x}" y1="${this.start.y}" x2="${this.end.x}" y2="${this.end.y}" ${$bd479cb9731e0159$var$convertToString(attrs)} />`;
+        return `\n<line x1="${this.start.x}" y1="${this.start.y}" x2="${this.end.x}" y2="${this.end.y}" ${$3478ba2bdb1fd0df$var$convertToString(attrs)} />`;
     }
 };
-$bd479cb9731e0159$export$2e2bcd8739ae039.Segment = $bd479cb9731e0159$export$d53aa5c5ab432700;
+$3478ba2bdb1fd0df$export$2e2bcd8739ae039.Segment = $3478ba2bdb1fd0df$export$d53aa5c5ab432700;
 /**
  * Shortcut method to create new segment
- */ const $bd479cb9731e0159$export$6519c25590136c5e = (...args)=>new $bd479cb9731e0159$export$2e2bcd8739ae039.Segment(...args);
-$bd479cb9731e0159$export$2e2bcd8739ae039.segment = $bd479cb9731e0159$export$6519c25590136c5e;
+ */ const $3478ba2bdb1fd0df$export$6519c25590136c5e = (...args)=>new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Segment(...args);
+$3478ba2bdb1fd0df$export$2e2bcd8739ae039.segment = $3478ba2bdb1fd0df$export$6519c25590136c5e;
 /**
  * Created by Alex Bol on 2/20/2017.
- */ let { vector: $bd479cb9731e0159$var$vector } = $bd479cb9731e0159$export$2e2bcd8739ae039;
+ */ let { vector: $3478ba2bdb1fd0df$var$vector } = $3478ba2bdb1fd0df$export$2e2bcd8739ae039;
 /**
  * Class representing a line
  * @type {Line}
- */ let $bd479cb9731e0159$export$17d680238e50603e = class Line extends $bd479cb9731e0159$var$Shape {
+ */ let $3478ba2bdb1fd0df$export$17d680238e50603e = class Line extends $3478ba2bdb1fd0df$var$Shape {
     /**
      * Line may be constructed by point and normal vector or by two points that a line passes through
      * @param {Point} pt - point that a line passes through
@@ -4023,53 +4023,53 @@ $bd479cb9731e0159$export$2e2bcd8739ae039.segment = $bd479cb9731e0159$export$6519
         /**
          * Point a line passes through
          * @type {Point}
-         */ this.pt = new $bd479cb9731e0159$export$2e2bcd8739ae039.Point();
+         */ this.pt = new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Point();
         /**
          * Normal vector to a line <br/>
          * Vector is normalized (length == 1)<br/>
          * Direction of the vector is chosen to satisfy inequality norm * p >= 0
          * @type {Vector}
-         */ this.norm = new $bd479cb9731e0159$export$2e2bcd8739ae039.Vector(0, 1);
+         */ this.norm = new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Vector(0, 1);
         if (args.length === 0) return;
         if (args.length === 1 && args[0] instanceof Object && args[0].name === "line") {
             let { pt: pt, norm: norm } = args[0];
-            this.pt = new $bd479cb9731e0159$export$2e2bcd8739ae039.Point(pt);
-            this.norm = new $bd479cb9731e0159$export$2e2bcd8739ae039.Vector(norm);
+            this.pt = new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Point(pt);
+            this.norm = new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Vector(norm);
             return;
         }
         if (args.length === 2) {
             let a1 = args[0];
             let a2 = args[1];
-            if (a1 instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Point && a2 instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Point) {
+            if (a1 instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Point && a2 instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Point) {
                 this.pt = a1;
                 this.norm = Line.points2norm(a1, a2);
-                if (this.norm.dot($bd479cb9731e0159$var$vector(this.pt.x, this.pt.y)) >= 0) this.norm.invert();
+                if (this.norm.dot($3478ba2bdb1fd0df$var$vector(this.pt.x, this.pt.y)) >= 0) this.norm.invert();
                 return;
             }
-            if (a1 instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Point && a2 instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Vector) {
-                if ($bd479cb9731e0159$export$2e2bcd8739ae039.Utils.EQ_0(a2.x) && $bd479cb9731e0159$export$2e2bcd8739ae039.Utils.EQ_0(a2.y)) throw $bd479cb9731e0159$export$b8e9cd941e8016ac.ILLEGAL_PARAMETERS;
+            if (a1 instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Point && a2 instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Vector) {
+                if ($3478ba2bdb1fd0df$export$2e2bcd8739ae039.Utils.EQ_0(a2.x) && $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Utils.EQ_0(a2.y)) throw $3478ba2bdb1fd0df$export$b8e9cd941e8016ac.ILLEGAL_PARAMETERS;
                 this.pt = a1.clone();
                 this.norm = a2.clone();
                 this.norm = this.norm.normalize();
-                if (this.norm.dot($bd479cb9731e0159$var$vector(this.pt.x, this.pt.y)) >= 0) this.norm.invert();
+                if (this.norm.dot($3478ba2bdb1fd0df$var$vector(this.pt.x, this.pt.y)) >= 0) this.norm.invert();
                 return;
             }
-            if (a1 instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Vector && a2 instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Point) {
-                if ($bd479cb9731e0159$export$2e2bcd8739ae039.Utils.EQ_0(a1.x) && $bd479cb9731e0159$export$2e2bcd8739ae039.Utils.EQ_0(a1.y)) throw $bd479cb9731e0159$export$b8e9cd941e8016ac.ILLEGAL_PARAMETERS;
+            if (a1 instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Vector && a2 instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Point) {
+                if ($3478ba2bdb1fd0df$export$2e2bcd8739ae039.Utils.EQ_0(a1.x) && $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Utils.EQ_0(a1.y)) throw $3478ba2bdb1fd0df$export$b8e9cd941e8016ac.ILLEGAL_PARAMETERS;
                 this.pt = a2.clone();
                 this.norm = a1.clone();
                 this.norm = this.norm.normalize();
-                if (this.norm.dot($bd479cb9731e0159$var$vector(this.pt.x, this.pt.y)) >= 0) this.norm.invert();
+                if (this.norm.dot($3478ba2bdb1fd0df$var$vector(this.pt.x, this.pt.y)) >= 0) this.norm.invert();
                 return;
             }
         }
-        throw $bd479cb9731e0159$export$b8e9cd941e8016ac.ILLEGAL_PARAMETERS;
+        throw $3478ba2bdb1fd0df$export$b8e9cd941e8016ac.ILLEGAL_PARAMETERS;
     }
     /**
      * Return new cloned instance of line
      * @returns {Line}
      */ clone() {
-        return new $bd479cb9731e0159$export$2e2bcd8739ae039.Line(this.pt, this.norm);
+        return new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Line(this.pt, this.norm);
     }
     /* The following methods need for implementation of Edge interface
     /**
@@ -4093,7 +4093,7 @@ $bd479cb9731e0159$export$2e2bcd8739ae039.segment = $bd479cb9731e0159$export$6519
      * Returns infinite box
      * @returns {Box}
      */ get box() {
-        return new $bd479cb9731e0159$export$2e2bcd8739ae039.Box(Number.NEGATIVE_INFINITY, Number.NEGATIVE_INFINITY, Number.POSITIVE_INFINITY, Number.POSITIVE_INFINITY);
+        return new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Box(Number.NEGATIVE_INFINITY, Number.NEGATIVE_INFINITY, Number.POSITIVE_INFINITY, Number.POSITIVE_INFINITY);
     }
     /**
      * Middle point is undefined
@@ -4105,7 +4105,7 @@ $bd479cb9731e0159$export$2e2bcd8739ae039.segment = $bd479cb9731e0159$export$6519
      * Slope of the line - angle in radians between line and axe x from 0 to 2PI
      * @returns {number} - slope of the line
      */ get slope() {
-        let vec = new $bd479cb9731e0159$export$2e2bcd8739ae039.Vector(this.norm.y, -this.norm.x);
+        let vec = new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Vector(this.norm.y, -this.norm.x);
         return vec.slope;
     }
     /**
@@ -4115,7 +4115,7 @@ $bd479cb9731e0159$export$2e2bcd8739ae039.segment = $bd479cb9731e0159$export$6519
      */ get standard() {
         let A = this.norm.x;
         let B = this.norm.y;
-        let C = this.norm.dot($bd479cb9731e0159$var$vector(this.pt.x, this.pt.y));
+        let C = this.norm.dot($3478ba2bdb1fd0df$var$vector(this.pt.x, this.pt.y));
         return [
             A,
             B,
@@ -4127,7 +4127,7 @@ $bd479cb9731e0159$export$2e2bcd8739ae039.segment = $bd479cb9731e0159$export$6519
      * @param {Line} other_line - line to check
      * @returns {boolean}
      */ parallelTo(other_line) {
-        return $bd479cb9731e0159$export$2e2bcd8739ae039.Utils.EQ_0(this.norm.cross(other_line.norm));
+        return $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Utils.EQ_0(this.norm.cross(other_line.norm));
     }
     /**
      * Returns true if incident to other line
@@ -4142,8 +4142,8 @@ $bd479cb9731e0159$export$2e2bcd8739ae039.segment = $bd479cb9731e0159$export$6519
      * @returns {boolean}
      */ contains(pt) {
         if (this.pt.equalTo(pt)) return true;
-        /* Line contains point if vector to point is orthogonal to the line normal vector */ let vec = new $bd479cb9731e0159$export$2e2bcd8739ae039.Vector(this.pt, pt);
-        return $bd479cb9731e0159$export$2e2bcd8739ae039.Utils.EQ_0(this.norm.dot(vec));
+        /* Line contains point if vector to point is orthogonal to the line normal vector */ let vec = new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Vector(this.pt, pt);
+        return $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Utils.EQ_0(this.norm.dot(vec));
     }
     /**
      * Return coordinate of the point that lies on the line in the transformed
@@ -4153,62 +4153,62 @@ $bd479cb9731e0159$export$2e2bcd8739ae039.segment = $bd479cb9731e0159$export$6519
      * @param {Point} pt - point on a line
      * @returns {number}
      */ coord(pt) {
-        return $bd479cb9731e0159$var$vector(pt.x, pt.y).cross(this.norm);
+        return $3478ba2bdb1fd0df$var$vector(pt.x, pt.y).cross(this.norm);
     }
     /**
      * Returns array of intersection points
      * @param {Shape} shape - shape to intersect with
      * @returns {Point[]}
      */ intersect(shape) {
-        if (shape instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Point) return this.contains(shape) ? [
+        if (shape instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Point) return this.contains(shape) ? [
             shape
         ] : [];
-        if (shape instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Line) return $bd479cb9731e0159$var$intersectLine2Line(this, shape);
-        if (shape instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Ray) return $bd479cb9731e0159$var$intersectRay2Line(shape, this);
-        if (shape instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Circle) return $bd479cb9731e0159$var$intersectLine2Circle(this, shape);
-        if (shape instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Box) return $bd479cb9731e0159$var$intersectLine2Box(this, shape);
-        if (shape instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Segment) return $bd479cb9731e0159$var$intersectSegment2Line(shape, this);
-        if (shape instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Arc) return $bd479cb9731e0159$var$intersectLine2Arc(this, shape);
-        if (shape instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Polygon) return $bd479cb9731e0159$var$intersectLine2Polygon(this, shape);
-        if (shape instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Multiline) return $bd479cb9731e0159$var$intersectShape2Multiline(this, shape);
+        if (shape instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Line) return $3478ba2bdb1fd0df$var$intersectLine2Line(this, shape);
+        if (shape instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Ray) return $3478ba2bdb1fd0df$var$intersectRay2Line(shape, this);
+        if (shape instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Circle) return $3478ba2bdb1fd0df$var$intersectLine2Circle(this, shape);
+        if (shape instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Box) return $3478ba2bdb1fd0df$var$intersectLine2Box(this, shape);
+        if (shape instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Segment) return $3478ba2bdb1fd0df$var$intersectSegment2Line(shape, this);
+        if (shape instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Arc) return $3478ba2bdb1fd0df$var$intersectLine2Arc(this, shape);
+        if (shape instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Polygon) return $3478ba2bdb1fd0df$var$intersectLine2Polygon(this, shape);
+        if (shape instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Multiline) return $3478ba2bdb1fd0df$var$intersectShape2Multiline(this, shape);
     }
     /**
      * Calculate distance and shortest segment from line to shape and returns array [distance, shortest_segment]
      * @param {Shape} shape Shape of the one of the types Point, Circle, Segment, Arc, Polygon
      * @returns {[number, Segment]}
      */ distanceTo(shape) {
-        if (shape instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Point) {
-            let [distance, shortest_segment] = $bd479cb9731e0159$export$2e2bcd8739ae039.Distance.point2line(shape, this);
+        if (shape instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Point) {
+            let [distance, shortest_segment] = $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Distance.point2line(shape, this);
             shortest_segment = shortest_segment.reverse();
             return [
                 distance,
                 shortest_segment
             ];
         }
-        if (shape instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Circle) {
-            let [distance, shortest_segment] = $bd479cb9731e0159$export$2e2bcd8739ae039.Distance.circle2line(shape, this);
+        if (shape instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Circle) {
+            let [distance, shortest_segment] = $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Distance.circle2line(shape, this);
             shortest_segment = shortest_segment.reverse();
             return [
                 distance,
                 shortest_segment
             ];
         }
-        if (shape instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Segment) {
-            let [distance, shortest_segment] = $bd479cb9731e0159$export$2e2bcd8739ae039.Distance.segment2line(shape, this);
+        if (shape instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Segment) {
+            let [distance, shortest_segment] = $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Distance.segment2line(shape, this);
             return [
                 distance,
                 shortest_segment.reverse()
             ];
         }
-        if (shape instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Arc) {
-            let [distance, shortest_segment] = $bd479cb9731e0159$export$2e2bcd8739ae039.Distance.arc2line(shape, this);
+        if (shape instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Arc) {
+            let [distance, shortest_segment] = $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Distance.arc2line(shape, this);
             return [
                 distance,
                 shortest_segment.reverse()
             ];
         }
-        if (shape instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Polygon) {
-            let [distance, shortest_segment] = $bd479cb9731e0159$export$2e2bcd8739ae039.Distance.shape2polygon(this, shape);
+        if (shape instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Polygon) {
+            let [distance, shortest_segment] = $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Distance.shape2polygon(this, shape);
             return [
                 distance,
                 shortest_segment
@@ -4221,12 +4221,12 @@ $bd479cb9731e0159$export$2e2bcd8739ae039.segment = $bd479cb9731e0159$export$6519
      * @param {Point | Point[]} pt
      * @returns {MultilineShapes}
      */ split(pt) {
-        if (pt instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Point) return [
-            new $bd479cb9731e0159$export$2e2bcd8739ae039.Ray(pt, this.norm),
-            new $bd479cb9731e0159$export$2e2bcd8739ae039.Ray(pt, this.norm)
+        if (pt instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Point) return [
+            new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Ray(pt, this.norm),
+            new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Ray(pt, this.norm)
         ];
         else {
-            let multiline = new $bd479cb9731e0159$export$2e2bcd8739ae039.Multiline([
+            let multiline = new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Multiline([
                 this
             ]);
             let sorted_points = this.sortPoints(pt);
@@ -4238,15 +4238,15 @@ $bd479cb9731e0159$export$2e2bcd8739ae039.segment = $bd479cb9731e0159$export$6519
      * Return new line rotated by angle
      * @param {number} angle - angle in radians
      * @param {Point} center - center of rotation
-     */ rotate(angle, center = new $bd479cb9731e0159$export$2e2bcd8739ae039.Point()) {
-        return new $bd479cb9731e0159$export$2e2bcd8739ae039.Line(this.pt.rotate(angle, center), this.norm.rotate(angle));
+     */ rotate(angle, center = new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Point()) {
+        return new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Line(this.pt.rotate(angle, center), this.norm.rotate(angle));
     }
     /**
      * Return new line transformed by affine transformation matrix
      * @param {Matrix} m - affine transformation matrix (a,b,c,d,tx,ty)
      * @returns {Line}
      */ transform(m) {
-        return new $bd479cb9731e0159$export$2e2bcd8739ae039.Line(this.pt.transform(m), this.norm.clone());
+        return new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Line(this.pt.transform(m), this.norm.clone());
     }
     /**
      * Sort given array of points that lay on a line with respect to coordinate on a line
@@ -4268,33 +4268,33 @@ $bd479cb9731e0159$export$2e2bcd8739ae039.segment = $bd479cb9731e0159$export$6519
      * @param {Box} box Box representing drawing area
      * @param {Object} attrs - an object with attributes of svg circle element
      */ svg(box, attrs = {}) {
-        let ip = $bd479cb9731e0159$var$intersectLine2Box(this, box);
+        let ip = $3478ba2bdb1fd0df$var$intersectLine2Box(this, box);
         if (ip.length === 0) return "";
         let ps = ip[0];
         let pe = ip.length === 2 ? ip[1] : ip.find((pt)=>!pt.equalTo(ps));
         if (pe === undefined) pe = ps;
-        let segment = new $bd479cb9731e0159$export$2e2bcd8739ae039.Segment(ps, pe);
+        let segment = new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Segment(ps, pe);
         return segment.svg(attrs);
     }
     static points2norm(pt1, pt2) {
-        if (pt1.equalTo(pt2)) throw $bd479cb9731e0159$export$b8e9cd941e8016ac.ILLEGAL_PARAMETERS;
-        let vec = new $bd479cb9731e0159$export$2e2bcd8739ae039.Vector(pt1, pt2);
+        if (pt1.equalTo(pt2)) throw $3478ba2bdb1fd0df$export$b8e9cd941e8016ac.ILLEGAL_PARAMETERS;
+        let vec = new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Vector(pt1, pt2);
         let unit = vec.normalize();
         return unit.rotate90CCW();
     }
 };
-$bd479cb9731e0159$export$2e2bcd8739ae039.Line = $bd479cb9731e0159$export$17d680238e50603e;
+$3478ba2bdb1fd0df$export$2e2bcd8739ae039.Line = $3478ba2bdb1fd0df$export$17d680238e50603e;
 /**
  * Function to create line equivalent to "new" constructor
  * @param args
- */ const $bd479cb9731e0159$export$53f1d5ea8de3d7c = (...args)=>new $bd479cb9731e0159$export$2e2bcd8739ae039.Line(...args);
-$bd479cb9731e0159$export$2e2bcd8739ae039.line = $bd479cb9731e0159$export$53f1d5ea8de3d7c;
+ */ const $3478ba2bdb1fd0df$export$53f1d5ea8de3d7c = (...args)=>new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Line(...args);
+$3478ba2bdb1fd0df$export$2e2bcd8739ae039.line = $3478ba2bdb1fd0df$export$53f1d5ea8de3d7c;
 /**
  * Created by Alex Bol on 3/6/2017.
  */ /**
  * Class representing a circle
  * @type {Circle}
- */ let $bd479cb9731e0159$export$c89a927ffc67e6fa = class Circle extends $bd479cb9731e0159$var$Shape {
+ */ let $3478ba2bdb1fd0df$export$c89a927ffc67e6fa = class Circle extends $3478ba2bdb1fd0df$var$Shape {
     /**
      * Class private property
      * @type {string}
@@ -4307,20 +4307,20 @@ $bd479cb9731e0159$export$2e2bcd8739ae039.line = $bd479cb9731e0159$export$53f1d5e
         /**
          * Circle center
          * @type {Point}
-         */ this.pc = new $bd479cb9731e0159$export$2e2bcd8739ae039.Point();
+         */ this.pc = new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Point();
         /**
          * Circle radius
          * @type {number}
          */ this.r = 1;
         if (args.length === 1 && args[0] instanceof Object && args[0].name === "circle") {
             let { pc: pc, r: r } = args[0];
-            this.pc = new $bd479cb9731e0159$export$2e2bcd8739ae039.Point(pc);
+            this.pc = new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Point(pc);
             this.r = r;
         } else {
             let [pc, r] = [
                 ...args
             ];
-            if (pc && pc instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Point) this.pc = pc.clone();
+            if (pc && pc instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Point) this.pc = pc.clone();
             if (r !== undefined) this.r = r;
         }
     // throw Errors.ILLEGAL_PARAMETERS;    unreachable code
@@ -4329,7 +4329,7 @@ $bd479cb9731e0159$export$2e2bcd8739ae039.line = $bd479cb9731e0159$export$53f1d5e
      * Return new cloned instance of circle
      * @returns {Circle}
      */ clone() {
-        return new $bd479cb9731e0159$export$2e2bcd8739ae039.Circle(this.pc.clone(), this.r);
+        return new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Circle(this.pc.clone(), this.r);
     }
     /**
      * Circle center
@@ -4341,24 +4341,24 @@ $bd479cb9731e0159$export$2e2bcd8739ae039.line = $bd479cb9731e0159$export$53f1d5e
      * Circle bounding box
      * @returns {Box}
      */ get box() {
-        return new $bd479cb9731e0159$export$2e2bcd8739ae039.Box(this.pc.x - this.r, this.pc.y - this.r, this.pc.x + this.r, this.pc.y + this.r);
+        return new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Box(this.pc.x - this.r, this.pc.y - this.r, this.pc.x + this.r, this.pc.y + this.r);
     }
     /**
      * Return true if circle contains shape: no point of shape lies outside of the circle
      * @param {Shape} shape - test shape
      * @returns {boolean}
      */ contains(shape) {
-        if (shape instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Point) return $bd479cb9731e0159$export$2e2bcd8739ae039.Utils.LE(shape.distanceTo(this.center)[0], this.r);
-        if (shape instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Segment) return $bd479cb9731e0159$export$2e2bcd8739ae039.Utils.LE(shape.start.distanceTo(this.center)[0], this.r) && $bd479cb9731e0159$export$2e2bcd8739ae039.Utils.LE(shape.end.distanceTo(this.center)[0], this.r);
-        if (shape instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Arc) return this.intersect(shape).length === 0 && $bd479cb9731e0159$export$2e2bcd8739ae039.Utils.LE(shape.start.distanceTo(this.center)[0], this.r) && $bd479cb9731e0159$export$2e2bcd8739ae039.Utils.LE(shape.end.distanceTo(this.center)[0], this.r);
-        if (shape instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Circle) return this.intersect(shape).length === 0 && $bd479cb9731e0159$export$2e2bcd8739ae039.Utils.LE(shape.r, this.r) && $bd479cb9731e0159$export$2e2bcd8739ae039.Utils.LE(shape.center.distanceTo(this.center)[0], this.r);
+        if (shape instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Point) return $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Utils.LE(shape.distanceTo(this.center)[0], this.r);
+        if (shape instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Segment) return $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Utils.LE(shape.start.distanceTo(this.center)[0], this.r) && $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Utils.LE(shape.end.distanceTo(this.center)[0], this.r);
+        if (shape instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Arc) return this.intersect(shape).length === 0 && $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Utils.LE(shape.start.distanceTo(this.center)[0], this.r) && $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Utils.LE(shape.end.distanceTo(this.center)[0], this.r);
+        if (shape instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Circle) return this.intersect(shape).length === 0 && $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Utils.LE(shape.r, this.r) && $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Utils.LE(shape.center.distanceTo(this.center)[0], this.r);
     /* TODO: box, polygon */ }
     /**
      * Transform circle to closed arc
      * @param {boolean} counterclockwise
      * @returns {Arc}
      */ toArc(counterclockwise = true) {
-        return new $bd479cb9731e0159$export$2e2bcd8739ae039.Arc(this.center, this.r, Math.PI, -Math.PI, counterclockwise);
+        return new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Arc(this.center, this.r, Math.PI, -Math.PI, counterclockwise);
     }
     /**
      * Method scale is supported only for uniform scaling of the circle with (0,0) center
@@ -4366,33 +4366,33 @@ $bd479cb9731e0159$export$2e2bcd8739ae039.line = $bd479cb9731e0159$export$53f1d5e
      * @param {number} sy
      * @returns {Circle}
      */ scale(sx, sy) {
-        if (sx !== sy) throw $bd479cb9731e0159$export$b8e9cd941e8016ac.OPERATION_IS_NOT_SUPPORTED;
-        if (!(this.pc.x === 0.0 && this.pc.y === 0.0)) throw $bd479cb9731e0159$export$b8e9cd941e8016ac.OPERATION_IS_NOT_SUPPORTED;
-        return new $bd479cb9731e0159$export$2e2bcd8739ae039.Circle(this.pc, this.r * sx);
+        if (sx !== sy) throw $3478ba2bdb1fd0df$export$b8e9cd941e8016ac.OPERATION_IS_NOT_SUPPORTED;
+        if (!(this.pc.x === 0.0 && this.pc.y === 0.0)) throw $3478ba2bdb1fd0df$export$b8e9cd941e8016ac.OPERATION_IS_NOT_SUPPORTED;
+        return new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Circle(this.pc, this.r * sx);
     }
     /**
      * Return new circle transformed using affine transformation matrix
      * @param {Matrix} matrix - affine transformation matrix
      * @returns {Circle}
-     */ transform(matrix = new $bd479cb9731e0159$export$2e2bcd8739ae039.Matrix()) {
-        return new $bd479cb9731e0159$export$2e2bcd8739ae039.Circle(this.pc.transform(matrix), this.r);
+     */ transform(matrix = new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Matrix()) {
+        return new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Circle(this.pc.transform(matrix), this.r);
     }
     /**
      * Returns array of intersection points between circle and other shape
      * @param {Shape} shape Shape of the one of supported types
      * @returns {Point[]}
      */ intersect(shape) {
-        if (shape instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Point) return this.contains(shape) ? [
+        if (shape instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Point) return this.contains(shape) ? [
             shape
         ] : [];
-        if (shape instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Line) return $bd479cb9731e0159$var$intersectLine2Circle(shape, this);
-        if (shape instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Ray) return $bd479cb9731e0159$var$intersectRay2Circle(shape, this);
-        if (shape instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Segment) return $bd479cb9731e0159$var$intersectSegment2Circle(shape, this);
-        if (shape instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Circle) return $bd479cb9731e0159$var$intersectCircle2Circle(shape, this);
-        if (shape instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Box) return $bd479cb9731e0159$var$intersectCircle2Box(this, shape);
-        if (shape instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Arc) return $bd479cb9731e0159$var$intersectArc2Circle(shape, this);
-        if (shape instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Polygon) return $bd479cb9731e0159$var$intersectCircle2Polygon(this, shape);
-        if (shape instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Multiline) return $bd479cb9731e0159$var$intersectShape2Multiline(this, shape);
+        if (shape instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Line) return $3478ba2bdb1fd0df$var$intersectLine2Circle(shape, this);
+        if (shape instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Ray) return $3478ba2bdb1fd0df$var$intersectRay2Circle(shape, this);
+        if (shape instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Segment) return $3478ba2bdb1fd0df$var$intersectSegment2Circle(shape, this);
+        if (shape instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Circle) return $3478ba2bdb1fd0df$var$intersectCircle2Circle(shape, this);
+        if (shape instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Box) return $3478ba2bdb1fd0df$var$intersectCircle2Box(this, shape);
+        if (shape instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Arc) return $3478ba2bdb1fd0df$var$intersectArc2Circle(shape, this);
+        if (shape instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Polygon) return $3478ba2bdb1fd0df$var$intersectCircle2Polygon(this, shape);
+        if (shape instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Multiline) return $3478ba2bdb1fd0df$var$intersectShape2Multiline(this, shape);
     }
     /**
      * Calculate distance and shortest segment from circle to shape and return array [distance, shortest segment]
@@ -4401,60 +4401,60 @@ $bd479cb9731e0159$export$2e2bcd8739ae039.line = $bd479cb9731e0159$export$53f1d5e
      * @returns {Segment} shortest segment between circle and shape (started at circle, ended at shape)
 
      */ distanceTo(shape) {
-        if (shape instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Point) {
-            let [distance, shortest_segment] = $bd479cb9731e0159$export$2e2bcd8739ae039.Distance.point2circle(shape, this);
+        if (shape instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Point) {
+            let [distance, shortest_segment] = $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Distance.point2circle(shape, this);
             shortest_segment = shortest_segment.reverse();
             return [
                 distance,
                 shortest_segment
             ];
         }
-        if (shape instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Circle) {
-            let [distance, shortest_segment] = $bd479cb9731e0159$export$2e2bcd8739ae039.Distance.circle2circle(this, shape);
+        if (shape instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Circle) {
+            let [distance, shortest_segment] = $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Distance.circle2circle(this, shape);
             return [
                 distance,
                 shortest_segment
             ];
         }
-        if (shape instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Line) {
-            let [distance, shortest_segment] = $bd479cb9731e0159$export$2e2bcd8739ae039.Distance.circle2line(this, shape);
+        if (shape instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Line) {
+            let [distance, shortest_segment] = $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Distance.circle2line(this, shape);
             return [
                 distance,
                 shortest_segment
             ];
         }
-        if (shape instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Segment) {
-            let [distance, shortest_segment] = $bd479cb9731e0159$export$2e2bcd8739ae039.Distance.segment2circle(shape, this);
+        if (shape instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Segment) {
+            let [distance, shortest_segment] = $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Distance.segment2circle(shape, this);
             shortest_segment = shortest_segment.reverse();
             return [
                 distance,
                 shortest_segment
             ];
         }
-        if (shape instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Arc) {
-            let [distance, shortest_segment] = $bd479cb9731e0159$export$2e2bcd8739ae039.Distance.arc2circle(shape, this);
+        if (shape instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Arc) {
+            let [distance, shortest_segment] = $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Distance.arc2circle(shape, this);
             shortest_segment = shortest_segment.reverse();
             return [
                 distance,
                 shortest_segment
             ];
         }
-        if (shape instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Polygon) {
-            let [distance, shortest_segment] = $bd479cb9731e0159$export$2e2bcd8739ae039.Distance.shape2polygon(this, shape);
+        if (shape instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Polygon) {
+            let [distance, shortest_segment] = $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Distance.shape2polygon(this, shape);
             return [
                 distance,
                 shortest_segment
             ];
         }
-        if (shape instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.PlanarSet) {
-            let [dist, shortest_segment] = $bd479cb9731e0159$export$2e2bcd8739ae039.Distance.shape2planarSet(this, shape);
+        if (shape instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.PlanarSet) {
+            let [dist, shortest_segment] = $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Distance.shape2planarSet(this, shape);
             return [
                 dist,
                 shortest_segment
             ];
         }
-        if (shape instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Multiline) {
-            let [dist, shortest_segment] = $bd479cb9731e0159$export$2e2bcd8739ae039.Distance.shape2multiline(this, shape);
+        if (shape instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Multiline) {
+            let [dist, shortest_segment] = $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Distance.shape2multiline(this, shape);
             return [
                 dist,
                 shortest_segment
@@ -4470,24 +4470,24 @@ $bd479cb9731e0159$export$2e2bcd8739ae039.line = $bd479cb9731e0159$export$53f1d5e
      * @returns {string}
      */ svg(attrs = {}) {
         return `\n<circle cx="${this.pc.x}" cy="${this.pc.y}" r="${this.r}"
-                ${$bd479cb9731e0159$var$convertToString({
+                ${$3478ba2bdb1fd0df$var$convertToString({
             fill: "none",
             ...attrs
         })} />`;
     }
 };
-$bd479cb9731e0159$export$2e2bcd8739ae039.Circle = $bd479cb9731e0159$export$c89a927ffc67e6fa;
+$3478ba2bdb1fd0df$export$2e2bcd8739ae039.Circle = $3478ba2bdb1fd0df$export$c89a927ffc67e6fa;
 /**
  * Shortcut to create new circle
  * @param args
- */ const $bd479cb9731e0159$export$e1d786d2f707b414 = (...args)=>new $bd479cb9731e0159$export$2e2bcd8739ae039.Circle(...args);
-$bd479cb9731e0159$export$2e2bcd8739ae039.circle = $bd479cb9731e0159$export$e1d786d2f707b414;
+ */ const $3478ba2bdb1fd0df$export$e1d786d2f707b414 = (...args)=>new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Circle(...args);
+$3478ba2bdb1fd0df$export$2e2bcd8739ae039.circle = $3478ba2bdb1fd0df$export$e1d786d2f707b414;
 /**
  * Created by Alex Bol on 3/10/2017.
  */ /**
  * Class representing a circular arc
  * @type {Arc}
- */ class $bd479cb9731e0159$export$6ef80ffb606dd232 extends $bd479cb9731e0159$var$Shape {
+ */ class $3478ba2bdb1fd0df$export$6ef80ffb606dd232 extends $3478ba2bdb1fd0df$var$Shape {
     /**
      *
      * @param {Point} pc - arc center
@@ -4500,7 +4500,7 @@ $bd479cb9731e0159$export$2e2bcd8739ae039.circle = $bd479cb9731e0159$export$e1d78
         /**
          * Arc center
          * @type {Point}
-         */ this.pc = new $bd479cb9731e0159$export$2e2bcd8739ae039.Point();
+         */ this.pc = new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Point();
         /**
          * Arc radius
          * @type {number}
@@ -4516,11 +4516,11 @@ $bd479cb9731e0159$export$2e2bcd8739ae039.circle = $bd479cb9731e0159$export$e1d78
         /**
          * Arc orientation
          * @type {boolean}
-         */ this.counterClockwise = $bd479cb9731e0159$export$2e2bcd8739ae039.CCW;
+         */ this.counterClockwise = $3478ba2bdb1fd0df$export$2e2bcd8739ae039.CCW;
         if (args.length === 0) return;
         if (args.length === 1 && args[0] instanceof Object && args[0].name === "arc") {
             let { pc: pc, r: r, startAngle: startAngle, endAngle: endAngle, counterClockwise: counterClockwise } = args[0];
-            this.pc = new $bd479cb9731e0159$export$2e2bcd8739ae039.Point(pc.x, pc.y);
+            this.pc = new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Point(pc.x, pc.y);
             this.r = r;
             this.startAngle = startAngle;
             this.endAngle = endAngle;
@@ -4529,7 +4529,7 @@ $bd479cb9731e0159$export$2e2bcd8739ae039.circle = $bd479cb9731e0159$export$e1d78
             let [pc, r, startAngle, endAngle, counterClockwise] = [
                 ...args
             ];
-            if (pc && pc instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Point) this.pc = pc.clone();
+            if (pc && pc instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Point) this.pc = pc.clone();
             if (r !== undefined) this.r = r;
             if (startAngle !== undefined) this.startAngle = startAngle;
             if (endAngle !== undefined) this.endAngle = endAngle;
@@ -4541,33 +4541,33 @@ $bd479cb9731e0159$export$2e2bcd8739ae039.circle = $bd479cb9731e0159$export$e1d78
      * Return new cloned instance of arc
      * @returns {Arc}
      */ clone() {
-        return new $bd479cb9731e0159$export$2e2bcd8739ae039.Arc(this.pc.clone(), this.r, this.startAngle, this.endAngle, this.counterClockwise);
+        return new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Arc(this.pc.clone(), this.r, this.startAngle, this.endAngle, this.counterClockwise);
     }
     /**
      * Get sweep angle in radians. Sweep angle is non-negative number from 0 to 2*PI
      * @returns {number}
      */ get sweep() {
-        if ($bd479cb9731e0159$export$2e2bcd8739ae039.Utils.EQ(this.startAngle, this.endAngle)) return 0.0;
-        if ($bd479cb9731e0159$export$2e2bcd8739ae039.Utils.EQ(Math.abs(this.startAngle - this.endAngle), $bd479cb9731e0159$export$2e2bcd8739ae039.PIx2)) return $bd479cb9731e0159$export$2e2bcd8739ae039.PIx2;
+        if ($3478ba2bdb1fd0df$export$2e2bcd8739ae039.Utils.EQ(this.startAngle, this.endAngle)) return 0.0;
+        if ($3478ba2bdb1fd0df$export$2e2bcd8739ae039.Utils.EQ(Math.abs(this.startAngle - this.endAngle), $3478ba2bdb1fd0df$export$2e2bcd8739ae039.PIx2)) return $3478ba2bdb1fd0df$export$2e2bcd8739ae039.PIx2;
         let sweep;
-        if (this.counterClockwise) sweep = $bd479cb9731e0159$export$2e2bcd8739ae039.Utils.GT(this.endAngle, this.startAngle) ? this.endAngle - this.startAngle : this.endAngle - this.startAngle + $bd479cb9731e0159$export$2e2bcd8739ae039.PIx2;
-        else sweep = $bd479cb9731e0159$export$2e2bcd8739ae039.Utils.GT(this.startAngle, this.endAngle) ? this.startAngle - this.endAngle : this.startAngle - this.endAngle + $bd479cb9731e0159$export$2e2bcd8739ae039.PIx2;
-        if ($bd479cb9731e0159$export$2e2bcd8739ae039.Utils.GT(sweep, $bd479cb9731e0159$export$2e2bcd8739ae039.PIx2)) sweep -= $bd479cb9731e0159$export$2e2bcd8739ae039.PIx2;
-        if ($bd479cb9731e0159$export$2e2bcd8739ae039.Utils.LT(sweep, 0)) sweep += $bd479cb9731e0159$export$2e2bcd8739ae039.PIx2;
+        if (this.counterClockwise) sweep = $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Utils.GT(this.endAngle, this.startAngle) ? this.endAngle - this.startAngle : this.endAngle - this.startAngle + $3478ba2bdb1fd0df$export$2e2bcd8739ae039.PIx2;
+        else sweep = $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Utils.GT(this.startAngle, this.endAngle) ? this.startAngle - this.endAngle : this.startAngle - this.endAngle + $3478ba2bdb1fd0df$export$2e2bcd8739ae039.PIx2;
+        if ($3478ba2bdb1fd0df$export$2e2bcd8739ae039.Utils.GT(sweep, $3478ba2bdb1fd0df$export$2e2bcd8739ae039.PIx2)) sweep -= $3478ba2bdb1fd0df$export$2e2bcd8739ae039.PIx2;
+        if ($3478ba2bdb1fd0df$export$2e2bcd8739ae039.Utils.LT(sweep, 0)) sweep += $3478ba2bdb1fd0df$export$2e2bcd8739ae039.PIx2;
         return sweep;
     }
     /**
      * Get start point of arc
      * @returns {Point}
      */ get start() {
-        let p0 = new $bd479cb9731e0159$export$2e2bcd8739ae039.Point(this.pc.x + this.r, this.pc.y);
+        let p0 = new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Point(this.pc.x + this.r, this.pc.y);
         return p0.rotate(this.startAngle, this.pc);
     }
     /**
      * Get end point of arc
      * @returns {Point}
      */ get end() {
-        let p0 = new $bd479cb9731e0159$export$2e2bcd8739ae039.Point(this.pc.x + this.r, this.pc.y);
+        let p0 = new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Point(this.pc.x + this.r, this.pc.y);
         return p0.rotate(this.endAngle, this.pc);
     }
     /**
@@ -4593,7 +4593,7 @@ $bd479cb9731e0159$export$2e2bcd8739ae039.circle = $bd479cb9731e0159$export$e1d78
      * @returns {Box}
      */ get box() {
         let func_arcs = this.breakToFunctional();
-        let box = func_arcs.reduce((acc, arc)=>acc.merge(arc.start.box), new $bd479cb9731e0159$export$2e2bcd8739ae039.Box());
+        let box = func_arcs.reduce((acc, arc)=>acc.merge(arc.start.box), new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Box());
         box = box.merge(this.end.box);
         return box;
     }
@@ -4603,12 +4603,12 @@ $bd479cb9731e0159$export$2e2bcd8739ae039.circle = $bd479cb9731e0159$export$e1d78
      * @returns {boolean}
      */ contains(pt) {
         // first check if  point on circle (pc,r)
-        if (!$bd479cb9731e0159$export$2e2bcd8739ae039.Utils.EQ(this.pc.distanceTo(pt)[0], this.r)) return false;
+        if (!$3478ba2bdb1fd0df$export$2e2bcd8739ae039.Utils.EQ(this.pc.distanceTo(pt)[0], this.r)) return false;
         // point on circle
         if (pt.equalTo(this.start)) return true;
-        let angle = new $bd479cb9731e0159$export$2e2bcd8739ae039.Vector(this.pc, pt).slope;
-        let test_arc = new $bd479cb9731e0159$export$2e2bcd8739ae039.Arc(this.pc, this.r, this.startAngle, angle, this.counterClockwise);
-        return $bd479cb9731e0159$export$2e2bcd8739ae039.Utils.LE(test_arc.length, this.length);
+        let angle = new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Vector(this.pc, pt).slope;
+        let test_arc = new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Arc(this.pc, this.r, this.startAngle, angle, this.counterClockwise);
+        return $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Utils.LE(test_arc.length, this.length);
     }
     /**
      * When given point belongs to arc, return array of two arcs split by this point. If points is incident
@@ -4625,10 +4625,10 @@ $bd479cb9731e0159$export$2e2bcd8739ae039.circle = $bd479cb9731e0159$export$e1d78
             this.clone(),
             null
         ];
-        let angle = new $bd479cb9731e0159$export$2e2bcd8739ae039.Vector(this.pc, pt).slope;
+        let angle = new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Vector(this.pc, pt).slope;
         return [
-            new $bd479cb9731e0159$export$2e2bcd8739ae039.Arc(this.pc, this.r, this.startAngle, angle, this.counterClockwise),
-            new $bd479cb9731e0159$export$2e2bcd8739ae039.Arc(this.pc, this.r, angle, this.endAngle, this.counterClockwise)
+            new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Arc(this.pc, this.r, this.startAngle, angle, this.counterClockwise),
+            new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Arc(this.pc, this.r, angle, this.endAngle, this.counterClockwise)
         ];
     }
     /**
@@ -4636,7 +4636,7 @@ $bd479cb9731e0159$export$2e2bcd8739ae039.circle = $bd479cb9731e0159$export$e1d78
      * @returns {Point}
      */ middle() {
         let endAngle = this.counterClockwise ? this.startAngle + this.sweep / 2 : this.startAngle - this.sweep / 2;
-        let arc = new $bd479cb9731e0159$export$2e2bcd8739ae039.Arc(this.pc, this.r, this.startAngle, endAngle, this.counterClockwise);
+        let arc = new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Arc(this.pc, this.r, this.startAngle, endAngle, this.counterClockwise);
         return arc.end;
     }
     /**
@@ -4649,7 +4649,7 @@ $bd479cb9731e0159$export$2e2bcd8739ae039.circle = $bd479cb9731e0159$export$e1d78
         if (length === this.length) return this.end;
         let factor = length / this.length;
         let endAngle = this.counterClockwise ? this.startAngle + this.sweep * factor : this.startAngle - this.sweep * factor;
-        let arc = new $bd479cb9731e0159$export$2e2bcd8739ae039.Arc(this.pc, this.r, this.startAngle, endAngle, this.counterClockwise);
+        let arc = new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Arc(this.pc, this.r, this.startAngle, endAngle, this.counterClockwise);
         return arc.end;
     }
     /**
@@ -4663,17 +4663,17 @@ $bd479cb9731e0159$export$2e2bcd8739ae039.circle = $bd479cb9731e0159$export$e1d78
      * @param {Shape} shape Shape of the one of supported types <br/>
      * @returns {Point[]}
      */ intersect(shape) {
-        if (shape instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Point) return this.contains(shape) ? [
+        if (shape instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Point) return this.contains(shape) ? [
             shape
         ] : [];
-        if (shape instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Line) return $bd479cb9731e0159$var$intersectLine2Arc(shape, this);
-        if (shape instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Ray) return $bd479cb9731e0159$var$intersectRay2Arc(shape, this);
-        if (shape instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Circle) return $bd479cb9731e0159$var$intersectArc2Circle(this, shape);
-        if (shape instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Segment) return $bd479cb9731e0159$var$intersectSegment2Arc(shape, this);
-        if (shape instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Box) return $bd479cb9731e0159$var$intersectArc2Box(this, shape);
-        if (shape instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Arc) return $bd479cb9731e0159$var$intersectArc2Arc(this, shape);
-        if (shape instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Polygon) return $bd479cb9731e0159$var$intersectArc2Polygon(this, shape);
-        if (shape instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Multiline) return $bd479cb9731e0159$var$intersectShape2Multiline(this, shape);
+        if (shape instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Line) return $3478ba2bdb1fd0df$var$intersectLine2Arc(shape, this);
+        if (shape instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Ray) return $3478ba2bdb1fd0df$var$intersectRay2Arc(shape, this);
+        if (shape instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Circle) return $3478ba2bdb1fd0df$var$intersectArc2Circle(this, shape);
+        if (shape instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Segment) return $3478ba2bdb1fd0df$var$intersectSegment2Arc(shape, this);
+        if (shape instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Box) return $3478ba2bdb1fd0df$var$intersectArc2Box(this, shape);
+        if (shape instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Arc) return $3478ba2bdb1fd0df$var$intersectArc2Arc(this, shape);
+        if (shape instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Polygon) return $3478ba2bdb1fd0df$var$intersectArc2Polygon(this, shape);
+        if (shape instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Multiline) return $3478ba2bdb1fd0df$var$intersectShape2Multiline(this, shape);
     }
     /**
      * Calculate distance and shortest segment from arc to shape and return array [distance, shortest segment]
@@ -4682,58 +4682,58 @@ $bd479cb9731e0159$export$2e2bcd8739ae039.circle = $bd479cb9731e0159$export$e1d78
      * @returns {Segment} shortest segment between arc and shape (started at arc, ended at shape)
 
      */ distanceTo(shape) {
-        if (shape instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Point) {
-            let [dist, shortest_segment] = $bd479cb9731e0159$export$2e2bcd8739ae039.Distance.point2arc(shape, this);
+        if (shape instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Point) {
+            let [dist, shortest_segment] = $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Distance.point2arc(shape, this);
             shortest_segment = shortest_segment.reverse();
             return [
                 dist,
                 shortest_segment
             ];
         }
-        if (shape instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Circle) {
-            let [dist, shortest_segment] = $bd479cb9731e0159$export$2e2bcd8739ae039.Distance.arc2circle(this, shape);
+        if (shape instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Circle) {
+            let [dist, shortest_segment] = $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Distance.arc2circle(this, shape);
             return [
                 dist,
                 shortest_segment
             ];
         }
-        if (shape instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Line) {
-            let [dist, shortest_segment] = $bd479cb9731e0159$export$2e2bcd8739ae039.Distance.arc2line(this, shape);
+        if (shape instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Line) {
+            let [dist, shortest_segment] = $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Distance.arc2line(this, shape);
             return [
                 dist,
                 shortest_segment
             ];
         }
-        if (shape instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Segment) {
-            let [dist, shortest_segment] = $bd479cb9731e0159$export$2e2bcd8739ae039.Distance.segment2arc(shape, this);
+        if (shape instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Segment) {
+            let [dist, shortest_segment] = $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Distance.segment2arc(shape, this);
             shortest_segment = shortest_segment.reverse();
             return [
                 dist,
                 shortest_segment
             ];
         }
-        if (shape instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Arc) {
-            let [dist, shortest_segment] = $bd479cb9731e0159$export$2e2bcd8739ae039.Distance.arc2arc(this, shape);
+        if (shape instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Arc) {
+            let [dist, shortest_segment] = $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Distance.arc2arc(this, shape);
             return [
                 dist,
                 shortest_segment
             ];
         }
-        if (shape instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Polygon) {
-            let [dist, shortest_segment] = $bd479cb9731e0159$export$2e2bcd8739ae039.Distance.shape2polygon(this, shape);
+        if (shape instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Polygon) {
+            let [dist, shortest_segment] = $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Distance.shape2polygon(this, shape);
             return [
                 dist,
                 shortest_segment
             ];
         }
-        if (shape instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.PlanarSet) {
-            let [dist, shortest_segment] = $bd479cb9731e0159$export$2e2bcd8739ae039.Distance.shape2planarSet(this, shape);
+        if (shape instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.PlanarSet) {
+            let [dist, shortest_segment] = $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Distance.shape2planarSet(this, shape);
             return [
                 dist,
                 shortest_segment
             ];
         }
-        if (shape instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Multiline) return $bd479cb9731e0159$export$2e2bcd8739ae039.Distance.shape2multiline(this, shape);
+        if (shape instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Multiline) return $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Distance.shape2multiline(this, shape);
     }
     /**
      * Breaks arc in extreme point 0, pi/2, pi, 3*pi/2 and returns array of sub-arcs
@@ -4755,7 +4755,7 @@ $bd479cb9731e0159$export$2e2bcd8739ae039.circle = $bd479cb9731e0159$export$e1d78
         // If arc contains extreme point,
         // create test arc started at start point and ended at this extreme point
         let test_arcs = [];
-        for(let i = 0; i < 4; i++)if (pts[i].on(this)) test_arcs.push(new $bd479cb9731e0159$export$2e2bcd8739ae039.Arc(this.pc, this.r, this.startAngle, angles[i], this.counterClockwise));
+        for(let i = 0; i < 4; i++)if (pts[i].on(this)) test_arcs.push(new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Arc(this.pc, this.r, this.startAngle, angles[i], this.counterClockwise));
         if (test_arcs.length === 0) func_arcs_array.push(this.clone());
         else {
             // sort these arcs by length
@@ -4763,17 +4763,17 @@ $bd479cb9731e0159$export$2e2bcd8739ae039.circle = $bd479cb9731e0159$export$e1d78
             for(let i = 0; i < test_arcs.length; i++){
                 let prev_arc = func_arcs_array.length > 0 ? func_arcs_array[func_arcs_array.length - 1] : undefined;
                 let new_arc;
-                if (prev_arc) new_arc = new $bd479cb9731e0159$export$2e2bcd8739ae039.Arc(this.pc, this.r, prev_arc.endAngle, test_arcs[i].endAngle, this.counterClockwise);
-                else new_arc = new $bd479cb9731e0159$export$2e2bcd8739ae039.Arc(this.pc, this.r, this.startAngle, test_arcs[i].endAngle, this.counterClockwise);
-                if (!$bd479cb9731e0159$export$2e2bcd8739ae039.Utils.EQ_0(new_arc.length)) func_arcs_array.push(new_arc.clone());
+                if (prev_arc) new_arc = new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Arc(this.pc, this.r, prev_arc.endAngle, test_arcs[i].endAngle, this.counterClockwise);
+                else new_arc = new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Arc(this.pc, this.r, this.startAngle, test_arcs[i].endAngle, this.counterClockwise);
+                if (!$3478ba2bdb1fd0df$export$2e2bcd8739ae039.Utils.EQ_0(new_arc.length)) func_arcs_array.push(new_arc.clone());
             }
             // add last sub arc
             let prev_arc = func_arcs_array.length > 0 ? func_arcs_array[func_arcs_array.length - 1] : undefined;
             let new_arc;
-            if (prev_arc) new_arc = new $bd479cb9731e0159$export$2e2bcd8739ae039.Arc(this.pc, this.r, prev_arc.endAngle, this.endAngle, this.counterClockwise);
-            else new_arc = new $bd479cb9731e0159$export$2e2bcd8739ae039.Arc(this.pc, this.r, this.startAngle, this.endAngle, this.counterClockwise);
+            if (prev_arc) new_arc = new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Arc(this.pc, this.r, prev_arc.endAngle, this.endAngle, this.counterClockwise);
+            else new_arc = new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Arc(this.pc, this.r, this.startAngle, this.endAngle, this.counterClockwise);
             // It could be 2*PI when occasionally start = 0 and end = 2*PI but this is not valid for breakToFunctional
-            if (!$bd479cb9731e0159$export$2e2bcd8739ae039.Utils.EQ_0(new_arc.length) && !$bd479cb9731e0159$export$2e2bcd8739ae039.Utils.EQ(new_arc.sweep, 2 * Math.PI)) func_arcs_array.push(new_arc.clone());
+            if (!$3478ba2bdb1fd0df$export$2e2bcd8739ae039.Utils.EQ_0(new_arc.length) && !$3478ba2bdb1fd0df$export$2e2bcd8739ae039.Utils.EQ(new_arc.sweep, 2 * Math.PI)) func_arcs_array.push(new_arc.clone());
         }
         return func_arcs_array;
     }
@@ -4781,7 +4781,7 @@ $bd479cb9731e0159$export$2e2bcd8739ae039.circle = $bd479cb9731e0159$export$e1d78
      * Return tangent unit vector in the start point in the direction from start to end
      * @returns {Vector}
      */ tangentInStart() {
-        let vec = new $bd479cb9731e0159$export$2e2bcd8739ae039.Vector(this.pc, this.start);
+        let vec = new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Vector(this.pc, this.start);
         let angle = this.counterClockwise ? Math.PI / 2. : -Math.PI / 2.;
         return vec.rotate(angle).normalize();
     }
@@ -4789,7 +4789,7 @@ $bd479cb9731e0159$export$2e2bcd8739ae039.circle = $bd479cb9731e0159$export$e1d78
      * Return tangent unit vector in the end point in the direction from end to start
      * @returns {Vector}
      */ tangentInEnd() {
-        let vec = new $bd479cb9731e0159$export$2e2bcd8739ae039.Vector(this.pc, this.end);
+        let vec = new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Vector(this.pc, this.end);
         let angle = this.counterClockwise ? -Math.PI / 2. : Math.PI / 2.;
         return vec.rotate(angle).normalize();
     }
@@ -4797,30 +4797,30 @@ $bd479cb9731e0159$export$2e2bcd8739ae039.circle = $bd479cb9731e0159$export$e1d78
      * Returns new arc with swapped start and end angles and reversed direction
      * @returns {Arc}
      */ reverse() {
-        return new $bd479cb9731e0159$export$2e2bcd8739ae039.Arc(this.pc, this.r, this.endAngle, this.startAngle, !this.counterClockwise);
+        return new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Arc(this.pc, this.r, this.endAngle, this.startAngle, !this.counterClockwise);
     }
     /**
      * Return new arc transformed using affine transformation matrix <br/>
      * @param {Matrix} matrix - affine transformation matrix
      * @returns {Arc}
-     */ transform(matrix = new $bd479cb9731e0159$export$2e2bcd8739ae039.Matrix()) {
+     */ transform(matrix = new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Matrix()) {
         let newStart = this.start.transform(matrix);
         let newEnd = this.end.transform(matrix);
         let newCenter = this.pc.transform(matrix);
         let newDirection = this.counterClockwise;
         if (matrix.a * matrix.d < 0) newDirection = !newDirection;
-        return $bd479cb9731e0159$export$2e2bcd8739ae039.Arc.arcSE(newCenter, newStart, newEnd, newDirection);
+        return $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Arc.arcSE(newCenter, newStart, newEnd, newDirection);
     }
     static arcSE(center, start, end, counterClockwise) {
-        let { vector: vector } = $bd479cb9731e0159$export$2e2bcd8739ae039;
+        let { vector: vector } = $3478ba2bdb1fd0df$export$2e2bcd8739ae039;
         let startAngle = vector(center, start).slope;
         let endAngle = vector(center, end).slope;
-        if ($bd479cb9731e0159$export$2e2bcd8739ae039.Utils.EQ(startAngle, endAngle)) {
+        if ($3478ba2bdb1fd0df$export$2e2bcd8739ae039.Utils.EQ(startAngle, endAngle)) {
             endAngle += 2 * Math.PI;
             counterClockwise = true;
         }
         let r = vector(center, start).length;
-        return new $bd479cb9731e0159$export$2e2bcd8739ae039.Arc(center, r, startAngle, endAngle, counterClockwise);
+        return new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Arc(center, r, startAngle, endAngle, counterClockwise);
     }
     definiteIntegral(ymin = 0) {
         let f_arcs = this.breakToFunctional();
@@ -4828,9 +4828,9 @@ $bd479cb9731e0159$export$2e2bcd8739ae039.circle = $bd479cb9731e0159$export$e1d78
         return area;
     }
     circularSegmentDefiniteIntegral(ymin) {
-        let line = new $bd479cb9731e0159$export$2e2bcd8739ae039.Line(this.start, this.end);
+        let line = new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Line(this.start, this.end);
         let onLeftSide = this.pc.leftTo(line);
-        let segment = new $bd479cb9731e0159$export$2e2bcd8739ae039.Segment(this.start, this.end);
+        let segment = new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Segment(this.start, this.end);
         let areaTrapez = segment.definiteIntegral(ymin);
         let areaCircularSegment = this.circularSegmentArea();
         let area = onLeftSide ? areaTrapez - areaCircularSegment : areaTrapez + areaCircularSegment;
@@ -4844,7 +4844,7 @@ $bd479cb9731e0159$export$2e2bcd8739ae039.circle = $bd479cb9731e0159$export$e1d78
      * @param {Point[]} pts array of points
      * @returns {Point[]} new array sorted
      */ sortPoints(pts) {
-        let { vector: vector } = $bd479cb9731e0159$export$2e2bcd8739ae039;
+        let { vector: vector } = $3478ba2bdb1fd0df$export$2e2bcd8739ae039;
         return pts.slice().sort((pt1, pt2)=>{
             let slope1 = vector(this.pc, pt1).slope;
             let slope2 = vector(this.pc, pt2).slope;
@@ -4863,30 +4863,30 @@ $bd479cb9731e0159$export$2e2bcd8739ae039.circle = $bd479cb9731e0159$export$e1d78
      */ svg(attrs = {}) {
         let largeArcFlag = this.sweep <= Math.PI ? "0" : "1";
         let sweepFlag = this.counterClockwise ? "1" : "0";
-        if ($bd479cb9731e0159$export$2e2bcd8739ae039.Utils.EQ(this.sweep, 2 * Math.PI)) {
-            let circle = new $bd479cb9731e0159$export$2e2bcd8739ae039.Circle(this.pc, this.r);
+        if ($3478ba2bdb1fd0df$export$2e2bcd8739ae039.Utils.EQ(this.sweep, 2 * Math.PI)) {
+            let circle = new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Circle(this.pc, this.r);
             return circle.svg(attrs);
         } else return `\n<path d="M${this.start.x},${this.start.y}
                              A${this.r},${this.r} 0 ${largeArcFlag},${sweepFlag} ${this.end.x},${this.end.y}"
-                    ${$bd479cb9731e0159$var$convertToString({
+                    ${$3478ba2bdb1fd0df$var$convertToString({
             fill: "none",
             ...attrs
         })} />`;
     }
 }
-$bd479cb9731e0159$export$2e2bcd8739ae039.Arc = $bd479cb9731e0159$export$6ef80ffb606dd232;
+$3478ba2bdb1fd0df$export$2e2bcd8739ae039.Arc = $3478ba2bdb1fd0df$export$6ef80ffb606dd232;
 /**
  * Function to create arc equivalent to "new" constructor
  * @param args
- */ const $bd479cb9731e0159$export$ff1ef9a5c671f043 = (...args)=>new $bd479cb9731e0159$export$2e2bcd8739ae039.Arc(...args);
-$bd479cb9731e0159$export$2e2bcd8739ae039.arc = $bd479cb9731e0159$export$ff1ef9a5c671f043;
+ */ const $3478ba2bdb1fd0df$export$ff1ef9a5c671f043 = (...args)=>new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Arc(...args);
+$3478ba2bdb1fd0df$export$2e2bcd8739ae039.arc = $3478ba2bdb1fd0df$export$ff1ef9a5c671f043;
 /**
  * Created by Alex Bol on 3/7/2017.
  */ /**
  * Class Box represents bounding box of the shape.
  * It may also represent axis-aligned rectangle
  * @type {Box}
- */ class $bd479cb9731e0159$export$e71c4d32a2263218 extends $bd479cb9731e0159$var$Shape {
+ */ class $3478ba2bdb1fd0df$export$e71c4d32a2263218 extends $3478ba2bdb1fd0df$var$Shape {
     /**
      *
      * @param {number} xmin - minimal x coordinate
@@ -4916,19 +4916,19 @@ $bd479cb9731e0159$export$2e2bcd8739ae039.arc = $bd479cb9731e0159$export$ff1ef9a5
      * Return new cloned instance of box
      * @returns {Box}
      */ clone() {
-        return new $bd479cb9731e0159$export$e71c4d32a2263218(this.xmin, this.ymin, this.xmax, this.ymax);
+        return new $3478ba2bdb1fd0df$export$e71c4d32a2263218(this.xmin, this.ymin, this.xmax, this.ymax);
     }
     /**
      * Property low need for interval tree interface
      * @returns {Point}
      */ get low() {
-        return new $bd479cb9731e0159$export$2e2bcd8739ae039.Point(this.xmin, this.ymin);
+        return new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Point(this.xmin, this.ymin);
     }
     /**
      * Property high need for interval tree interface
      * @returns {Point}
      */ get high() {
-        return new $bd479cb9731e0159$export$2e2bcd8739ae039.Point(this.xmax, this.ymax);
+        return new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Point(this.xmax, this.ymax);
     }
     /**
      * Property max returns the box itself !
@@ -4940,7 +4940,7 @@ $bd479cb9731e0159$export$2e2bcd8739ae039.arc = $bd479cb9731e0159$export$ff1ef9a5
      * Return center of the box
      * @returns {Point}
      */ get center() {
-        return new $bd479cb9731e0159$export$2e2bcd8739ae039.Point((this.xmin + this.xmax) / 2, (this.ymin + this.ymax) / 2);
+        return new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Point((this.xmin + this.xmax) / 2, (this.ymin + this.ymax) / 2);
     }
     /**
      * Return the width of the box
@@ -4979,7 +4979,7 @@ $bd479cb9731e0159$export$2e2bcd8739ae039.arc = $bd479cb9731e0159$export$ff1ef9a5
      * @param {Box} other_box - Other box to merge with
      * @returns {Box}
      */ merge(other_box) {
-        return new $bd479cb9731e0159$export$e71c4d32a2263218(this.xmin === undefined ? other_box.xmin : Math.min(this.xmin, other_box.xmin), this.ymin === undefined ? other_box.ymin : Math.min(this.ymin, other_box.ymin), this.xmax === undefined ? other_box.xmax : Math.max(this.xmax, other_box.xmax), this.ymax === undefined ? other_box.ymax : Math.max(this.ymax, other_box.ymax));
+        return new $3478ba2bdb1fd0df$export$e71c4d32a2263218(this.xmin === undefined ? other_box.xmin : Math.min(this.xmin, other_box.xmin), this.ymin === undefined ? other_box.ymin : Math.min(this.ymin, other_box.ymin), this.xmax === undefined ? other_box.xmax : Math.max(this.xmax, other_box.xmax), this.ymax === undefined ? other_box.ymax : Math.max(this.ymax, other_box.ymax));
     }
     /**
      * Defines predicate "less than" between two boxes. Need for interval index
@@ -5024,10 +5024,10 @@ $bd479cb9731e0159$export$2e2bcd8739ae039.arc = $bd479cb9731e0159$export$ff1ef9a5
      * @returns {Point[]}
      */ toPoints() {
         return [
-            new $bd479cb9731e0159$export$2e2bcd8739ae039.Point(this.xmin, this.ymin),
-            new $bd479cb9731e0159$export$2e2bcd8739ae039.Point(this.xmax, this.ymin),
-            new $bd479cb9731e0159$export$2e2bcd8739ae039.Point(this.xmax, this.ymax),
-            new $bd479cb9731e0159$export$2e2bcd8739ae039.Point(this.xmin, this.ymax)
+            new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Point(this.xmin, this.ymin),
+            new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Point(this.xmax, this.ymin),
+            new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Point(this.xmax, this.ymax),
+            new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Point(this.xmin, this.ymax)
         ];
     }
     /**
@@ -5036,10 +5036,10 @@ $bd479cb9731e0159$export$2e2bcd8739ae039.arc = $bd479cb9731e0159$export$ff1ef9a5
      */ toSegments() {
         let pts = this.toPoints();
         return [
-            new $bd479cb9731e0159$export$2e2bcd8739ae039.Segment(pts[0], pts[1]),
-            new $bd479cb9731e0159$export$2e2bcd8739ae039.Segment(pts[1], pts[2]),
-            new $bd479cb9731e0159$export$2e2bcd8739ae039.Segment(pts[2], pts[3]),
-            new $bd479cb9731e0159$export$2e2bcd8739ae039.Segment(pts[3], pts[0])
+            new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Segment(pts[0], pts[1]),
+            new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Segment(pts[1], pts[2]),
+            new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Segment(pts[2], pts[3]),
+            new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Segment(pts[3], pts[0])
         ];
     }
     /**
@@ -5047,31 +5047,31 @@ $bd479cb9731e0159$export$2e2bcd8739ae039.arc = $bd479cb9731e0159$export$ff1ef9a5
      * Attempt to rotate box throws error
      * @param {number} angle - angle in radians
      * @param {Point} [center=(0,0)] center
-     */ rotate(angle, center = new $bd479cb9731e0159$export$2e2bcd8739ae039.Point()) {
-        throw $bd479cb9731e0159$export$b8e9cd941e8016ac.OPERATION_IS_NOT_SUPPORTED;
+     */ rotate(angle, center = new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Point()) {
+        throw $3478ba2bdb1fd0df$export$b8e9cd941e8016ac.OPERATION_IS_NOT_SUPPORTED;
     }
     /**
      * Return new box transformed using affine transformation matrix
      * New box is a bounding box of transformed corner points
      * @param {Matrix} m - affine transformation matrix
      * @returns {Box}
-     */ transform(m = new $bd479cb9731e0159$export$2e2bcd8739ae039.Matrix()) {
+     */ transform(m = new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Matrix()) {
         const transformed_points = this.toPoints().map((pt)=>pt.transform(m));
-        return transformed_points.reduce((new_box, pt)=>new_box.merge(pt.box), new $bd479cb9731e0159$export$e71c4d32a2263218());
+        return transformed_points.reduce((new_box, pt)=>new_box.merge(pt.box), new $3478ba2bdb1fd0df$export$e71c4d32a2263218());
     }
     /**
      * Return true if box contains shape: no point of shape lies outside the box
      * @param {AnyShape} shape - test shape
      * @returns {boolean}
      */ contains(shape) {
-        if (shape instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Point) return shape.x >= this.xmin && shape.x <= this.xmax && shape.y >= this.ymin && shape.y <= this.ymax;
-        if (shape instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Segment) return shape.vertices.every((vertex)=>this.contains(vertex));
-        if (shape instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Box) return shape.toSegments().every((segment)=>this.contains(segment));
-        if (shape instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Circle) return this.contains(shape.box);
-        if (shape instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Arc) return shape.vertices.every((vertex)=>this.contains(vertex)) && shape.toSegments().every((segment)=>$bd479cb9731e0159$var$intersectSegment2Arc(segment, shape).length === 0);
-        if (shape instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Line || shape instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Ray) return false;
-        if (shape instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Multiline) return shape.toShapes().every((shape)=>this.contains(shape));
-        if (shape instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Polygon) return this.contains(shape.box);
+        if (shape instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Point) return shape.x >= this.xmin && shape.x <= this.xmax && shape.y >= this.ymin && shape.y <= this.ymax;
+        if (shape instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Segment) return shape.vertices.every((vertex)=>this.contains(vertex));
+        if (shape instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Box) return shape.toSegments().every((segment)=>this.contains(segment));
+        if (shape instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Circle) return this.contains(shape.box);
+        if (shape instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Arc) return shape.vertices.every((vertex)=>this.contains(vertex)) && shape.toSegments().every((segment)=>$3478ba2bdb1fd0df$var$intersectSegment2Arc(segment, shape).length === 0);
+        if (shape instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Line || shape instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Ray) return false;
+        if (shape instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Multiline) return shape.toShapes().every((shape)=>this.contains(shape));
+        if (shape instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Polygon) return this.contains(shape.box);
     }
     /**
      * Calculate distance and shortest segment from box to shape and return as array [distance, shortest segment]
@@ -5100,19 +5100,19 @@ $bd479cb9731e0159$export$2e2bcd8739ae039.arc = $bd479cb9731e0159$export$ff1ef9a5
         const width = this.xmax - this.xmin;
         const height = this.ymax - this.ymin;
         return `\n<rect x="${this.xmin}" y="${this.ymin}" width="${width}" height="${height}"
-                ${$bd479cb9731e0159$var$convertToString({
+                ${$3478ba2bdb1fd0df$var$convertToString({
             fill: "none",
             ...attrs
         })} />`;
     }
 }
-$bd479cb9731e0159$export$2e2bcd8739ae039.Box = $bd479cb9731e0159$export$e71c4d32a2263218;
+$3478ba2bdb1fd0df$export$2e2bcd8739ae039.Box = $3478ba2bdb1fd0df$export$e71c4d32a2263218;
 /**
  * Shortcut to create new box
  * @param args
  * @returns {Box}
- */ const $bd479cb9731e0159$export$827f4ee28efc37 = (...args)=>new $bd479cb9731e0159$export$2e2bcd8739ae039.Box(...args);
-$bd479cb9731e0159$export$2e2bcd8739ae039.box = $bd479cb9731e0159$export$827f4ee28efc37;
+ */ const $3478ba2bdb1fd0df$export$827f4ee28efc37 = (...args)=>new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Box(...args);
+$3478ba2bdb1fd0df$export$2e2bcd8739ae039.box = $3478ba2bdb1fd0df$export$827f4ee28efc37;
 /**
  * Created by Alex Bol on 3/17/2017.
  */ /**
@@ -5120,7 +5120,7 @@ $bd479cb9731e0159$export$2e2bcd8739ae039.box = $bd479cb9731e0159$export$827f4ee2
  * Each edge contains references to the next and previous edges in the face of the polygon.
  *
  * @type {Edge}
- */ class $bd479cb9731e0159$export$b9d9805c9b77a56d {
+ */ class $3478ba2bdb1fd0df$export$b9d9805c9b77a56d {
     /**
      * Construct new instance of edge
      * @param {Shape} shape Shape of type Segment or Arc
@@ -5184,16 +5184,16 @@ $bd479cb9731e0159$export$2e2bcd8739ae039.box = $bd479cb9731e0159$export$827f4ee2
         return this.shape.box;
     }
     get isSegment() {
-        return this.shape instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Segment;
+        return this.shape instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Segment;
     }
     get isArc() {
-        return this.shape instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Arc;
+        return this.shape instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Arc;
     }
     get isLine() {
-        return this.shape instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Line;
+        return this.shape instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Line;
     }
     get isRay() {
-        return this.shape instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Ray;
+        return this.shape instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Ray;
     }
     /**
      * Get middle point of the edge
@@ -5220,16 +5220,16 @@ $bd479cb9731e0159$export$2e2bcd8739ae039.box = $bd479cb9731e0159$export$827f4ee2
      * @param polygon
      */ setInclusion(polygon) {
         if (this.bv !== undefined) return this.bv;
-        if (this.shape instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Line || this.shape instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Ray) {
-            this.bv = $bd479cb9731e0159$export$2e2bcd8739ae039.OUTSIDE;
+        if (this.shape instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Line || this.shape instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Ray) {
+            this.bv = $3478ba2bdb1fd0df$export$2e2bcd8739ae039.OUTSIDE;
             return this.bv;
         }
-        if (this.bvStart === undefined) this.bvStart = $bd479cb9731e0159$export$3adad403c78dc9b2(polygon, this.start);
-        if (this.bvEnd === undefined) this.bvEnd = $bd479cb9731e0159$export$3adad403c78dc9b2(polygon, this.end);
-        /* At least one end outside - the whole edge outside */ if (this.bvStart === $bd479cb9731e0159$export$2e2bcd8739ae039.OUTSIDE || this.bvEnd == $bd479cb9731e0159$export$2e2bcd8739ae039.OUTSIDE) this.bv = $bd479cb9731e0159$export$2e2bcd8739ae039.OUTSIDE;
-        else if (this.bvStart === $bd479cb9731e0159$export$2e2bcd8739ae039.INSIDE || this.bvEnd == $bd479cb9731e0159$export$2e2bcd8739ae039.INSIDE) this.bv = $bd479cb9731e0159$export$2e2bcd8739ae039.INSIDE;
+        if (this.bvStart === undefined) this.bvStart = $3478ba2bdb1fd0df$export$3adad403c78dc9b2(polygon, this.start);
+        if (this.bvEnd === undefined) this.bvEnd = $3478ba2bdb1fd0df$export$3adad403c78dc9b2(polygon, this.end);
+        /* At least one end outside - the whole edge outside */ if (this.bvStart === $3478ba2bdb1fd0df$export$2e2bcd8739ae039.OUTSIDE || this.bvEnd == $3478ba2bdb1fd0df$export$2e2bcd8739ae039.OUTSIDE) this.bv = $3478ba2bdb1fd0df$export$2e2bcd8739ae039.OUTSIDE;
+        else if (this.bvStart === $3478ba2bdb1fd0df$export$2e2bcd8739ae039.INSIDE || this.bvEnd == $3478ba2bdb1fd0df$export$2e2bcd8739ae039.INSIDE) this.bv = $3478ba2bdb1fd0df$export$2e2bcd8739ae039.INSIDE;
         else {
-            let bvMiddle = $bd479cb9731e0159$export$3adad403c78dc9b2(polygon, this.middle());
+            let bvMiddle = $3478ba2bdb1fd0df$export$3adad403c78dc9b2(polygon, this.middle());
             // let boundary = this.middle().distanceTo(polygon)[0] < 10*Flatten.DP_TOL;
             // let bvMiddle = boundary ? Flatten.BOUNDARY : ray_shoot(polygon, this.middle());
             this.bv = bvMiddle;
@@ -5244,30 +5244,30 @@ $bd479cb9731e0159$export$2e2bcd8739ae039.box = $bd479cb9731e0159$export$827f4ee2
         let flag = undefined;
         let shape1 = this.shape;
         let shape2 = edge.shape;
-        if (shape1 instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Segment && shape2 instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Segment) {
-            if (shape1.start.equalTo(shape2.start) && shape1.end.equalTo(shape2.end)) flag = $bd479cb9731e0159$export$2e2bcd8739ae039.OVERLAP_SAME;
-            else if (shape1.start.equalTo(shape2.end) && shape1.end.equalTo(shape2.start)) flag = $bd479cb9731e0159$export$2e2bcd8739ae039.OVERLAP_OPPOSITE;
-        } else if (shape1 instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Arc && shape2 instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Arc) {
-            if (shape1.start.equalTo(shape2.start) && shape1.end.equalTo(shape2.end) && /*shape1.counterClockwise === shape2.counterClockwise &&*/ shape1.middle().equalTo(shape2.middle())) flag = $bd479cb9731e0159$export$2e2bcd8739ae039.OVERLAP_SAME;
-            else if (shape1.start.equalTo(shape2.end) && shape1.end.equalTo(shape2.start) && /*shape1.counterClockwise !== shape2.counterClockwise &&*/ shape1.middle().equalTo(shape2.middle())) flag = $bd479cb9731e0159$export$2e2bcd8739ae039.OVERLAP_OPPOSITE;
-        } else if (shape1 instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Segment && shape2 instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Arc || shape1 instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Arc && shape2 instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Segment) {
-            if (shape1.start.equalTo(shape2.start) && shape1.end.equalTo(shape2.end) && shape1.middle().equalTo(shape2.middle())) flag = $bd479cb9731e0159$export$2e2bcd8739ae039.OVERLAP_SAME;
-            else if (shape1.start.equalTo(shape2.end) && shape1.end.equalTo(shape2.start) && shape1.middle().equalTo(shape2.middle())) flag = $bd479cb9731e0159$export$2e2bcd8739ae039.OVERLAP_OPPOSITE;
+        if (shape1 instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Segment && shape2 instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Segment) {
+            if (shape1.start.equalTo(shape2.start) && shape1.end.equalTo(shape2.end)) flag = $3478ba2bdb1fd0df$export$2e2bcd8739ae039.OVERLAP_SAME;
+            else if (shape1.start.equalTo(shape2.end) && shape1.end.equalTo(shape2.start)) flag = $3478ba2bdb1fd0df$export$2e2bcd8739ae039.OVERLAP_OPPOSITE;
+        } else if (shape1 instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Arc && shape2 instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Arc) {
+            if (shape1.start.equalTo(shape2.start) && shape1.end.equalTo(shape2.end) && /*shape1.counterClockwise === shape2.counterClockwise &&*/ shape1.middle().equalTo(shape2.middle())) flag = $3478ba2bdb1fd0df$export$2e2bcd8739ae039.OVERLAP_SAME;
+            else if (shape1.start.equalTo(shape2.end) && shape1.end.equalTo(shape2.start) && /*shape1.counterClockwise !== shape2.counterClockwise &&*/ shape1.middle().equalTo(shape2.middle())) flag = $3478ba2bdb1fd0df$export$2e2bcd8739ae039.OVERLAP_OPPOSITE;
+        } else if (shape1 instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Segment && shape2 instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Arc || shape1 instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Arc && shape2 instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Segment) {
+            if (shape1.start.equalTo(shape2.start) && shape1.end.equalTo(shape2.end) && shape1.middle().equalTo(shape2.middle())) flag = $3478ba2bdb1fd0df$export$2e2bcd8739ae039.OVERLAP_SAME;
+            else if (shape1.start.equalTo(shape2.end) && shape1.end.equalTo(shape2.start) && shape1.middle().equalTo(shape2.middle())) flag = $3478ba2bdb1fd0df$export$2e2bcd8739ae039.OVERLAP_OPPOSITE;
         }
         /* Do not update overlap flag if already set on previous chain */ if (this.overlap === undefined) this.overlap = flag;
         if (edge.overlap === undefined) edge.overlap = flag;
     }
     svg() {
-        if (this.shape instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Segment) return ` L${this.shape.end.x},${this.shape.end.y}`;
-        else if (this.shape instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Arc) {
+        if (this.shape instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Segment) return ` L${this.shape.end.x},${this.shape.end.y}`;
+        else if (this.shape instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Arc) {
             let arc = this.shape;
             let largeArcFlag;
             let sweepFlag = arc.counterClockwise ? "1" : "0";
             // Draw full circe arc as special case: split it into two half-circles
-            if ($bd479cb9731e0159$export$2e2bcd8739ae039.Utils.EQ(arc.sweep, 2 * Math.PI)) {
+            if ($3478ba2bdb1fd0df$export$2e2bcd8739ae039.Utils.EQ(arc.sweep, 2 * Math.PI)) {
                 let sign = arc.counterClockwise ? 1 : -1;
-                let halfArc1 = new $bd479cb9731e0159$export$2e2bcd8739ae039.Arc(arc.pc, arc.r, arc.startAngle, arc.startAngle + sign * Math.PI, arc.counterClockwise);
-                let halfArc2 = new $bd479cb9731e0159$export$2e2bcd8739ae039.Arc(arc.pc, arc.r, arc.startAngle + sign * Math.PI, arc.endAngle, arc.counterClockwise);
+                let halfArc1 = new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Arc(arc.pc, arc.r, arc.startAngle, arc.startAngle + sign * Math.PI, arc.counterClockwise);
+                let halfArc2 = new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Arc(arc.pc, arc.r, arc.startAngle + sign * Math.PI, arc.endAngle, arc.counterClockwise);
                 largeArcFlag = "0";
                 return ` A${halfArc1.r},${halfArc1.r} 0 ${largeArcFlag},${sweepFlag} ${halfArc1.end.x},${halfArc1.end.y}
                     A${halfArc2.r},${halfArc2.r} 0 ${largeArcFlag},${sweepFlag} ${halfArc2.end.x},${halfArc2.end.y}`;
@@ -5281,11 +5281,11 @@ $bd479cb9731e0159$export$2e2bcd8739ae039.box = $bd479cb9731e0159$export$827f4ee2
         return this.shape.toJSON();
     }
 }
-$bd479cb9731e0159$export$2e2bcd8739ae039.Edge = $bd479cb9731e0159$export$b9d9805c9b77a56d;
+$3478ba2bdb1fd0df$export$2e2bcd8739ae039.Edge = $3478ba2bdb1fd0df$export$b9d9805c9b77a56d;
 /**
  * Class implements circular bidirectional linked list <br/>
  * LinkedListElement - object of any type that has properties next and prev.
- */ class $bd479cb9731e0159$var$CircularLinkedList extends $bd479cb9731e0159$var$LinkedList {
+ */ class $3478ba2bdb1fd0df$var$CircularLinkedList extends $3478ba2bdb1fd0df$var$LinkedList {
     constructor(first, last){
         super(first, last);
         this.setCircularLinks();
@@ -5361,7 +5361,7 @@ $bd479cb9731e0159$export$2e2bcd8739ae039.Edge = $bd479cb9731e0159$export$b9d9805
  *   console.log(edge.shape.length);   // do something
  *   edge = edge.next;
  * } while (edge != face.first)
- */ class $bd479cb9731e0159$export$aa6504bc3c7c25a1 extends $bd479cb9731e0159$var$CircularLinkedList {
+ */ class $3478ba2bdb1fd0df$export$aa6504bc3c7c25a1 extends $3478ba2bdb1fd0df$var$CircularLinkedList {
     constructor(polygon, ...args){
         super(); // construct empty list of edges
         /**
@@ -5382,18 +5382,18 @@ $bd479cb9731e0159$export$2e2bcd8739ae039.Edge = $bd479cb9731e0159$export$b9d9805
                 let shapes = args[0]; // argsArray[0];
                 if (shapes.length === 0) return;
                 /* array of Flatten.Points */ if (shapes.every((shape)=>{
-                    return shape instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Point;
+                    return shape instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Point;
                 })) {
-                    let segments = $bd479cb9731e0159$export$aa6504bc3c7c25a1.points2segments(shapes);
+                    let segments = $3478ba2bdb1fd0df$export$aa6504bc3c7c25a1.points2segments(shapes);
                     this.shapes2face(polygon.edges, segments);
                 } else if (shapes.every((shape)=>{
                     return shape instanceof Array && shape.length === 2;
                 })) {
-                    let points = shapes.map((shape)=>new $bd479cb9731e0159$export$2e2bcd8739ae039.Point(shape[0], shape[1]));
-                    let segments = $bd479cb9731e0159$export$aa6504bc3c7c25a1.points2segments(points);
+                    let points = shapes.map((shape)=>new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Point(shape[0], shape[1]));
+                    let segments = $3478ba2bdb1fd0df$export$aa6504bc3c7c25a1.points2segments(points);
                     this.shapes2face(polygon.edges, segments);
                 } else if (shapes.every((shape)=>{
-                    return shape instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Segment || shape instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Arc;
+                    return shape instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Segment || shape instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Arc;
                 })) this.shapes2face(polygon.edges, shapes);
                 else if (shapes.every((shape)=>{
                     return shape.name === "segment" || shape.name === "arc";
@@ -5401,31 +5401,31 @@ $bd479cb9731e0159$export$2e2bcd8739ae039.Edge = $bd479cb9731e0159$export$b9d9805
                     let flattenShapes = [];
                     for (let shape of shapes){
                         let flattenShape;
-                        if (shape.name === "segment") flattenShape = new $bd479cb9731e0159$export$2e2bcd8739ae039.Segment(shape);
-                        else flattenShape = new $bd479cb9731e0159$export$2e2bcd8739ae039.Arc(shape);
+                        if (shape.name === "segment") flattenShape = new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Segment(shape);
+                        else flattenShape = new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Arc(shape);
                         flattenShapes.push(flattenShape);
                     }
                     this.shapes2face(polygon.edges, flattenShapes);
                 }
-            } else if (args[0] instanceof $bd479cb9731e0159$export$aa6504bc3c7c25a1) {
+            } else if (args[0] instanceof $3478ba2bdb1fd0df$export$aa6504bc3c7c25a1) {
                 let face = args[0];
                 this.first = face.first;
                 this.last = face.last;
                 for (let edge of face)polygon.edges.add(edge);
-            } else if (args[0] instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Circle) this.shapes2face(polygon.edges, [
-                args[0].toArc($bd479cb9731e0159$export$ce920184faf97f5)
+            } else if (args[0] instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Circle) this.shapes2face(polygon.edges, [
+                args[0].toArc($3478ba2bdb1fd0df$export$ce920184faf97f5)
             ]);
-            else if (args[0] instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Box) {
+            else if (args[0] instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Box) {
                 let box = args[0];
                 this.shapes2face(polygon.edges, [
-                    new $bd479cb9731e0159$export$2e2bcd8739ae039.Segment(new $bd479cb9731e0159$export$2e2bcd8739ae039.Point(box.xmin, box.ymin), new $bd479cb9731e0159$export$2e2bcd8739ae039.Point(box.xmax, box.ymin)),
-                    new $bd479cb9731e0159$export$2e2bcd8739ae039.Segment(new $bd479cb9731e0159$export$2e2bcd8739ae039.Point(box.xmax, box.ymin), new $bd479cb9731e0159$export$2e2bcd8739ae039.Point(box.xmax, box.ymax)),
-                    new $bd479cb9731e0159$export$2e2bcd8739ae039.Segment(new $bd479cb9731e0159$export$2e2bcd8739ae039.Point(box.xmax, box.ymax), new $bd479cb9731e0159$export$2e2bcd8739ae039.Point(box.xmin, box.ymax)),
-                    new $bd479cb9731e0159$export$2e2bcd8739ae039.Segment(new $bd479cb9731e0159$export$2e2bcd8739ae039.Point(box.xmin, box.ymax), new $bd479cb9731e0159$export$2e2bcd8739ae039.Point(box.xmin, box.ymin))
+                    new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Segment(new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Point(box.xmin, box.ymin), new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Point(box.xmax, box.ymin)),
+                    new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Segment(new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Point(box.xmax, box.ymin), new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Point(box.xmax, box.ymax)),
+                    new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Segment(new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Point(box.xmax, box.ymax), new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Point(box.xmin, box.ymax)),
+                    new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Segment(new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Point(box.xmin, box.ymax), new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Point(box.xmin, box.ymin))
                 ]);
             }
         }
-        /* If passed two edges, consider them as start and end of the face loop */ /* THIS METHOD WILL BE USED BY BOOLEAN OPERATIONS */ /* Assume that edges already copied to polygon.edges set in the clip algorithm !!! */ if (args.length === 2 && args[0] instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Edge && args[1] instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Edge) {
+        /* If passed two edges, consider them as start and end of the face loop */ /* THIS METHOD WILL BE USED BY BOOLEAN OPERATIONS */ /* Assume that edges already copied to polygon.edges set in the clip algorithm !!! */ if (args.length === 2 && args[0] instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Edge && args[1] instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Edge) {
             this.first = args[0]; // first edge in face or undefined
             this.last = args[1]; // last edge in face or undefined
             this.last.next = this.first;
@@ -5453,7 +5453,7 @@ $bd479cb9731e0159$export$2e2bcd8739ae039.Edge = $bd479cb9731e0159$export$b9d9805
      * @returns {Box}
      */ get box() {
         if (this._box === undefined) {
-            let box = new $bd479cb9731e0159$export$2e2bcd8739ae039.Box();
+            let box = new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Box();
             for (let edge of this)box = box.merge(edge.box);
             this._box = box;
         }
@@ -5483,13 +5483,13 @@ $bd479cb9731e0159$export$2e2bcd8739ae039.Edge = $bd479cb9731e0159$export$b9d9805
         for(let i = 0; i < points.length; i++){
             // skip zero length segment
             if (points[i].equalTo(points[(i + 1) % points.length])) continue;
-            segments.push(new $bd479cb9731e0159$export$2e2bcd8739ae039.Segment(points[i], points[(i + 1) % points.length]));
+            segments.push(new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Segment(points[i], points[(i + 1) % points.length]));
         }
         return segments;
     }
     shapes2face(edges, shapes) {
         for (let shape of shapes){
-            let edge = new $bd479cb9731e0159$export$2e2bcd8739ae039.Edge(shape);
+            let edge = new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Edge(shape);
             this.append(edge);
             // this.box = this.box.merge(shape.box);
             edges.add(edge);
@@ -5627,9 +5627,9 @@ $bd479cb9731e0159$export$2e2bcd8739ae039.Edge = $bd479cb9731e0159$export$b9d9805
      */ orientation() {
         if (this._orientation === undefined) {
             let area = this.signedArea();
-            if ($bd479cb9731e0159$export$2e2bcd8739ae039.Utils.EQ_0(area)) this._orientation = $bd479cb9731e0159$export$7423c88bc54edb74.NOT_ORIENTABLE;
-            else if ($bd479cb9731e0159$export$2e2bcd8739ae039.Utils.LT(area, 0)) this._orientation = $bd479cb9731e0159$export$7423c88bc54edb74.CCW;
-            else this._orientation = $bd479cb9731e0159$export$7423c88bc54edb74.CW;
+            if ($3478ba2bdb1fd0df$export$2e2bcd8739ae039.Utils.EQ_0(area)) this._orientation = $3478ba2bdb1fd0df$export$7423c88bc54edb74.NOT_ORIENTABLE;
+            else if ($3478ba2bdb1fd0df$export$2e2bcd8739ae039.Utils.LT(area, 0)) this._orientation = $3478ba2bdb1fd0df$export$7423c88bc54edb74.CCW;
+            else this._orientation = $3478ba2bdb1fd0df$export$7423c88bc54edb74.CW;
         }
         return this._orientation;
     }
@@ -5640,7 +5640,7 @@ $bd479cb9731e0159$export$2e2bcd8739ae039.Edge = $bd479cb9731e0159$export$b9d9805
      * @param {PlanarSet} edges - reference to polygon edges to provide search index
      * @returns {boolean}
      */ isSimple(edges) {
-        let ip = $bd479cb9731e0159$export$aa6504bc3c7c25a1.getSelfIntersections(this, edges, true);
+        let ip = $3478ba2bdb1fd0df$export$aa6504bc3c7c25a1.getSelfIntersections(this, edges, true);
         return ip.length === 0;
     }
     static getSelfIntersections(face, edges, exitOnFirst = false) {
@@ -5656,7 +5656,7 @@ $bd479cb9731e0159$export$2e2bcd8739ae039.Edge = $bd479cb9731e0159$export$b9d9805
                 // Skip is edge2 belongs to another face
                 if (edge2.face !== face) continue;
                 // Skip next and previous edge if both are segment (if one of them arc - calc intersection)
-                if (edge1.shape instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Segment && edge2.shape instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Segment && (edge1.next === edge2 || edge1.prev === edge2)) continue;
+                if (edge1.shape instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Segment && edge2.shape instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Segment && (edge1.next === edge2 || edge1.prev === edge2)) continue;
                 // calculate intersections between edge1 and edge2
                 let ip = edge1.shape.intersect(edge2.shape);
                 // for each intersection point
@@ -5692,7 +5692,7 @@ $bd479cb9731e0159$export$2e2bcd8739ae039.Edge = $bd479cb9731e0159$export$b9d9805
      * Returns new polygon created from one face
      * @returns {Polygon}
      */ toPolygon() {
-        return new $bd479cb9731e0159$export$2e2bcd8739ae039.Polygon(this.shapes);
+        return new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Polygon(this.shapes);
     }
     toJSON() {
         return this.edges.map((edge)=>edge.toJSON());
@@ -5707,11 +5707,11 @@ $bd479cb9731e0159$export$2e2bcd8739ae039.Edge = $bd479cb9731e0159$export$b9d9805
         return svgStr;
     }
 }
-$bd479cb9731e0159$export$2e2bcd8739ae039.Face = $bd479cb9731e0159$export$aa6504bc3c7c25a1;
+$3478ba2bdb1fd0df$export$2e2bcd8739ae039.Face = $3478ba2bdb1fd0df$export$aa6504bc3c7c25a1;
 /**
  * Class representing a ray (a half-infinite line).
  * @type {Ray}
- */ class $bd479cb9731e0159$export$a186db52eed6d40e extends $bd479cb9731e0159$var$Shape {
+ */ class $3478ba2bdb1fd0df$export$a186db52eed6d40e extends $3478ba2bdb1fd0df$var$Shape {
     /**
      * Ray may be constructed by setting an <b>origin</b> point and a <b>normal</b> vector, so that any point <b>x</b>
      * on a ray fit an equation: <br />
@@ -5723,28 +5723,28 @@ $bd479cb9731e0159$export$2e2bcd8739ae039.Face = $bd479cb9731e0159$export$aa6504b
      * @param {Vector} norm - normal vector
      */ constructor(...args){
         super();
-        this.pt = new $bd479cb9731e0159$export$2e2bcd8739ae039.Point();
-        this.norm = new $bd479cb9731e0159$export$2e2bcd8739ae039.Vector(0, 1);
+        this.pt = new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Point();
+        this.norm = new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Vector(0, 1);
         if (args.length === 0) return;
-        if (args.length >= 1 && args[0] instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Point) this.pt = args[0].clone();
+        if (args.length >= 1 && args[0] instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Point) this.pt = args[0].clone();
         if (args.length === 1) return;
-        if (args.length === 2 && args[1] instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Vector) {
+        if (args.length === 2 && args[1] instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Vector) {
             this.norm = args[1].clone();
             return;
         }
-        throw $bd479cb9731e0159$export$b8e9cd941e8016ac.ILLEGAL_PARAMETERS;
+        throw $3478ba2bdb1fd0df$export$b8e9cd941e8016ac.ILLEGAL_PARAMETERS;
     }
     /**
      * Return new cloned instance of ray
      * @returns {Ray}
      */ clone() {
-        return new $bd479cb9731e0159$export$a186db52eed6d40e(this.pt, this.norm);
+        return new $3478ba2bdb1fd0df$export$a186db52eed6d40e(this.pt, this.norm);
     }
     /**
      * Slope of the ray - angle in radians between ray and axe x from 0 to 2PI
      * @returns {number} - slope of the line
      */ get slope() {
-        let vec = new $bd479cb9731e0159$export$2e2bcd8739ae039.Vector(this.norm.y, -this.norm.x);
+        let vec = new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Vector(this.norm.y, -this.norm.x);
         return vec.slope;
     }
     /**
@@ -5752,7 +5752,7 @@ $bd479cb9731e0159$export$2e2bcd8739ae039.Face = $bd479cb9731e0159$export$aa6504b
      * @returns {Box} - bounding box
      */ get box() {
         let slope = this.slope;
-        return new $bd479cb9731e0159$export$2e2bcd8739ae039.Box(slope > Math.PI / 2 && slope < 3 * Math.PI / 2 ? Number.NEGATIVE_INFINITY : this.pt.x, slope >= 0 && slope <= Math.PI ? this.pt.y : Number.NEGATIVE_INFINITY, slope >= Math.PI / 2 && slope <= 3 * Math.PI / 2 ? this.pt.x : Number.POSITIVE_INFINITY, slope >= Math.PI && slope <= 2 * Math.PI || slope === 0 ? this.pt.y : Number.POSITIVE_INFINITY);
+        return new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Box(slope > Math.PI / 2 && slope < 3 * Math.PI / 2 ? Number.NEGATIVE_INFINITY : this.pt.x, slope >= 0 && slope <= Math.PI ? this.pt.y : Number.NEGATIVE_INFINITY, slope >= Math.PI / 2 && slope <= 3 * Math.PI / 2 ? this.pt.x : Number.POSITIVE_INFINITY, slope >= Math.PI && slope <= 2 * Math.PI || slope === 0 ? this.pt.y : Number.POSITIVE_INFINITY);
     }
     /**
      * Return ray start point
@@ -5779,8 +5779,8 @@ $bd479cb9731e0159$export$2e2bcd8739ae039.Face = $bd479cb9731e0159$export$aa6504b
      */ contains(pt) {
         if (this.pt.equalTo(pt)) return true;
         /* Ray contains point if vector to point is orthogonal to the ray normal vector
-            and cross product from vector to point is positive */ let vec = new $bd479cb9731e0159$export$2e2bcd8739ae039.Vector(this.pt, pt);
-        return $bd479cb9731e0159$export$2e2bcd8739ae039.Utils.EQ_0(this.norm.dot(vec)) && $bd479cb9731e0159$export$2e2bcd8739ae039.Utils.GE(vec.cross(this.norm), 0);
+            and cross product from vector to point is positive */ let vec = new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Vector(this.pt, pt);
+        return $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Utils.EQ_0(this.norm.dot(vec)) && $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Utils.GE(vec.cross(this.norm), 0);
     }
     /**
      * Return coordinate of the point that lies on the ray in the transformed
@@ -5790,7 +5790,7 @@ $bd479cb9731e0159$export$2e2bcd8739ae039.Face = $bd479cb9731e0159$export$aa6504b
      * @param {Point} pt - point on a ray
      * @returns {number}
      */ coord(pt) {
-        return $bd479cb9731e0159$export$6074e20ba5c64bef(pt.x, pt.y).cross(this.norm);
+        return $3478ba2bdb1fd0df$export$6074e20ba5c64bef(pt.x, pt.y).cross(this.norm);
     }
     /**
      * Split ray with point and return array of segment and new ray
@@ -5802,8 +5802,8 @@ $bd479cb9731e0159$export$2e2bcd8739ae039.Face = $bd479cb9731e0159$export$aa6504b
             this
         ];
         return [
-            new $bd479cb9731e0159$export$2e2bcd8739ae039.Segment(this.pt, pt),
-            new $bd479cb9731e0159$export$2e2bcd8739ae039.Ray(pt, this.norm)
+            new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Segment(this.pt, pt),
+            new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Ray(pt, this.norm)
         ];
     }
     /**
@@ -5811,30 +5811,30 @@ $bd479cb9731e0159$export$2e2bcd8739ae039.Face = $bd479cb9731e0159$export$aa6504b
      * @param {Shape} shape - Shape to intersect with ray
      * @returns {Point[]} array of intersection points
      */ intersect(shape) {
-        if (shape instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Point) return this.contains(shape) ? [
+        if (shape instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Point) return this.contains(shape) ? [
             shape
         ] : [];
-        if (shape instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Segment) return $bd479cb9731e0159$var$intersectRay2Segment(this, shape);
-        if (shape instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Arc) return $bd479cb9731e0159$var$intersectRay2Arc(this, shape);
-        if (shape instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Line) return $bd479cb9731e0159$var$intersectRay2Line(this, shape);
-        if (shape instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Ray) return $bd479cb9731e0159$var$intersectRay2Ray(this, shape);
-        if (shape instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Circle) return $bd479cb9731e0159$var$intersectRay2Circle(this, shape);
-        if (shape instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Box) return $bd479cb9731e0159$var$intersectRay2Box(this, shape);
-        if (shape instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Polygon) return $bd479cb9731e0159$var$intersectRay2Polygon(this, shape);
+        if (shape instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Segment) return $3478ba2bdb1fd0df$var$intersectRay2Segment(this, shape);
+        if (shape instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Arc) return $3478ba2bdb1fd0df$var$intersectRay2Arc(this, shape);
+        if (shape instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Line) return $3478ba2bdb1fd0df$var$intersectRay2Line(this, shape);
+        if (shape instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Ray) return $3478ba2bdb1fd0df$var$intersectRay2Ray(this, shape);
+        if (shape instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Circle) return $3478ba2bdb1fd0df$var$intersectRay2Circle(this, shape);
+        if (shape instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Box) return $3478ba2bdb1fd0df$var$intersectRay2Box(this, shape);
+        if (shape instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Polygon) return $3478ba2bdb1fd0df$var$intersectRay2Polygon(this, shape);
     }
     /**
      * Return new line rotated by angle
      * @param {number} angle - angle in radians
      * @param {Point} center - center of rotation
-     */ rotate(angle, center = new $bd479cb9731e0159$export$2e2bcd8739ae039.Point()) {
-        return new $bd479cb9731e0159$export$2e2bcd8739ae039.Ray(this.pt.rotate(angle, center), this.norm.rotate(angle));
+     */ rotate(angle, center = new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Point()) {
+        return new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Ray(this.pt.rotate(angle, center), this.norm.rotate(angle));
     }
     /**
      * Return new ray transformed by affine transformation matrix
      * @param {Matrix} m - affine transformation matrix (a,b,c,d,tx,ty)
      * @returns {Ray}
      */ transform(m) {
-        return new $bd479cb9731e0159$export$2e2bcd8739ae039.Ray(this.pt.transform(m), this.norm.clone());
+        return new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Ray(this.pt.transform(m), this.norm.clone());
     }
     get name() {
         return "ray";
@@ -5844,17 +5844,17 @@ $bd479cb9731e0159$export$2e2bcd8739ae039.Face = $bd479cb9731e0159$export$aa6504b
      * @param {Box} box Box representing drawing area
      * @param {Object} attrs - an object with attributes of svg segment element
      */ svg(box, attrs = {}) {
-        let line = new $bd479cb9731e0159$export$2e2bcd8739ae039.Line(this.pt, this.norm);
-        let ip = $bd479cb9731e0159$var$intersectLine2Box(line, box);
+        let line = new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Line(this.pt, this.norm);
+        let ip = $3478ba2bdb1fd0df$var$intersectLine2Box(line, box);
         ip = ip.filter((pt)=>this.contains(pt));
         if (ip.length === 0 || ip.length === 2) return "";
-        let segment = new $bd479cb9731e0159$export$2e2bcd8739ae039.Segment(this.pt, ip[0]);
+        let segment = new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Segment(this.pt, ip[0]);
         return segment.svg(attrs);
     }
 }
-$bd479cb9731e0159$export$2e2bcd8739ae039.Ray = $bd479cb9731e0159$export$a186db52eed6d40e;
-const $bd479cb9731e0159$export$e006947b4f05482d = (...args)=>new $bd479cb9731e0159$export$2e2bcd8739ae039.Ray(...args);
-$bd479cb9731e0159$export$2e2bcd8739ae039.ray = $bd479cb9731e0159$export$e006947b4f05482d;
+$3478ba2bdb1fd0df$export$2e2bcd8739ae039.Ray = $3478ba2bdb1fd0df$export$a186db52eed6d40e;
+const $3478ba2bdb1fd0df$export$e006947b4f05482d = (...args)=>new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Ray(...args);
+$3478ba2bdb1fd0df$export$2e2bcd8739ae039.ray = $3478ba2bdb1fd0df$export$e006947b4f05482d;
 /**
  * Created by Alex Bol on 3/15/2017.
  */ /**
@@ -5862,7 +5862,7 @@ $bd479cb9731e0159$export$2e2bcd8739ae039.ray = $bd479cb9731e0159$export$e006947b
  * Polygon in FlattenJS is a multipolygon comprised from a set of [faces]{@link Flatten.Face}. <br/>
  * Face, in turn, is a closed loop of [edges]{@link Flatten.Edge}, where edge may be segment or circular arc<br/>
  * @type {Polygon}
- */ let $bd479cb9731e0159$export$7d31b617c820d435 = class Polygon {
+ */ let $3478ba2bdb1fd0df$export$7d31b617c820d435 = class Polygon {
     /**
      * Constructor creates new instance of polygon. With no arguments new polygon is empty.<br/>
      * Constructor accepts as argument array that define loop of shapes
@@ -5878,31 +5878,31 @@ $bd479cb9731e0159$export$2e2bcd8739ae039.ray = $bd479cb9731e0159$export$e006947b
         /**
          * Container of faces (closed loops), may be empty
          * @type {PlanarSet}
-         */ this.faces = new $bd479cb9731e0159$export$2e2bcd8739ae039.PlanarSet();
+         */ this.faces = new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.PlanarSet();
         /**
          * Container of edges
          * @type {PlanarSet}
-         */ this.edges = new $bd479cb9731e0159$export$2e2bcd8739ae039.PlanarSet();
+         */ this.edges = new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.PlanarSet();
         /* It may be array of something that may represent one loop (face) or
          array of arrays that represent multiple loops
          */ let args = [
             ...arguments
         ];
-        if (args.length === 1 && (args[0] instanceof Array && args[0].length > 0 || args[0] instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Circle || args[0] instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Box)) {
+        if (args.length === 1 && (args[0] instanceof Array && args[0].length > 0 || args[0] instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Circle || args[0] instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Box)) {
             let argsArray = args[0];
             if (args[0] instanceof Array && args[0].every((loop)=>{
                 return loop instanceof Array;
             })) {
                 if (argsArray.every((el)=>{
                     return el instanceof Array && el.length === 2 && typeof el[0] === "number" && typeof el[1] === "number";
-                })) this.faces.add(new $bd479cb9731e0159$export$2e2bcd8739ae039.Face(this, argsArray)); // one-loop polygon as array of pairs of numbers
+                })) this.faces.add(new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Face(this, argsArray)); // one-loop polygon as array of pairs of numbers
                 else for (let loop of argsArray){
                     /* Check extra level of nesting for GeoJSON-style multi polygons */ if (loop instanceof Array && loop[0] instanceof Array && loop[0].every((el)=>{
                         return el instanceof Array && el.length === 2 && typeof el[0] === "number" && typeof el[1] === "number";
-                    })) for (let loop1 of loop)this.faces.add(new $bd479cb9731e0159$export$2e2bcd8739ae039.Face(this, loop1));
-                    else this.faces.add(new $bd479cb9731e0159$export$2e2bcd8739ae039.Face(this, loop));
+                    })) for (let loop1 of loop)this.faces.add(new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Face(this, loop1));
+                    else this.faces.add(new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Face(this, loop));
                 }
-            } else this.faces.add(new $bd479cb9731e0159$export$2e2bcd8739ae039.Face(this, argsArray)); // one-loop polygon
+            } else this.faces.add(new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Face(this, argsArray)); // one-loop polygon
         }
     }
     /**
@@ -5911,7 +5911,7 @@ $bd479cb9731e0159$export$2e2bcd8739ae039.ray = $bd479cb9731e0159$export$e006947b
      */ get box() {
         return [
             ...this.faces
-        ].reduce((acc, face)=>acc.merge(face.box), new $bd479cb9731e0159$export$2e2bcd8739ae039.Box());
+        ].reduce((acc, face)=>acc.merge(face.box), new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Box());
     }
     /**
      * (Getter) Returns array of vertices
@@ -5972,7 +5972,7 @@ $bd479cb9731e0159$export$2e2bcd8739ae039.ray = $bd479cb9731e0159$export$e006947b
      * You can chain method face.reverse() is you need to change direction of the creates face
      * @returns {Face}
      */ addFace(...args) {
-        let face = new $bd479cb9731e0159$export$2e2bcd8739ae039.Face(this, ...args);
+        let face = new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Face(this, ...args);
         this.faces.add(face);
         return face;
     }
@@ -6042,7 +6042,7 @@ $bd479cb9731e0159$export$2e2bcd8739ae039.ray = $bd479cb9731e0159$export$e006947b
         // if (shapes.length < 2) return;
         if (shapes[0] === null) return edge.prev;
         if (shapes[1] === null) return edge;
-        let newEdge = new $bd479cb9731e0159$export$2e2bcd8739ae039.Edge(shapes[0]);
+        let newEdge = new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Edge(shapes[0]);
         let edgeBefore = edge.prev;
         /* Insert first split edge into linked list after edgeBefore */ edge.face.insert(newEdge, edgeBefore);
         // Remove old edge from edges container and 2d index
@@ -6080,30 +6080,30 @@ $bd479cb9731e0159$export$2e2bcd8739ae039.ray = $bd479cb9731e0159$export$e006947b
         // intersect each edge of multiline with each edge of the polygon
         // and create smart intersections
         for (let edge1 of multiline.edges)for (let edge2 of newPoly.edges){
-            let ip = $bd479cb9731e0159$var$intersectEdge2Edge(edge1, edge2);
+            let ip = $3478ba2bdb1fd0df$var$intersectEdge2Edge(edge1, edge2);
             // for each intersection point
             for (let pt of ip){
-                $bd479cb9731e0159$var$addToIntPoints(edge1, pt, intersections.int_points1);
-                $bd479cb9731e0159$var$addToIntPoints(edge2, pt, intersections.int_points2);
+                $3478ba2bdb1fd0df$var$addToIntPoints(edge1, pt, intersections.int_points1);
+                $3478ba2bdb1fd0df$var$addToIntPoints(edge2, pt, intersections.int_points2);
             }
         }
         // No intersections - return a copy of the original polygon
         if (intersections.int_points1.length === 0) return newPoly;
         // sort smart intersections
-        intersections.int_points1_sorted = $bd479cb9731e0159$var$getSortedArray(intersections.int_points1);
-        intersections.int_points2_sorted = $bd479cb9731e0159$var$getSortedArray(intersections.int_points2);
+        intersections.int_points1_sorted = $3478ba2bdb1fd0df$var$getSortedArray(intersections.int_points1);
+        intersections.int_points2_sorted = $3478ba2bdb1fd0df$var$getSortedArray(intersections.int_points2);
         // split by intersection points
-        $bd479cb9731e0159$var$splitByIntersections(multiline, intersections.int_points1_sorted);
-        $bd479cb9731e0159$var$splitByIntersections(newPoly, intersections.int_points2_sorted);
+        $3478ba2bdb1fd0df$var$splitByIntersections(multiline, intersections.int_points1_sorted);
+        $3478ba2bdb1fd0df$var$splitByIntersections(newPoly, intersections.int_points2_sorted);
         // filter duplicated intersection points
-        $bd479cb9731e0159$var$filterDuplicatedIntersections(intersections);
+        $3478ba2bdb1fd0df$var$filterDuplicatedIntersections(intersections);
         // sort intersection points again after filtering
-        intersections.int_points1_sorted = $bd479cb9731e0159$var$getSortedArray(intersections.int_points1);
-        intersections.int_points2_sorted = $bd479cb9731e0159$var$getSortedArray(intersections.int_points2);
+        intersections.int_points1_sorted = $3478ba2bdb1fd0df$var$getSortedArray(intersections.int_points1);
+        intersections.int_points2_sorted = $3478ba2bdb1fd0df$var$getSortedArray(intersections.int_points2);
         // initialize inclusion flags for edges of multiline incident to intersections
-        $bd479cb9731e0159$var$initializeInclusionFlags(intersections.int_points1);
+        $3478ba2bdb1fd0df$var$initializeInclusionFlags(intersections.int_points1);
         // calculate inclusion flag for edges of multiline incident to intersections
-        $bd479cb9731e0159$var$calculateInclusionFlags(intersections.int_points1, newPoly);
+        $3478ba2bdb1fd0df$var$calculateInclusionFlags(intersections.int_points1, newPoly);
         // filter intersections between two edges that got same inclusion flag
         for (let int_point1 of intersections.int_points1_sorted)if (int_point1.edge_before && int_point1.edge_after && int_point1.edge_before.bv === int_point1.edge_after.bv) {
             intersections.int_points2[int_point1.id] = -1; // to be filtered out
@@ -6120,26 +6120,26 @@ $bd479cb9731e0159$export$2e2bcd8739ae039.ray = $bd479cb9731e0159$export$e006947b
         // No intersections left after filtering - return a copy of the original polygon
         if (intersections.int_points1.length === 0) return newPoly;
         // sort intersection points 3d time after filtering
-        intersections.int_points1_sorted = $bd479cb9731e0159$var$getSortedArray(intersections.int_points1);
-        intersections.int_points2_sorted = $bd479cb9731e0159$var$getSortedArray(intersections.int_points2);
+        intersections.int_points1_sorted = $3478ba2bdb1fd0df$var$getSortedArray(intersections.int_points1);
+        intersections.int_points2_sorted = $3478ba2bdb1fd0df$var$getSortedArray(intersections.int_points2);
         // Add new inner edges between intersection points
         let int_point1_prev;
         let int_point1_curr;
         for(let i = 1; i < intersections.int_points1_sorted.length; i++){
             int_point1_curr = intersections.int_points1_sorted[i];
             int_point1_prev = intersections.int_points1_sorted[i - 1];
-            if (int_point1_curr.edge_before && int_point1_curr.edge_before.bv === $bd479cb9731e0159$export$48ea0cac79c83ca8) {
+            if (int_point1_curr.edge_before && int_point1_curr.edge_before.bv === $3478ba2bdb1fd0df$export$48ea0cac79c83ca8) {
                 let edgeFrom = int_point1_prev.edge_after;
                 let edgeTo = int_point1_curr.edge_before;
                 let newEdges = multiline.getChain(edgeFrom, edgeTo);
-                $bd479cb9731e0159$var$insertBetweenIntPoints(intersections.int_points2[int_point1_prev.id], intersections.int_points2[int_point1_curr.id], newEdges);
+                $3478ba2bdb1fd0df$var$insertBetweenIntPoints(intersections.int_points2[int_point1_prev.id], intersections.int_points2[int_point1_curr.id], newEdges);
                 newEdges.forEach((edge)=>newPoly.edges.add(edge));
-                newEdges = newEdges.reverse().map((edge)=>new $bd479cb9731e0159$export$2e2bcd8739ae039.Edge(edge.shape.reverse()));
+                newEdges = newEdges.reverse().map((edge)=>new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Edge(edge.shape.reverse()));
                 for(let k = 0; k < newEdges.length - 1; k++){
                     newEdges[k].next = newEdges[k + 1];
                     newEdges[k + 1].prev = newEdges[k];
                 }
-                $bd479cb9731e0159$var$insertBetweenIntPoints(intersections.int_points2[int_point1_curr.id], intersections.int_points2[int_point1_prev.id], newEdges);
+                $3478ba2bdb1fd0df$var$insertBetweenIntPoints(intersections.int_points2[int_point1_curr.id], intersections.int_points2[int_point1_prev.id], newEdges);
                 newEdges.forEach((edge)=>newPoly.edges.add(edge));
             }
         }
@@ -6153,7 +6153,7 @@ $bd479cb9731e0159$export$2e2bcd8739ae039.ray = $bd479cb9731e0159$export$e006947b
      * @param {Line} line - cutting line
      * @returns {Polygon} newPoly - resulted polygon
      */ cutWithLine(line) {
-        let multiline = new $bd479cb9731e0159$export$a5433e0f3b1dce29([
+        let multiline = new $3478ba2bdb1fd0df$export$a5433e0f3b1dce29([
             line
         ]);
         return this.cut(multiline);
@@ -6211,10 +6211,10 @@ $bd479cb9731e0159$export$2e2bcd8739ae039.ray = $bd479cb9731e0159$export$e006947b
      * @param {Shape} shape - test shape
      * @returns {boolean}
      */ contains(shape) {
-        if (shape instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Point) {
-            let rel = $bd479cb9731e0159$export$3adad403c78dc9b2(this, shape);
-            return rel === $bd479cb9731e0159$export$48ea0cac79c83ca8 || rel === $bd479cb9731e0159$export$a523954c60dca5e4;
-        } else return $bd479cb9731e0159$var$cover(this, shape);
+        if (shape instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Point) {
+            let rel = $3478ba2bdb1fd0df$export$3adad403c78dc9b2(this, shape);
+            return rel === $3478ba2bdb1fd0df$export$48ea0cac79c83ca8 || rel === $3478ba2bdb1fd0df$export$a523954c60dca5e4;
+        } else return $3478ba2bdb1fd0df$var$cover(this, shape);
     }
     /**
      * Return distance and shortest segment between polygon and other shape as array [distance, shortest_segment]
@@ -6222,33 +6222,33 @@ $bd479cb9731e0159$export$2e2bcd8739ae039.ray = $bd479cb9731e0159$export$e006947b
      * @returns {Number | Segment}
      */ distanceTo(shape) {
         // let {Distance} = Flatten;
-        if (shape instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Point) {
-            let [dist, shortest_segment] = $bd479cb9731e0159$export$2e2bcd8739ae039.Distance.point2polygon(shape, this);
+        if (shape instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Point) {
+            let [dist, shortest_segment] = $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Distance.point2polygon(shape, this);
             shortest_segment = shortest_segment.reverse();
             return [
                 dist,
                 shortest_segment
             ];
         }
-        if (shape instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Circle || shape instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Line || shape instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Segment || shape instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Arc) {
-            let [dist, shortest_segment] = $bd479cb9731e0159$export$2e2bcd8739ae039.Distance.shape2polygon(shape, this);
+        if (shape instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Circle || shape instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Line || shape instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Segment || shape instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Arc) {
+            let [dist, shortest_segment] = $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Distance.shape2polygon(shape, this);
             shortest_segment = shortest_segment.reverse();
             return [
                 dist,
                 shortest_segment
             ];
         }
-        /* this method is bit faster */ if (shape instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Polygon) {
+        /* this method is bit faster */ if (shape instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Polygon) {
             let min_dist_and_segment = [
                 Number.POSITIVE_INFINITY,
-                new $bd479cb9731e0159$export$2e2bcd8739ae039.Segment()
+                new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Segment()
             ];
             let dist, shortest_segment;
             for (let edge of this.edges){
                 // let [dist, shortest_segment] = Distance.shape2polygon(edge.shape, shape);
                 let min_stop = min_dist_and_segment[0];
-                [dist, shortest_segment] = $bd479cb9731e0159$export$2e2bcd8739ae039.Distance.shape2planarSet(edge.shape, shape.edges, min_stop);
-                if ($bd479cb9731e0159$export$2e2bcd8739ae039.Utils.LT(dist, min_stop)) min_dist_and_segment = [
+                [dist, shortest_segment] = $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Distance.shape2planarSet(edge.shape, shape.edges, min_stop);
+                if ($3478ba2bdb1fd0df$export$2e2bcd8739ae039.Utils.LT(dist, min_stop)) min_dist_and_segment = [
                     dist,
                     shortest_segment
                 ];
@@ -6261,16 +6261,16 @@ $bd479cb9731e0159$export$2e2bcd8739ae039.ray = $bd479cb9731e0159$export$e006947b
      * @param shape Shape of the one of supported types <br/>
      * @returns {Point[]}
      */ intersect(shape) {
-        if (shape instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Point) return this.contains(shape) ? [
+        if (shape instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Point) return this.contains(shape) ? [
             shape
         ] : [];
-        if (shape instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Line) return $bd479cb9731e0159$var$intersectLine2Polygon(shape, this);
-        if (shape instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Ray) return $bd479cb9731e0159$var$intersectRay2Polygon(shape, this);
-        if (shape instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Circle) return $bd479cb9731e0159$var$intersectCircle2Polygon(shape, this);
-        if (shape instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Segment) return $bd479cb9731e0159$var$intersectSegment2Polygon(shape, this);
-        if (shape instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Arc) return $bd479cb9731e0159$var$intersectArc2Polygon(shape, this);
-        if (shape instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Polygon) return $bd479cb9731e0159$var$intersectPolygon2Polygon(shape, this);
-        if (shape instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Multiline) return $bd479cb9731e0159$var$intersectMultiline2Polygon(shape, this);
+        if (shape instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Line) return $3478ba2bdb1fd0df$var$intersectLine2Polygon(shape, this);
+        if (shape instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Ray) return $3478ba2bdb1fd0df$var$intersectRay2Polygon(shape, this);
+        if (shape instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Circle) return $3478ba2bdb1fd0df$var$intersectCircle2Polygon(shape, this);
+        if (shape instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Segment) return $3478ba2bdb1fd0df$var$intersectSegment2Polygon(shape, this);
+        if (shape instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Arc) return $3478ba2bdb1fd0df$var$intersectArc2Polygon(shape, this);
+        if (shape instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Polygon) return $3478ba2bdb1fd0df$var$intersectPolygon2Polygon(shape, this);
+        if (shape instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Multiline) return $3478ba2bdb1fd0df$var$intersectMultiline2Polygon(shape, this);
     }
     /**
      * Returns new polygon translated by vector vec
@@ -6288,7 +6288,7 @@ $bd479cb9731e0159$export$2e2bcd8739ae039.ray = $bd479cb9731e0159$export$e006947b
      * @param {number} angle - rotation angle in radians
      * @param {Point} center - rotation center, default is (0,0)
      * @returns {Polygon} - new rotated polygon
-     */ rotate(angle = 0, center = new $bd479cb9731e0159$export$2e2bcd8739ae039.Point()) {
+     */ rotate(angle = 0, center = new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Point()) {
         let newPolygon = new Polygon();
         for (let face of this.faces)newPolygon.addFace(face.shapes.map((shape)=>shape.rotate(angle, center)));
         return newPolygon;
@@ -6307,7 +6307,7 @@ $bd479cb9731e0159$export$2e2bcd8739ae039.ray = $bd479cb9731e0159$export$e006947b
      * Return new polygon transformed using affine transformation matrix
      * @param {Matrix} matrix - affine transformation matrix
      * @returns {Polygon} - new polygon
-     */ transform(matrix = new $bd479cb9731e0159$export$2e2bcd8739ae039.Matrix()) {
+     */ transform(matrix = new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Matrix()) {
         let newPolygon = new Polygon();
         for (let face of this.faces)newPolygon.addFace(face.shapes.map((shape)=>shape.transform(matrix)));
         return newPolygon;
@@ -6342,7 +6342,7 @@ $bd479cb9731e0159$export$2e2bcd8739ae039.ray = $bd479cb9731e0159$export$e006947b
      * @param attrs  - an object with attributes for svg path element
      * @returns {string}
      */ svg(attrs = {}) {
-        let svgStr = `\n<path ${$bd479cb9731e0159$var$convertToString({
+        let svgStr = `\n<path ${$3478ba2bdb1fd0df$var$convertToString({
             fillRule: "evenodd",
             fill: "lightcyan",
             ...attrs
@@ -6352,12 +6352,12 @@ $bd479cb9731e0159$export$2e2bcd8739ae039.ray = $bd479cb9731e0159$export$e006947b
         return svgStr;
     }
 };
-$bd479cb9731e0159$export$2e2bcd8739ae039.Polygon = $bd479cb9731e0159$export$7d31b617c820d435;
+$3478ba2bdb1fd0df$export$2e2bcd8739ae039.Polygon = $3478ba2bdb1fd0df$export$7d31b617c820d435;
 /**
  * Shortcut method to create new polygon
- */ const $bd479cb9731e0159$export$b7b19aa0ee06c73 = (...args)=>new $bd479cb9731e0159$export$2e2bcd8739ae039.Polygon(...args);
-$bd479cb9731e0159$export$2e2bcd8739ae039.polygon = $bd479cb9731e0159$export$b7b19aa0ee06c73;
-const { Circle: $bd479cb9731e0159$var$Circle, Line: $bd479cb9731e0159$var$Line, Point: $bd479cb9731e0159$var$Point$2, Vector: $bd479cb9731e0159$var$Vector, Utils: $bd479cb9731e0159$var$Utils } = $bd479cb9731e0159$export$2e2bcd8739ae039;
+ */ const $3478ba2bdb1fd0df$export$b7b19aa0ee06c73 = (...args)=>new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Polygon(...args);
+$3478ba2bdb1fd0df$export$2e2bcd8739ae039.polygon = $3478ba2bdb1fd0df$export$b7b19aa0ee06c73;
+const { Circle: $3478ba2bdb1fd0df$var$Circle, Line: $3478ba2bdb1fd0df$var$Line, Point: $3478ba2bdb1fd0df$var$Point$2, Vector: $3478ba2bdb1fd0df$var$Vector, Utils: $3478ba2bdb1fd0df$var$Utils } = $3478ba2bdb1fd0df$export$2e2bcd8739ae039;
 /**
  * Class Inversion represent operator of inversion in circle
  * Inversion is a transformation of the Euclidean plane that maps generalized circles
@@ -6365,7 +6365,7 @@ const { Circle: $bd479cb9731e0159$var$Circle, Line: $bd479cb9731e0159$var$Line, 
  * See also https://en.wikipedia.org/wiki/Inversive_geometry and
  * http://mathworld.wolfram.com/Inversion.html <br/>
  * @type {Inversion}
- */ class $bd479cb9731e0159$export$ff40fcfb940069c {
+ */ class $3478ba2bdb1fd0df$export$ff40fcfb940069c {
     /**
      * Inversion constructor
      * @param {Circle} inversion_circle inversion circle
@@ -6376,52 +6376,52 @@ const { Circle: $bd479cb9731e0159$var$Circle, Line: $bd479cb9731e0159$var$Line, 
         return this.circle;
     }
     static inversePoint(inversion_circle, point) {
-        const v = new $bd479cb9731e0159$var$Vector(inversion_circle.pc, point);
+        const v = new $3478ba2bdb1fd0df$var$Vector(inversion_circle.pc, point);
         const k2 = inversion_circle.r * inversion_circle.r;
         const len2 = v.dot(v);
-        const reflected_point = $bd479cb9731e0159$var$Utils.EQ_0(len2) ? new $bd479cb9731e0159$var$Point$2(Number.POSITIVE_INFINITY, Number.POSITIVE_INFINITY) : inversion_circle.pc.translate(v.multiply(k2 / len2));
+        const reflected_point = $3478ba2bdb1fd0df$var$Utils.EQ_0(len2) ? new $3478ba2bdb1fd0df$var$Point$2(Number.POSITIVE_INFINITY, Number.POSITIVE_INFINITY) : inversion_circle.pc.translate(v.multiply(k2 / len2));
         return reflected_point;
     }
     static inverseCircle(inversion_circle, circle) {
         const dist = inversion_circle.pc.distanceTo(circle.pc)[0];
-        if ($bd479cb9731e0159$var$Utils.EQ(dist, circle.r)) {
+        if ($3478ba2bdb1fd0df$var$Utils.EQ(dist, circle.r)) {
             let d = inversion_circle.r * inversion_circle.r / (2 * circle.r);
-            let v = new $bd479cb9731e0159$var$Vector(inversion_circle.pc, circle.pc);
+            let v = new $3478ba2bdb1fd0df$var$Vector(inversion_circle.pc, circle.pc);
             v = v.normalize();
             let pt = inversion_circle.pc.translate(v.multiply(d));
-            return new $bd479cb9731e0159$var$Line(pt, v);
+            return new $3478ba2bdb1fd0df$var$Line(pt, v);
         } else {
-            /* Taken from http://mathworld.wolfram.com */ let v = new $bd479cb9731e0159$var$Vector(inversion_circle.pc, circle.pc);
+            /* Taken from http://mathworld.wolfram.com */ let v = new $3478ba2bdb1fd0df$var$Vector(inversion_circle.pc, circle.pc);
             let s = inversion_circle.r * inversion_circle.r / (v.dot(v) - circle.r * circle.r);
             let pc = inversion_circle.pc.translate(v.multiply(s));
             let r = Math.abs(s) * circle.r;
-            return new $bd479cb9731e0159$var$Circle(pc, r);
+            return new $3478ba2bdb1fd0df$var$Circle(pc, r);
         }
     }
     static inverseLine(inversion_circle, line) {
         const [dist, shortest_segment] = inversion_circle.pc.distanceTo(line);
-        if ($bd479cb9731e0159$var$Utils.EQ_0(dist)) return line.clone();
+        if ($3478ba2bdb1fd0df$var$Utils.EQ_0(dist)) return line.clone();
         else {
             let r = inversion_circle.r * inversion_circle.r / (2 * dist);
-            let v = new $bd479cb9731e0159$var$Vector(inversion_circle.pc, shortest_segment.end);
+            let v = new $3478ba2bdb1fd0df$var$Vector(inversion_circle.pc, shortest_segment.end);
             v = v.multiply(r / dist);
-            return new $bd479cb9731e0159$var$Circle(inversion_circle.pc.translate(v), r);
+            return new $3478ba2bdb1fd0df$var$Circle(inversion_circle.pc.translate(v), r);
         }
     }
     inverse(shape) {
-        if (shape instanceof $bd479cb9731e0159$var$Point$2) return $bd479cb9731e0159$export$ff40fcfb940069c.inversePoint(this.circle, shape);
-        else if (shape instanceof $bd479cb9731e0159$var$Circle) return $bd479cb9731e0159$export$ff40fcfb940069c.inverseCircle(this.circle, shape);
-        else if (shape instanceof $bd479cb9731e0159$var$Line) return $bd479cb9731e0159$export$ff40fcfb940069c.inverseLine(this.circle, shape);
+        if (shape instanceof $3478ba2bdb1fd0df$var$Point$2) return $3478ba2bdb1fd0df$export$ff40fcfb940069c.inversePoint(this.circle, shape);
+        else if (shape instanceof $3478ba2bdb1fd0df$var$Circle) return $3478ba2bdb1fd0df$export$ff40fcfb940069c.inverseCircle(this.circle, shape);
+        else if (shape instanceof $3478ba2bdb1fd0df$var$Line) return $3478ba2bdb1fd0df$export$ff40fcfb940069c.inverseLine(this.circle, shape);
     }
 }
-$bd479cb9731e0159$export$2e2bcd8739ae039.Inversion = $bd479cb9731e0159$export$ff40fcfb940069c;
+$3478ba2bdb1fd0df$export$2e2bcd8739ae039.Inversion = $3478ba2bdb1fd0df$export$ff40fcfb940069c;
 /**
  * Shortcut to create inversion operator
  * @param circle
  * @returns {Inversion}
- */ const $bd479cb9731e0159$export$2bb0f59743968e2d = (circle)=>new $bd479cb9731e0159$export$2e2bcd8739ae039.Inversion(circle);
-$bd479cb9731e0159$export$2e2bcd8739ae039.inversion = $bd479cb9731e0159$export$2bb0f59743968e2d;
-class $bd479cb9731e0159$export$3081247862d57e3d {
+ */ const $3478ba2bdb1fd0df$export$2bb0f59743968e2d = (circle)=>new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Inversion(circle);
+$3478ba2bdb1fd0df$export$2e2bcd8739ae039.inversion = $3478ba2bdb1fd0df$export$2bb0f59743968e2d;
+class $3478ba2bdb1fd0df$export$3081247862d57e3d {
     /**
      * Calculate distance and shortest segment between points
      * @param pt1
@@ -6437,10 +6437,10 @@ class $bd479cb9731e0159$export$3081247862d57e3d {
      * @returns {[number, Flatten.Segment]} - distance and shortest segment
      */ static point2line(pt, line) {
         let closest_point = pt.projectionOn(line);
-        let vec = new $bd479cb9731e0159$export$2e2bcd8739ae039.Vector(pt, closest_point);
+        let vec = new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Vector(pt, closest_point);
         return [
             vec.length,
-            new $bd479cb9731e0159$export$2e2bcd8739ae039.Segment(pt, closest_point)
+            new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Segment(pt, closest_point)
         ];
     }
     /**
@@ -6450,17 +6450,17 @@ class $bd479cb9731e0159$export$3081247862d57e3d {
      * @returns {[number, Flatten.Segment]} - distance and shortest segment
      */ static point2circle(pt, circle) {
         let [dist2center, shortest_dist] = pt.distanceTo(circle.center);
-        if ($bd479cb9731e0159$export$2e2bcd8739ae039.Utils.EQ_0(dist2center)) return [
+        if ($3478ba2bdb1fd0df$export$2e2bcd8739ae039.Utils.EQ_0(dist2center)) return [
             circle.r,
-            new $bd479cb9731e0159$export$2e2bcd8739ae039.Segment(pt, circle.toArc().start)
+            new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Segment(pt, circle.toArc().start)
         ];
         else {
             let dist = Math.abs(dist2center - circle.r);
-            let v = new $bd479cb9731e0159$export$2e2bcd8739ae039.Vector(circle.pc, pt).normalize().multiply(circle.r);
+            let v = new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Vector(circle.pc, pt).normalize().multiply(circle.r);
             let closest_point = circle.pc.translate(v);
             return [
                 dist,
-                new $bd479cb9731e0159$export$2e2bcd8739ae039.Segment(pt, closest_point)
+                new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Segment(pt, closest_point)
             ];
         }
     }
@@ -6470,21 +6470,21 @@ class $bd479cb9731e0159$export$3081247862d57e3d {
      * @param segment
      * @returns {[number, Flatten.Segment]} - distance and shortest segment
      */ static point2segment(pt, segment) {
-        /* Degenerated case of zero-length segment */ if (segment.start.equalTo(segment.end)) return $bd479cb9731e0159$export$3081247862d57e3d.point2point(pt, segment.start);
-        let v_seg = new $bd479cb9731e0159$export$2e2bcd8739ae039.Vector(segment.start, segment.end);
-        let v_ps2pt = new $bd479cb9731e0159$export$2e2bcd8739ae039.Vector(segment.start, pt);
-        let v_pe2pt = new $bd479cb9731e0159$export$2e2bcd8739ae039.Vector(segment.end, pt);
+        /* Degenerated case of zero-length segment */ if (segment.start.equalTo(segment.end)) return $3478ba2bdb1fd0df$export$3081247862d57e3d.point2point(pt, segment.start);
+        let v_seg = new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Vector(segment.start, segment.end);
+        let v_ps2pt = new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Vector(segment.start, pt);
+        let v_pe2pt = new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Vector(segment.end, pt);
         let start_sp = v_seg.dot(v_ps2pt);
         /* dot product v_seg * v_ps2pt */ let end_sp = -v_seg.dot(v_pe2pt);
         /* minus dot product v_seg * v_pe2pt */ let dist;
         let closest_point;
-        if ($bd479cb9731e0159$export$2e2bcd8739ae039.Utils.GE(start_sp, 0) && $bd479cb9731e0159$export$2e2bcd8739ae039.Utils.GE(end_sp, 0)) {
+        if ($3478ba2bdb1fd0df$export$2e2bcd8739ae039.Utils.GE(start_sp, 0) && $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Utils.GE(end_sp, 0)) {
             let v_unit = segment.tangentInStart(); // new Flatten.Vector(v_seg.x / this.length, v_seg.y / this.length);
             /* unit vector ||v_unit|| = 1 */ dist = Math.abs(v_unit.cross(v_ps2pt));
             /* dist = abs(v_unit x v_ps2pt) */ closest_point = segment.start.translate(v_unit.multiply(v_unit.dot(v_ps2pt)));
             return [
                 dist,
-                new $bd479cb9731e0159$export$2e2bcd8739ae039.Segment(pt, closest_point)
+                new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Segment(pt, closest_point)
             ];
         } else if (start_sp < 0) return pt.distanceTo(segment.start);
         else return pt.distanceTo(segment.end);
@@ -6495,14 +6495,14 @@ class $bd479cb9731e0159$export$3081247862d57e3d {
      * @param arc
      * @returns {[number, Flatten.Segment]} - distance and shortest segment
      */ static point2arc(pt, arc) {
-        let circle = new $bd479cb9731e0159$export$2e2bcd8739ae039.Circle(arc.pc, arc.r);
+        let circle = new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Circle(arc.pc, arc.r);
         let dist_and_segment = [];
         let dist, shortest_segment;
-        [dist, shortest_segment] = $bd479cb9731e0159$export$3081247862d57e3d.point2circle(pt, circle);
-        if (shortest_segment.end.on(arc)) dist_and_segment.push($bd479cb9731e0159$export$3081247862d57e3d.point2circle(pt, circle));
-        dist_and_segment.push($bd479cb9731e0159$export$3081247862d57e3d.point2point(pt, arc.start));
-        dist_and_segment.push($bd479cb9731e0159$export$3081247862d57e3d.point2point(pt, arc.end));
-        $bd479cb9731e0159$export$3081247862d57e3d.sort(dist_and_segment);
+        [dist, shortest_segment] = $3478ba2bdb1fd0df$export$3081247862d57e3d.point2circle(pt, circle);
+        if (shortest_segment.end.on(arc)) dist_and_segment.push($3478ba2bdb1fd0df$export$3081247862d57e3d.point2circle(pt, circle));
+        dist_and_segment.push($3478ba2bdb1fd0df$export$3081247862d57e3d.point2point(pt, arc.start));
+        dist_and_segment.push($3478ba2bdb1fd0df$export$3081247862d57e3d.point2point(pt, arc.end));
+        $3478ba2bdb1fd0df$export$3081247862d57e3d.sort(dist_and_segment);
         return dist_and_segment[0];
     }
     /**
@@ -6511,7 +6511,7 @@ class $bd479cb9731e0159$export$3081247862d57e3d {
      * @param edge
      * @returns {[number, Flatten.Segment]}
      */ static point2edge(pt, edge) {
-        return edge.shape instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Segment ? $bd479cb9731e0159$export$3081247862d57e3d.point2segment(pt, edge.shape) : $bd479cb9731e0159$export$3081247862d57e3d.point2arc(pt, edge.shape);
+        return edge.shape instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Segment ? $3478ba2bdb1fd0df$export$3081247862d57e3d.point2segment(pt, edge.shape) : $3478ba2bdb1fd0df$export$3081247862d57e3d.point2arc(pt, edge.shape);
     }
     /**
      * Calculate distance and shortest segment between segment and line
@@ -6522,12 +6522,12 @@ class $bd479cb9731e0159$export$3081247862d57e3d {
         let ip = seg.intersect(line);
         if (ip.length > 0) return [
             0,
-            new $bd479cb9731e0159$export$2e2bcd8739ae039.Segment(ip[0], ip[0])
+            new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Segment(ip[0], ip[0])
         ]; // distance = 0, closest point is the first point
         let dist_and_segment = [];
-        dist_and_segment.push($bd479cb9731e0159$export$3081247862d57e3d.point2line(seg.start, line));
-        dist_and_segment.push($bd479cb9731e0159$export$3081247862d57e3d.point2line(seg.end, line));
-        $bd479cb9731e0159$export$3081247862d57e3d.sort(dist_and_segment);
+        dist_and_segment.push($3478ba2bdb1fd0df$export$3081247862d57e3d.point2line(seg.start, line));
+        dist_and_segment.push($3478ba2bdb1fd0df$export$3081247862d57e3d.point2line(seg.end, line));
+        $3478ba2bdb1fd0df$export$3081247862d57e3d.sort(dist_and_segment);
         return dist_and_segment[0];
     }
     /**
@@ -6536,27 +6536,27 @@ class $bd479cb9731e0159$export$3081247862d57e3d {
      * @param seg2
      * @returns {[number, Flatten.Segment]} - distance and shortest segment
      */ static segment2segment(seg1, seg2) {
-        let ip = $bd479cb9731e0159$var$intersectSegment2Segment(seg1, seg2);
+        let ip = $3478ba2bdb1fd0df$var$intersectSegment2Segment(seg1, seg2);
         if (ip.length > 0) return [
             0,
-            new $bd479cb9731e0159$export$2e2bcd8739ae039.Segment(ip[0], ip[0])
+            new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Segment(ip[0], ip[0])
         ]; // distance = 0, closest point is the first point
         // Seg1 and seg2 not intersected
         let dist_and_segment = [];
         let dist_tmp, shortest_segment_tmp;
-        [dist_tmp, shortest_segment_tmp] = $bd479cb9731e0159$export$3081247862d57e3d.point2segment(seg2.start, seg1);
+        [dist_tmp, shortest_segment_tmp] = $3478ba2bdb1fd0df$export$3081247862d57e3d.point2segment(seg2.start, seg1);
         dist_and_segment.push([
             dist_tmp,
             shortest_segment_tmp.reverse()
         ]);
-        [dist_tmp, shortest_segment_tmp] = $bd479cb9731e0159$export$3081247862d57e3d.point2segment(seg2.end, seg1);
+        [dist_tmp, shortest_segment_tmp] = $3478ba2bdb1fd0df$export$3081247862d57e3d.point2segment(seg2.end, seg1);
         dist_and_segment.push([
             dist_tmp,
             shortest_segment_tmp.reverse()
         ]);
-        dist_and_segment.push($bd479cb9731e0159$export$3081247862d57e3d.point2segment(seg1.start, seg2));
-        dist_and_segment.push($bd479cb9731e0159$export$3081247862d57e3d.point2segment(seg1.end, seg2));
-        $bd479cb9731e0159$export$3081247862d57e3d.sort(dist_and_segment);
+        dist_and_segment.push($3478ba2bdb1fd0df$export$3081247862d57e3d.point2segment(seg1.start, seg2));
+        dist_and_segment.push($3478ba2bdb1fd0df$export$3081247862d57e3d.point2segment(seg1.end, seg2));
+        $3478ba2bdb1fd0df$export$3081247862d57e3d.sort(dist_and_segment);
         return dist_and_segment[0];
     }
     /**
@@ -6568,18 +6568,18 @@ class $bd479cb9731e0159$export$3081247862d57e3d {
         /* Case 1 Segment and circle intersected. Return the first point and zero distance */ let ip = seg.intersect(circle);
         if (ip.length > 0) return [
             0,
-            new $bd479cb9731e0159$export$2e2bcd8739ae039.Segment(ip[0], ip[0])
+            new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Segment(ip[0], ip[0])
         ];
         // No intersection between segment and circle
         /* Case 2. Distance to projection of center point to line bigger than radius
          * And projection point belong to segment
-          * Then measure again distance from projection to circle and return it */ let line = new $bd479cb9731e0159$export$2e2bcd8739ae039.Line(seg.ps, seg.pe);
-        let [dist, shortest_segment] = $bd479cb9731e0159$export$3081247862d57e3d.point2line(circle.center, line);
-        if ($bd479cb9731e0159$export$2e2bcd8739ae039.Utils.GE(dist, circle.r) && shortest_segment.end.on(seg)) return $bd479cb9731e0159$export$3081247862d57e3d.point2circle(shortest_segment.end, circle);
+          * Then measure again distance from projection to circle and return it */ let line = new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Line(seg.ps, seg.pe);
+        let [dist, shortest_segment] = $3478ba2bdb1fd0df$export$3081247862d57e3d.point2line(circle.center, line);
+        if ($3478ba2bdb1fd0df$export$2e2bcd8739ae039.Utils.GE(dist, circle.r) && shortest_segment.end.on(seg)) return $3478ba2bdb1fd0df$export$3081247862d57e3d.point2circle(shortest_segment.end, circle);
         else {
-            let [dist_from_start, shortest_segment_from_start] = $bd479cb9731e0159$export$3081247862d57e3d.point2circle(seg.start, circle);
-            let [dist_from_end, shortest_segment_from_end] = $bd479cb9731e0159$export$3081247862d57e3d.point2circle(seg.end, circle);
-            return $bd479cb9731e0159$export$2e2bcd8739ae039.Utils.LT(dist_from_start, dist_from_end) ? [
+            let [dist_from_start, shortest_segment_from_start] = $3478ba2bdb1fd0df$export$3081247862d57e3d.point2circle(seg.start, circle);
+            let [dist_from_end, shortest_segment_from_end] = $3478ba2bdb1fd0df$export$3081247862d57e3d.point2circle(seg.end, circle);
+            return $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Utils.LT(dist_from_start, dist_from_end) ? [
                 dist_from_start,
                 shortest_segment_from_start
             ] : [
@@ -6597,37 +6597,37 @@ class $bd479cb9731e0159$export$3081247862d57e3d {
         /* Case 1 Segment and arc intersected. Return the first point and zero distance */ let ip = seg.intersect(arc);
         if (ip.length > 0) return [
             0,
-            new $bd479cb9731e0159$export$2e2bcd8739ae039.Segment(ip[0], ip[0])
+            new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Segment(ip[0], ip[0])
         ];
         // No intersection between segment and arc
-        let line = new $bd479cb9731e0159$export$2e2bcd8739ae039.Line(seg.ps, seg.pe);
-        let circle = new $bd479cb9731e0159$export$2e2bcd8739ae039.Circle(arc.pc, arc.r);
+        let line = new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Line(seg.ps, seg.pe);
+        let circle = new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Circle(arc.pc, arc.r);
         /* Case 2. Distance to projection of center point to line bigger than radius AND
          * projection point belongs to segment AND
            * distance from projection point to circle belongs to arc  =>
-           * return this distance from projection to circle */ let [dist_from_center, shortest_segment_from_center] = $bd479cb9731e0159$export$3081247862d57e3d.point2line(circle.center, line);
-        if ($bd479cb9731e0159$export$2e2bcd8739ae039.Utils.GE(dist_from_center, circle.r) && shortest_segment_from_center.end.on(seg)) {
-            let [dist_from_projection, shortest_segment_from_projection] = $bd479cb9731e0159$export$3081247862d57e3d.point2circle(shortest_segment_from_center.end, circle);
+           * return this distance from projection to circle */ let [dist_from_center, shortest_segment_from_center] = $3478ba2bdb1fd0df$export$3081247862d57e3d.point2line(circle.center, line);
+        if ($3478ba2bdb1fd0df$export$2e2bcd8739ae039.Utils.GE(dist_from_center, circle.r) && shortest_segment_from_center.end.on(seg)) {
+            let [dist_from_projection, shortest_segment_from_projection] = $3478ba2bdb1fd0df$export$3081247862d57e3d.point2circle(shortest_segment_from_center.end, circle);
             if (shortest_segment_from_projection.end.on(arc)) return [
                 dist_from_projection,
                 shortest_segment_from_projection
             ];
         }
         /* Case 3. Otherwise closest point is one of the end points of the segment */ let dist_and_segment = [];
-        dist_and_segment.push($bd479cb9731e0159$export$3081247862d57e3d.point2arc(seg.start, arc));
-        dist_and_segment.push($bd479cb9731e0159$export$3081247862d57e3d.point2arc(seg.end, arc));
+        dist_and_segment.push($3478ba2bdb1fd0df$export$3081247862d57e3d.point2arc(seg.start, arc));
+        dist_and_segment.push($3478ba2bdb1fd0df$export$3081247862d57e3d.point2arc(seg.end, arc));
         let dist_tmp, segment_tmp;
-        [dist_tmp, segment_tmp] = $bd479cb9731e0159$export$3081247862d57e3d.point2segment(arc.start, seg);
+        [dist_tmp, segment_tmp] = $3478ba2bdb1fd0df$export$3081247862d57e3d.point2segment(arc.start, seg);
         dist_and_segment.push([
             dist_tmp,
             segment_tmp.reverse()
         ]);
-        [dist_tmp, segment_tmp] = $bd479cb9731e0159$export$3081247862d57e3d.point2segment(arc.end, seg);
+        [dist_tmp, segment_tmp] = $3478ba2bdb1fd0df$export$3081247862d57e3d.point2segment(arc.end, seg);
         dist_and_segment.push([
             dist_tmp,
             segment_tmp.reverse()
         ]);
-        $bd479cb9731e0159$export$3081247862d57e3d.sort(dist_and_segment);
+        $3478ba2bdb1fd0df$export$3081247862d57e3d.sort(dist_and_segment);
         return dist_and_segment[0];
     }
     /**
@@ -6639,24 +6639,24 @@ class $bd479cb9731e0159$export$3081247862d57e3d {
         let ip = circle1.intersect(circle2);
         if (ip.length > 0) return [
             0,
-            new $bd479cb9731e0159$export$2e2bcd8739ae039.Segment(ip[0], ip[0])
+            new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Segment(ip[0], ip[0])
         ];
         // Case 1. Concentric circles. Convert to arcs and take distance between two arc starts
         if (circle1.center.equalTo(circle2.center)) {
             let arc1 = circle1.toArc();
             let arc2 = circle2.toArc();
-            return $bd479cb9731e0159$export$3081247862d57e3d.point2point(arc1.start, arc2.start);
+            return $3478ba2bdb1fd0df$export$3081247862d57e3d.point2point(arc1.start, arc2.start);
         } else {
             // Case 2. Not concentric circles
-            let line = new $bd479cb9731e0159$export$2e2bcd8739ae039.Line(circle1.center, circle2.center);
+            let line = new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Line(circle1.center, circle2.center);
             let ip1 = line.intersect(circle1);
             let ip2 = line.intersect(circle2);
             let dist_and_segment = [];
-            dist_and_segment.push($bd479cb9731e0159$export$3081247862d57e3d.point2point(ip1[0], ip2[0]));
-            dist_and_segment.push($bd479cb9731e0159$export$3081247862d57e3d.point2point(ip1[0], ip2[1]));
-            dist_and_segment.push($bd479cb9731e0159$export$3081247862d57e3d.point2point(ip1[1], ip2[0]));
-            dist_and_segment.push($bd479cb9731e0159$export$3081247862d57e3d.point2point(ip1[1], ip2[1]));
-            $bd479cb9731e0159$export$3081247862d57e3d.sort(dist_and_segment);
+            dist_and_segment.push($3478ba2bdb1fd0df$export$3081247862d57e3d.point2point(ip1[0], ip2[0]));
+            dist_and_segment.push($3478ba2bdb1fd0df$export$3081247862d57e3d.point2point(ip1[0], ip2[1]));
+            dist_and_segment.push($3478ba2bdb1fd0df$export$3081247862d57e3d.point2point(ip1[1], ip2[0]));
+            dist_and_segment.push($3478ba2bdb1fd0df$export$3081247862d57e3d.point2point(ip1[1], ip2[1]));
+            $3478ba2bdb1fd0df$export$3081247862d57e3d.sort(dist_and_segment);
             return dist_and_segment[0];
         }
     }
@@ -6669,10 +6669,10 @@ class $bd479cb9731e0159$export$3081247862d57e3d {
         let ip = circle.intersect(line);
         if (ip.length > 0) return [
             0,
-            new $bd479cb9731e0159$export$2e2bcd8739ae039.Segment(ip[0], ip[0])
+            new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Segment(ip[0], ip[0])
         ];
-        let [dist_from_center, shortest_segment_from_center] = $bd479cb9731e0159$export$3081247862d57e3d.point2line(circle.center, line);
-        let [dist, shortest_segment] = $bd479cb9731e0159$export$3081247862d57e3d.point2circle(shortest_segment_from_center.end, circle);
+        let [dist_from_center, shortest_segment_from_center] = $3478ba2bdb1fd0df$export$3081247862d57e3d.point2line(circle.center, line);
+        let [dist, shortest_segment] = $3478ba2bdb1fd0df$export$3081247862d57e3d.point2circle(shortest_segment_from_center.end, circle);
         shortest_segment = shortest_segment.reverse();
         return [
             dist,
@@ -6688,24 +6688,24 @@ class $bd479cb9731e0159$export$3081247862d57e3d {
         /* Case 1 Line and arc intersected. Return the first point and zero distance */ let ip = line.intersect(arc);
         if (ip.length > 0) return [
             0,
-            new $bd479cb9731e0159$export$2e2bcd8739ae039.Segment(ip[0], ip[0])
+            new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Segment(ip[0], ip[0])
         ];
-        let circle = new $bd479cb9731e0159$export$2e2bcd8739ae039.Circle(arc.center, arc.r);
+        let circle = new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Circle(arc.center, arc.r);
         /* Case 2. Distance to projection of center point to line bigger than radius AND
          * projection point belongs to segment AND
            * distance from projection point to circle belongs to arc  =>
-           * return this distance from projection to circle */ let [dist_from_center, shortest_segment_from_center] = $bd479cb9731e0159$export$3081247862d57e3d.point2line(circle.center, line);
-        if ($bd479cb9731e0159$export$2e2bcd8739ae039.Utils.GE(dist_from_center, circle.r)) {
-            let [dist_from_projection, shortest_segment_from_projection] = $bd479cb9731e0159$export$3081247862d57e3d.point2circle(shortest_segment_from_center.end, circle);
+           * return this distance from projection to circle */ let [dist_from_center, shortest_segment_from_center] = $3478ba2bdb1fd0df$export$3081247862d57e3d.point2line(circle.center, line);
+        if ($3478ba2bdb1fd0df$export$2e2bcd8739ae039.Utils.GE(dist_from_center, circle.r)) {
+            let [dist_from_projection, shortest_segment_from_projection] = $3478ba2bdb1fd0df$export$3081247862d57e3d.point2circle(shortest_segment_from_center.end, circle);
             if (shortest_segment_from_projection.end.on(arc)) return [
                 dist_from_projection,
                 shortest_segment_from_projection
             ];
         } else {
             let dist_and_segment = [];
-            dist_and_segment.push($bd479cb9731e0159$export$3081247862d57e3d.point2line(arc.start, line));
-            dist_and_segment.push($bd479cb9731e0159$export$3081247862d57e3d.point2line(arc.end, line));
-            $bd479cb9731e0159$export$3081247862d57e3d.sort(dist_and_segment);
+            dist_and_segment.push($3478ba2bdb1fd0df$export$3081247862d57e3d.point2line(arc.start, line));
+            dist_and_segment.push($3478ba2bdb1fd0df$export$3081247862d57e3d.point2line(arc.end, line));
+            $3478ba2bdb1fd0df$export$3081247862d57e3d.sort(dist_and_segment);
             return dist_and_segment[0];
         }
     }
@@ -6718,19 +6718,19 @@ class $bd479cb9731e0159$export$3081247862d57e3d {
         let ip = arc.intersect(circle2);
         if (ip.length > 0) return [
             0,
-            new $bd479cb9731e0159$export$2e2bcd8739ae039.Segment(ip[0], ip[0])
+            new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Segment(ip[0], ip[0])
         ];
-        let circle1 = new $bd479cb9731e0159$export$2e2bcd8739ae039.Circle(arc.center, arc.r);
-        let [dist, shortest_segment] = $bd479cb9731e0159$export$3081247862d57e3d.circle2circle(circle1, circle2);
+        let circle1 = new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Circle(arc.center, arc.r);
+        let [dist, shortest_segment] = $3478ba2bdb1fd0df$export$3081247862d57e3d.circle2circle(circle1, circle2);
         if (shortest_segment.start.on(arc)) return [
             dist,
             shortest_segment
         ];
         else {
             let dist_and_segment = [];
-            dist_and_segment.push($bd479cb9731e0159$export$3081247862d57e3d.point2circle(arc.start, circle2));
-            dist_and_segment.push($bd479cb9731e0159$export$3081247862d57e3d.point2circle(arc.end, circle2));
-            $bd479cb9731e0159$export$3081247862d57e3d.sort(dist_and_segment);
+            dist_and_segment.push($3478ba2bdb1fd0df$export$3081247862d57e3d.point2circle(arc.start, circle2));
+            dist_and_segment.push($3478ba2bdb1fd0df$export$3081247862d57e3d.point2circle(arc.end, circle2));
+            $3478ba2bdb1fd0df$export$3081247862d57e3d.sort(dist_and_segment);
             return dist_and_segment[0];
         }
     }
@@ -6743,11 +6743,11 @@ class $bd479cb9731e0159$export$3081247862d57e3d {
         let ip = arc1.intersect(arc2);
         if (ip.length > 0) return [
             0,
-            new $bd479cb9731e0159$export$2e2bcd8739ae039.Segment(ip[0], ip[0])
+            new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Segment(ip[0], ip[0])
         ];
-        let circle1 = new $bd479cb9731e0159$export$2e2bcd8739ae039.Circle(arc1.center, arc1.r);
-        let circle2 = new $bd479cb9731e0159$export$2e2bcd8739ae039.Circle(arc2.center, arc2.r);
-        let [dist, shortest_segment] = $bd479cb9731e0159$export$3081247862d57e3d.circle2circle(circle1, circle2);
+        let circle1 = new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Circle(arc1.center, arc1.r);
+        let circle2 = new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Circle(arc2.center, arc2.r);
+        let [dist, shortest_segment] = $3478ba2bdb1fd0df$export$3081247862d57e3d.circle2circle(circle1, circle2);
         if (shortest_segment.start.on(arc1) && shortest_segment.end.on(arc2)) return [
             dist,
             shortest_segment
@@ -6755,47 +6755,47 @@ class $bd479cb9731e0159$export$3081247862d57e3d {
         else {
             let dist_and_segment = [];
             let dist_tmp, segment_tmp;
-            [dist_tmp, segment_tmp] = $bd479cb9731e0159$export$3081247862d57e3d.point2arc(arc1.start, arc2);
+            [dist_tmp, segment_tmp] = $3478ba2bdb1fd0df$export$3081247862d57e3d.point2arc(arc1.start, arc2);
             if (segment_tmp.end.on(arc2)) dist_and_segment.push([
                 dist_tmp,
                 segment_tmp
             ]);
-            [dist_tmp, segment_tmp] = $bd479cb9731e0159$export$3081247862d57e3d.point2arc(arc1.end, arc2);
+            [dist_tmp, segment_tmp] = $3478ba2bdb1fd0df$export$3081247862d57e3d.point2arc(arc1.end, arc2);
             if (segment_tmp.end.on(arc2)) dist_and_segment.push([
                 dist_tmp,
                 segment_tmp
             ]);
-            [dist_tmp, segment_tmp] = $bd479cb9731e0159$export$3081247862d57e3d.point2arc(arc2.start, arc1);
+            [dist_tmp, segment_tmp] = $3478ba2bdb1fd0df$export$3081247862d57e3d.point2arc(arc2.start, arc1);
             if (segment_tmp.end.on(arc1)) dist_and_segment.push([
                 dist_tmp,
                 segment_tmp.reverse()
             ]);
-            [dist_tmp, segment_tmp] = $bd479cb9731e0159$export$3081247862d57e3d.point2arc(arc2.end, arc1);
+            [dist_tmp, segment_tmp] = $3478ba2bdb1fd0df$export$3081247862d57e3d.point2arc(arc2.end, arc1);
             if (segment_tmp.end.on(arc1)) dist_and_segment.push([
                 dist_tmp,
                 segment_tmp.reverse()
             ]);
-            [dist_tmp, segment_tmp] = $bd479cb9731e0159$export$3081247862d57e3d.point2point(arc1.start, arc2.start);
+            [dist_tmp, segment_tmp] = $3478ba2bdb1fd0df$export$3081247862d57e3d.point2point(arc1.start, arc2.start);
             dist_and_segment.push([
                 dist_tmp,
                 segment_tmp
             ]);
-            [dist_tmp, segment_tmp] = $bd479cb9731e0159$export$3081247862d57e3d.point2point(arc1.start, arc2.end);
+            [dist_tmp, segment_tmp] = $3478ba2bdb1fd0df$export$3081247862d57e3d.point2point(arc1.start, arc2.end);
             dist_and_segment.push([
                 dist_tmp,
                 segment_tmp
             ]);
-            [dist_tmp, segment_tmp] = $bd479cb9731e0159$export$3081247862d57e3d.point2point(arc1.end, arc2.start);
+            [dist_tmp, segment_tmp] = $3478ba2bdb1fd0df$export$3081247862d57e3d.point2point(arc1.end, arc2.start);
             dist_and_segment.push([
                 dist_tmp,
                 segment_tmp
             ]);
-            [dist_tmp, segment_tmp] = $bd479cb9731e0159$export$3081247862d57e3d.point2point(arc1.end, arc2.end);
+            [dist_tmp, segment_tmp] = $3478ba2bdb1fd0df$export$3081247862d57e3d.point2point(arc1.end, arc2.end);
             dist_and_segment.push([
                 dist_tmp,
                 segment_tmp
             ]);
-            $bd479cb9731e0159$export$3081247862d57e3d.sort(dist_and_segment);
+            $3478ba2bdb1fd0df$export$3081247862d57e3d.sort(dist_and_segment);
             return dist_and_segment[0];
         }
     }
@@ -6807,11 +6807,11 @@ class $bd479cb9731e0159$export$3081247862d57e3d {
      */ static point2polygon(point, polygon) {
         let min_dist_and_segment = [
             Number.POSITIVE_INFINITY,
-            new $bd479cb9731e0159$export$2e2bcd8739ae039.Segment()
+            new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Segment()
         ];
         for (let edge of polygon.edges){
-            let [dist, shortest_segment] = $bd479cb9731e0159$export$3081247862d57e3d.point2edge(point, edge);
-            if ($bd479cb9731e0159$export$2e2bcd8739ae039.Utils.LT(dist, min_dist_and_segment[0])) min_dist_and_segment = [
+            let [dist, shortest_segment] = $3478ba2bdb1fd0df$export$3081247862d57e3d.point2edge(point, edge);
+            if ($3478ba2bdb1fd0df$export$2e2bcd8739ae039.Utils.LT(dist, min_dist_and_segment[0])) min_dist_and_segment = [
                 dist,
                 shortest_segment
             ];
@@ -6821,11 +6821,11 @@ class $bd479cb9731e0159$export$3081247862d57e3d {
     static shape2polygon(shape, polygon) {
         let min_dist_and_segment = [
             Number.POSITIVE_INFINITY,
-            new $bd479cb9731e0159$export$2e2bcd8739ae039.Segment()
+            new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Segment()
         ];
         for (let edge of polygon.edges){
             let [dist, shortest_segment] = shape.distanceTo(edge.shape);
-            if ($bd479cb9731e0159$export$2e2bcd8739ae039.Utils.LT(dist, min_dist_and_segment[0])) min_dist_and_segment = [
+            if ($3478ba2bdb1fd0df$export$2e2bcd8739ae039.Utils.LT(dist, min_dist_and_segment[0])) min_dist_and_segment = [
                 dist,
                 shortest_segment
             ];
@@ -6840,11 +6840,11 @@ class $bd479cb9731e0159$export$3081247862d57e3d {
      */ static polygon2polygon(polygon1, polygon2) {
         let min_dist_and_segment = [
             Number.POSITIVE_INFINITY,
-            new $bd479cb9731e0159$export$2e2bcd8739ae039.Segment()
+            new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Segment()
         ];
         for (let edge1 of polygon1.edges)for (let edge2 of polygon2.edges){
             let [dist, shortest_segment] = edge1.shape.distanceTo(edge2.shape);
-            if ($bd479cb9731e0159$export$2e2bcd8739ae039.Utils.LT(dist, min_dist_and_segment[0])) min_dist_and_segment = [
+            if ($3478ba2bdb1fd0df$export$2e2bcd8739ae039.Utils.LT(dist, min_dist_and_segment[0])) min_dist_and_segment = [
                 dist,
                 shortest_segment
             ];
@@ -6887,8 +6887,8 @@ class $bd479cb9731e0159$export$3081247862d57e3d {
             // if (Flatten.Utils.GT(mindist, min_stop))
             //     continue;
             // Estimate min-max dist to the shape stored in the node.item, using node.item.key which is shape's box
-            [mindist, maxdist] = $bd479cb9731e0159$export$3081247862d57e3d.box2box_minmax(shape.box, node.item.key);
-            if (node.item.value instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.Edge) tree.insert([
+            [mindist, maxdist] = $3478ba2bdb1fd0df$export$3081247862d57e3d.box2box_minmax(shape.box, node.item.key);
+            if (node.item.value instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Edge) tree.insert([
                 mindist,
                 maxdist
             ], node.item.value.shape);
@@ -6896,7 +6896,7 @@ class $bd479cb9731e0159$export$3081247862d57e3d {
                 mindist,
                 maxdist
             ], node.item.value);
-            if ($bd479cb9731e0159$export$2e2bcd8739ae039.Utils.LT(maxdist, min_stop)) min_stop = maxdist; // this will be the new distance estimation
+            if ($3478ba2bdb1fd0df$export$2e2bcd8739ae039.Utils.LT(maxdist, min_stop)) min_stop = maxdist; // this will be the new distance estimation
         }
         if (level.length === 0) return min_stop;
         // Calculate new level from left and right children of the current
@@ -6908,10 +6908,10 @@ class $bd479cb9731e0159$export$3081247862d57e3d {
             ...new_level_right
         ].filter((node)=>{
             // Node subtree quick reject, node.max is a subtree box
-            let [mindist, maxdist] = $bd479cb9731e0159$export$3081247862d57e3d.box2box_minmax(shape.box, node.max);
-            return $bd479cb9731e0159$export$2e2bcd8739ae039.Utils.LE(mindist, min_stop);
+            let [mindist, maxdist] = $3478ba2bdb1fd0df$export$3081247862d57e3d.box2box_minmax(shape.box, node.max);
+            return $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Utils.LE(mindist, min_stop);
         });
-        min_stop = $bd479cb9731e0159$export$3081247862d57e3d.minmax_tree_process_level(shape, new_level, min_stop, tree);
+        min_stop = $3478ba2bdb1fd0df$export$3081247862d57e3d.minmax_tree_process_level(shape, new_level, min_stop, tree);
         return min_stop;
     }
     /**
@@ -6920,33 +6920,33 @@ class $bd479cb9731e0159$export$3081247862d57e3d {
      * @param shape
      * @param set
      */ static minmax_tree(shape, set, min_stop) {
-        let tree = new $bd479cb9731e0159$var$IntervalTree();
+        let tree = new $3478ba2bdb1fd0df$var$IntervalTree();
         let level = [
             set.index.root
         ];
         let squared_min_stop = min_stop < Number.POSITIVE_INFINITY ? min_stop * min_stop : Number.POSITIVE_INFINITY;
-        squared_min_stop = $bd479cb9731e0159$export$3081247862d57e3d.minmax_tree_process_level(shape, level, squared_min_stop, tree);
+        squared_min_stop = $3478ba2bdb1fd0df$export$3081247862d57e3d.minmax_tree_process_level(shape, level, squared_min_stop, tree);
         return tree;
     }
     static minmax_tree_calc_distance(shape, node, min_dist_and_segment) {
         let min_dist_and_segment_new, stop;
         if (node != null && !node.isNil()) {
-            [min_dist_and_segment_new, stop] = $bd479cb9731e0159$export$3081247862d57e3d.minmax_tree_calc_distance(shape, node.left, min_dist_and_segment);
+            [min_dist_and_segment_new, stop] = $3478ba2bdb1fd0df$export$3081247862d57e3d.minmax_tree_calc_distance(shape, node.left, min_dist_and_segment);
             if (stop) return [
                 min_dist_and_segment_new,
                 stop
             ];
-            if ($bd479cb9731e0159$export$2e2bcd8739ae039.Utils.LT(min_dist_and_segment_new[0], Math.sqrt(node.item.key.low))) return [
+            if ($3478ba2bdb1fd0df$export$2e2bcd8739ae039.Utils.LT(min_dist_and_segment_new[0], Math.sqrt(node.item.key.low))) return [
                 min_dist_and_segment_new,
                 true
             ]; // stop condition
-            let [dist, shortest_segment] = $bd479cb9731e0159$export$3081247862d57e3d.distance(shape, node.item.value);
+            let [dist, shortest_segment] = $3478ba2bdb1fd0df$export$3081247862d57e3d.distance(shape, node.item.value);
             // console.log(dist)
-            if ($bd479cb9731e0159$export$2e2bcd8739ae039.Utils.LT(dist, min_dist_and_segment_new[0])) min_dist_and_segment_new = [
+            if ($3478ba2bdb1fd0df$export$2e2bcd8739ae039.Utils.LT(dist, min_dist_and_segment_new[0])) min_dist_and_segment_new = [
                 dist,
                 shortest_segment
             ];
-            [min_dist_and_segment_new, stop] = $bd479cb9731e0159$export$3081247862d57e3d.minmax_tree_calc_distance(shape, node.right, min_dist_and_segment_new);
+            [min_dist_and_segment_new, stop] = $3478ba2bdb1fd0df$export$3081247862d57e3d.minmax_tree_calc_distance(shape, node.right, min_dist_and_segment_new);
             return [
                 min_dist_and_segment_new,
                 stop
@@ -6966,19 +6966,19 @@ class $bd479cb9731e0159$export$3081247862d57e3d {
      */ static shape2planarSet(shape, set, min_stop = Number.POSITIVE_INFINITY) {
         let min_dist_and_segment = [
             min_stop,
-            new $bd479cb9731e0159$export$2e2bcd8739ae039.Segment()
+            new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Segment()
         ];
         let stop = false;
-        if (set instanceof $bd479cb9731e0159$export$2e2bcd8739ae039.PlanarSet) {
-            let tree = $bd479cb9731e0159$export$3081247862d57e3d.minmax_tree(shape, set, min_stop);
-            [min_dist_and_segment, stop] = $bd479cb9731e0159$export$3081247862d57e3d.minmax_tree_calc_distance(shape, tree.root, min_dist_and_segment);
+        if (set instanceof $3478ba2bdb1fd0df$export$2e2bcd8739ae039.PlanarSet) {
+            let tree = $3478ba2bdb1fd0df$export$3081247862d57e3d.minmax_tree(shape, set, min_stop);
+            [min_dist_and_segment, stop] = $3478ba2bdb1fd0df$export$3081247862d57e3d.minmax_tree_calc_distance(shape, tree.root, min_dist_and_segment);
         }
         return min_dist_and_segment;
     }
     static sort(dist_and_segment) {
         dist_and_segment.sort((d1, d2)=>{
-            if ($bd479cb9731e0159$export$2e2bcd8739ae039.Utils.LT(d1[0], d2[0])) return -1;
-            if ($bd479cb9731e0159$export$2e2bcd8739ae039.Utils.GT(d1[0], d2[0])) return 1;
+            if ($3478ba2bdb1fd0df$export$2e2bcd8739ae039.Utils.LT(d1[0], d2[0])) return -1;
+            if ($3478ba2bdb1fd0df$export$2e2bcd8739ae039.Utils.GT(d1[0], d2[0])) return 1;
             return 0;
         });
     }
@@ -6993,11 +6993,11 @@ class $bd479cb9731e0159$export$3081247862d57e3d {
      */ static shape2multiline(shape, multiline) {
         let min_dist_and_segment = [
             Number.POSITIVE_INFINITY,
-            new $bd479cb9731e0159$export$2e2bcd8739ae039.Segment()
+            new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Segment()
         ];
         for (let edge of multiline){
-            let [dist, shortest_segment] = $bd479cb9731e0159$export$3081247862d57e3d.distance(shape, edge.shape);
-            if ($bd479cb9731e0159$export$2e2bcd8739ae039.Utils.LT(dist, min_dist_and_segment[0])) min_dist_and_segment = [
+            let [dist, shortest_segment] = $3478ba2bdb1fd0df$export$3081247862d57e3d.distance(shape, edge.shape);
+            if ($3478ba2bdb1fd0df$export$2e2bcd8739ae039.Utils.LT(dist, min_dist_and_segment[0])) min_dist_and_segment = [
                 dist,
                 shortest_segment
             ];
@@ -7012,11 +7012,11 @@ class $bd479cb9731e0159$export$3081247862d57e3d {
      */ static multiline2multiline(multiline1, multiline2) {
         let min_dist_and_segment = [
             Number.POSITIVE_INFINITY,
-            new $bd479cb9731e0159$export$2e2bcd8739ae039.Segment()
+            new $3478ba2bdb1fd0df$export$2e2bcd8739ae039.Segment()
         ];
         for (let edge1 of multiline1)for (let edge2 of multiline2){
-            let [dist, shortest_segment] = $bd479cb9731e0159$export$3081247862d57e3d.distance(edge1.shape, edge2.shape);
-            if ($bd479cb9731e0159$export$2e2bcd8739ae039.Utils.LT(dist, min_dist_and_segment[0])) min_dist_and_segment = [
+            let [dist, shortest_segment] = $3478ba2bdb1fd0df$export$3081247862d57e3d.distance(edge1.shape, edge2.shape);
+            if ($3478ba2bdb1fd0df$export$2e2bcd8739ae039.Utils.LT(dist, min_dist_and_segment[0])) min_dist_and_segment = [
                 dist,
                 shortest_segment
             ];
@@ -7024,8 +7024,8 @@ class $bd479cb9731e0159$export$3081247862d57e3d {
         return min_dist_and_segment;
     }
 }
-$bd479cb9731e0159$export$2e2bcd8739ae039.Distance = $bd479cb9731e0159$export$3081247862d57e3d;
-const { Multiline: $bd479cb9731e0159$var$Multiline, Point: $bd479cb9731e0159$var$Point$1, Segment: $bd479cb9731e0159$var$Segment, Polygon: $bd479cb9731e0159$var$Polygon } = $bd479cb9731e0159$export$2e2bcd8739ae039;
+$3478ba2bdb1fd0df$export$2e2bcd8739ae039.Distance = $3478ba2bdb1fd0df$export$3081247862d57e3d;
+const { Multiline: $3478ba2bdb1fd0df$var$Multiline, Point: $3478ba2bdb1fd0df$var$Point$1, Segment: $3478ba2bdb1fd0df$var$Segment, Polygon: $3478ba2bdb1fd0df$var$Polygon } = $3478ba2bdb1fd0df$export$2e2bcd8739ae039;
 // POINT (30 10)
 // MULTIPOINT (10 40, 40 30, 20 20, 30 10)
 // LINESTRING (30 10, 10 30, 40 40)
@@ -7035,29 +7035,29 @@ const { Multiline: $bd479cb9731e0159$var$Multiline, Point: $bd479cb9731e0159$var
 // MULTIPOLYGON (((40 40, 20 45, 45 30, 40 40)), ((20 35, 10 30, 10 10, 30 5, 45 20, 20 35), (30 20, 20 15, 20 25, 30 20)))
 // GEOMETRYCOLLECTION (POINT (0 0), LINESTRING (0 0, 1440 900), POLYGON ((0 0, 0 1024, 1024 1024, 1024 0, 0 0)))
 // GEOMETRYCOLLECTION (POINT (40 10), LINESTRING (10 10, 20 20, 10 40), POLYGON ((40 40, 20 45, 45 30, 40 40)))
-function $bd479cb9731e0159$var$parseSinglePoint(pointStr) {
-    return new $bd479cb9731e0159$var$Point$1(pointStr.split(" ").map(Number));
+function $3478ba2bdb1fd0df$var$parseSinglePoint(pointStr) {
+    return new $3478ba2bdb1fd0df$var$Point$1(pointStr.split(" ").map(Number));
 }
-function $bd479cb9731e0159$var$parseMultiPoint(multipointStr) {
-    return multipointStr.split(", ").map($bd479cb9731e0159$var$parseSinglePoint);
+function $3478ba2bdb1fd0df$var$parseMultiPoint(multipointStr) {
+    return multipointStr.split(", ").map($3478ba2bdb1fd0df$var$parseSinglePoint);
 }
-function $bd479cb9731e0159$var$parseLineString(lineStr) {
-    const points = $bd479cb9731e0159$var$parseMultiPoint(lineStr);
+function $3478ba2bdb1fd0df$var$parseLineString(lineStr) {
+    const points = $3478ba2bdb1fd0df$var$parseMultiPoint(lineStr);
     let segments = [];
-    for(let i = 0; i < points.length - 1; i++)segments.push(new $bd479cb9731e0159$var$Segment(points[i], points[i + 1]));
-    return new $bd479cb9731e0159$var$Multiline(segments);
+    for(let i = 0; i < points.length - 1; i++)segments.push(new $3478ba2bdb1fd0df$var$Segment(points[i], points[i + 1]));
+    return new $3478ba2bdb1fd0df$var$Multiline(segments);
 }
-function $bd479cb9731e0159$var$parseMultiLineString(multilineStr) {
+function $3478ba2bdb1fd0df$var$parseMultiLineString(multilineStr) {
     const lineStrings = multilineStr.replace(/\(\(/, "").replace(/\)\)$/, "").split("), (");
-    return lineStrings.map($bd479cb9731e0159$var$parseLineString);
+    return lineStrings.map($3478ba2bdb1fd0df$var$parseLineString);
 }
-function $bd479cb9731e0159$var$parseSinglePolygon(polygonStr) {
+function $3478ba2bdb1fd0df$var$parseSinglePolygon(polygonStr) {
     const facesStr = polygonStr.replace(/\(\(/, "").replace(/\)\)$/, "").split("), (");
-    const polygon = new $bd479cb9731e0159$var$Polygon();
+    const polygon = new $3478ba2bdb1fd0df$var$Polygon();
     let orientation;
     facesStr.forEach((facesStr, idx)=>{
         let points = facesStr.split(", ").map((coordStr)=>{
-            return new $bd479cb9731e0159$var$Point$1(coordStr.split(" ").map(Number));
+            return new $3478ba2bdb1fd0df$var$Point$1(coordStr.split(" ").map(Number));
         });
         const face = polygon.addFace(points);
         if (idx === 0) orientation = face.orientation();
@@ -7065,12 +7065,12 @@ function $bd479cb9731e0159$var$parseSinglePolygon(polygonStr) {
     });
     return polygon;
 }
-function $bd479cb9731e0159$var$parseMutliPolygon(multiPolygonString) {
+function $3478ba2bdb1fd0df$var$parseMutliPolygon(multiPolygonString) {
     // const polygonStrings = multiPolygonString.split('?')
     // Split the string by the delimiter ")), ((" which separates the polygons
     const polygonStrings = multiPolygonString.split(/\)\), \(\(/).map((polygon)=>"((" + polygon + "))");
-    const polygons = polygonStrings.map($bd479cb9731e0159$var$parseSinglePolygon);
-    const polygon = new $bd479cb9731e0159$var$Polygon();
+    const polygons = polygonStrings.map($3478ba2bdb1fd0df$var$parseSinglePolygon);
+    const polygon = new $3478ba2bdb1fd0df$var$Polygon();
     const faces = polygons.reduce((acc, polygon)=>[
             ...acc,
             ...polygon?.faces
@@ -7080,23 +7080,23 @@ function $bd479cb9731e0159$var$parseMutliPolygon(multiPolygonString) {
         ]));
     return polygon;
 }
-function $bd479cb9731e0159$var$parsePolygon(wkt) {
+function $3478ba2bdb1fd0df$var$parsePolygon(wkt) {
     if (wkt.startsWith("POLYGON")) {
         const polygonStr = wkt.replace(/^POLYGON /, "");
-        return $bd479cb9731e0159$var$parseSinglePolygon(polygonStr);
+        return $3478ba2bdb1fd0df$var$parseSinglePolygon(polygonStr);
     } else {
         // const multiPolygonString = wkt.replace(/^MULTIPOLYGON \(/, '').replace(/\)$/, '').replace(/\)\), \(\(/,'))?((')
         const multiPolygonString = wkt.replace(/^MULTIPOLYGON \(\(\((.*)\)\)\)$/, "$1");
-        return $bd479cb9731e0159$var$parseMutliPolygon(multiPolygonString);
+        return $3478ba2bdb1fd0df$var$parseMutliPolygon(multiPolygonString);
     }
 }
-function $bd479cb9731e0159$var$parseArrayOfPoints(str) {
+function $3478ba2bdb1fd0df$var$parseArrayOfPoints(str) {
     const arr = str.split("\n").map((x)=>x.match(/\(([^)]+)\)/)[1]);
-    return arr.map($bd479cb9731e0159$var$parseSinglePoint);
+    return arr.map($3478ba2bdb1fd0df$var$parseSinglePoint);
 }
-function $bd479cb9731e0159$var$parseArrayOfLineStrings(str) {
+function $3478ba2bdb1fd0df$var$parseArrayOfLineStrings(str) {
     const arr = str.split("\n").map((x)=>x.match(/\(([^)]+)\)/)[1]);
-    return arr.map($bd479cb9731e0159$var$parseLineString).reduce((acc, x)=>[
+    return arr.map($3478ba2bdb1fd0df$var$parseLineString).reduce((acc, x)=>[
             ...acc,
             ...x
         ], []);
@@ -7105,20 +7105,20 @@ function $bd479cb9731e0159$var$parseArrayOfLineStrings(str) {
  * Convert WKT string to array of Flatten shapes.
  * @param str
  * @returns {Point | Point[] | Multiline | Multiline[] | Polygon | Shape[] | null}
- */ function $bd479cb9731e0159$export$86c11aa368fb2b9f(str) {
+ */ function $3478ba2bdb1fd0df$export$86c11aa368fb2b9f(str) {
     if (str.startsWith("POINT")) {
         const pointStr = str.replace(/^POINT \(/, "").replace(/\)$/, "");
-        return $bd479cb9731e0159$var$parseSinglePoint(pointStr);
+        return $3478ba2bdb1fd0df$var$parseSinglePoint(pointStr);
     } else if (str.startsWith("MULTIPOINT")) {
         const multiPointStr = str.replace(/^MULTIPOINT \(/, "").replace(/\)$/, "");
-        return $bd479cb9731e0159$var$parseMultiPoint(multiPointStr);
+        return $3478ba2bdb1fd0df$var$parseMultiPoint(multiPointStr);
     } else if (str.startsWith("LINESTRING")) {
         const lineStr = str.replace(/^LINESTRING \(/, "").replace(/\)$/, "");
-        return $bd479cb9731e0159$var$parseLineString(lineStr);
+        return $3478ba2bdb1fd0df$var$parseLineString(lineStr);
     } else if (str.startsWith("MULTILINESTRING")) {
         const multilineStr = str.replace(/^MULTILINESTRING /, "");
-        return $bd479cb9731e0159$var$parseMultiLineString(multilineStr);
-    } else if (str.startsWith("POLYGON") || str.startsWith("MULTIPOLYGON")) return $bd479cb9731e0159$var$parsePolygon(str);
+        return $3478ba2bdb1fd0df$var$parseMultiLineString(multilineStr);
+    } else if (str.startsWith("POLYGON") || str.startsWith("MULTIPOLYGON")) return $3478ba2bdb1fd0df$var$parsePolygon(str);
     else if (str.startsWith("GEOMETRYCOLLECTION")) {
         // const regex = /(POINT|LINESTRING|POLYGON|MULTIPOINT|MULTILINESTRING|MULTIPOLYGON|GEOMETRYCOLLECTION) \([^\)]+\)/g
         /* Explanation:
@@ -7132,42 +7132,42 @@ This named group will capture the geometry type. The type label helps with under
 * after the non-capturing group: Allows for repeating the pattern zero or more times to match all contents between the outermost parentheses. */ const regex = /(?<type>POINT|LINESTRING|POLYGON|MULTIPOINT|MULTILINESTRING|MULTIPOLYGON) \((?:[^\(\)]|\([^\)]*\))*\)/g;
         const wktArray = str.match(regex);
         if (wktArray[0].startsWith("GEOMETRYCOLLECTION")) wktArray[0] = wktArray[0].replace("GEOMETRYCOLLECTION (", "");
-        const flArray = wktArray.map($bd479cb9731e0159$export$86c11aa368fb2b9f).map((x)=>x instanceof Array ? x : [
+        const flArray = wktArray.map($3478ba2bdb1fd0df$export$86c11aa368fb2b9f).map((x)=>x instanceof Array ? x : [
                 x
             ]);
         return flArray.reduce((acc, x)=>[
                 ...acc,
                 ...x
             ], []);
-    } else if ($bd479cb9731e0159$var$isArrayOfPoints(str)) return $bd479cb9731e0159$var$parseArrayOfPoints(str);
-    else if ($bd479cb9731e0159$var$isArrayOfLines(str)) return $bd479cb9731e0159$var$parseArrayOfLineStrings(str);
+    } else if ($3478ba2bdb1fd0df$var$isArrayOfPoints(str)) return $3478ba2bdb1fd0df$var$parseArrayOfPoints(str);
+    else if ($3478ba2bdb1fd0df$var$isArrayOfLines(str)) return $3478ba2bdb1fd0df$var$parseArrayOfLineStrings(str);
     return [];
 }
-function $bd479cb9731e0159$var$isArrayOfPoints(str) {
+function $3478ba2bdb1fd0df$var$isArrayOfPoints(str) {
     return str.split("\n")?.every((str)=>str.includes("POINT"));
 }
-function $bd479cb9731e0159$var$isArrayOfLines(str) {
+function $3478ba2bdb1fd0df$var$isArrayOfLines(str) {
     return str.split("\n")?.every((str)=>str.includes("LINESTRING"));
 }
 /**
  * Return true if given string starts with one of WKT tags and possibly contains WKT string,
  * @param str
  * @returns {boolean}
- */ function $bd479cb9731e0159$export$20801799df1b655f(str) {
-    return str.startsWith("POINT") || $bd479cb9731e0159$var$isArrayOfPoints(str) || str.startsWith("LINESTRING") || $bd479cb9731e0159$var$isArrayOfLines(str) || str.startsWith("MULTILINESTRING") || str.startsWith("POLYGON") || str.startsWith("MULTIPOINT") || str.startsWith("MULTIPOLYGON") || str.startsWith("GEOMETRYCOLLECTION");
+ */ function $3478ba2bdb1fd0df$export$20801799df1b655f(str) {
+    return str.startsWith("POINT") || $3478ba2bdb1fd0df$var$isArrayOfPoints(str) || str.startsWith("LINESTRING") || $3478ba2bdb1fd0df$var$isArrayOfLines(str) || str.startsWith("MULTILINESTRING") || str.startsWith("POLYGON") || str.startsWith("MULTIPOINT") || str.startsWith("MULTIPOLYGON") || str.startsWith("GEOMETRYCOLLECTION");
 }
-$bd479cb9731e0159$export$2e2bcd8739ae039.isWktString = $bd479cb9731e0159$export$20801799df1b655f;
-$bd479cb9731e0159$export$2e2bcd8739ae039.parseWKT = $bd479cb9731e0159$export$86c11aa368fb2b9f;
+$3478ba2bdb1fd0df$export$2e2bcd8739ae039.isWktString = $3478ba2bdb1fd0df$export$20801799df1b655f;
+$3478ba2bdb1fd0df$export$2e2bcd8739ae039.parseWKT = $3478ba2bdb1fd0df$export$86c11aa368fb2b9f;
 /**
  * Created by Alex Bol on 2/18/2017.
- */ $bd479cb9731e0159$export$2e2bcd8739ae039.BooleanOperations = $bd479cb9731e0159$export$7810ed04e2e13fba;
-$bd479cb9731e0159$export$2e2bcd8739ae039.Relations = $bd479cb9731e0159$export$932c2897ef8e4e8e;
+ */ $3478ba2bdb1fd0df$export$2e2bcd8739ae039.BooleanOperations = $3478ba2bdb1fd0df$export$7810ed04e2e13fba;
+$3478ba2bdb1fd0df$export$2e2bcd8739ae039.Relations = $3478ba2bdb1fd0df$export$932c2897ef8e4e8e;
 
 
 // import Flatten from 'https://unpkg.com/@flatten-js/core/dist/main.mjs';
-const { point: $bc93fb8b71b9c8d7$var$point, Polygon: $bc93fb8b71b9c8d7$var$Polygon } = (0, $bd479cb9731e0159$export$2e2bcd8739ae039);
-const { subtract: $bc93fb8b71b9c8d7$var$subtract } = (0, $bd479cb9731e0159$export$2e2bcd8739ae039).BooleanOperations;
-function $bc93fb8b71b9c8d7$export$2e2bcd8739ae039(path0, path1) {
+const { point: $5f036328634e258a$var$point, Polygon: $5f036328634e258a$var$Polygon } = (0, $3478ba2bdb1fd0df$export$2e2bcd8739ae039);
+const { subtract: $5f036328634e258a$var$subtract } = (0, $3478ba2bdb1fd0df$export$2e2bcd8739ae039).BooleanOperations;
+function $5f036328634e258a$export$2e2bcd8739ae039(path0, path1) {
     let path = [];
     let points0 = [];
     let points1 = [];
@@ -7181,16 +7181,16 @@ function $bc93fb8b71b9c8d7$export$2e2bcd8739ae039(path0, path1) {
     let shapes = new Array();
     let total_num_points = 0;
     for (let layer of layers){
-        let layer_points0 = points0.filter((p)=>p[2] == layer).map((p)=>$bc93fb8b71b9c8d7$var$point([
+        let layer_points0 = points0.filter((p)=>p[2] == layer).map((p)=>$5f036328634e258a$var$point([
                 p[0],
                 p[1]
             ]));
-        let layer_points1 = points1.filter((p)=>p[2] == layer).map((p)=>$bc93fb8b71b9c8d7$var$point([
+        let layer_points1 = points1.filter((p)=>p[2] == layer).map((p)=>$5f036328634e258a$var$point([
                 p[0],
                 p[1]
             ]));
-        let polygon0 = new $bc93fb8b71b9c8d7$var$Polygon(layer_points0);
-        let polygon1 = new $bc93fb8b71b9c8d7$var$Polygon(layer_points1);
+        let polygon0 = new $5f036328634e258a$var$Polygon(layer_points0);
+        let polygon1 = new $5f036328634e258a$var$Polygon(layer_points1);
         let thicknesses = new Map(); //store thickness in external data structure
         for(let i = 0; i < points0.length / 4; i += 4)if (points0[i][2] == layer) thicknesses.set([
             points0[i][0],
@@ -7204,7 +7204,7 @@ function $bc93fb8b71b9c8d7$export$2e2bcd8739ae039(path0, path1) {
         ], points1[i][3]);
         if (polygon1.contains(polygon0)) continue;
         else {
-            let combinedPolygon = $bc93fb8b71b9c8d7$var$subtract(polygon0, polygon1);
+            let combinedPolygon = $5f036328634e258a$var$subtract(polygon0, polygon1);
             let polygonSVG = combinedPolygon.svg(); //convert to svg to rely on flatten-js's even-odd algorithm
             const shapesString = polygonSVG.match(/(M[^M]+z)/g); //separate svg into just the section containing points
             let shapeidx = 0;
@@ -7224,14 +7224,14 @@ function $bc93fb8b71b9c8d7$export$2e2bcd8739ae039(path0, path1) {
     path = shapes.flat();
     return path;
 }
-window.difference = $bc93fb8b71b9c8d7$export$2e2bcd8739ae039;
+window.difference = $5f036328634e258a$export$2e2bcd8739ae039;
 
 
 
 // import Flatten from 'https://unpkg.com/@flatten-js/core/dist/main.mjs';
-const { point: $638833b7817d7ae4$var$point, Polygon: $638833b7817d7ae4$var$Polygon } = (0, $bd479cb9731e0159$export$2e2bcd8739ae039);
-const { unify: $638833b7817d7ae4$var$unify } = (0, $bd479cb9731e0159$export$2e2bcd8739ae039).BooleanOperations;
-function $638833b7817d7ae4$export$2e2bcd8739ae039(path0, path1, by_layer = true) {
+const { point: $ad258e61bcd3ea1c$var$point, Polygon: $ad258e61bcd3ea1c$var$Polygon } = (0, $3478ba2bdb1fd0df$export$2e2bcd8739ae039);
+const { unify: $ad258e61bcd3ea1c$var$unify } = (0, $3478ba2bdb1fd0df$export$2e2bcd8739ae039).BooleanOperations;
+function $ad258e61bcd3ea1c$export$2e2bcd8739ae039(path0, path1, by_layer = true) {
     let path = [];
     let points0 = [];
     let points1 = [];
@@ -7245,16 +7245,16 @@ function $638833b7817d7ae4$export$2e2bcd8739ae039(path0, path1, by_layer = true)
     let shapes = new Array();
     let total_num_points = 0;
     for (let layer of layers){
-        let layer_points0 = points0.filter((p)=>p[2] == layer).map((p)=>$638833b7817d7ae4$var$point([
+        let layer_points0 = points0.filter((p)=>p[2] == layer).map((p)=>$ad258e61bcd3ea1c$var$point([
                 p[0],
                 p[1]
             ]));
-        let layer_points1 = points1.filter((p)=>p[2] == layer).map((p)=>$638833b7817d7ae4$var$point([
+        let layer_points1 = points1.filter((p)=>p[2] == layer).map((p)=>$ad258e61bcd3ea1c$var$point([
                 p[0],
                 p[1]
             ]));
-        let polygon0 = new $638833b7817d7ae4$var$Polygon(layer_points0);
-        let polygon1 = new $638833b7817d7ae4$var$Polygon(layer_points1);
+        let polygon0 = new $ad258e61bcd3ea1c$var$Polygon(layer_points0);
+        let polygon1 = new $ad258e61bcd3ea1c$var$Polygon(layer_points1);
         let thicknesses = new Map(); //store thickness in external data structure
         for(let i = 0; i < points0.length; i++)if (points0[i][2] == layer) thicknesses.set([
             points0[i][0],
@@ -7270,7 +7270,7 @@ function $638833b7817d7ae4$export$2e2bcd8739ae039(path0, path1, by_layer = true)
             ...thicknesses.entries()
         ]);
         //to add: tolerance
-        let combinedPolygon = $638833b7817d7ae4$var$unify(polygon0, polygon1);
+        let combinedPolygon = $ad258e61bcd3ea1c$var$unify(polygon0, polygon1);
         let polygonSVG = combinedPolygon.svg(); //convert to svg to rely on flatten-js's even-odd algorithm
         const shapesString = polygonSVG.match(/(M[^M]+z)/g); //separate svg into just the section containing points
         let shapeidx = 0;
@@ -7305,10 +7305,10 @@ function $638833b7817d7ae4$export$2e2bcd8739ae039(path0, path1, by_layer = true)
 //     let new_path = union(paths[0], paths[i], by_layer);
 //   }
 // }
-window.union = $638833b7817d7ae4$export$2e2bcd8739ae039;
+window.union = $ad258e61bcd3ea1c$export$2e2bcd8739ae039;
 
 
-async function $b9e8f2d525691436$var$arrayToAudioBuffer(data, AudioContext) {
+async function $c654906f9766e0f6$var$arrayToAudioBuffer(data, AudioContext) {
     try {
         const audioBuffer = await AudioContext.decodeAudioData(data);
         return audioBuffer;
@@ -7317,7 +7317,7 @@ async function $b9e8f2d525691436$var$arrayToAudioBuffer(data, AudioContext) {
         throw error;
     }
 }
-function $b9e8f2d525691436$export$2e2bcd8739ae039(filename, nbPoints = "default", offset = 0, heightRange = [
+function $c654906f9766e0f6$export$2e2bcd8739ae039(filename, nbPoints = "default", offset = 0, heightRange = [
     -1,
     1
 ]) {
@@ -7391,30 +7391,30 @@ function $b9e8f2d525691436$export$2e2bcd8739ae039(filename, nbPoints = "default"
     //  return nums;
     }
 }
-window.waveform = $b9e8f2d525691436$export$2e2bcd8739ae039;
+window.waveform = $c654906f9766e0f6$export$2e2bcd8739ae039;
 
 
 
 
-var $ac3d53708de2199d$exports = {};
+var $0923866a9d62a2e2$exports = {};
 
-$parcel$export($ac3d53708de2199d$exports, "base", () => $f5e5d746e520c5b6$export$e2253033e6e1df16);
-$parcel$export($ac3d53708de2199d$exports, "addBase", () => $f5e5d746e520c5b6$export$65b4735759d794d4);
-$parcel$export($ac3d53708de2199d$exports, "baseSpiral", () => $f5e5d746e520c5b6$export$c8860df64baac0eb);
-$parcel$export($ac3d53708de2199d$exports, "baseFill", () => $f5e5d746e520c5b6$export$a3b482626e4c0b96);
-$parcel$export($ac3d53708de2199d$exports, "centerPrint", () => $86cfff78df649917$export$581890168c8d0b00);
-$parcel$export($ac3d53708de2199d$exports, "checkOverflow", () => $86cfff78df649917$export$69a2e097ddb11c91);
-$parcel$export($ac3d53708de2199d$exports, "generateGCode", () => $94a0c5bacd65ea53$export$6a5b418875592792);
-$parcel$export($ac3d53708de2199d$exports, "downloadGCode", () => $94a0c5bacd65ea53$export$1d298176a7b26db);
-$parcel$export($ac3d53708de2199d$exports, "toolpathUnitGenerator", () => $44565e195065a6f4$export$2e2bcd8739ae039);
-$parcel$export($ac3d53708de2199d$exports, "spiralize", () => $93324619b35b7b00$export$2e2bcd8739ae039);
-$parcel$export($ac3d53708de2199d$exports, "showCurve", () => $aeaf658a6e48bca4$export$2e2bcd8739ae039);
-$parcel$export($ac3d53708de2199d$exports, "ToolpathViewer", () => $2b4d5761fe2a5cbf$export$2e2bcd8739ae039);
+$parcel$export($0923866a9d62a2e2$exports, "base", () => $56e4b9e3b9d4f027$export$e2253033e6e1df16);
+$parcel$export($0923866a9d62a2e2$exports, "addBase", () => $56e4b9e3b9d4f027$export$65b4735759d794d4);
+$parcel$export($0923866a9d62a2e2$exports, "baseSpiral", () => $56e4b9e3b9d4f027$export$c8860df64baac0eb);
+$parcel$export($0923866a9d62a2e2$exports, "baseFill", () => $56e4b9e3b9d4f027$export$a3b482626e4c0b96);
+$parcel$export($0923866a9d62a2e2$exports, "centerPrint", () => $902d839ceff1ac8e$export$581890168c8d0b00);
+$parcel$export($0923866a9d62a2e2$exports, "checkOverflow", () => $902d839ceff1ac8e$export$69a2e097ddb11c91);
+$parcel$export($0923866a9d62a2e2$exports, "generateGCode", () => $2aeb084dcc9cb6f3$export$6a5b418875592792);
+$parcel$export($0923866a9d62a2e2$exports, "downloadGCode", () => $2aeb084dcc9cb6f3$export$1d298176a7b26db);
+$parcel$export($0923866a9d62a2e2$exports, "toolpathUnitGenerator", () => $b4e31de2e4b859a8$export$2e2bcd8739ae039);
+$parcel$export($0923866a9d62a2e2$exports, "spiralize", () => $6709661837190f60$export$2e2bcd8739ae039);
+$parcel$export($0923866a9d62a2e2$exports, "showCurve", () => $321cd7e223404339$export$2e2bcd8739ae039);
+$parcel$export($0923866a9d62a2e2$exports, "ToolpathViewer", () => $3349eefee195a0b2$export$2e2bcd8739ae039);
 // TODO: use CDN/Unpkg URL to import flatten.js? May not matter
 
 // import Flatten from 'https://unpkg.com/@flatten-js/core/dist/main.mjs';
-const { point: $f5e5d746e520c5b6$var$point, Polygon: $f5e5d746e520c5b6$var$Polygon, Segment: $f5e5d746e520c5b6$var$Segment } = (0, $bd479cb9731e0159$export$2e2bcd8739ae039);
-function $f5e5d746e520c5b6$export$c8860df64baac0eb(position, path, nbPointsInLayer, layerHeight, nozzle_diameter, radius, rotate = 0) {
+const { point: $56e4b9e3b9d4f027$var$point, Polygon: $56e4b9e3b9d4f027$var$Polygon, Segment: $56e4b9e3b9d4f027$var$Segment } = (0, $3478ba2bdb1fd0df$export$2e2bcd8739ae039);
+function $56e4b9e3b9d4f027$export$c8860df64baac0eb(position, path, nbPointsInLayer, layerHeight, nozzle_diameter, radius, rotate = 0) {
     let basePoints = [];
     let basePath = [];
     let height = layerHeight;
@@ -7439,11 +7439,11 @@ function $f5e5d746e520c5b6$export$c8860df64baac0eb(position, path, nbPointsInLay
     }
     return basePath;
 }
-function $f5e5d746e520c5b6$export$a3b482626e4c0b96(position, path, nbPointsInLayer, layerHeight, nozzle_diameter, radius) {
+function $56e4b9e3b9d4f027$export$a3b482626e4c0b96(position, path, nbPointsInLayer, layerHeight, nozzle_diameter, radius) {
     let basePath = [];
     let height = layerHeight;
-    for(let i = 0; i < nbPointsInLayer * 4; i += 4)basePath.push($f5e5d746e520c5b6$var$point(path[i], path[i + 1]));
-    let baseCircle = new $f5e5d746e520c5b6$var$Polygon(basePath);
+    for(let i = 0; i < nbPointsInLayer * 4; i += 4)basePath.push($56e4b9e3b9d4f027$var$point(path[i], path[i + 1]));
+    let baseCircle = new $56e4b9e3b9d4f027$var$Polygon(basePath);
     let diameter = radius * 2;
     let start = [
         position[0] - diameter,
@@ -7452,10 +7452,10 @@ function $f5e5d746e520c5b6$export$a3b482626e4c0b96(position, path, nbPointsInLay
     ];
     let newPoints = [];
     for(let i = 0; i < diameter * 2; i += nozzle_diameter){
-        let line = new $f5e5d746e520c5b6$var$Segment($f5e5d746e520c5b6$var$point([
+        let line = new $56e4b9e3b9d4f027$var$Segment($56e4b9e3b9d4f027$var$point([
             start[0] + i,
             start[1]
-        ]), $f5e5d746e520c5b6$var$point([
+        ]), $56e4b9e3b9d4f027$var$point([
             start[0] + i,
             start[1] + diameter * 2
         ]));
@@ -7479,23 +7479,23 @@ function $f5e5d746e520c5b6$export$a3b482626e4c0b96(position, path, nbPointsInLay
     }
     return newPoints;
 }
-function $f5e5d746e520c5b6$export$e2253033e6e1df16(position, path, nbPointsInLayer, layerHeight, nozzleDiameter, radius) {
-    let bottomBase = $f5e5d746e520c5b6$export$a3b482626e4c0b96(position, path, nbPointsInLayer, layerHeight, nozzleDiameter, radius);
-    let topBase = $f5e5d746e520c5b6$export$c8860df64baac0eb(position, path, nbPointsInLayer, layerHeight * 2, nozzleDiameter, radius);
+function $56e4b9e3b9d4f027$export$e2253033e6e1df16(position, path, nbPointsInLayer, layerHeight, nozzleDiameter, radius) {
+    let bottomBase = $56e4b9e3b9d4f027$export$a3b482626e4c0b96(position, path, nbPointsInLayer, layerHeight, nozzleDiameter, radius);
+    let topBase = $56e4b9e3b9d4f027$export$c8860df64baac0eb(position, path, nbPointsInLayer, layerHeight * 2, nozzleDiameter, radius);
     let newPath = bottomBase.concat(topBase);
     return newPath;
 }
-function $f5e5d746e520c5b6$export$65b4735759d794d4(b, path) {
+function $56e4b9e3b9d4f027$export$65b4735759d794d4(b, path) {
     return b.concat(path);
 }
-window.baseSpiral = $f5e5d746e520c5b6$export$c8860df64baac0eb;
-window.baseFill = $f5e5d746e520c5b6$export$a3b482626e4c0b96;
-window.base = $f5e5d746e520c5b6$export$e2253033e6e1df16;
-window.addBase = $f5e5d746e520c5b6$export$65b4735759d794d4;
+window.baseSpiral = $56e4b9e3b9d4f027$export$c8860df64baac0eb;
+window.baseFill = $56e4b9e3b9d4f027$export$a3b482626e4c0b96;
+window.base = $56e4b9e3b9d4f027$export$e2253033e6e1df16;
+window.addBase = $56e4b9e3b9d4f027$export$65b4735759d794d4;
 
 
 //Helper functions for generateGCode
-function $94a0c5bacd65ea53$var$extrude(nozzleDiameter, layerHeight, segmentLen, thickness) {
+function $2aeb084dcc9cb6f3$var$extrude(nozzleDiameter, layerHeight, segmentLen, thickness) {
     let points = [];
     let extrusion_multiplier = (nozzleDiameter / 1.91) ** 2; //extrusion multiplier for correct filament thickness
     let totalExtruded = 0;
@@ -7511,36 +7511,36 @@ function $94a0c5bacd65ea53$var$extrude(nozzleDiameter, layerHeight, segmentLen, 
     // E = SegmentLen*LayerHeight/NozzleWidth * (4/math.pi + LayerHeight/NozzleWidth)
     return points;
 }
-let $94a0c5bacd65ea53$var$round2pt = (value)=>Math.floor(value * 100) / 100.0;
-let $94a0c5bacd65ea53$var$euclideanDist = (p1, p2)=>Math.sqrt((p1[0] - p2[0]) ** 2 + (p1[1] - p2[1]) ** 2 + (p1[2] - p2[2]) ** 2);
-function $94a0c5bacd65ea53$export$6a5b418875592792(path, nozzleDiameter, printSpeed) {
+let $2aeb084dcc9cb6f3$var$round2pt = (value)=>Math.floor(value * 100) / 100.0;
+let $2aeb084dcc9cb6f3$var$euclideanDist = (p1, p2)=>Math.sqrt((p1[0] - p2[0]) ** 2 + (p1[1] - p2[1]) ** 2 + (p1[2] - p2[2]) ** 2);
+function $2aeb084dcc9cb6f3$export$6a5b418875592792(path, nozzleDiameter, printSpeed) {
     let layerHeight = path[2]; //change this
     let printSpeeds = [
         10000
     ]; //First move should be 10000
     let segmentLen = [];
     for(var i = 0; i < path.length - 4; i += 4){
-        segmentLen.push($94a0c5bacd65ea53$var$euclideanDist(path.slice(i, i + 4), path.slice(i + 4, i + 8))); //path is array of #s, not points
+        segmentLen.push($2aeb084dcc9cb6f3$var$euclideanDist(path.slice(i, i + 4), path.slice(i + 4, i + 8))); //path is array of #s, not points
         printSpeeds.push(Math.floor(printSpeed * 60));
     }
     let thicknesses = path.filter((_, index)=>(index + 1) % 4 === 0);
     console.log(thicknesses.length);
-    let extr = $94a0c5bacd65ea53$var$extrude(nozzleDiameter, layerHeight, segmentLen, thicknesses);
+    let extr = $2aeb084dcc9cb6f3$var$extrude(nozzleDiameter, layerHeight, segmentLen, thicknesses);
     let startGcodePrefix = ";;; START GCODE ;;;\nM82 ;absolute extrusion mode\nG28 ;Home\nG1 X207.5 Y202.5 Z20 F10000 ;Move X and Y to center, Z to 20mm high\nG1 E2000 F20000 ; !!Prime Extruder\nG92 E0\n;;; ======\n";
     let endGcodePostfix = ";;; === END GCODE ===\nM83 ;Set to Relative Extrusion Mode\nG28 Z ;Home Z\n; === DEPRESSURIZE ===\nG91\nG91\nG1 E-200 F4000\nG90\nG90\n";
     let gcode = startGcodePrefix;
     let ctr = 0;
     for(var i = 0; i < path.length; i += 4){
-        x = $94a0c5bacd65ea53$var$round2pt(path[i]);
-        y = $94a0c5bacd65ea53$var$round2pt(path[i + 1]);
-        z = $94a0c5bacd65ea53$var$round2pt(path[i + 2]);
+        x = $2aeb084dcc9cb6f3$var$round2pt(path[i]);
+        y = $2aeb084dcc9cb6f3$var$round2pt(path[i + 1]);
+        z = $2aeb084dcc9cb6f3$var$round2pt(path[i + 2]);
         gcode += "G1 F" + printSpeeds[ctr] + " X" + x + " Y" + y + " Z" + z + " E" + extr[ctr] + "\n";
         ctr++;
     }
     gcode += endGcodePostfix;
     return gcode;
 }
-function $94a0c5bacd65ea53$export$1d298176a7b26db(gcode_string, fileName) {
+function $2aeb084dcc9cb6f3$export$1d298176a7b26db(gcode_string, fileName) {
     const blob = new Blob([
         gcode_string
     ], {
@@ -7557,15 +7557,15 @@ function $94a0c5bacd65ea53$export$1d298176a7b26db(gcode_string, fileName) {
     URL.revokeObjectURL(url);
 }
 //Not fully implemented in Rhino, may not be correct
-function $94a0c5bacd65ea53$var$getNumTubes(path, nozzleDiameter, layerHeight) {
+function $2aeb084dcc9cb6f3$var$getNumTubes(path, nozzleDiameter, layerHeight) {
     let segmentLen = [];
-    for(var i = 1; i < len(path); i++)segmentLen.push($94a0c5bacd65ea53$var$euclideanDist(path[i], path[i - 1]));
-    let extrusions = $94a0c5bacd65ea53$var$extrude(nozzleDiameter, layerHeight, segmentLen);
+    for(var i = 1; i < len(path); i++)segmentLen.push($2aeb084dcc9cb6f3$var$euclideanDist(path[i], path[i - 1]));
+    let extrusions = $2aeb084dcc9cb6f3$var$extrude(nozzleDiameter, layerHeight, segmentLen);
     let totalExtrusion = extrusions[extrusions.length - 1];
     return (nozzleDiameter / 2 ^ 2 * totalExtrusion) / 45 / 430; //multiplier from original gcode
 }
-window.downloadGCode = $94a0c5bacd65ea53$export$1d298176a7b26db;
-window.generateGCode = $94a0c5bacd65ea53$export$6a5b418875592792; // //Stub: using preset values
+window.downloadGCode = $2aeb084dcc9cb6f3$export$1d298176a7b26db;
+window.generateGCode = $2aeb084dcc9cb6f3$export$6a5b418875592792; // //Stub: using preset values
  // function calculateClayHeight(path, preset){ 
  //     return calculateClayHeight(path, preset.nozzleDiameter, preset.layerHeight);
  // }
@@ -7576,7 +7576,7 @@ window.generateGCode = $94a0c5bacd65ea53$export$6a5b418875592792; // //Stub: usi
  // }
 
 
-function $86cfff78df649917$export$581890168c8d0b00(path, position, bedDimensions, layerHeight) {
+function $902d839ceff1ac8e$export$581890168c8d0b00(path, position, bedDimensions, layerHeight) {
     let bedXOffset = bedDimensions[0] / 2 - position[0];
     let bedYOffset = bedDimensions[1] / 2 - position[1];
     let bedZOffset = layerHeight - path[2];
@@ -7587,7 +7587,7 @@ function $86cfff78df649917$export$581890168c8d0b00(path, position, bedDimensions
     }
     return path;
 }
-function $86cfff78df649917$export$69a2e097ddb11c91(path, bedDimensions, layerHeight) {
+function $902d839ceff1ac8e$export$69a2e097ddb11c91(path, bedDimensions, layerHeight) {
     for(var i = 0; i < path.length; i += 4){
         if (path[i] > bedDimensions[0]) {
             var error_str = "x values greater than printer bed dimensions";
@@ -7620,11 +7620,11 @@ function $86cfff78df649917$export$69a2e097ddb11c91(path, bedDimensions, layerHei
     }
     return "All values are within printer bed dimensions";
 }
-window.centerPrint = $86cfff78df649917$export$581890168c8d0b00;
-window.checkOverflow = $86cfff78df649917$export$69a2e097ddb11c91;
+window.centerPrint = $902d839ceff1ac8e$export$581890168c8d0b00;
+window.checkOverflow = $902d839ceff1ac8e$export$69a2e097ddb11c91;
 
 
-function $44565e195065a6f4$var$setParameter(input, parameter_name, nbLayers = [], nbPointsInLayer = []) {
+function $b4e31de2e4b859a8$var$setParameter(input, parameter_name, nbLayers = [], nbPointsInLayer = []) {
     if (parameter_name === "radiusShapingParameter") {
         if (!Array.isArray(input)) return new Array(nbPointsInLayer).fill(input);
         else if (input.length == nbPointsInLayer) return input;
@@ -7695,37 +7695,31 @@ function $44565e195065a6f4$var$setParameter(input, parameter_name, nbLayers = []
     var error_str = "Length of values for parameter " + parameter_name + " is currently " + input.length + ", must be 0, 1 or equal to nbLayers: " + nbLayers;
     throw new Error(error_str);
 }
-function $44565e195065a6f4$export$2e2bcd8739ae039(position, initialRadius, layerHeight, nbLayers, nbPointsInLayer, radiusShapingParameter, scaleShapingParameter, scalingRadiusShapingParameter, translateShapingParameter, rotateShapingParameter, thicknessShapingParameter = []) {
+function $b4e31de2e4b859a8$export$2e2bcd8739ae039(position, initialRadius, layerHeight, nbLayers, nbPointsInLayer, radiusShapingParameter = [], scaleShapingParameter = [], scalingRadiusShapingParameter = [], translateShapingParameter = [], rotateShapingParameter = [], thicknessShapingParameter = [], layerThicknessShapingParameter = []) {
     let path = [];
-    let radsp = $44565e195065a6f4$var$setParameter(radiusShapingParameter, "radiusShapingParameter", nbLayers, nbPointsInLayer);
-    let ssp = $44565e195065a6f4$var$setParameter(scaleShapingParameter, "scaleShapingParameter", nbLayers);
-    let rsp = $44565e195065a6f4$var$setParameter(rotateShapingParameter, "rotateShapingParameter", nbLayers);
-    let tsp = $44565e195065a6f4$var$setParameter(translateShapingParameter, "translateShapingParameter", nbLayers);
-    let srsp = $44565e195065a6f4$var$setParameter(scalingRadiusShapingParameter, "scalingRadiusShapingParameter", nbLayers);
-    let thsp = $44565e195065a6f4$var$setParameter(thicknessShapingParameter, "thicknessShapingParameter", nbLayers, nbPointsInLayer);
-    let k = 0; //accounting for case where radsp is a 2D array
-    let ctr = 0;
-    for(let j = 0; j < nbLayers; j++){
-        if (radsp.length == nbLayers * nbPointsInLayer) k++;
-        for(let i = 0; i < nbPointsInLayer; i++){
-            let angle = 2 * i * Math.PI / nbPointsInLayer;
-            // if(i == 0 && j == 0){
-            //     console.log("start x:", position[0] + (initialRadius + srsp[j] * radsp[(nbLayers*j*k)+i] + ssp[j]) * Math.cos(angle + (rsp[j] * Math.PI/180)) + tsp[j][0]);
-            //     console.log("start y:", position[1] + (initialRadius + srsp[j] * radsp[(nbLayers*j*k)+i] + ssp[j]) * Math.sin(angle + (rsp[j] * Math.PI/180)) + tsp[j][1]);
-            // }
-            path.push(position[0] + (initialRadius + srsp[j] * radsp[nbLayers * j * k + i] + ssp[j]) * Math.cos(angle + rsp[j] * Math.PI / 180) + tsp[0][j]);
-            path.push(position[1] + (initialRadius + srsp[j] * radsp[nbLayers * j * k + i] + ssp[j]) * Math.sin(angle + rsp[j] * Math.PI / 180) + tsp[1][j]);
-            path.push(position[2] + layerHeight * j);
-            path.push(thsp[ctr]);
-            ctr += 1;
-        }
+    let radsp = $b4e31de2e4b859a8$var$setParameter(radiusShapingParameter, "radiusShapingParameter", nbLayers, nbPointsInLayer);
+    let ssp = $b4e31de2e4b859a8$var$setParameter(scaleShapingParameter, "scaleShapingParameter", nbLayers, nbPointsInLayer);
+    let rsp = $b4e31de2e4b859a8$var$setParameter(rotateShapingParameter, "rotateShapingParameter", nbLayers, nbPointsInLayer);
+    let tsp = $b4e31de2e4b859a8$var$setParameter(translateShapingParameter, "translateShapingParameter", nbLayers, nbPointsInLayer);
+    let srsp = $b4e31de2e4b859a8$var$setParameter(scalingRadiusShapingParameter, "scalingRadiusShapingParameter", nbLayers, nbPointsInLayer);
+    let thsp = $b4e31de2e4b859a8$var$setParameter(thicknessShapingParameter, "thicknessShapingParameter", nbLayers, nbPointsInLayer);
+    let lthsp = $b4e31de2e4b859a8$var$setParameter(layerThicknessShapingParameter, "layerThicknessShapingParameter", nbLayers, nbPointsInLayer);
+    for(let j = 0; j < nbLayers; j++)for(let i = 0; i < nbPointsInLayer; i++){
+        let angle = 2 * i * Math.PI / nbPointsInLayer;
+        const newPoint = {
+            x: position[0] + (initialRadius + srsp[j] * radsp[nbLayers * j + i] + ssp[j]) * Math.cos(angle + rsp[j] * Math.PI / 180) + tsp[0][j],
+            y: position[1] + (initialRadius + srsp[j] * radsp[nbLayers * j + i] + ssp[j]) * Math.sin(angle + rsp[j] * Math.PI / 180) + tsp[1][j],
+            z: position[2] + layerHeight * j,
+            t: thsp[nbLayers * j + i] + lthsp[j]
+        };
+        path.push(newPoint);
     }
     return path;
 }
-window.toolpathUnitGenerator = $44565e195065a6f4$export$2e2bcd8739ae039;
+window.toolpathUnitGenerator = $b4e31de2e4b859a8$export$2e2bcd8739ae039;
 
 
-function $93324619b35b7b00$export$2e2bcd8739ae039(path) {
+function $6709661837190f60$export$2e2bcd8739ae039(path) {
     var layerHeight = path[2];
     var nbPointsInLayer = [];
     var currHeight = path[2];
@@ -7749,7 +7743,7 @@ function $93324619b35b7b00$export$2e2bcd8739ae039(path) {
     }
     return points;
 }
-window.spiralize = $93324619b35b7b00$export$2e2bcd8739ae039; // function deleteDuplicatePoints(path){
+window.spiralize = $6709661837190f60$export$2e2bcd8739ae039; // function deleteDuplicatePoints(path){
  //     const allPoints = new Set();
  //     var newPath = [];
  //     for(let p = 0; p < path.length; p+=3){
@@ -7763,7 +7757,7 @@ window.spiralize = $93324619b35b7b00$export$2e2bcd8739ae039; // function deleteD
  // }
 
 
-function $aeaf658a6e48bca4$export$2e2bcd8739ae039(curvePath, isVertical, position, initialRadius, layerHeight, nbLayers, nbPointsInLayer) {
+function $321cd7e223404339$export$2e2bcd8739ae039(curvePath, isVertical, position, initialRadius, layerHeight, nbLayers, nbPointsInLayer) {
     let path = [];
     if (isVertical) for(let i = 0; i < nbLayers; i++)path.push(position[0] + curvePath[i], position[1], position[2] + layerHeight * i, 0);
     else {
@@ -7778,7 +7772,7 @@ function $aeaf658a6e48bca4$export$2e2bcd8739ae039(curvePath, isVertical, positio
     }
     return path;
 }
-window.showCurve = $aeaf658a6e48bca4$export$2e2bcd8739ae039;
+window.showCurve = $321cd7e223404339$export$2e2bcd8739ae039;
 
 
 // referencing https://threejs.org/docs/index.html?q=camera#manual/en/introduction/Creating-a-scene
@@ -7786,28 +7780,28 @@ window.showCurve = $aeaf658a6e48bca4$export$2e2bcd8739ae039;
 // import Flatten from '../../../node_modules/@flatten-js/core/dist/main.mjs'; 
 
 
-class $2b4d5761fe2a5cbf$export$2e2bcd8739ae039 {
+class $3349eefee195a0b2$export$2e2bcd8739ae039 {
     constructor(container, path = [], referencePath = [], bedDimensions = [
         28,
         26.5,
         30.5
     ]){
-        console.log("Aaaa");
+        console.log("test1");
         this.container = container; // container to hold viewer (iframe)
         console.log("tvc", container);
-        this.scene = new $gXNCa$three.Scene();
-        this.camera = new $gXNCa$three.PerspectiveCamera(60, container.offsetWidth / container.offsetHeight, 0.1, 1000);
-        this.renderer = new $gXNCa$three.WebGLRenderer({
+        this.scene = new $7Q41Z$three.Scene();
+        this.camera = new $7Q41Z$three.PerspectiveCamera(60, container.offsetWidth / container.offsetHeight, 0.1, 1000);
+        this.renderer = new $7Q41Z$three.WebGLRenderer({
             antialias: true
         });
         // Update initScene call to use the instance properties
         this.initScene();
         this.container.appendChild(this.renderer.domElement);
-        this.controls = new (0, $gXNCa$threeexamplesjsmcontrolsOrbitControlsjs.OrbitControls)(this.camera, this.renderer.domElement);
+        this.controls = new (0, $7Q41Z$threeexamplesjsmcontrolsOrbitControlsjs.OrbitControls)(this.camera, this.renderer.domElement);
     }
     //initialize 3js elements
     initScene() {
-        this.scene.background = new $gXNCa$three.Color(0xfaead6);
+        this.scene.background = new $7Q41Z$three.Color(0xfaead6);
         this.camera.up.set(0, 0, 1); // to ensure z is up and down instead of default (y)
         this.camera.position.set(2, 20, 40);
         this.renderer.setSize(this.container.offsetWidth, this.container.offsetHeight);
@@ -7817,7 +7811,7 @@ class $2b4d5761fe2a5cbf$export$2e2bcd8739ae039 {
     init() {
         this.createPrinterBed(this.globalState.bedDimensions);
         this.createPath(this.globalState.path);
-        const directionalLight = new $gXNCa$three.DirectionalLight(0xffffff, 2);
+        const directionalLight = new $7Q41Z$three.DirectionalLight(0xffffff, 2);
         directionalLight.position.z = 3;
         this.scene.add(directionalLight);
     }
@@ -7845,32 +7839,32 @@ class $2b4d5761fe2a5cbf$export$2e2bcd8739ae039 {
         for(let i = 0; i < 8; i++){
             const points = [];
             if (i < 4) {
-                points.push(new $gXNCa$three.Vector3(dimensions[0] / 2 * offsets[i][0], dimensions[1] / 2 * offsets[i][1], baseHeight1 / 2 + dimensions[2]));
-                points.push(new $gXNCa$three.Vector3(dimensions[0] / 2 * offsets[i][0], dimensions[1] / 2 * offsets[i][1], baseHeight1 / 2));
+                points.push(new $7Q41Z$three.Vector3(dimensions[0] / 2 * offsets[i][0], dimensions[1] / 2 * offsets[i][1], baseHeight1 / 2 + dimensions[2]));
+                points.push(new $7Q41Z$three.Vector3(dimensions[0] / 2 * offsets[i][0], dimensions[1] / 2 * offsets[i][1], baseHeight1 / 2));
             } else {
-                points.push(new $gXNCa$three.Vector3(dimensions[0] / 2 * offsets[i % 4][0], dimensions[1] / 2 * offsets[i % 4][1], baseHeight1 / 2 + dimensions[2]));
-                points.push(new $gXNCa$three.Vector3(dimensions[0] / 2 * offsets[(i + 1) % 4][0], dimensions[1] / 2 * offsets[(i + 1) % 4][1], baseHeight1 / 2 + dimensions[2]));
+                points.push(new $7Q41Z$three.Vector3(dimensions[0] / 2 * offsets[i % 4][0], dimensions[1] / 2 * offsets[i % 4][1], baseHeight1 / 2 + dimensions[2]));
+                points.push(new $7Q41Z$three.Vector3(dimensions[0] / 2 * offsets[(i + 1) % 4][0], dimensions[1] / 2 * offsets[(i + 1) % 4][1], baseHeight1 / 2 + dimensions[2]));
             }
-            const geometry = new $gXNCa$three.BufferGeometry().setFromPoints(points);
-            const line = new $gXNCa$three.Line(geometry, material);
+            const geometry = new $7Q41Z$three.BufferGeometry().setFromPoints(points);
+            const line = new $7Q41Z$three.Line(geometry, material);
             lines.push(line);
         }
         return lines;
     }
     // Create printer bed based on user dimensions - default to baby potterbot dimensions
     createPrinterBed(scene1, dimensions) {
-        const printerBed = new $gXNCa$three.Group(); //group for printer bed
-        const printerBedBorders = new $gXNCa$three.Group(); //group for borders, require different update function
+        const printerBed = new $7Q41Z$three.Group(); //group for printer bed
+        const printerBedBorders = new $7Q41Z$three.Group(); //group for borders, require different update function
         printerBedBorders.name = "printerBedBorders";
         printerBed.name = "printerBed";
-        const baseGeometry = new $gXNCa$three.BoxGeometry(dimensions[0], dimensions[1], baseHeight);
-        const baseMaterial = new $gXNCa$three.MeshToonMaterial({
+        const baseGeometry = new $7Q41Z$three.BoxGeometry(dimensions[0], dimensions[1], baseHeight);
+        const baseMaterial = new $7Q41Z$three.MeshToonMaterial({
             color: 0xb7afa6
         });
-        const base = new $gXNCa$three.Mesh(baseGeometry, baseMaterial);
+        const base = new $7Q41Z$three.Mesh(baseGeometry, baseMaterial);
         base.name = "printerBedBase";
         printerBed.add(base);
-        const bordersMaterial = new $gXNCa$three.MeshToonMaterial({
+        const bordersMaterial = new $7Q41Z$three.MeshToonMaterial({
             color: 0xfaead6
         }); //borders of printer bed
         const bordersGeometry = createPrinterBedLines(dimensions, bordersMaterial);
@@ -7882,15 +7876,15 @@ class $2b4d5761fe2a5cbf$export$2e2bcd8739ae039 {
     //helper function to convert line segment to cylinder (for thickness)
     cylinderFromPoints(pointStart, pointEnd, group, material) {
         //convert to Vec3
-        let pointStartVec = new $gXNCa$three.Vector3(pointStart.x, pointStart.y, pointStart.z);
-        let pointEndVec = new $gXNCa$three.Vector3(pointEnd.x, pointEnd.y, pointEnd.z);
-        var dir = new $gXNCa$three.Vector3().subVectors(pointEndVec, pointStartVec);
-        var quat = new $gXNCa$three.Quaternion();
-        quat.setFromUnitVectors(new $gXNCa$three.Vector3(0, 1, 0), dir.clone().normalize());
-        var offset = new $gXNCa$three.Vector3(); //midpoint of cylinder
+        let pointStartVec = new $7Q41Z$three.Vector3(pointStart.x, pointStart.y, pointStart.z);
+        let pointEndVec = new $7Q41Z$three.Vector3(pointEnd.x, pointEnd.y, pointEnd.z);
+        var dir = new $7Q41Z$three.Vector3().subVectors(pointEndVec, pointStartVec);
+        var quat = new $7Q41Z$three.Quaternion();
+        quat.setFromUnitVectors(new $7Q41Z$three.Vector3(0, 1, 0), dir.clone().normalize());
+        var offset = new $7Q41Z$three.Vector3(); //midpoint of cylinder
         offset.addVectors(pointEndVec, pointStartVec).divideScalar(2);
-        const segmentGeometry = new $gXNCa$three.CylinderGeometry(pointEnd.t + 1, pointStart.t + 1, dir.length(), 8);
-        const segment = new $gXNCa$three.Mesh(segmentGeometry, material);
+        const segmentGeometry = new $7Q41Z$three.CylinderGeometry(pointEnd.t + 1, pointStart.t + 1, dir.length(), 8);
+        const segment = new $7Q41Z$three.Mesh(segmentGeometry, material);
         segment.quaternion.copy(quat);
         segment.position.set(offset.x, offset.y, offset.z);
         group.add(segment);
@@ -7898,17 +7892,17 @@ class $2b4d5761fe2a5cbf$export$2e2bcd8739ae039 {
     // turn collection of points into toolpath
     createPath(scene1, path, pathType) {
         if (path.length === 0) return;
-        const toolpath = new $gXNCa$three.Group(); //group for printer bed
+        const toolpath = new $7Q41Z$three.Group(); //group for printer bed
         var material;
         if (pathType == "path") {
             toolpath.name = "path";
-            material = new $gXNCa$three.MeshToonMaterial({
+            material = new $7Q41Z$three.MeshToonMaterial({
                 color: 0x212121
             });
         }
         if (pathType == "referencePath") {
             toolpath.name = "referencePath";
-            material = new $gXNCa$three.MeshToonMaterial({
+            material = new $7Q41Z$three.MeshToonMaterial({
                 color: 0x0091c2
             });
         }
@@ -7947,7 +7941,7 @@ class $2b4d5761fe2a5cbf$export$2e2bcd8739ae039 {
         if (global_state.referencePath !== defaultReferencePath) refreshPath("referencePath");
     }
 }
-window.ToolpathViewer = $2b4d5761fe2a5cbf$export$2e2bcd8739ae039;
+window.ToolpathViewer = $3349eefee195a0b2$export$2e2bcd8739ae039;
 
 
 
