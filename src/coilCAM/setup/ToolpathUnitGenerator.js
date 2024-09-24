@@ -1,22 +1,19 @@
 
 function setSingleParameter(input, parameter_name, nbLayers, nbPointsInLayer){
-    // console.log("input", input, " for parameter_name", parameter_name, "nbLayers ", nbLayers, " nbPointsInLayer", nbPointsInLayer);
     let parameterLength = nbLayers;
     let useNbPointsInLayer = (parameter_name == "radiusShapingParameter" || parameter_name == "thicknessShapingParameter");
     if(useNbPointsInLayer){
         parameterLength *= nbPointsInLayer;
     }
 
-    if(input === null || input == []){ // Left blank / no parameter given
+    if(!input?.length){ // Input not provided or input == []
         return new Array(parameterLength).fill(0);
     } else if(!Array.isArray(input)){ // Parameter is a single number
         return new Array(parameterLength).fill(input);
     } else if(input.length == parameterLength){ // Parameter is a full array
         return input;
     } else if(useNbPointsInLayer){
-        // console.log("2D PARAM:", new Array(nbPointsInLayer*nbLayers).fill(input).flat());
         if(input.length == nbPointsInLayer){ // Pad values for 1D values that require 2D input
-            
             return new Array(nbPointsInLayer*nbLayers).fill(input).flat();
         }
         var error_str = "Length of values for parameter " + parameter_name + " is currently " + 
@@ -69,6 +66,5 @@ export default function toolpathUnitGenerator(position, initialRadius, layerHeig
     }
     return path;
 }
-
 
 window.toolpathUnitGenerator = toolpathUnitGenerator;
