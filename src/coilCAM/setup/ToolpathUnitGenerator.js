@@ -1,109 +1,45 @@
-function setParameter(input, parameter_name, nbLayers=[], nbPointsInLayer=[]){
-    if(parameter_name === "radiusShapingParameter"){ //radsp runs calculations using nbPointsInLayer
-        if(!Array.isArray(input)){
-            return new Array(nbPointsInLayer).fill(input);
-        } else if(input.length == nbPointsInLayer){
-            return input;
-        } else if(input.length == nbPointsInLayer*nbLayers){
-            return input;
-        }
-        else if(input.length === 0){
-            return new Array(nbPointsInLayer).fill(0);
-        }
-        //an error has occurred
-        var error_str = "Length of values for parameter " + parameter_name + " is currently " + input.length + ", must be 0, 1 or equal to nbPointsInLayer: " + nbPointsInLayer;
-        throw new Error(error_str);
-    } else if(parameter_name === "thicknessShapingParameter"){ //should be in range [-1, 1], 0 is default
-        if(input.length === 0 || (input.length[0] === 0 && input.length[1] === 0)){
-            return new Array(nbPointsInLayer*nbLayers).fill(0);
-        }
-        if(input[0].length === 1){
-            if(input < -1 || input > 1){
-                var error_str = "Range of points for thicknessShapingParameter exceeds the range [-1, 1].";
-                throw new Error(error_str);
-            }
-            return new Array(nbPointsInLayer*nbLayers).fill(input);
-        }
-        if(input[0].length === nbPointsInLayer*nbLayers){
-            if(Math.min(input) < -1 || Math.max(input) > 1){
-                var error_str = "Range of points for thicknessShapingParameter exceeds the range [-1, 1].";
-                throw new Error(error_str);
-            }
-            return input[0];
-        }
-        if(input[0].length == nbPointsInLayer || input[0].length == 0){
-            let arr = [];
-            if(input[0].length == 0){
-                input[0] = new Array(nbPointsInLayer).fill(0);
-            }
-            for(let i = 0; i < nbLayers; i++){
-                for(let j = 0; j < nbPointsInLayer; j++){
-                    if(input[1].length == 0){
-                        arr.push(input[0][j]);
-                    }
-                    if(input[1].length == 1){
-                        arr.push(input[0][j]+input[1][0]);
-                    }
-                    if(input[1].length == nbLayers){
-                        arr.push(input[0][j]+input[1][i]);
-                    }
-                }
-            }
-            if (Math.max(arr) > 1 || Math.min(arr) < -1){
-                var error_str = "Range of points for thicknessShapingParameter exceeds the range [-1, 1].";
-                throw new Error(error_str);
-            }
-            return arr;
-        }
-        var error_str = "Length of values for parameter " + parameter_name + " are currently " + input[0].length + " and " + input[1].length + ", must be 0, 1 or equal to nbPointsInLayer: " + nbPointsInLayer + "/nbLayers: " + nbLayers;
-        throw new Error(error_str);
-    } else if(parameter_name === "translateShapingParameter"){ //2D array, requires different calculations
-        let valuesx = [];
-        let valuesy = [];
-        let values = [];
-        if(input.length === 0){ //array is not populated
-            let newArr = new Array(nbLayers).fill(0);
-            return new Array(2).fill(newArr, newArr);
-        } else if(!Array.isArray(input)){
-            let newArr = new Array(nbLayers).fill(0);
-            return new Array(2).fill(newArr, newArr);
-        } 
-        if(!Array.isArray(input[0])){ //x parameter
-            valuesx = new Array(nbLayers).fill(0);
-        } else if(input[0].length === 1){
-            valuesx = new Array(nbLayers).fill(input[0]);
-        } else{
-            valuesx = input[0];
-        }   
-        if(!Array.isArray(input[1])){ //y parameter
-            valuesy = new Array(nbLayers).fill(0);
-        } else if(input[0].length === 1){
-            valuesy = new Array(nbLayers).fill(input[1]);
-        } else{
-            valuesy = input[1];
-        }   
-        console.log(valuesx, valuesy);
-        return new Array(valuesx, valuesy);
-        
-               
-    } else { //ssp, rsp, srsp run calculations using nbLayers
-        if(input.length === 0){
-            if(parameter_name === "scalingRadiusShapingParameter"){
-                return new Array(nbLayers).fill(1);
-            }
-            if(parameter_name === "rotateShapingParameter" || parameter_name === "scaleShapingParameter"){
-                return new Array(nbLayers).fill(0);
-            }
-        } else if(!Array.isArray(input)){
-            return new Array(nbLayers).fill(input);
-        } else if(input.length == nbLayers){
-            return input;
-        } 
+
+function setSingleParameter(input, parameter_name, nbLayers, nbPointsInLayer){
+    // console.log("input", input, " for parameter_name", parameter_name, "nbLayers ", nbLayers, " nbPointsInLayer", nbPointsInLayer);
+    let parameterLength = nbLayers;
+    let useNbPointsInLayer = (parameter_name == "radiusShapingParameter" || parameter_name == "thicknessShapingParameter");
+    if(useNbPointsInLayer){
+        parameterLength *= nbPointsInLayer;
     }
 
-    //an error has occured
-    var error_str = "Length of values for parameter " + parameter_name + " is currently " + input.length + ", must be 0, 1 or equal to nbLayers: " + nbLayers;
+    if(input === null || input == []){ // Left blank / no parameter given
+        return new Array(parameterLength).fill(0);
+    } else if(!Array.isArray(input)){ // Parameter is a single number
+        return new Array(parameterLength).fill(input);
+    } else if(input.length == parameterLength){ // Parameter is a full array
+        return input;
+    } else if(useNbPointsInLayer){
+        // console.log("2D PARAM:", new Array(nbPointsInLayer*nbLayers).fill(input).flat());
+        if(input.length == nbPointsInLayer){ // Pad values for 1D values that require 2D input
+            
+            return new Array(nbPointsInLayer*nbLayers).fill(input).flat();
+        }
+        var error_str = "Length of values for parameter " + parameter_name + " is currently " + 
+                input.length + ", must be 0, 1, equal to nbPointsInLayer: " + nbPointsInLayer + 
+                " or nbPointsInLayer*nbLayers: " + (nbPointsInLayer*nbLayers);
+        throw new Error(error_str);
+    }
+    var error_str = "Length of values for parameter " + parameter_name + " is currently " + 
+            input.length + ", must be 0, 1 or equal to nbLayers: " + nbLayers;
     throw new Error(error_str);
+}
+
+function setParameter(input, parameter_name, nbLayers, nbPointsInLayer){
+    if(parameter_name == "translateShapingParameter"){ // Call setSingleParameter twice, once for x position, once for y position
+        let tsp = [[], []];
+        if(input == null || input == []){
+            return new Array(2).fill(new Array(nbLayers).fill(0));
+        }
+        tsp[0] = setSingleParameter(input[0], parameter_name, nbLayers, nbPointsInLayer);
+        tsp[1] = setSingleParameter(input[1], parameter_name, nbLayers, nbPointsInLayer);
+        return tsp;
+    }
+    return setSingleParameter(input, parameter_name, nbLayers, nbPointsInLayer);
 }
 
 export default function toolpathUnitGenerator(position, initialRadius, layerHeight, nbLayers, nbPointsInLayer,
@@ -122,7 +58,7 @@ export default function toolpathUnitGenerator(position, initialRadius, layerHeig
     for(let j = 0; j < nbLayers; j++){
         for(let i = 0; i < nbPointsInLayer; i++){
             let angle = 2 * i * Math.PI / nbPointsInLayer;
-            const newPoint = { //store points in toolpath as objects for greater readability
+            const newPoint = { // Store points in toolpath as objects for greater readability: (x coordinate, y coordinate, z coordinate, thickness)
                 x: (position[0] + (initialRadius + srsp[j] * radsp[(nbLayers*j)+i] + ssp[j]) * Math.cos(angle + (rsp[j] * Math.PI/180)) + tsp[0][j]),
                 y: (position[1] + (initialRadius + srsp[j] * radsp[(nbLayers*j)+i] + ssp[j]) * Math.sin(angle + (rsp[j] * Math.PI/180)) + tsp[1][j]),
                 z: (position[2] + layerHeight * j),
