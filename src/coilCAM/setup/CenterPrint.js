@@ -1,48 +1,18 @@
-export function centerPrint(path, position, bedDimensions, layerHeight){
-    let bedXOffset = bedDimensions[0]/2 - position[0];
-    let bedYOffset = bedDimensions[1]/2 - position[1];
-    let bedZOffset = layerHeight - path[2];
-    for (var i = 0; i < path.length; i+=4){
-        path[i] += bedXOffset;
-        path[i+1] += bedYOffset;
-        path[i+2] += bedZOffset;
+export default function centerPrint(path, position, bedDimensions, layerHeight){
+    if(Array.isArray(path) && path.length > 0){ // Path is a valid array
+        let bedXOffset = bedDimensions[0]/2 - position[0];
+        let bedYOffset = bedDimensions[1]/2 - position[1];
+        let bedZOffset = layerHeight - path[0].z;
+        
+        for (var i = 0; i < path.length; i++){
+            path[i].x += bedXOffset;
+            path[i].y += bedYOffset;
+            path[i].z += bedZOffset;
+        }
+        return path;
     }
-    return path;
-}
-
-export function checkOverflow(path, bedDimensions, layerHeight){
-    for (var i = 0; i < path.length; i+=4){
-        if(path[i] > bedDimensions[0]){
-            var error_str = "x values greater than printer bed dimensions";
-            throw new Error(error_str);
-        }
-        if(path[i] < 0){
-            var error_str = "x values less than bed dimensions";
-            throw new Error(error_str);
-        }
-        if(path[i+1] > bedDimensions[1] || path[i+1] < 0){
-            var error_str = "y values exceed printer bed dimensions";
-            throw new Error(error_str);
-        }
-        if(path[i+1] < 0){
-            var error_str = "y values less than printer bed dimensions";
-            throw new Error(error_str);
-        }
-        if(path[i+1] > bedDimensions[1]){
-            var error_str = "y values greater than printer bed dimensions";
-            throw new Error(error_str);
-        }
-        if(path[i+2] > bedDimensions[2]){
-            var error_str = "z values greater than printer bed dimensions";
-            throw new Error(error_str);
-        }
-        if(path[i+2] < layerHeight){
-            var error_str = "z values less than printer bed dimensions";
-            throw new Error(error_str);
-        }
-    }
-    return "All values are within printer bed dimensions";
+    var error_str = "Cannot call centerPrint on an empty path.";
+    throw new Error(error_str);
 }
 
 window.centerPrint = centerPrint;
-window.checkOverflow = checkOverflow;
