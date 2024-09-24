@@ -1,6 +1,6 @@
 {
   "name": "coilcam",
-  "version": "1.0.17",
+  "version": "1.0.18",
   "description": "Functions for coilCAM in Javascript.",
   "license": "MIT",
   "source": "src/index.js",

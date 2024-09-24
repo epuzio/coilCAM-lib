@@ -7625,7 +7625,7 @@ function $44565e195065a6f4$var$setSingleParameter(input, parameter_name, nbLayer
     let parameterLength = nbLayers;
     let useNbPointsInLayer = parameter_name == "radiusShapingParameter" || parameter_name == "thicknessShapingParameter";
     if (useNbPointsInLayer) parameterLength *= nbPointsInLayer;
-    if (input === null || input == []) return new Array(parameterLength).fill(0);
+    if (!input?.length) return new Array(parameterLength).fill(0);
     else if (!Array.isArray(input)) return new Array(parameterLength).fill(input);
     else if (input.length == parameterLength) return input;
     else if (useNbPointsInLayer) {
