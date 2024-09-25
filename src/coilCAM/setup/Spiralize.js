@@ -15,8 +15,7 @@ export default function spiralize(path){
         }
         nbPointsInLayer.push(ctr);
 
-        currLayer = 0;
-        nPointsIterated = 0;
+        var nPointsIterated = 0;
         var points = path;
         for(let i = 0; i < nbPointsInLayer.length; i++){
             var ratio = layerHeight/(nbPointsInLayer[i]);
@@ -25,13 +24,6 @@ export default function spiralize(path){
             }
             nPointsIterated += nbPointsInLayer[i];
         }
-
-
-        const filteredArr = arr.filter(el => {
-            const duplicate = seen.has(el.id);
-            seen.add(el.id);
-            return !duplicate;
-          });
         return points;
     }
 }

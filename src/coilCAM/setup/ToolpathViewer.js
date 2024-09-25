@@ -1,9 +1,6 @@
-// DELETE LATER - just for ease of testing without needing to re-export lib!!
-// https://discourse.threejs.org/t/loading-three-js-from-a-class/32094
-
 import * as THREE from '../../../node_modules/three/build/three.module.js';
-// import { OrbitControls } from '../../../node_modules/three/examples/jsm/controls/OrbitControls.js';
-// import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
+import * as OrbitControls from '../../../node_modules/three-orbitcontrols/OrbitControls.js';
+
 
 export default class ToolpathViewer {
     // constructor(container, path = [], referencePath = [], bedDimensions = [28, 26.5, 30.5]) {
