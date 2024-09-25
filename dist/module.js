@@ -7158,63 +7158,86 @@ $271a1c686af88dba$export$2e2bcd8739ae039.Relations = $271a1c686af88dba$export$93
 
 // import Flatten from 'https://unpkg.com/@flatten-js/core/dist/main.mjs';
 const { point: $685d2651675ad770$var$point, Polygon: $685d2651675ad770$var$Polygon } = (0, $271a1c686af88dba$export$2e2bcd8739ae039);
-const { subtract: $685d2651675ad770$var$subtract } = (0, $271a1c686af88dba$export$2e2bcd8739ae039).BooleanOperations;
-function $685d2651675ad770$export$2e2bcd8739ae039(path0, path1) {
-    let path = [];
-    let points0 = [];
-    let points1 = [];
+const { unify: $685d2651675ad770$var$unify } = (0, $271a1c686af88dba$export$2e2bcd8739ae039).BooleanOperations;
+function $685d2651675ad770$export$2e2bcd8739ae039(path0, path1, by_layer = true) {
+    //   let path = [];
+    //   let points0 = [];
+    //   let points1 = [];
     let layers = new Set();
-    for(let i = 3; i <= path0.length; i += 4)points0.push(path0.slice(i - 3, i + 1));
-    for(let i = 3; i <= path1.length; i += 4)points1.push(path1.slice(i - 3, i + 1));
-    points0.sort((a, b)=>a[2] - b[2]);
-    points1.sort((a, b)=>a[2] - b[2]);
-    points0.forEach((point)=>layers.add(point[2]));
-    points1.forEach((point)=>layers.add(point[2]));
+    //   for(let i = 0; i <= path0.length; i++){
+    //     points0.push(path0.slice(i-3, i+1))
+    //   }
+    //   for(let i = 3; i <= path1.length; i+=4){
+    //     points1.push(path1.slice(i-3, i+1))
+    //   }
+    path0.sort((a, b)=>a.z - b.z);
+    path1.sort((a, b)=>a.z - b.z);
+    path0.forEach((point)=>layers.add(point.z));
+    path1.forEach((point)=>layers.add(point.z));
     let shapes = new Array();
     let total_num_points = 0;
+    let newPath = [];
     for (let layer of layers){
-        let layer_points0 = points0.filter((p)=>p[2] == layer).map((p)=>$685d2651675ad770$var$point([
-                p[0],
-                p[1]
+        let layer_points0 = path0.filter((p)=>p.z == layer).map((p)=>$685d2651675ad770$var$point([
+                p.x,
+                p.y
             ]));
-        let layer_points1 = points1.filter((p)=>p[2] == layer).map((p)=>$685d2651675ad770$var$point([
-                p[0],
-                p[1]
+        let layer_points1 = path1.filter((p)=>p.z == layer).map((p)=>$685d2651675ad770$var$point([
+                p.x,
+                p.y
             ]));
         let polygon0 = new $685d2651675ad770$var$Polygon(layer_points0);
         let polygon1 = new $685d2651675ad770$var$Polygon(layer_points1);
         let thicknesses = new Map(); //store thickness in external data structure
-        for(let i = 0; i < points0.length / 4; i += 4)if (points0[i][2] == layer) thicknesses.set([
-            points0[i][0],
-            points0[i][1]
-        ], points0[i][3]);
-        for(let i = 0; i < points1.length / 4; i += 4)if (points1[i][2] == layer) thicknesses.set([
-            [
-                points1[i][0]
-            ],
-            points1[i][1]
-        ], points1[i][3]);
-        if (polygon1.contains(polygon0)) continue;
-        else {
-            let combinedPolygon = $685d2651675ad770$var$subtract(polygon0, polygon1);
-            let polygonSVG = combinedPolygon.svg(); //convert to svg to rely on flatten-js's even-odd algorithm
-            const shapesString = polygonSVG.match(/(M[^M]+z)/g); //separate svg into just the section containing points
-            let shapeidx = 0;
-            for (let shape of shapesString){
-                let pairs = shape.match(/L-?\d+(\.\d+)?,-?\d+(\.\d+)?/g); //get pairs of points (not starting with M)
-                for (let pair of pairs){
-                    var thickness = thicknesses.has(pair.match(/-?\d+(\.\d+)?/g)); //todo: fix thickness (right now it's defaulting to "false" = 0)
-                    if (shapes.length < shapeidx + 1) shapes.push([]);
-                    shapes[shapeidx].push(...pair.match(/-?\d+(\.\d+)?/g).map(parseFloat)); //push each pair as a float to the shapes arr
-                    shapes[shapeidx].push(layer);
-                    shapes[shapeidx].push(thickness);
-                }
-                shapeidx += 1;
+        for(let i = 0; i < path0.length; i++)if (path0[i].z == layer) thicknesses.set([
+            path0[i].x,
+            path0[i].y
+        ], path0[i].t);
+        for(let i = 0; i < path1.length; i++)if (path1[i].z == layer) thicknesses.set([
+            path1[i].x,
+            path1[i].y
+        ], path1[i].t);
+        //to add: tolerance
+        let combinedPolygon = subtract(polygon0, polygon1);
+        let polygonSVG = combinedPolygon.svg(); //convert to svg to rely on flatten-js's even-odd algorithm
+        const shapesString = polygonSVG.match(/(M[^M]+z)/g); //separate svg into just the section containing points
+        let shapeidx = 0;
+        for (let shape of shapesString){
+            let pairs = shape.match(/L-?\d+(\.\d+)?,-?\d+(\.\d+)?/g); //get pairs of points (not starting with M)
+            for (let pair of pairs){
+                var thickness = thicknesses.has(pair.match(/-?\d+(\.\d+)?/g)); //todo: fix thickness (right now it's defaulting to "false" = 0)
+                // if(shapes.length < shapeidx + 1){
+                //   shapes.push([]);
+                // }
+                let [xNew, yNew] = pair.match(/-?\d+(\.\d+)?/g).map(parseFloat);
+                const newPoint = {
+                    x: xNew,
+                    y: yNew,
+                    z: layer,
+                    t: thickness
+                };
+                newPath.push(newPoint);
+                console.log(newPath);
+            // if(!by_layer){ //push individual vessels to final array
+            //     shapes[shapeidx].push(newPoint);
+            // } else{
+            //     shapes[0].push(newPoint);
+            // }
             }
+        //   shapeidx++;
+        //   if(by_layer){ //close the shape: push starting point of current shape to end of shape
+        //     shapes[0].push(shapes[0][(total_num_points)], shapes[0][(total_num_points)+1], layer, thickness);
+        //     // shapes[0].push(shapes[0][(total_num_points)], shapes[0][(total_num_points)+1], layer, thickness);
+        //     let num_points = (pairs.length+1)*4;
+        //     total_num_points += num_points;
+        //   } else{
+        //     shapeidx += 1;
+        //   }
         }
     }
-    path = shapes.flat();
-    return path;
+    //   path = shapes.flat();
+    //   return path;
+    return newPath;
 }
 window.difference = $685d2651675ad770$export$2e2bcd8739ae039;
 
@@ -7224,43 +7247,43 @@ window.difference = $685d2651675ad770$export$2e2bcd8739ae039;
 const { point: $d882048206233452$var$point, Polygon: $d882048206233452$var$Polygon } = (0, $271a1c686af88dba$export$2e2bcd8739ae039);
 const { unify: $d882048206233452$var$unify } = (0, $271a1c686af88dba$export$2e2bcd8739ae039).BooleanOperations;
 function $d882048206233452$export$2e2bcd8739ae039(path0, path1, by_layer = true) {
-    let path = [];
-    let points0 = [];
-    let points1 = [];
+    //   let path = [];
+    //   let points0 = [];
+    //   let points1 = [];
     let layers = new Set();
-    for(let i = 3; i <= path0.length; i += 4)points0.push(path0.slice(i - 3, i + 1));
-    for(let i = 3; i <= path1.length; i += 4)points1.push(path1.slice(i - 3, i + 1));
-    points0.sort((a, b)=>a[2] - b[2]);
-    points1.sort((a, b)=>a[2] - b[2]);
-    points0.forEach((point)=>layers.add(point[2]));
-    points1.forEach((point)=>layers.add(point[2]));
+    //   for(let i = 0; i <= path0.length; i++){
+    //     points0.push(path0.slice(i-3, i+1))
+    //   }
+    //   for(let i = 3; i <= path1.length; i+=4){
+    //     points1.push(path1.slice(i-3, i+1))
+    //   }
+    path0.sort((a, b)=>a.z - b.z);
+    path1.sort((a, b)=>a.z - b.z);
+    path0.forEach((point)=>layers.add(point.z));
+    path1.forEach((point)=>layers.add(point.z));
     let shapes = new Array();
     let total_num_points = 0;
+    let newPath = [];
     for (let layer of layers){
-        let layer_points0 = points0.filter((p)=>p[2] == layer).map((p)=>$d882048206233452$var$point([
-                p[0],
-                p[1]
+        let layer_points0 = path0.filter((p)=>p.z == layer).map((p)=>$d882048206233452$var$point([
+                p.x,
+                p.y
             ]));
-        let layer_points1 = points1.filter((p)=>p[2] == layer).map((p)=>$d882048206233452$var$point([
-                p[0],
-                p[1]
+        let layer_points1 = path1.filter((p)=>p.z == layer).map((p)=>$d882048206233452$var$point([
+                p.x,
+                p.y
             ]));
         let polygon0 = new $d882048206233452$var$Polygon(layer_points0);
         let polygon1 = new $d882048206233452$var$Polygon(layer_points1);
         let thicknesses = new Map(); //store thickness in external data structure
-        for(let i = 0; i < points0.length; i++)if (points0[i][2] == layer) thicknesses.set([
-            points0[i][0],
-            points0[i][1]
-        ], points0[i][3]);
-        for(let i = 0; i < points1.length / 4; i += 4)if (points1[i][2] == layer) thicknesses.set([
-            [
-                points1[i][0]
-            ],
-            points1[i][1]
-        ], points1[i][3]);
-        console.log([
-            ...thicknesses.entries()
-        ]);
+        for(let i = 0; i < path0.length; i++)if (path0[i].z == layer) thicknesses.set([
+            path0[i].x,
+            path0[i].y
+        ], path0[i].t);
+        for(let i = 0; i < path1.length; i++)if (path1[i].z == layer) thicknesses.set([
+            path1[i].x,
+            path1[i].y
+        ], path1[i].t);
         //to add: tolerance
         let combinedPolygon = $d882048206233452$var$unify(polygon0, polygon1);
         let polygonSVG = combinedPolygon.svg(); //convert to svg to rely on flatten-js's even-odd algorithm
@@ -7270,33 +7293,39 @@ function $d882048206233452$export$2e2bcd8739ae039(path0, path1, by_layer = true)
             let pairs = shape.match(/L-?\d+(\.\d+)?,-?\d+(\.\d+)?/g); //get pairs of points (not starting with M)
             for (let pair of pairs){
                 var thickness = thicknesses.has(pair.match(/-?\d+(\.\d+)?/g)); //todo: fix thickness (right now it's defaulting to "false" = 0)
-                if (shapes.length < shapeidx + 1) shapes.push([]);
-                if (!by_layer) {
-                    shapes[shapeidx].push(...pair.match(/-?\d+(\.\d+)?/g).map(parseFloat)); //push each pair as a float to the shapes arr
-                    shapes[shapeidx].push(layer);
-                    shapes[shapeidx].push(thickness);
-                } else {
-                    shapes[0].push(...pair.match(/-?\d+(\.\d+)?/g).map(parseFloat));
-                    shapes[0].push(layer);
-                    shapes[0].push(thickness);
-                }
+                // if(shapes.length < shapeidx + 1){
+                //   shapes.push([]);
+                // }
+                let [xNew, yNew] = pair.match(/-?\d+(\.\d+)?/g).map(parseFloat);
+                const newPoint = {
+                    x: xNew,
+                    y: yNew,
+                    z: layer,
+                    t: thickness
+                };
+                newPath.push(newPoint);
+                console.log(newPath);
+            // if(!by_layer){ //push individual vessels to final array
+            //     shapes[shapeidx].push(newPoint);
+            // } else{
+            //     shapes[0].push(newPoint);
+            // }
             }
-            if (by_layer) {
-                shapes[0].push(shapes[0][total_num_points], shapes[0][total_num_points + 1], layer, thickness);
-                let num_points = (pairs.length + 1) * 4;
-                total_num_points += num_points;
-            } else shapeidx += 1;
+        //   shapeidx++;
+        //   if(by_layer){ //close the shape: push starting point of current shape to end of shape
+        //     shapes[0].push(shapes[0][(total_num_points)], shapes[0][(total_num_points)+1], layer, thickness);
+        //     // shapes[0].push(shapes[0][(total_num_points)], shapes[0][(total_num_points)+1], layer, thickness);
+        //     let num_points = (pairs.length+1)*4;
+        //     total_num_points += num_points;
+        //   } else{
+        //     shapeidx += 1;
+        //   }
         }
     }
-    path = shapes.flat();
-    return path;
+    //   path = shapes.flat();
+    //   return path;
+    return newPath;
 }
-// export function unionAll(paths, by_layer = True){
-//   let union_path = new Array();
-//   for(let i = 1; i < paths.length; i++){
-//     let new_path = union(paths[0], paths[i], by_layer);
-//   }
-// }
 window.union = $d882048206233452$export$2e2bcd8739ae039;
 
 
@@ -7404,7 +7433,7 @@ $parcel$export($a067c65f26654429$exports, "showCurve", () => $6e41298316d419fa$e
 
 const { point: $c45d59629d16dffd$var$point, Polygon: $c45d59629d16dffd$var$Polygon, Segment: $c45d59629d16dffd$var$Segment } = (0, $271a1c686af88dba$export$2e2bcd8739ae039);
 function $c45d59629d16dffd$export$c8860df64baac0eb(position, nbPointsInLayer, layerHeight, nozzle_diameter, radius, thickness = 0) {
-    // Add spiral centered at the middle of the vessel, width of spiral based on nozzle_diameter
+    // Add archemedes spiral centered at the middle of the vessel, width of spiral based on nozzle_diameter
     let basePath = [];
     let height = layerHeight;
     let diameter = radius * 2;
@@ -7412,21 +7441,21 @@ function $c45d59629d16dffd$export$c8860df64baac0eb(position, nbPointsInLayer, la
     let scale = nozzle_diameter / Math.PI;
     let bias = .0001;
     let step = 2 * Math.PI / nbPointsInLayer;
-    let offset = nbPointsInLayer % 2 == 0 ? 0 : Math.PI / nbPointsInLayer; //offset slightly if odd # of points
+    let offset = nbPointsInLayer % 2 == 0 ? 0 : Math.PI / nbPointsInLayer;
     for(let angle = -layers * step; angle < layers * step; angle += step){
         let spiralRadius = scale * angle;
         if (angle < 0) {
             const newPoint = {
-                x: bias + position[0] + spiralRadius * Math.cos(angle - offset),
-                y: bias + position[1] + spiralRadius * Math.sin(angle - offset),
+                x: bias + position[0] + spiralRadius * Math.cos(angle + Math.PI),
+                y: bias + position[1] + spiralRadius * Math.sin(angle + Math.PI),
                 z: height,
                 t: thickness
             };
             basePath.push(newPoint);
         } else {
             const newPoint = {
-                x: bias + position[0] + spiralRadius * Math.sin(angle + Math.PI / 2),
-                y: bias + position[1] + spiralRadius * Math.cos(angle + Math.PI / 2),
+                x: bias + position[0] + spiralRadius * Math.sin(angle - Math.PI / 2 - offset),
+                y: bias + position[1] + spiralRadius * Math.cos(angle - Math.PI / 2 - offset),
                 z: height,
                 t: thickness
             };
@@ -7575,9 +7604,9 @@ function $14d375dbaed5c813$export$2e2bcd8739ae039(path, position, bedDimensions,
         let bedYOffset = bedDimensions[1] / 2 - position[1];
         let bedZOffset = layerHeight - path[0].z;
         for(var i = 0; i < path.length; i++){
-            path[i].x += bedXOffset;
-            path[i].y += bedYOffset;
-            path[i].z += bedZOffset;
+            path[i].x -= bedXOffset;
+            path[i].y -= bedYOffset;
+            path[i].z -= bedZOffset;
         }
         return path;
     }
@@ -7587,12 +7616,15 @@ function $14d375dbaed5c813$export$2e2bcd8739ae039(path, position, bedDimensions,
 window.centerPrint = $14d375dbaed5c813$export$2e2bcd8739ae039;
 
 
+
 function $831dc3114bca2c7c$var$setSingleParameter(input, parameter_name, nbLayers, nbPointsInLayer) {
     let parameterLength = nbLayers;
     let useNbPointsInLayer = parameter_name == "radiusShapingParameter" || parameter_name == "thicknessShapingParameter";
     if (useNbPointsInLayer) parameterLength *= nbPointsInLayer;
-    if (!input?.length) return new Array(parameterLength).fill(0);
-    else if (!Array.isArray(input)) return new Array(parameterLength).fill(input);
+    if (!input?.length) {
+        if (parameter_name == "scalingRadiusShapingParameter") return new Array(parameterLength).fill(1);
+        return new Array(parameterLength).fill(0);
+    } else if (!Array.isArray(input)) return new Array(parameterLength).fill(input);
     else if (input.length == parameterLength) return input;
     else if (useNbPointsInLayer) {
         if (input.length == nbPointsInLayer) return new Array(nbPointsInLayer * nbLayers).fill(input).flat();
@@ -7624,19 +7656,22 @@ function $831dc3114bca2c7c$export$2e2bcd8739ae039(position, initialRadius, layer
     let srsp = $831dc3114bca2c7c$var$setParameter(scalingRadiusShapingParameter, "scalingRadiusShapingParameter", nbLayers, nbPointsInLayer);
     let thsp = $831dc3114bca2c7c$var$setParameter(thicknessShapingParameter, "thicknessShapingParameter", nbLayers, nbPointsInLayer);
     let lthsp = $831dc3114bca2c7c$var$setParameter(layerThicknessShapingParameter, "layerThicknessShapingParameter", nbLayers, nbPointsInLayer);
+    console.log("RADSP", radsp.length);
+    var ctr = 0;
     for(let j = 0; j < nbLayers; j++)for(let i = 0; i < nbPointsInLayer; i++){
         let angle = 2 * i * Math.PI / nbPointsInLayer;
         const newPoint = {
-            x: position[0] + (initialRadius + srsp[j] * radsp[nbLayers * j + i] + ssp[j]) * Math.cos(angle + rsp[j] * Math.PI / 180) + tsp[0][j],
-            y: position[1] + (initialRadius + srsp[j] * radsp[nbLayers * j + i] + ssp[j]) * Math.sin(angle + rsp[j] * Math.PI / 180) + tsp[1][j],
+            x: position[0] + (initialRadius + srsp[j] * radsp[ctr] + ssp[j]) * Math.cos(angle + rsp[j] * Math.PI / 180) + tsp[0][j],
+            y: position[1] + (initialRadius + srsp[j] * radsp[ctr] + ssp[j]) * Math.sin(angle + rsp[j] * Math.PI / 180) + tsp[1][j],
             z: position[2] + layerHeight * j,
-            t: thsp[nbLayers * j + i] + lthsp[j]
+            t: thsp[ctr] + lthsp[j]
         };
         path.push(newPoint);
+        ctr++;
     }
     return path;
 }
-window.toolpathUnitGenerator = $831dc3114bca2c7c$export$2e2bcd8739ae039;
+window.toolpathUnitGenerator = (0, $831dc3114bca2c7c$export$2e2bcd8739ae039);
 
 
 function $fc30310f8636f11b$export$2e2bcd8739ae039(path) {

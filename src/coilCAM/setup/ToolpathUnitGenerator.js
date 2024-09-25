@@ -1,3 +1,4 @@
+import { toolpathUnitGenerator } from ".";
 
 function setSingleParameter(input, parameter_name, nbLayers, nbPointsInLayer){
     let parameterLength = nbLayers;
@@ -7,6 +8,9 @@ function setSingleParameter(input, parameter_name, nbLayers, nbPointsInLayer){
     }
 
     if(!input?.length){ // Input not provided or input == []
+        if (parameter_name == "scalingRadiusShapingParameter"){
+            return new Array(parameterLength).fill(1);
+        }
         return new Array(parameterLength).fill(0);
     } else if(!Array.isArray(input)){ // Parameter is a single number
         return new Array(parameterLength).fill(input);
@@ -39,7 +43,7 @@ function setParameter(input, parameter_name, nbLayers, nbPointsInLayer){
     return setSingleParameter(input, parameter_name, nbLayers, nbPointsInLayer);
 }
 
-export default function toolpathUnitGenerator(position, initialRadius, layerHeight, nbLayers, nbPointsInLayer,
+export default function tug(position, initialRadius, layerHeight, nbLayers, nbPointsInLayer,
     radiusShapingParameter=[], scaleShapingParameter=[], scalingRadiusShapingParameter=[],
     translateShapingParameter=[], rotateShapingParameter=[], thicknessShapingParameter=[], layerThicknessShapingParameter=[]){
     let path = [];
@@ -51,6 +55,7 @@ export default function toolpathUnitGenerator(position, initialRadius, layerHeig
     let thsp = setParameter(thicknessShapingParameter, "thicknessShapingParameter", nbLayers, nbPointsInLayer);
     let lthsp = setParameter(layerThicknessShapingParameter, "layerThicknessShapingParameter", nbLayers, nbPointsInLayer);
 
+    console.log("RADSP", radsp.length);
 
     var ctr = 0;
     for(let j = 0; j < nbLayers; j++){
