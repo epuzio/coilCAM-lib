@@ -45,7 +45,7 @@ function setParameter(input, parameter_name, nbLayers, nbPointsInLayer){
 
 export default function tug(position, initialRadius, layerHeight, nbLayers, nbPointsInLayer,
     radiusShapingParameter=[], scaleShapingParameter=[], scalingRadiusShapingParameter=[],
-    translateShapingParameter=[], rotateShapingParameter=[], thicknessShapingParameter=[], layerThicknessShapingParameter=[]){
+    translateShapingParameter=[], rotateShapingParameter=[], thicknessShapingParameter=[]){
     let path = [];
     let radsp = setParameter(radiusShapingParameter, "radiusShapingParameter", nbLayers, nbPointsInLayer);
     let ssp = setParameter(scaleShapingParameter, "scaleShapingParameter", nbLayers, nbPointsInLayer);
@@ -53,8 +53,6 @@ export default function tug(position, initialRadius, layerHeight, nbLayers, nbPo
     let tsp = setParameter(translateShapingParameter, "translateShapingParameter", nbLayers, nbPointsInLayer);
     let srsp = setParameter(scalingRadiusShapingParameter, "scalingRadiusShapingParameter", nbLayers, nbPointsInLayer);
     let thsp = setParameter(thicknessShapingParameter, "thicknessShapingParameter", nbLayers, nbPointsInLayer);
-    let lthsp = setParameter(layerThicknessShapingParameter, "layerThicknessShapingParameter", nbLayers, nbPointsInLayer);
-
     console.log("RADSP", radsp.length);
 
     var ctr = 0;
@@ -65,7 +63,7 @@ export default function tug(position, initialRadius, layerHeight, nbLayers, nbPo
                 x: (position[0] + (initialRadius + srsp[j] * radsp[ctr] + ssp[j]) * Math.cos(angle + (rsp[j] * Math.PI/180)) + tsp[0][j]),
                 y: (position[1] + (initialRadius + srsp[j] * radsp[ctr] + ssp[j]) * Math.sin(angle + (rsp[j] * Math.PI/180)) + tsp[1][j]),
                 z: (position[2] + layerHeight * j),
-                t: (thsp[ctr]+lthsp[j])
+                t: (thsp[ctr])
             }
             path.push(newPoint);
             ctr++;

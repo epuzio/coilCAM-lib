@@ -2,7 +2,7 @@ import Flatten from '../../../../node_modules/@flatten-js/core/dist/main.mjs';
 // import Flatten from 'https://unpkg.com/@flatten-js/core/dist/main.mjs';
 
 const {point, Polygon} = Flatten;
-const {unify} = Flatten.BooleanOperations;
+const {subtract} = Flatten.BooleanOperations;
 
 export default function difference(path0, path1, by_layer = true){
   let layers = new Set();
@@ -10,8 +10,6 @@ export default function difference(path0, path1, by_layer = true){
   path1.sort((a, b) =>  a.z - b.z);
   path0.forEach(point => layers.add(point.z));
   path1.forEach(point => layers.add(point.z));
-  let shapes = new Array();
-  let total_num_points = 0;
   let newPath = []
 
   for(let layer of layers){

@@ -7165,16 +7165,7 @@ $bd479cb9731e0159$export$2e2bcd8739ae039.Relations = $bd479cb9731e0159$export$93
 const { point: $bc93fb8b71b9c8d7$var$point, Polygon: $bc93fb8b71b9c8d7$var$Polygon } = (0, $bd479cb9731e0159$export$2e2bcd8739ae039);
 const { unify: $bc93fb8b71b9c8d7$var$unify } = (0, $bd479cb9731e0159$export$2e2bcd8739ae039).BooleanOperations;
 function $bc93fb8b71b9c8d7$export$2e2bcd8739ae039(path0, path1, by_layer = true) {
-    //   let path = [];
-    //   let points0 = [];
-    //   let points1 = [];
     let layers = new Set();
-    //   for(let i = 0; i <= path0.length; i++){
-    //     points0.push(path0.slice(i-3, i+1))
-    //   }
-    //   for(let i = 3; i <= path1.length; i+=4){
-    //     points1.push(path1.slice(i-3, i+1))
-    //   }
     path0.sort((a, b)=>a.z - b.z);
     path1.sort((a, b)=>a.z - b.z);
     path0.forEach((point)=>layers.add(point.z));
@@ -7211,9 +7202,6 @@ function $bc93fb8b71b9c8d7$export$2e2bcd8739ae039(path0, path1, by_layer = true)
             let pairs = shape.match(/L-?\d+(\.\d+)?,-?\d+(\.\d+)?/g); //get pairs of points (not starting with M)
             for (let pair of pairs){
                 var thickness = thicknesses.has(pair.match(/-?\d+(\.\d+)?/g)); //todo: fix thickness (right now it's defaulting to "false" = 0)
-                // if(shapes.length < shapeidx + 1){
-                //   shapes.push([]);
-                // }
                 let [xNew, yNew] = pair.match(/-?\d+(\.\d+)?/g).map(parseFloat);
                 const newPoint = {
                     x: xNew,
@@ -7222,26 +7210,9 @@ function $bc93fb8b71b9c8d7$export$2e2bcd8739ae039(path0, path1, by_layer = true)
                     t: thickness
                 };
                 newPath.push(newPoint);
-                console.log(newPath);
-            // if(!by_layer){ //push individual vessels to final array
-            //     shapes[shapeidx].push(newPoint);
-            // } else{
-            //     shapes[0].push(newPoint);
-            // }
             }
-        //   shapeidx++;
-        //   if(by_layer){ //close the shape: push starting point of current shape to end of shape
-        //     shapes[0].push(shapes[0][(total_num_points)], shapes[0][(total_num_points)+1], layer, thickness);
-        //     // shapes[0].push(shapes[0][(total_num_points)], shapes[0][(total_num_points)+1], layer, thickness);
-        //     let num_points = (pairs.length+1)*4;
-        //     total_num_points += num_points;
-        //   } else{
-        //     shapeidx += 1;
-        //   }
         }
     }
-    //   path = shapes.flat();
-    //   return path;
     return newPath;
 }
 window.difference = $bc93fb8b71b9c8d7$export$2e2bcd8739ae039;
@@ -7251,23 +7222,12 @@ window.difference = $bc93fb8b71b9c8d7$export$2e2bcd8739ae039;
 // import Flatten from 'https://unpkg.com/@flatten-js/core/dist/main.mjs';
 const { point: $638833b7817d7ae4$var$point, Polygon: $638833b7817d7ae4$var$Polygon } = (0, $bd479cb9731e0159$export$2e2bcd8739ae039);
 const { unify: $638833b7817d7ae4$var$unify } = (0, $bd479cb9731e0159$export$2e2bcd8739ae039).BooleanOperations;
-function $638833b7817d7ae4$export$2e2bcd8739ae039(path0, path1, by_layer = true) {
-    //   let path = [];
-    //   let points0 = [];
-    //   let points1 = [];
+function $638833b7817d7ae4$export$2e2bcd8739ae039(path0, path1) {
     let layers = new Set();
-    //   for(let i = 0; i <= path0.length; i++){
-    //     points0.push(path0.slice(i-3, i+1))
-    //   }
-    //   for(let i = 3; i <= path1.length; i+=4){
-    //     points1.push(path1.slice(i-3, i+1))
-    //   }
     path0.sort((a, b)=>a.z - b.z);
     path1.sort((a, b)=>a.z - b.z);
     path0.forEach((point)=>layers.add(point.z));
     path1.forEach((point)=>layers.add(point.z));
-    let shapes = new Array();
-    let total_num_points = 0;
     let newPath = [];
     for (let layer of layers){
         let layer_points0 = path0.filter((p)=>p.z == layer).map((p)=>$638833b7817d7ae4$var$point([
@@ -7298,9 +7258,6 @@ function $638833b7817d7ae4$export$2e2bcd8739ae039(path0, path1, by_layer = true)
             let pairs = shape.match(/L-?\d+(\.\d+)?,-?\d+(\.\d+)?/g); //get pairs of points (not starting with M)
             for (let pair of pairs){
                 var thickness = thicknesses.has(pair.match(/-?\d+(\.\d+)?/g)); //todo: fix thickness (right now it's defaulting to "false" = 0)
-                // if(shapes.length < shapeidx + 1){
-                //   shapes.push([]);
-                // }
                 let [xNew, yNew] = pair.match(/-?\d+(\.\d+)?/g).map(parseFloat);
                 const newPoint = {
                     x: xNew,
@@ -7309,26 +7266,9 @@ function $638833b7817d7ae4$export$2e2bcd8739ae039(path0, path1, by_layer = true)
                     t: thickness
                 };
                 newPath.push(newPoint);
-                console.log(newPath);
-            // if(!by_layer){ //push individual vessels to final array
-            //     shapes[shapeidx].push(newPoint);
-            // } else{
-            //     shapes[0].push(newPoint);
-            // }
             }
-        //   shapeidx++;
-        //   if(by_layer){ //close the shape: push starting point of current shape to end of shape
-        //     shapes[0].push(shapes[0][(total_num_points)], shapes[0][(total_num_points)+1], layer, thickness);
-        //     // shapes[0].push(shapes[0][(total_num_points)], shapes[0][(total_num_points)+1], layer, thickness);
-        //     let num_points = (pairs.length+1)*4;
-        //     total_num_points += num_points;
-        //   } else{
-        //     shapeidx += 1;
-        //   }
         }
     }
-    //   path = shapes.flat();
-    //   return path;
     return newPath;
 }
 window.union = $638833b7817d7ae4$export$2e2bcd8739ae039;
@@ -7652,7 +7592,7 @@ function $44565e195065a6f4$var$setParameter(input, parameter_name, nbLayers, nbP
     }
     return $44565e195065a6f4$var$setSingleParameter(input, parameter_name, nbLayers, nbPointsInLayer);
 }
-function $44565e195065a6f4$export$2e2bcd8739ae039(position, initialRadius, layerHeight, nbLayers, nbPointsInLayer, radiusShapingParameter = [], scaleShapingParameter = [], scalingRadiusShapingParameter = [], translateShapingParameter = [], rotateShapingParameter = [], thicknessShapingParameter = [], layerThicknessShapingParameter = []) {
+function $44565e195065a6f4$export$2e2bcd8739ae039(position, initialRadius, layerHeight, nbLayers, nbPointsInLayer, radiusShapingParameter = [], scaleShapingParameter = [], scalingRadiusShapingParameter = [], translateShapingParameter = [], rotateShapingParameter = [], thicknessShapingParameter = []) {
     let path = [];
     let radsp = $44565e195065a6f4$var$setParameter(radiusShapingParameter, "radiusShapingParameter", nbLayers, nbPointsInLayer);
     let ssp = $44565e195065a6f4$var$setParameter(scaleShapingParameter, "scaleShapingParameter", nbLayers, nbPointsInLayer);
@@ -7660,7 +7600,6 @@ function $44565e195065a6f4$export$2e2bcd8739ae039(position, initialRadius, layer
     let tsp = $44565e195065a6f4$var$setParameter(translateShapingParameter, "translateShapingParameter", nbLayers, nbPointsInLayer);
     let srsp = $44565e195065a6f4$var$setParameter(scalingRadiusShapingParameter, "scalingRadiusShapingParameter", nbLayers, nbPointsInLayer);
     let thsp = $44565e195065a6f4$var$setParameter(thicknessShapingParameter, "thicknessShapingParameter", nbLayers, nbPointsInLayer);
-    let lthsp = $44565e195065a6f4$var$setParameter(layerThicknessShapingParameter, "layerThicknessShapingParameter", nbLayers, nbPointsInLayer);
     console.log("RADSP", radsp.length);
     var ctr = 0;
     for(let j = 0; j < nbLayers; j++)for(let i = 0; i < nbPointsInLayer; i++){
@@ -7669,7 +7608,7 @@ function $44565e195065a6f4$export$2e2bcd8739ae039(position, initialRadius, layer
             x: position[0] + (initialRadius + srsp[j] * radsp[ctr] + ssp[j]) * Math.cos(angle + rsp[j] * Math.PI / 180) + tsp[0][j],
             y: position[1] + (initialRadius + srsp[j] * radsp[ctr] + ssp[j]) * Math.sin(angle + rsp[j] * Math.PI / 180) + tsp[1][j],
             z: position[2] + layerHeight * j,
-            t: thsp[ctr] + lthsp[j]
+            t: thsp[ctr]
         };
         path.push(newPoint);
         ctr++;
