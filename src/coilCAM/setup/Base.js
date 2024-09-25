@@ -1,8 +1,9 @@
 import Flatten from '../../../node_modules/@flatten-js/core/dist/main.mjs'; 
 const {point, Polygon, Segment} = Flatten;
 
+
 export function baseSpiral(position, nbPointsInLayer, layerHeight, nozzle_diameter, radius, thickness=0){ 
-    // Add spiral centered at the middle of the vessel, width of spiral based on nozzle_diameter
+    // Add archemedes spiral centered at the middle of the vessel, width of spiral based on nozzle_diameter
     let basePath = [];
     let height = layerHeight;
 
@@ -11,14 +12,14 @@ export function baseSpiral(position, nbPointsInLayer, layerHeight, nozzle_diamet
     let scale = nozzle_diameter/Math.PI;
     let bias = .0001;
     let step = 2 * Math.PI / nbPointsInLayer;
-    let offset = nbPointsInLayer % 2 == 0 ? 0 : Math.PI/(nbPointsInLayer); //offset slightly if odd # of points
+    let offset = nbPointsInLayer % 2 == 0 ? 0 : Math.PI/(nbPointsInLayer);
 
     for (let angle = -layers * step; angle < layers * step; angle += step) {
         let spiralRadius = scale * angle;
         if (angle < 0) { //inwards spiral
             const newPoint = { // Store points in toolpath as objects for greater readability: (x coordinate, y coordinate, z coordinate, thickness)
-                x: (bias + position[0] + spiralRadius * Math.cos(angle-offset)),
-                y: (bias + position[1] + spiralRadius * Math.sin(angle-offset)),
+                x: (bias + position[0] + spiralRadius * Math.cos(angle+Math.PI)),
+                y: (bias + position[1] + spiralRadius * Math.sin(angle+Math.PI)),
                 z: height,
                 t: thickness
             }
@@ -26,8 +27,8 @@ export function baseSpiral(position, nbPointsInLayer, layerHeight, nozzle_diamet
         }
         else { //outwards spiral
             const newPoint = { // Store points in toolpath as objects for greater readability: (x coordinate, y coordinate, z coordinate, thickness)
-                x: (bias + position[0] + spiralRadius * Math.sin(angle+Math.PI/2)),
-                y: (bias + position[1] + spiralRadius * Math.cos(angle+Math.PI/2)),
+                x: (bias + position[0] + spiralRadius * Math.sin(angle - Math.PI/2 -offset)),
+                y: (bias + position[1] + spiralRadius * Math.cos(angle -Math.PI/2 -offset)),
                 z: height,
                 t: thickness
             }
@@ -36,6 +37,7 @@ export function baseSpiral(position, nbPointsInLayer, layerHeight, nozzle_diamet
     }
     return basePath;
 }
+
 
  export function baseFill(position, path, nbPointsInLayer, layerHeight, nozzle_diameter, radius, thickness=0){
     // Add lines filling in the base of the vessel
