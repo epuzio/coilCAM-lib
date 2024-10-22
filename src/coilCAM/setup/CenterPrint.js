@@ -5,9 +5,9 @@ export default function centerPrint(path, position, bedDimensions, layerHeight){
         let bedZOffset = layerHeight - path[0].z;
         
         for (var i = 0; i < path.length; i++){
-            path[i].x -= bedXOffset;
-            path[i].y -= bedYOffset;
-            path[i].z -= bedZOffset;
+            path[i].x += bedXOffset;
+            path[i].y += bedYOffset;
+            path[i].z += bedZOffset;
         }
         return path;
     }

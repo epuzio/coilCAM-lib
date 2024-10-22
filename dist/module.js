@@ -7481,7 +7481,7 @@ let $171d16fda35ebcb0$var$euclideanDist = (p1, p2)=>Math.sqrt((p1.x - p2.x) ** 2
 function $171d16fda35ebcb0$export$6a5b418875592792(path, nozzleDiameter, printSpeed) {
     if (Array.isArray(path) && path.length > 0) {
         let layerHeight = path[0].z;
-        let printSpeed = Math.floor(printSpeed * 60);
+        printSpeed = Math.floor(printSpeed * 60);
         let segmentLen = [];
         for(var i = 0; i < path.length - 1; i++)segmentLen.push($171d16fda35ebcb0$var$euclideanDist(path[i], path[i + 1]));
         let thicknesses = path.map((point)=>point.z);
@@ -7537,9 +7537,9 @@ function $14d375dbaed5c813$export$2e2bcd8739ae039(path, position, bedDimensions,
         let bedYOffset = bedDimensions[1] / 2 - position[1];
         let bedZOffset = layerHeight - path[0].z;
         for(var i = 0; i < path.length; i++){
-            path[i].x -= bedXOffset;
-            path[i].y -= bedYOffset;
-            path[i].z -= bedZOffset;
+            path[i].x += bedXOffset;
+            path[i].y += bedYOffset;
+            path[i].z += bedZOffset;
         }
         return path;
     }
@@ -7620,9 +7620,8 @@ function $831dc3114bca2c7c$export$2e2bcd8739ae039(position, initialRadius, layer
 window.toolpathUnitGenerator = $831dc3114bca2c7c$export$2e2bcd8739ae039;
 
 
-function $fc30310f8636f11b$export$2e2bcd8739ae039(path) {
+function $fc30310f8636f11b$export$2e2bcd8739ae039(path, layerHeight) {
     if (Array.isArray(path) && path.length > 0) {
-        var layerHeight = path[0].z;
         var nbPointsInLayer = [];
         var currHeight = layerHeight;
         var ctr = 0;

@@ -22,7 +22,7 @@ let euclideanDist = (p1, p2) => Math.sqrt((p1.x-p2.x)**2 + (p1.y-p2.y)**2 + (p1.
 export function generateGCode(path, nozzleDiameter, printSpeed){
     if(Array.isArray(path) && path.length > 0){ // Path is a valid array
         let layerHeight = path[0].z;
-        let printSpeed = Math.floor(printSpeed*60);
+        printSpeed = Math.floor(printSpeed*60);
         let segmentLen = [];
         
         for(var i = 0; i < path.length - 1; i++){
