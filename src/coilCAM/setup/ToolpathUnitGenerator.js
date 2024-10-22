@@ -1,5 +1,3 @@
-import { toolpathUnitGenerator } from ".";
-
 function setSingleParameter(input, parameter_name, nbLayers, nbPointsInLayer){
     let parameterLength = nbLayers;
     let useNbPointsInLayer = (parameter_name == "radiusShapingParameter" || parameter_name == "thicknessShapingParameter");
@@ -31,6 +29,19 @@ function setSingleParameter(input, parameter_name, nbLayers, nbPointsInLayer){
 }
 
 function setParameter(input, parameter_name, nbLayers, nbPointsInLayer){
+    if(parameter_name == "radiusShapingParameter"){ 
+        console.log("setting rad2d");
+        let radsp = [[], []];
+        
+        if(input?.length && Array.isArray(input[0])){ // radsp is a 2D array (radial offset, angular)
+            radsp[0] = setSingleParameter(input[0], parameter_name, nbLayers, nbPointsInLayer);
+            radsp[1] = input[1];
+        } else{ //radsp is a 1d array (radial+angular offset)
+            radsp[0] = setSingleParameter(input, parameter_name, nbLayers, nbPointsInLayer);
+            radsp[1] = new Array(nbPointsInLayer).fill(0);
+        } 
+        return radsp;
+    }
     if(parameter_name == "translateShapingParameter"){ // Call setSingleParameter twice, once for x position, once for y position
         let tsp = [[], []];
         if(input == null || input == []){
@@ -43,7 +54,7 @@ function setParameter(input, parameter_name, nbLayers, nbPointsInLayer){
     return setSingleParameter(input, parameter_name, nbLayers, nbPointsInLayer);
 }
 
-export default function tug(position, initialRadius, layerHeight, nbLayers, nbPointsInLayer,
+export default function toolpathUnitGenerator(position, initialRadius, layerHeight, nbLayers, nbPointsInLayer,
     radiusShapingParameter=[], scaleShapingParameter=[], scalingRadiusShapingParameter=[],
     translateShapingParameter=[], rotateShapingParameter=[], thicknessShapingParameter=[]){
     let path = [];
@@ -60,8 +71,8 @@ export default function tug(position, initialRadius, layerHeight, nbLayers, nbPo
         for(let i = 0; i < nbPointsInLayer; i++){
             let angle = 2 * i * Math.PI / nbPointsInLayer;
             const newPoint = { // Store points in toolpath as objects for greater readability: (x coordinate, y coordinate, z coordinate, thickness)
-                x: (position[0] + (initialRadius + srsp[j] * radsp[ctr] + ssp[j]) * Math.cos(angle + (rsp[j] * Math.PI/180)) + tsp[0][j]),
-                y: (position[1] + (initialRadius + srsp[j] * radsp[ctr] + ssp[j]) * Math.sin(angle + (rsp[j] * Math.PI/180)) + tsp[1][j]),
+                x: (position[0] + (initialRadius + srsp[j] * radsp[0][ctr] + ssp[j]) * Math.cos(angle + (radsp[1][i]) + (rsp[j] * Math.PI/180)) + tsp[0][j]),
+                y: (position[1] + (initialRadius + srsp[j] * radsp[0][ctr] + ssp[j]) * Math.sin(angle + (radsp[1][i]) + (rsp[j] * Math.PI/180)) + tsp[1][j]),
                 z: (position[2] + layerHeight * j),
                 t: (thsp[ctr])
             }

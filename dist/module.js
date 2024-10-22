@@ -113,11 +113,10 @@ function $ffbd02041277dbcf$export$2e2bcd8739ae039(stepWidth, stepHeight, offset,
     let index = 0;
     [offset, values0] = (0, $df7b7fea591ea777$export$c3c5e174940bbb4f)("Staircase", offset, values0, nbPoints, mode);
     for(let i = 0; i < nbPoints; i++){
-        if (mode == "additive" || mode.length == 0) {
+        if (mode == "additive" || mode == 0) {
             if (i % stepWidth == 0 && i != 0) index += stepHeight;
             values.push(index + offset[i] + values0[i]);
-        }
-        if (mode == "multiplicative") {
+        } else if (mode == "multiplicative") {
             if (i % stepWidth == 0 && i != 0) index += stepHeight;
             values.push((index + offset[i]) * values0[i]);
         } else throw new Error('Mode must be "additive", "multiplicative" or left blank.');
@@ -7158,15 +7157,13 @@ $271a1c686af88dba$export$2e2bcd8739ae039.Relations = $271a1c686af88dba$export$93
 
 // import Flatten from 'https://unpkg.com/@flatten-js/core/dist/main.mjs';
 const { point: $685d2651675ad770$var$point, Polygon: $685d2651675ad770$var$Polygon } = (0, $271a1c686af88dba$export$2e2bcd8739ae039);
-const { unify: $685d2651675ad770$var$unify } = (0, $271a1c686af88dba$export$2e2bcd8739ae039).BooleanOperations;
+const { subtract: $685d2651675ad770$var$subtract } = (0, $271a1c686af88dba$export$2e2bcd8739ae039).BooleanOperations;
 function $685d2651675ad770$export$2e2bcd8739ae039(path0, path1, by_layer = true) {
     let layers = new Set();
     path0.sort((a, b)=>a.z - b.z);
     path1.sort((a, b)=>a.z - b.z);
     path0.forEach((point)=>layers.add(point.z));
     path1.forEach((point)=>layers.add(point.z));
-    let shapes = new Array();
-    let total_num_points = 0;
     let newPath = [];
     for (let layer of layers){
         let layer_points0 = path0.filter((p)=>p.z == layer).map((p)=>$685d2651675ad770$var$point([
@@ -7189,7 +7186,7 @@ function $685d2651675ad770$export$2e2bcd8739ae039(path0, path1, by_layer = true)
             path1[i].y
         ], path1[i].t);
         //to add: tolerance
-        let combinedPolygon = subtract(polygon0, polygon1);
+        let combinedPolygon = $685d2651675ad770$var$subtract(polygon0, polygon1);
         let polygonSVG = combinedPolygon.svg(); //convert to svg to rely on flatten-js's even-odd algorithm
         const shapesString = polygonSVG.match(/(M[^M]+z)/g); //separate svg into just the section containing points
         let shapeidx = 0;
@@ -7466,15 +7463,15 @@ window.addBase = $c45d59629d16dffd$export$65b4735759d794d4;
 
 
 // Helper functions for GCodeGenerator
-function $171d16fda35ebcb0$var$extrude(nozzleDiameter, layerHeight, segmentLen, thickness) {
+function $171d16fda35ebcb0$var$extrude(nozzleDiameter, layerHeight, segmentLen, thicknesses) {
     let points = [];
-    let extrusion_multiplier = (nozzleDiameter / 1.91) ** 2; //extrusion multiplier for correct filament thickness
+    let extrusionMultiplier = (nozzleDiameter / 1.91) ** 2; //extrusion multiplier for correct filament thickness
     let totalExtruded = 0;
     points.push(0);
-    console.log("T", thickness);
     for(var i = 0; i < segmentLen.length; i++){
         var newPoint = segmentLen[i] * layerHeight / nozzleDiameter * (4 / Math.PI + layerHeight / nozzleDiameter);
-        points.push(((newPoint + totalExtruded) * extrusion_multiplier).toFixed(3));
+        var pointThickness = 1 + .1 * thicknesses[i]; //range between 90% and 110% of total thickness
+        points.push(((newPoint + totalExtruded) * extrusionMultiplier * pointThickness).toFixed(3));
         totalExtruded += newPoint;
     }
     return points;
@@ -7484,25 +7481,21 @@ let $171d16fda35ebcb0$var$euclideanDist = (p1, p2)=>Math.sqrt((p1.x - p2.x) ** 2
 function $171d16fda35ebcb0$export$6a5b418875592792(path, nozzleDiameter, printSpeed) {
     if (Array.isArray(path) && path.length > 0) {
         let layerHeight = path[0].z;
-        let printSpeeds = [
-            10000
-        ]; // First move should be 10000
+        let printSpeed = Math.floor(printSpeed * 60);
         let segmentLen = [];
-        for(var i = 0; i < path.length - 1; i++){
-            segmentLen.push($171d16fda35ebcb0$var$euclideanDist(path[i], path[i + 1]));
-            printSpeeds.push(Math.floor(printSpeed * 60));
-        }
-        let thicknesses = path.filter((_, index)=>(index + 1) % 4 === 0);
-        console.log(thicknesses.length);
+        for(var i = 0; i < path.length - 1; i++)segmentLen.push($171d16fda35ebcb0$var$euclideanDist(path[i], path[i + 1]));
+        let thicknesses = path.map((point)=>point.z);
+        // let thicknesses = path.filter((_, index) => (index + 1) % 4 === 0);
         let extr = $171d16fda35ebcb0$var$extrude(nozzleDiameter, layerHeight, segmentLen, thicknesses);
         let startGcodePrefix = ";;; START GCODE ;;;\nM82 ;absolute extrusion mode\nG28 ;Home\nG1 X207.5 Y202.5 Z20 F10000 ;Move X and Y to center, Z to 20mm high\nG1 E2000 F20000 ; !!Prime Extruder\nG92 E0\n;;; ======\n";
         let endGcodePostfix = ";;; === END GCODE ===\nM83 ;Set to Relative Extrusion Mode\nG28 Z ;Home Z\n; === DEPRESSURIZE ===\nG91\nG91\nG1 E-200 F4000\nG90\nG90\n";
         let gcode = startGcodePrefix;
-        for(var i = 0; i < path.length; i++){
+        for(var i = 1; i < path.length; i++){
             x = $171d16fda35ebcb0$var$round2pt(path[i].x);
             y = $171d16fda35ebcb0$var$round2pt(path[i].y);
             z = $171d16fda35ebcb0$var$round2pt(path[i].z);
-            gcode += "G1 F" + printSpeeds[i] + " X" + x + " Y" + y + " Z" + z + " E" + extr[i] + "\n";
+            if (i == 0) gcode += "G1 F10000 X" + x + " Y" + y + " Z" + z + " E" + extr[i] + "\n";
+            else gcode += "G1 F" + printSpeed + " X" + x + " Y" + y + " Z" + z + " E" + extr[i] + "\n";
         }
         gcode += endGcodePostfix;
         return gcode;
@@ -7556,7 +7549,6 @@ function $14d375dbaed5c813$export$2e2bcd8739ae039(path, position, bedDimensions,
 window.centerPrint = $14d375dbaed5c813$export$2e2bcd8739ae039;
 
 
-
 function $831dc3114bca2c7c$var$setSingleParameter(input, parameter_name, nbLayers, nbPointsInLayer) {
     let parameterLength = nbLayers;
     let useNbPointsInLayer = parameter_name == "radiusShapingParameter" || parameter_name == "thicknessShapingParameter";
@@ -7575,6 +7567,21 @@ function $831dc3114bca2c7c$var$setSingleParameter(input, parameter_name, nbLayer
     throw new Error(error_str);
 }
 function $831dc3114bca2c7c$var$setParameter(input, parameter_name, nbLayers, nbPointsInLayer) {
+    if (parameter_name == "radiusShapingParameter") {
+        console.log("setting rad2d");
+        let radsp = [
+            [],
+            []
+        ];
+        if (input?.length && Array.isArray(input[0])) {
+            radsp[0] = $831dc3114bca2c7c$var$setSingleParameter(input[0], parameter_name, nbLayers, nbPointsInLayer);
+            radsp[1] = input[1];
+        } else {
+            radsp[0] = $831dc3114bca2c7c$var$setSingleParameter(input, parameter_name, nbLayers, nbPointsInLayer);
+            radsp[1] = new Array(nbPointsInLayer).fill(0);
+        }
+        return radsp;
+    }
     if (parameter_name == "translateShapingParameter") {
         let tsp = [
             [],
@@ -7600,8 +7607,8 @@ function $831dc3114bca2c7c$export$2e2bcd8739ae039(position, initialRadius, layer
     for(let j = 0; j < nbLayers; j++)for(let i = 0; i < nbPointsInLayer; i++){
         let angle = 2 * i * Math.PI / nbPointsInLayer;
         const newPoint = {
-            x: position[0] + (initialRadius + srsp[j] * radsp[ctr] + ssp[j]) * Math.cos(angle + rsp[j] * Math.PI / 180) + tsp[0][j],
-            y: position[1] + (initialRadius + srsp[j] * radsp[ctr] + ssp[j]) * Math.sin(angle + rsp[j] * Math.PI / 180) + tsp[1][j],
+            x: position[0] + (initialRadius + srsp[j] * radsp[0][ctr] + ssp[j]) * Math.cos(angle + radsp[1][i] + rsp[j] * Math.PI / 180) + tsp[0][j],
+            y: position[1] + (initialRadius + srsp[j] * radsp[0][ctr] + ssp[j]) * Math.sin(angle + radsp[1][i] + rsp[j] * Math.PI / 180) + tsp[1][j],
             z: position[2] + layerHeight * j,
             t: thsp[ctr]
         };
@@ -7610,7 +7617,7 @@ function $831dc3114bca2c7c$export$2e2bcd8739ae039(position, initialRadius, layer
     }
     return path;
 }
-window.toolpathUnitGenerator = (0, $831dc3114bca2c7c$export$2e2bcd8739ae039);
+window.toolpathUnitGenerator = $831dc3114bca2c7c$export$2e2bcd8739ae039;
 
 
 function $fc30310f8636f11b$export$2e2bcd8739ae039(path) {
