@@ -2,7 +2,7 @@ export default function centerPrint(path, position, bedDimensions, layerHeight){
     if(Array.isArray(path) && path.length > 0){ // Path is a valid array
         let bedXOffset = bedDimensions[0]/2 - position[0];
         let bedYOffset = bedDimensions[1]/2 - position[1];
-        let bedZOffset = layerHeight - path[0].z;
+        let bedZOffset = -position[2];
         
         for (var i = 0; i < path.length; i++){
             path[i].x += bedXOffset;

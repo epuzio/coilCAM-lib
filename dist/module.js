@@ -7535,7 +7535,7 @@ function $14d375dbaed5c813$export$2e2bcd8739ae039(path, position, bedDimensions,
     if (Array.isArray(path) && path.length > 0) {
         let bedXOffset = bedDimensions[0] / 2 - position[0];
         let bedYOffset = bedDimensions[1] / 2 - position[1];
-        let bedZOffset = layerHeight - path[0].z;
+        let bedZOffset = -position[2];
         for(var i = 0; i < path.length; i++){
             path[i].x += bedXOffset;
             path[i].y += bedYOffset;
@@ -7621,29 +7621,29 @@ window.toolpathUnitGenerator = $831dc3114bca2c7c$export$2e2bcd8739ae039;
 
 
 function $fc30310f8636f11b$export$2e2bcd8739ae039(path, layerHeight) {
-    if (Array.isArray(path) && path.length > 0) {
-        var nbPointsInLayer = [];
-        var currHeight = layerHeight;
-        var ctr = 0;
-        // Points per layer can vary because of union/difference operators - calculate nbPointsInLayer per layer
-        for(let i = 0; i < path.length; i++){
-            if (path[i].z > currHeight) {
-                currHeight = path[i].z;
-                nbPointsInLayer.push(ctr);
-                ctr = 0;
-            }
-            ctr++;
+    var nbPointsInLayer = [];
+    var currHeight = path[0].z;
+    var ctr = 0;
+    for(let i = 0; i < path.length; i++){
+        if (path[i].z > currHeight) {
+            currHeight = path[i].z;
+            nbPointsInLayer.push(ctr);
+            ctr = 0;
         }
-        nbPointsInLayer.push(ctr);
-        var nPointsIterated = 0;
-        var points = path;
-        for(let i = 0; i < nbPointsInLayer.length; i++){
-            var ratio = layerHeight / nbPointsInLayer[i];
-            for(let j = 0; j < nbPointsInLayer[i]; j++)points[nPointsIterated + j].z += (j + 1) * ratio;
-            nPointsIterated += nbPointsInLayer[i];
-        }
-        return points;
+        ctr++;
     }
+    nbPointsInLayer.push(ctr);
+    console.log("nbpl", nbPointsInLayer);
+    currLayer = 0;
+    nPointsIterated = 0;
+    var points = path;
+    for(let i = 0; i < nbPointsInLayer.length; i++){
+        // console.log("npr", nPointsIterated);
+        let ratio = layerHeight / nbPointsInLayer[i];
+        for(let j = 0; j < nbPointsInLayer[i]; j++)points[nPointsIterated + j].z += (j + 1) * ratio;
+        nPointsIterated += nbPointsInLayer[i];
+    }
+    return points;
 }
 window.spiralize = $fc30310f8636f11b$export$2e2bcd8739ae039;
 
