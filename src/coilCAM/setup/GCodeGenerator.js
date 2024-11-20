@@ -1,13 +1,14 @@
 // Helper functions for GCodeGenerator
-function extrude(nozzleDiameter, layerHeight, segmentLen, thicknesses){ //noncumulative
+function extrude(nozzleDiameter, layerHeight, segmentLen, thicknesses){
     let points = [];
-    let extrusionMultiplier = (nozzleDiameter/1.91)**2; // extrusion multiplier for correct filament thickness (printer dependent)
+    let extrusionMultiplier = (nozzleDiameter/1.91)**2; //extrusion multiplier for correct filament thickness
     let totalExtruded = 0;
     points.push(0);
     for(var i = 0; i < segmentLen.length; i++){
         var newPoint = (segmentLen[i]*layerHeight/nozzleDiameter) * (4/Math.PI + layerHeight/nozzleDiameter);
-        let pointThicknessOffset = (1 + (0.3 * thicknesses[i])); // 10% offset for extrusion rate
-        points.push((newPoint * extrusionMultiplier * pointThicknessOffset).toFixed(3));
+        // let pointThicknessOffset = (1 + (0.1 * thicknesses[i]));
+        let pointThicknessOffset = 1; //no thickness for now
+        points.push(((newPoint + totalExtruded) * extrusionMultiplier * pointThicknessOffset).toFixed(3));
         totalExtruded += newPoint;
     }
     return points;
@@ -30,7 +31,7 @@ export function generateGCode(path, layerHeight, nozzleDiameter, printSpeed){
         let thicknesses = path.map(point => point.t);
         let extr = extrude(nozzleDiameter, layerHeight, segmentLen, thicknesses);
         
-        let startGcodePrefix = ";;; START GCODE ;;;\nM83 ;relative extrusion mode\nG28 ;Home\nG1 X207.5 Y202.5 Z20 F10000 ;Move X and Y to center, Z to 20mm high\nG1 E2000 F20000 ; !!Prime Extruder\nG92 E0\n;;; ======\n";
+        let startGcodePrefix = ";;; START GCODE ;;;\nM82 ;relative extrusion mode\nG28 ;Home\nG1 X207.5 Y202.5 Z20 F10000 ;Move X and Y to center, Z to 20mm high\nG1 E2000 F20000 ; !!Prime Extruder\nG92 E0\n;;; ======\n";
         let endGcodePostfix = ";;; === END GCODE ===\nM83 ;Set to Relative Extrusion Mode\nG28 Z ;Home Z\n; === DEPRESSURIZE ===\nG91\nG91\nG1 E-200 F4000\nG90\nG90\n";
         let gcode = startGcodePrefix;
 
@@ -41,7 +42,9 @@ export function generateGCode(path, layerHeight, nozzleDiameter, printSpeed){
             if(i == 0){ // first move F = 10000 
                 gcode += "G1 F10000 X"+ x +" Y" + y + " Z" + z + " E" + extr[i] +"\n";
             } else{
-                gcode += "G1 F" + printSpeed+ " X"+ x +" Y" + y + " Z" + z + " E" + extr[i] +"\n";
+                let currSpeed = printSpeed * (((path[i].t +1) * 3/8) + 1/4); // map -1 to 1 -> 1/4 to 1
+                gcode += "G1 F" + currSpeed+ " X"+ x +" Y" + y + " Z" + z + " E" + extr[i] +"\n";
+                // gcode += "G1 F" + printSpeed+ " X"+ x +" Y" + y + " Z" + z + " E" + extr[i] +"\n";
             }
         }
         gcode += endGcodePostfix;

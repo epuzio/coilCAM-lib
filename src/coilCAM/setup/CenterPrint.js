@@ -1,4 +1,4 @@
-export default function centerPrint(path, position, bedDimensions, layerHeight){
+export default function centerPrint(path, position, bedDimensions=[280, 265, 305]){
     if(Array.isArray(path) && path.length > 0){ // Path is a valid array
         let bedXOffset = bedDimensions[0]/2 - position[0];
         let bedYOffset = bedDimensions[1]/2 - position[1];
