@@ -6,7 +6,7 @@ export default function linear2D(amplitudeX1, offsetX1, amplitudeX2, offsetX2, n
     [offsetX1, offsetX2, values0x, values0y] = setParams2D("Linear2D", offsetX1, offsetX2, values0x, values0y, nbPoints, mode);
     
     for (let i = 0; i < nbPoints; i++){
-        if (mode == "additive" || mode.length == 0){
+        if (!mode || mode == "additive"){
             pointsX.push((amplitudeX1 * i + offsetX1[i]) + values0x[i]);
             pointsY.push((amplitudeX2 * i + offsetX2[i]) + values0y[i]);
         } else if (mode == "multiplicative"){

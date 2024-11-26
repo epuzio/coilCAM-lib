@@ -7,7 +7,7 @@ export default function staircase(stepWidth, stepHeight, offset, nbPoints, value
     [offset, values0] = setParams1D("Staircase", offset, values0, nbPoints, mode);
 
     for (let i = 0; i < nbPoints; i++){
-        if (mode == "additive" || mode == 0){
+        if (!mode || mode == "additive"){
             if (i % stepWidth == 0 && i != 0){
                 index += stepHeight;
             }

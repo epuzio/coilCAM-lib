@@ -18,7 +18,7 @@ $parcel$export($00969899720ecf46$exports, "square", () => $98eb036bb0d342cf$expo
 $parcel$export($00969899720ecf46$exports, "exponential", () => $880ea02f04cf849c$export$2e2bcd8739ae039);
 // Helper Functions
 function $2040f713c747fdf6$var$setParams(paramType, value, nbPoints, mode) {
-    if (value.length == 0) {
+    if (!value || value.length == 0) {
         if (mode == "multiplicative" && paramType == "values") return new Array(nbPoints).fill(1);
         else return new Array(nbPoints).fill(0);
     } else if (!Array.isArray(value)) return new Array(nbPoints).fill(value);
@@ -53,11 +53,11 @@ function $2040f713c747fdf6$export$d49ab658f2d8f01e(functionType, offset0x, offse
 }
 
 
-function $4dbbfebae85fed22$export$2e2bcd8739ae039(amplitude, period, offset, nbPoints, values0, mode = []) {
+function $4dbbfebae85fed22$export$2e2bcd8739ae039(amplitude, period, offset, nbPoints, values0, mode = "additive") {
     let values = [];
     [offset, values0] = (0, $2040f713c747fdf6$export$c3c5e174940bbb4f)("Sinusoidal", offset, values0, nbPoints, mode);
     for(let i = 0; i < nbPoints; i++){
-        if (mode == "additive" || mode.length == 0) values.push(amplitude * Math.sin(2 * Math.PI / period * i + offset[i]) + values0[i]);
+        if (!mode || mode == "additive") values.push(amplitude * Math.sin(2 * Math.PI / period * i + offset[i]) + values0[i]);
         else if (mode == "multiplicative") values.push(amplitude * Math.sin(2 * Math.PI / period * i + offset[i]) * values0[i]);
         else throw new Error('Mode must be "additive", "multiplicative" or left blank.');
     }
@@ -99,7 +99,7 @@ function $98eb036bb0d342cf$export$2e2bcd8739ae039(amplitude, period, offset, bum
     let values = [];
     [offset, values0] = (0, $2040f713c747fdf6$export$c3c5e174940bbb4f)("Square", offset, values0, nbPoints, mode);
     for(let i = 0; i < nbPoints; i++){
-        if (mode == "additive" || mode.length == 0) {
+        if (!mode || mode == "additive") {
             if (bumps && bumps <= (i + offset[i]) % period) values.push(amplitude * 0 + values0[i]);
             else values.push(amplitude * 1 + values0[i]);
         } else if (mode == "multiplicative") {
@@ -7475,7 +7475,8 @@ function $94a0c5bacd65ea53$var$extrude(nozzleDiameter, layerHeight, segmentLen, 
     points.push(0);
     for(var i = 0; i < segmentLen.length; i++){
         var newPoint = segmentLen[i] * layerHeight / nozzleDiameter * (4 / Math.PI + layerHeight / nozzleDiameter);
-        let pointThicknessOffset = 1 + 0.03 * thicknesses[i];
+        // let pointThicknessOffset = (1 + (0.1 * thicknesses[i]));
+        let pointThicknessOffset = 1; //no thickness for now
         points.push(((newPoint + totalExtruded) * extrusionMultiplier * pointThicknessOffset).toFixed(3));
         totalExtruded += newPoint;
     }
@@ -7490,7 +7491,7 @@ function $94a0c5bacd65ea53$export$6a5b418875592792(path, layerHeight, nozzleDiam
         for(var i = 0; i < path.length - 1; i++)segmentLen.push($94a0c5bacd65ea53$var$euclideanDist(path[i], path[i + 1]));
         let thicknesses = path.map((point)=>point.t);
         let extr = $94a0c5bacd65ea53$var$extrude(nozzleDiameter, layerHeight, segmentLen, thicknesses);
-        let startGcodePrefix = ";;; START GCODE ;;;\nM82 ;absolute extrusion mode\nG28 ;Home\nG1 X207.5 Y202.5 Z20 F10000 ;Move X and Y to center, Z to 20mm high\nG1 E2000 F20000 ; !!Prime Extruder\nG92 E0\n;;; ======\n";
+        let startGcodePrefix = ";;; START GCODE ;;;\nM82 ;relative extrusion mode\nG28 ;Home\nG1 X207.5 Y202.5 Z20 F10000 ;Move X and Y to center, Z to 20mm high\nG1 E2000 F20000 ; !!Prime Extruder\nG92 E0\n;;; ======\n";
         let endGcodePostfix = ";;; === END GCODE ===\nM83 ;Set to Relative Extrusion Mode\nG28 Z ;Home Z\n; === DEPRESSURIZE ===\nG91\nG91\nG1 E-200 F4000\nG90\nG90\n";
         let gcode = startGcodePrefix;
         for(var i = 0; i < path.length; i++){
@@ -7498,7 +7499,11 @@ function $94a0c5bacd65ea53$export$6a5b418875592792(path, layerHeight, nozzleDiam
             let y = $94a0c5bacd65ea53$var$round2pt(path[i].y);
             let z = $94a0c5bacd65ea53$var$round2pt(path[i].z);
             if (i == 0) gcode += "G1 F10000 X" + x + " Y" + y + " Z" + z + " E" + extr[i] + "\n";
-            else gcode += "G1 F" + printSpeed + " X" + x + " Y" + y + " Z" + z + " E" + extr[i] + "\n";
+            else {
+                let currSpeed = printSpeed * ((path[i].t + 1) * 3 / 8 + 1 / 4); // map -1 to 1 -> 1/4 to 1
+                gcode += "G1 F" + currSpeed + " X" + x + " Y" + y + " Z" + z + " E" + extr[i] + "\n";
+            // gcode += "G1 F" + printSpeed+ " X"+ x +" Y" + y + " Z" + z + " E" + extr[i] +"\n";
+            }
         }
         gcode += endGcodePostfix;
         return gcode;
@@ -7534,7 +7539,11 @@ window.generateGCode = $94a0c5bacd65ea53$export$6a5b418875592792;
 window.getNumTubes = $94a0c5bacd65ea53$export$2dad54cf1d4fdb11;
 
 
-function $86cfff78df649917$export$2e2bcd8739ae039(path, position, bedDimensions, layerHeight) {
+function $86cfff78df649917$export$2e2bcd8739ae039(path, position, bedDimensions = [
+    280,
+    265,
+    305
+]) {
     if (Array.isArray(path) && path.length > 0) {
         let bedXOffset = bedDimensions[0] / 2 - position[0];
         let bedYOffset = bedDimensions[1] / 2 - position[1];

@@ -6,7 +6,7 @@ export default function square(amplitude, period, offset, bumps, nbPoints, value
     [offset, values0] = setParams1D("Square", offset, values0, nbPoints, mode);
 
     for (let i = 0; i < nbPoints; i++){
-        if (mode == "additive" || mode.length == 0){
+        if (!mode || mode == "additive"){
             if (bumps && bumps <= (i + offset[i])%period){
                 values.push((amplitude * 0) + values0[i]);
             } else {
