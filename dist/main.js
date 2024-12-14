@@ -71,7 +71,7 @@ function $c2b09c09e9c34f0a$export$2e2bcd8739ae039(amplitude, offset, nbPoints, v
     let values = [];
     [offset, values0] = (0, $2040f713c747fdf6$export$c3c5e174940bbb4f)("Linear", offset, values0, nbPoints, mode);
     for(let i = 0; i < nbPoints; i++){
-        if (mode == "additive" || mode.length == 0) values.push(amplitude * i + offset[i] + values0[i]);
+        if (!mode || mode == "additive") values.push(amplitude * i + offset[i] + values0[i]);
         else if (mode == "multiplicative") values.push((amplitude * i + offset[i]) * values0[i]);
         else throw new Error('Mode must be "additive", "multiplicative" or left blank.');
     }
@@ -85,7 +85,7 @@ function $880ea02f04cf849c$export$2e2bcd8739ae039(amplitude, base, ampExp, offse
     let values = [];
     [offset, values0] = (0, $2040f713c747fdf6$export$c3c5e174940bbb4f)("Exponential", offset, values0, nbPoints, mode);
     for(let i = 0; i < nbPoints; i++){
-        if (mode == "additive" || mode.length == 0) values.push(amplitude * Math.pow(base, ampExp * i + offset[i]) + values0[i]);
+        if (!mode || mode == "additive") values.push(amplitude * Math.pow(base, ampExp * i + offset[i]) + values0[i]);
         else if (mode == "multiplicative") values.push(amplitude * Math.pow(base, ampExp * i + offset[i]) * values0[i]);
         else throw new Error('Mode must be "additive", "multiplicative" or left blank.');
     }
@@ -118,7 +118,7 @@ function $71d25318f3359294$export$2e2bcd8739ae039(stepWidth, stepHeight, offset,
     let index = 0;
     [offset, values0] = (0, $2040f713c747fdf6$export$c3c5e174940bbb4f)("Staircase", offset, values0, nbPoints, mode);
     for(let i = 0; i < nbPoints; i++){
-        if (mode == "additive" || mode == 0) {
+        if (!mode || mode == "additive") {
             if (i % stepWidth == 0 && i != 0) index += stepHeight;
             values.push(index + offset[i] + values0[i]);
         } else if (mode == "multiplicative") {
@@ -143,7 +143,7 @@ function $dd97bf293f53b473$export$2e2bcd8739ae039(amplitudeX1, periodX1, amplitu
     let pointsY = [];
     [offset0x, offset0y, values0x, values0y] = (0, $2040f713c747fdf6$export$d49ab658f2d8f01e)("Sinusoidal2D", offset0x, offset0y, values0x, values0y, nbPoints, mode);
     for(let i = 0; i < nbPoints; i++){
-        if (mode == "additive" || mode.length == 0) {
+        if (!mode || mode == "additive") {
             pointsX.push(amplitudeX1 * Math.cos(2 * Math.PI * i / periodX1 + offset0x[i]) + values0x[i]);
             pointsY.push(amplitudeX2 * Math.sin(2 * Math.PI * i / periodX2 + offset0y[i]) + values0y[i]);
         } else if (mode == "multiplicative") {
@@ -162,7 +162,7 @@ function $6f6401d59e48f3f2$export$2e2bcd8739ae039(amplitudeX1, offsetX1, amplitu
     let pointsY = [];
     [offsetX1, offsetX2, values0x, values0y] = (0, $2040f713c747fdf6$export$d49ab658f2d8f01e)("Linear2D", offsetX1, offsetX2, values0x, values0y, nbPoints, mode);
     for(let i = 0; i < nbPoints; i++){
-        if (mode == "additive" || mode.length == 0) {
+        if (!mode || mode == "additive") {
             pointsX.push(amplitudeX1 * i + offsetX1[i] + values0x[i]);
             pointsY.push(amplitudeX2 * i + offsetX2[i] + values0y[i]);
         } else if (mode == "multiplicative") {
@@ -7475,9 +7475,9 @@ function $94a0c5bacd65ea53$var$extrude(nozzleDiameter, layerHeight, segmentLen, 
     points.push(0);
     for(var i = 0; i < segmentLen.length; i++){
         var newPoint = segmentLen[i] * layerHeight / nozzleDiameter * (4 / Math.PI + layerHeight / nozzleDiameter);
-        // let pointThicknessOffset = (1 + (0.1 * thicknesses[i]));
-        let pointThicknessOffset = 1; //no thickness for now
-        points.push(((newPoint + totalExtruded) * extrusionMultiplier * pointThicknessOffset).toFixed(3));
+        let pointThicknessOffset = 1 + 0.15 * thicknesses[i];
+        // let pointThicknessOffset = 1; //no thickness for now
+        points.push(((newPoint * pointThicknessOffset + totalExtruded) * extrusionMultiplier).toFixed(3));
         totalExtruded += newPoint;
     }
     return points;
@@ -7499,11 +7499,9 @@ function $94a0c5bacd65ea53$export$6a5b418875592792(path, layerHeight, nozzleDiam
             let y = $94a0c5bacd65ea53$var$round2pt(path[i].y);
             let z = $94a0c5bacd65ea53$var$round2pt(path[i].z);
             if (i == 0) gcode += "G1 F10000 X" + x + " Y" + y + " Z" + z + " E" + extr[i] + "\n";
-            else {
-                let currSpeed = printSpeed * ((path[i].t + 1) * 3 / 8 + 1 / 4); // map -1 to 1 -> 1/4 to 1
-                gcode += "G1 F" + currSpeed + " X" + x + " Y" + y + " Z" + z + " E" + extr[i] + "\n";
-            // gcode += "G1 F" + printSpeed+ " X"+ x +" Y" + y + " Z" + z + " E" + extr[i] +"\n";
-            }
+            else // let currSpeed = printSpeed * (((path[i].t +1) * 3/8) + 1/4); // map -1 to 1 -> 1/4 to 1
+            // gcode += "G1 F" + currSpeed+ " X"+ x +" Y" + y + " Z" + z + " E" + extr[i] +"\n";
+            gcode += "G1 F" + printSpeed + " X" + x + " Y" + y + " Z" + z + " E" + extr[i] + "\n";
         }
         gcode += endGcodePostfix;
         return gcode;

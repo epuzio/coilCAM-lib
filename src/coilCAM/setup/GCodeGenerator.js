@@ -6,9 +6,9 @@ function extrude(nozzleDiameter, layerHeight, segmentLen, thicknesses){
     points.push(0);
     for(var i = 0; i < segmentLen.length; i++){
         var newPoint = (segmentLen[i]*layerHeight/nozzleDiameter) * (4/Math.PI + layerHeight/nozzleDiameter);
-        // let pointThicknessOffset = (1 + (0.1 * thicknesses[i]));
-        let pointThicknessOffset = 1; //no thickness for now
-        points.push(((newPoint + totalExtruded) * extrusionMultiplier * pointThicknessOffset).toFixed(3));
+        let pointThicknessOffset = (1 + (0.15 * thicknesses[i]));
+        // let pointThicknessOffset = 1; //no thickness for now
+        points.push((((newPoint * pointThicknessOffset) + totalExtruded) * extrusionMultiplier).toFixed(3));
         totalExtruded += newPoint;
     }
     return points;
@@ -42,9 +42,9 @@ export function generateGCode(path, layerHeight, nozzleDiameter, printSpeed){
             if(i == 0){ // first move F = 10000 
                 gcode += "G1 F10000 X"+ x +" Y" + y + " Z" + z + " E" + extr[i] +"\n";
             } else{
-                let currSpeed = printSpeed * (((path[i].t +1) * 3/8) + 1/4); // map -1 to 1 -> 1/4 to 1
-                gcode += "G1 F" + currSpeed+ " X"+ x +" Y" + y + " Z" + z + " E" + extr[i] +"\n";
-                // gcode += "G1 F" + printSpeed+ " X"+ x +" Y" + y + " Z" + z + " E" + extr[i] +"\n";
+                // let currSpeed = printSpeed * (((path[i].t +1) * 3/8) + 1/4); // map -1 to 1 -> 1/4 to 1
+                // gcode += "G1 F" + currSpeed+ " X"+ x +" Y" + y + " Z" + z + " E" + extr[i] +"\n";
+                gcode += "G1 F" + printSpeed+ " X"+ x +" Y" + y + " Z" + z + " E" + extr[i] +"\n";
             }
         }
         gcode += endGcodePostfix;
