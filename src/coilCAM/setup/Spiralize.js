@@ -11,13 +11,11 @@ export default function spiralize(path, layerHeight){
         ctr++;
     }
     nbPointsInLayer.push(ctr);
-    console.log("nbpl", nbPointsInLayer);
 
     currLayer = 0;
     nPointsIterated = 0;
     var points = path;
     for(let i = 0; i < nbPointsInLayer.length; i++){
-        // console.log("npr", nPointsIterated);
         let ratio = layerHeight / nbPointsInLayer[i];
         for(let j = 0; j < nbPointsInLayer[i]; j++){
             points[nPointsIterated + j].z += ((j+1)*(ratio));

@@ -7563,22 +7563,22 @@ function $14d375dbaed5c813$export$2e2bcd8739ae039(path, position, bedDimensions 
 window.centerPrint = $14d375dbaed5c813$export$2e2bcd8739ae039;
 
 
-function $831dc3114bca2c7c$var$setSingleParameter(input, parameter_name, nbLayers, nbPointsInLayer) {
+function $831dc3114bca2c7c$var$padSingleParameter(input, inputLength, parameterName) {
+    if (parameterName == "scalingRadiusShapingParameter") return input.concat(new Array(inputLength - input.length).fill(1));
+    return input.concat(Array(inputLength - input.length).fill(0));
+}
+function $831dc3114bca2c7c$var$setSingleParameter(input, parameterName, nbLayers, nbPointsInLayer) {
     let parameterLength = nbLayers;
-    let useNbPointsInLayer = parameter_name == "radiusShapingParameter" || parameter_name == "thicknessShapingParameter";
+    let useNbPointsInLayer = parameterName == "radiusShapingParameter" || parameterName == "thicknessShapingParameter";
     if (useNbPointsInLayer) parameterLength *= nbPointsInLayer;
-    if (!input?.length) {
-        if (parameter_name == "scalingRadiusShapingParameter") return new Array(parameterLength).fill(1);
-        return new Array(parameterLength).fill(0);
-    } else if (!Array.isArray(input)) return new Array(parameterLength).fill(input);
-    else if (input.length == parameterLength) return input;
-    else if (useNbPointsInLayer) {
-        if (input.length == nbPointsInLayer) return new Array(nbPointsInLayer * nbLayers).fill(input).flat();
-        var error_str = "Length of values for parameter " + parameter_name + " is currently " + input.length + ", must be 0, 1, equal to nbPointsInLayer: " + nbPointsInLayer + " or nbPointsInLayer*nbLayers: " + nbPointsInLayer * nbLayers;
-        throw new Error(error_str);
-    }
-    var error_str = "Length of values for parameter " + parameter_name + " is currently " + input.length + ", must be 0, 1 or equal to nbLayers: " + nbLayers;
-    throw new Error(error_str);
+    if (!input?.length) return $831dc3114bca2c7c$var$padSingleParameter([], parameterLength, parameterName);
+    else if (!Array.isArray(input)) {
+        if (typeof input === "number") return new Array(parameterLength).fill(input);
+        else throw new Error("Parameter ", parameterName, " must be empty, a number, or an array of numbers.");
+    } else if (input.length == parameterLength) return input;
+    else if (useNbPointsInLayer && input.length == nbPointsInLayer) return new Array(nbPointsInLayer * nbLayers).fill(input).flat();
+    else if (input.length < parameterLength) return $831dc3114bca2c7c$var$padSingleParameter(input, parameterLength, parameterName);
+    else return input.slice(0, parameterLength);
 }
 function $831dc3114bca2c7c$var$setParameter(input, parameter_name, nbLayers, nbPointsInLayer) {
     if (parameter_name == "radiusShapingParameter") {

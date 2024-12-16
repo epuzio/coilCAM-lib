@@ -1,36 +1,38 @@
-function setSingleParameter(input, parameter_name, nbLayers, nbPointsInLayer){
+function padSingleParameter(input, inputLength, parameterName){
+    if(parameterName == "scalingRadiusShapingParameter"){
+        return input.concat(new Array(inputLength - input.length).fill(1));
+    } 
+    return input.concat(Array(inputLength - input.length).fill(0));
+}
+
+
+function setSingleParameter(input, parameterName, nbLayers, nbPointsInLayer){
     let parameterLength = nbLayers;
-    let useNbPointsInLayer = (parameter_name == "radiusShapingParameter" || parameter_name == "thicknessShapingParameter");
+    let useNbPointsInLayer = (parameterName == "radiusShapingParameter" || parameterName == "thicknessShapingParameter");
     if(useNbPointsInLayer){
         parameterLength *= nbPointsInLayer;
     }
 
     if(!input?.length){ // Input not provided or input == []
-        if (parameter_name == "scalingRadiusShapingParameter"){
-            return new Array(parameterLength).fill(1);
+        return padSingleParameter([], parameterLength, parameterName);
+    } else if(!Array.isArray(input)){ // Parameter is not an array
+        if(typeof input === 'number'){
+            return new Array(parameterLength).fill(input);
         }
-        return new Array(parameterLength).fill(0);
-    } else if(!Array.isArray(input)){ // Parameter is a single number
-        return new Array(parameterLength).fill(input);
+        else throw new Error("Parameter ", parameterName, " must be empty, a number, or an array of numbers.");
     } else if(input.length == parameterLength){ // Parameter is a full array
         return input;
-    } else if(useNbPointsInLayer){
-        if(input.length == nbPointsInLayer){ // Pad values for 1D values that require 2D input
-            return new Array(nbPointsInLayer*nbLayers).fill(input).flat();
-        }
-        var error_str = "Length of values for parameter " + parameter_name + " is currently " + 
-                input.length + ", must be 0, 1, equal to nbPointsInLayer: " + nbPointsInLayer + 
-                " or nbPointsInLayer*nbLayers: " + (nbPointsInLayer*nbLayers);
-        throw new Error(error_str);
+    } else if(useNbPointsInLayer && (input.length == nbPointsInLayer)){ // Pad values for 1D values that require 2D input
+        return new Array(nbPointsInLayer*nbLayers).fill(input).flat();
+    } else if(input.length < parameterLength){
+        return padSingleParameter(input, parameterLength, parameterName);
+    } else{
+        return input.slice(0, parameterLength);   
     }
-    var error_str = "Length of values for parameter " + parameter_name + " is currently " + 
-            input.length + ", must be 0, 1 or equal to nbLayers: " + nbLayers;
-    throw new Error(error_str);
 }
 
 function setParameter(input, parameter_name, nbLayers, nbPointsInLayer){
     if(parameter_name == "radiusShapingParameter"){ 
-        console.log("setting rad2d");
         let radsp = [[], []];
         
         if(input?.length && Array.isArray(input[0])){ // radsp is a 2D array (radial offset, angular)
@@ -64,7 +66,6 @@ export default function toolpathUnitGenerator(position, initialRadius, layerHeig
     let tsp = setParameter(translateShapingParameter, "translateShapingParameter", nbLayers, nbPointsInLayer);
     let srsp = setParameter(scalingRadiusShapingParameter, "scalingRadiusShapingParameter", nbLayers, nbPointsInLayer);
     let thsp = setParameter(thicknessShapingParameter, "thicknessShapingParameter", nbLayers, nbPointsInLayer);
-    console.log("RADSP", radsp.length);
 
     var ctr = 0;
     for(let j = 0; j < nbLayers; j++){

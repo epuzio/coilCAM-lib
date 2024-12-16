@@ -6,7 +6,6 @@ export default function showCurve(curvePath, isVertical, position, initialRadius
         }
     } else{
         let normterm = Math.max(...curvePath); //keep size manageable compared to radius
-        console.log(normterm);
         for(let i = 0; i < nbPointsInLayer; i++){
             let angle = 2 * i * Math.PI / nbPointsInLayer;
             path.push(position[0] + (2*curvePath[i]*initialRadius/normterm * Math.cos(angle))); //check
