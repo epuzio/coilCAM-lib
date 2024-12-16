@@ -17,31 +17,40 @@ $parcel$export($00969899720ecf46$exports, "staircase", () => $71d25318f3359294$e
 $parcel$export($00969899720ecf46$exports, "square", () => $98eb036bb0d342cf$export$2e2bcd8739ae039);
 $parcel$export($00969899720ecf46$exports, "exponential", () => $880ea02f04cf849c$export$2e2bcd8739ae039);
 // Helper Functions
-function $2040f713c747fdf6$var$setParams(paramType, value, nbPoints, mode) {
-    if (!value || value.length == 0) {
-        if (mode == "multiplicative" && paramType == "values") return new Array(nbPoints).fill(1);
-        else return new Array(nbPoints).fill(0);
-    } else if (!Array.isArray(value)) return new Array(nbPoints).fill(value);
-    else if (value.length == nbPoints) return value;
+function $2040f713c747fdf6$var$padValues(value, nbPoints, mode) {
+    if (mode == "multiplicative") return value.concat(new Array(nbPoints - value.length).fill(1));
+    return value.concat(Array(nbPoints - value.length).fill(0));
+}
+function $2040f713c747fdf6$var$setValues(value, nbPoints, mode) {
+    if (!value) return $2040f713c747fdf6$var$padValues([], nbPoints, mode);
+    else if (!Array.isArray(value)) {
+        if (typeof value === "number") return new Array(nbPoints).fill(value);
+        else throw new Error("value must be empty, a number, or an array of numbers.");
+    } else if (value.length < nbPoints) return $2040f713c747fdf6$var$padValues(value, nbPoints, mode);
+    else if (value.length > nbPoints) return value.slice(0, nbPoints);
+    return value;
+}
+function $2040f713c747fdf6$var$setOffset(value, nbPoints) {
+    if (!value || value.length == 0) return new Array(nbPoints).fill(0);
+    else if (!Array.isArray(value)) return new Array(nbPoints).fill(value);
     return null;
 }
 function $2040f713c747fdf6$export$c3c5e174940bbb4f(functionType, offset, values0, nbPoints, mode) {
-    offset = $2040f713c747fdf6$var$setParams("offset", offset, nbPoints, mode);
-    values0 = $2040f713c747fdf6$var$setParams("values", values0, nbPoints, mode);
-    if (offset == null) throw new Error("Length of offset in " + functionType + " must be 0 or 1 or equal to nbPoints:" + nbPoints);
-    if (values0 == null) throw new Error("Length of values0 in " + functionType + " must be 0 or 1 or equal to nbPoints:" + nbPoints);
+    offset = $2040f713c747fdf6$var$setOffset(offset, nbPoints);
+    values0 = $2040f713c747fdf6$var$setValues(values0, nbPoints, mode);
+    if (offset == null) throw new Error("Length of offset in " + functionType + " must be 0 or 1.");
     return [
         offset,
         values0
     ];
 }
 function $2040f713c747fdf6$export$d49ab658f2d8f01e(functionType, offset0x, offset0y, values0x, values0y, nbPoints, mode) {
-    offset0x = $2040f713c747fdf6$var$setParams("offset0x", offset0x, nbPoints, mode);
-    offset0y = $2040f713c747fdf6$var$setParams("offset0y", offset0y, nbPoints, mode);
-    values0x = $2040f713c747fdf6$var$setParams("values0x", values0x, nbPoints, mode);
-    values0y = $2040f713c747fdf6$var$setParams("values0y", values0y, nbPoints, mode);
-    if (offset0x == null) throw new Error("Length of offset0x in " + functionType + " must be 0 or 1 or equal to nbPoints:" + nbPoints);
-    if (offset0y == null) throw new Error("Length of offset0y in " + functionType + " must be 0 or 1 or equal to nbPoints:" + nbPoints);
+    offset0x = $2040f713c747fdf6$var$setOffset(offset0x, nbPoints);
+    offset0y = $2040f713c747fdf6$var$setOffset(offset0y, nbPoints);
+    values0x = $2040f713c747fdf6$var$setValues(values0x, nbPoints, mode);
+    values0y = $2040f713c747fdf6$var$setValues(values0y, nbPoints, mode);
+    if (offset0x == null) throw new Error("Length of offset0x in " + functionType + " must be 0 or equal to nbPoints:" + nbPoints);
+    if (offset0y == null) throw new Error("Length of offset0y in " + functionType + " must be 0 or equal to nbPoints:" + nbPoints);
     if (values0x == null) throw new Error("Length of values0x in " + functionType + " must be 0 or 1 or equal to nbPoints:" + nbPoints);
     if (values0y == null) throw new Error("Length of values0y in " + functionType + " must be 0 or 1 or equal to nbPoints:" + nbPoints);
     return [

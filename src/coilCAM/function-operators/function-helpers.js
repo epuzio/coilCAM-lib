@@ -10,7 +10,10 @@ function setValues(value, nbPoints, mode){
     if (!value){
         return padValues([], nbPoints, mode);
     } else if(!Array.isArray(value)){
-        return new Array(nbPoints).fill(value);
+        if(typeof value === 'number'){
+            return new Array(nbPoints).fill(value);
+        }
+        else throw new Error("value must be empty, a number, or an array of numbers.");
     } else if(value.length < nbPoints){
         return padValues(value, nbPoints, mode);   
     } else if(value.length > nbPoints){
@@ -33,7 +36,6 @@ export function setParams1D(functionType, offset, values0, nbPoints, mode){
     values0 = setValues(values0, nbPoints, mode);
 
     if(offset == null){ throw new Error("Length of offset in " + functionType + " must be 0 or 1."); }
-    if(values0 == null){ throw new Error("Length of values0 in " + functionType + " must be 0 or 1 or equal to nbPoints:" + nbPoints); } 
     return [offset, values0];
 }
 
